@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
-import { setLocale } from "@/app/actions/set-locale";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
 
 const localeLabels: Record<Locale, string> = {
@@ -16,6 +16,8 @@ export function LanguageSwitcher({ current }: LanguageSwitcherProps) {
   const [open, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -29,7 +31,13 @@ export function LanguageSwitcher({ current }: LanguageSwitcherProps) {
 
   function handleSelect(locale: Locale) {
     setOpen(false);
-    startTransition(() => setLocale(locale));
+    if (locale === current) {
+      return;
+    }
+
+    startTransition(() => {
+      router.replace(pathname, { locale });
+    });
   }
 
   return (
@@ -46,9 +54,17 @@ export function LanguageSwitcher({ current }: LanguageSwitcherProps) {
           height="12"
           viewBox="0 0 12 12"
           fill="none"
+          aria-hidden="true"
+          focusable="false"
           className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         >
-          <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+          <path
+            d="M2 4L6 8L10 4"
+            stroke="currentColor"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </button>
 
@@ -60,7 +76,9 @@ export function LanguageSwitcher({ current }: LanguageSwitcherProps) {
               type="button"
               onClick={() => handleSelect(locale)}
               className={`flex w-full items-center justify-between px-4 py-2.5 text-sm transition-colors hover:bg-gray-50 ${
-                locale === current ? "font-medium text-[#070A0F]" : "text-gray-500"
+                locale === current
+                  ? "font-medium text-[#070A0F]"
+                  : "text-gray-500"
               }`}
             >
               {localeLabels[locale]}

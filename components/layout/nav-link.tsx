@@ -1,25 +1,28 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 
 type NavLinkProps = Readonly<{ href: string; label: string }>;
 
 export function NavLink({ href, label }: NavLinkProps) {
   const pathname = usePathname();
-  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = href === "/" ? pathname === "/" : pathname === href;
 
   return (
     <div className="relative inline-flex flex-col items-center">
       <Link
         href={href}
         className="text-sm transition-all duration-200"
-        style={isActive ? {
-          background: "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        } : { color: "#070A0F" }}
+        style={
+          isActive
+            ? {
+                background: "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }
+            : { color: "#070A0F" }
+        }
       >
         {label}
       </Link>

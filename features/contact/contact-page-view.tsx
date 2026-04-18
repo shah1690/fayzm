@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ContactForm } from "@/features/contact/contact-form";
 import { FaqSection } from "@/features/faq/faq-section";
 import { siteConfig } from "@/shared/config/site-config";
@@ -10,7 +11,6 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
     <main>
       <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-
           {/* Top: label + heading + description */}
           <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16">
             <div className="flex flex-col gap-4">
@@ -24,26 +24,33 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
             </div>
             <div className="flex items-end">
               <p className="text-sm leading-relaxed text-gray-500 md:text-base">
-                Helping businesses overcome complexity, achieve growth, and build sustainable partnerships.
+                Helping businesses overcome complexity, achieve growth, and
+                build sustainable partnerships.
               </p>
             </div>
           </div>
 
           {/* Main: image card + form */}
           <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
-
             {/* Left: image with overlay */}
-            <div className="relative min-h-[480px] overflow-hidden md:min-h-[580px]" style={{ borderRadius: 40, background: "#FAFAFA" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div
+              className="relative min-h-[480px] overflow-hidden md:min-h-[580px]"
+              style={{ borderRadius: 40, background: "#FAFAFA" }}
+            >
+              <Image
                 src="/images/portrait.png"
                 alt="FAYZ-M team"
-                className="absolute inset-0 h-full w-full object-cover"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
               />
               {/* gradient overlay */}
               <div
                 className="absolute inset-0"
-                style={{ background: "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0) 60%)" }}
+                style={{
+                  background:
+                    "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0) 60%)",
+                }}
               />
 
               {/* bottom text */}
@@ -52,7 +59,8 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
                   Prefer to Talk to Us Directly?
                 </h2>
                 <p className="mt-2 text-sm text-white/70">
-                  Get instant support from our team for urgent inquiries or quick questions.
+                  Get instant support from our team for urgent inquiries or
+                  quick questions.
                 </p>
                 <a
                   href={siteConfig.footer.phones[0].href}

@@ -13,14 +13,30 @@ export function Accordion({ items }: AccordionProps) {
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (
-          <div key={index}>
+          <div key={item.question}>
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : index)}
               className="flex w-full items-center justify-between gap-4 py-6 text-left"
             >
-              <span style={{ color: "#070A0F", WebkitTextFillColor: "#070A0F", fontSize: "1rem", fontWeight: 500 }}>{item.question}</span>
-              <span style={{ color: "#070A0F", fontSize: "1.25rem", fontWeight: 300, flexShrink: 0 }}>
+              <span
+                style={{
+                  color: "#070A0F",
+                  WebkitTextFillColor: "#070A0F",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                }}
+              >
+                {item.question}
+              </span>
+              <span
+                style={{
+                  color: "#070A0F",
+                  fontSize: "1.25rem",
+                  fontWeight: 300,
+                  flexShrink: 0,
+                }}
+              >
                 {isOpen ? "−" : "+"}
               </span>
             </button>
@@ -29,7 +45,10 @@ export function Accordion({ items }: AccordionProps) {
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="pb-6 text-sm leading-relaxed" style={{ color: "#6B7280" }}>
+                <p
+                  className="pb-6 text-sm leading-relaxed"
+                  style={{ color: "#6B7280" }}
+                >
                   {item.answer}
                 </p>
               </div>

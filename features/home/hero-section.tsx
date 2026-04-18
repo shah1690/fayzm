@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 const content = {
   heading: {
@@ -67,26 +68,52 @@ export function HeroSection({ locale }: Props) {
         {/* Green gradient left overlay */}
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0.6) 20%, rgba(0,0,0,0) 45%)" }}
+          style={{
+            background:
+              "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0.6) 20%, rgba(0,0,0,0) 45%)",
+          }}
         />
 
         {/* Mute / Unmute button */}
         <button
+          type="button"
           onClick={toggleMute}
           className="absolute right-6 top-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all hover:bg-white/30"
           aria-label={muted ? "Unmute" : "Mute"}
         >
           {muted ? (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-              <line x1="23" y1="9" x2="17" y2="15"/>
-              <line x1="17" y1="9" x2="23" y2="15"/>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <line x1="23" y1="9" x2="17" y2="15" />
+              <line x1="17" y1="9" x2="23" y2="15" />
             </svg>
           ) : (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
             </svg>
           )}
         </button>
@@ -104,7 +131,7 @@ export function HeroSection({ locale }: Props) {
                 {content.description[locale]}
               </p>
               <Link
-                href="/contact"
+                href={localizeHref(locale, "/contact")}
                 className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all hover:bg-gray-100"
               >
                 {content.cta[locale]}
@@ -112,9 +139,16 @@ export function HeroSection({ locale }: Props) {
             </div>
 
             {/* Right: stat pill */}
-            <div className="hidden flex-col gap-1 rounded-2xl bg-white/15 p-5 backdrop-blur-sm md:flex" style={{ minWidth: 160 }}>
-              <p className="text-3xl font-bold text-white">{content.stat.value}</p>
-              <p className="text-xs leading-snug text-white/75">{content.stat.label[locale]}</p>
+            <div
+              className="hidden flex-col gap-1 rounded-2xl bg-white/15 p-5 backdrop-blur-sm md:flex"
+              style={{ minWidth: 160 }}
+            >
+              <p className="text-3xl font-bold text-white">
+                {content.stat.value}
+              </p>
+              <p className="text-xs leading-snug text-white/75">
+                {content.stat.label[locale]}
+              </p>
             </div>
           </div>
         </div>

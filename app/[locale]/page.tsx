@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { HomePageView } from "@/features/home/home-page-view";
+import type { Locale } from "@/shared/i18n/translations";
 
 type LocalizedHomePageProps = Readonly<{
   params: Promise<{
@@ -26,10 +27,6 @@ export default async function LocalizedHomePage({
   params,
 }: LocalizedHomePageProps) {
   const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "HomePage",
-  });
 
-  return <HomePageView title={t("title")} />;
+  return <HomePageView locale={locale as Locale} />;
 }

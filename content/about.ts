@@ -30,7 +30,11 @@ export const aboutContent = {
         },
       },
       {
-        title: { en: "Our Commitment", uz: "Bizning majburiyat", ru: "Наши обязательства" },
+        title: {
+          en: "Our Commitment",
+          uz: "Bizning majburiyat",
+          ru: "Наши обязательства",
+        },
         text: {
           en: "We focus on environmental sustainability, social responsibility, and long-term partnerships — not short-term fixes.",
           uz: "Biz atrof-muhit barqarorligi, ijtimoiy mas'uliyat va uzoq muddatli hamkorlikka e'tibor qaratamiz.",
@@ -62,7 +66,11 @@ export const aboutContent = {
         uz: "Ishlab chiqarish jamoalarimiz trikotaj, ip, kiyim, un va yog' bo'yicha aniqlik bilan ishlaydi — Polsha, Turkiya, Rossiya, Italiya va Qozog'istondagi hamkorlarga doimiy sifat yetkazib beradi.",
         ru: "Наши команды работают с точностью в трикотаже, пряже, одежде, муке и масле — поставляя неизменное качество партнёрам в Польше, Турции, России, Италии и Казахстане.",
       },
-      cta: { en: "Start a Conversation →", uz: "Muloqot boshlash →", ru: "Начать разговор →" },
+      cta: {
+        en: "Start a Conversation →",
+        uz: "Muloqot boshlash →",
+        ru: "Начать разговор →",
+      },
     },
     image: "/images/eco.jpg",
   },

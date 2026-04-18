@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/shared/config/site-config";
 
 function BurgerIcon() {
@@ -12,6 +12,8 @@ function BurgerIcon() {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
     >
       <path
         d="M8.33325 4.16669H16.6666"
@@ -46,6 +48,8 @@ function CloseIcon() {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
     >
       <path
         d="M15 5L5 15M5 5L15 15"
@@ -79,10 +83,7 @@ export function MobileMenu() {
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-white transition-all duration-200 hover:border-gray-200 hover:bg-gray-50"
       >
-        <span
-          className="transition-all duration-200"
-          style={{ opacity: 1 }}
-        >
+        <span className="transition-all duration-200" style={{ opacity: 1 }}>
           {isOpen ? <CloseIcon /> : <BurgerIcon />}
         </span>
       </button>

@@ -28,7 +28,11 @@ export const stats: Stat[] = [
 ];
 
 export const ctaContent = {
-  label: { en: "Multi-Sector Cluster", uz: "Ko'p tarmoqli klaster", ru: "Многоотраслевой кластер" },
+  label: {
+    en: "Multi-Sector Cluster",
+    uz: "Ko'p tarmoqli klaster",
+    ru: "Многоотраслевой кластер",
+  },
   heading: {
     en: "Ready To Grow\nWith FAYZ-M?",
     uz: "FAYZ-M bilan\no'sishga tayyormisiz?",
@@ -50,6 +54,10 @@ export const ctaContent = {
   },
   card3: {
     value: "20+",
-    label: { en: "Partners already with us!", uz: "Hamkor kompaniyalar!", ru: "Партнёров с нами!" },
+    label: {
+      en: "Partners already with us!",
+      uz: "Hamkor kompaniyalar!",
+      ru: "Партнёров с нами!",
+    },
   },
 } as const;

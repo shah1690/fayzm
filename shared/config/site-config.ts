@@ -46,22 +46,37 @@ export const siteConfig = {
       { label: "Cottonseed Oil", href: "/businesses/cottonseed-oil" },
     ],
     phones: [
-      { label: "Phone Number", value: "+998942600000", href: "tel:+998942600000" },
-      { label: "Office Number", value: "+998940871111", href: "tel:+998940871111" },
+      {
+        label: "Phone Number",
+        value: "+998942600000",
+        href: "tel:+998942600000",
+      },
+      {
+        label: "Office Number",
+        value: "+998940871111",
+        href: "tel:+998940871111",
+      },
     ],
     social: [
-      { label: "Facebook", href: "https://www.facebook.com/fayzm.textile.uz/", icon: "facebook" },
-      { label: "Instagram", href: "https://www.instagram.com/fayztextile.uz/", icon: "instagram" },
-      { label: "YouTube", href: "https://www.youtube.com/@tpma_uz", icon: "youtube" },
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/fayzm.textile.uz/",
+        icon: "facebook",
+      },
+      {
+        label: "Instagram",
+        href: "https://www.instagram.com/fayztextile.uz/",
+        icon: "instagram",
+      },
+      {
+        label: "YouTube",
+        href: "https://www.youtube.com/@tpma_uz",
+        icon: "youtube",
+      },
     ],
     legal: [
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Terms & Conditions", href: "/terms" },
     ],
-  },
-  pages: {
-    home: {
-      title: "Home",
-    },
   },
 } as const;

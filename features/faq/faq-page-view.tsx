@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Accordion } from "@/components/ui/accordion";
 import { faqContent } from "@/content/faq";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 type FaqPageViewProps = Readonly<{ locale: Locale }>;
 
@@ -22,10 +23,14 @@ export function FaqPageView({ locale }: FaqPageViewProps) {
             </div>
 
             <div className="flex flex-col gap-4">
-              <h2 className="text-xl font-semibold text-[#070A0F]">{t.stillHaveQuestions}</h2>
-              <p className="text-sm leading-relaxed text-gray-500">{t.stillHaveDesc}</p>
+              <h2 className="text-xl font-semibold text-[#070A0F]">
+                {t.stillHaveQuestions}
+              </h2>
+              <p className="text-sm leading-relaxed text-gray-500">
+                {t.stillHaveDesc}
+              </p>
               <Link
-                href="/contact"
+                href={localizeHref(locale, "/contact")}
                 className="inline-flex items-center gap-2 text-sm font-medium text-[#070A0F] transition-opacity hover:opacity-60"
               >
                 {t.scheduleCall}
