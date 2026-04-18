@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useMemo, useRef, useState } from "react";
 import { businesses } from "@/content/businesses";
+import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
 
 type Props = Readonly<{ label: string; locale: Locale }>;
