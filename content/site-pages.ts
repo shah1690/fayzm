@@ -19,86 +19,66 @@ type SitePageId =
 
 type SitePageDefinition = {
   id: SitePageId;
-  slugs: string[][];
+  // Public page routing is defined entirely by this list.
+  slug: string[];
 };
 
 export const sitePages: SitePageDefinition[] = [
   {
     id: "collections",
-    slugs: [["collections"]],
+    slug: ["collections"],
   },
   {
     id: "collectionsWomen",
-    slugs: [["collections", "women"]],
+    slug: ["collections", "women"],
   },
   {
     id: "collectionsMen",
-    slugs: [["collections", "men"]],
+    slug: ["collections", "men"],
   },
   {
     id: "businesses",
-    slugs: [["businesses"], ["pages", "fayz-m-businesses"]],
+    slug: ["businesses"],
   },
   {
     id: "knitting",
-    slugs: [
-      ["businesses", "knitting"],
-      ["pages", "knitting"],
-    ],
+    slug: ["businesses", "knitting"],
   },
   {
     id: "yarnProduction",
-    slugs: [
-      ["businesses", "yarn-production"],
-      ["pages", "fayz-m-yarn-production"],
-    ],
+    slug: ["businesses", "yarn-production"],
   },
   {
     id: "garmentProduction",
-    slugs: [
-      ["businesses", "garment-production"],
-      ["pages", "fayz-m-garment-production"],
-    ],
+    slug: ["businesses", "garment-production"],
   },
   {
     id: "petrol",
-    slugs: [
-      ["businesses", "petrol"],
-      ["pages", "fayz-m-petrol"],
-    ],
+    slug: ["businesses", "petrol"],
   },
   {
     id: "flour",
-    slugs: [
-      ["businesses", "flour"],
-      ["pages", "fayz-m-flour"],
-    ],
+    slug: ["businesses", "flour"],
   },
   {
     id: "farm",
-    slugs: [
-      ["businesses", "farm"],
-      ["pages", "fayz-m-farm"],
-    ],
+    slug: ["businesses", "farm"],
   },
   {
     id: "cottonseedOilProduction",
-    slugs: [
-      ["businesses", "cottonseed-oil-production"],
-      ["pages", "fayz-m-cottonseed-oil-production"],
-    ],
+    slug: ["businesses", "cottonseed-oil-production"],
   },
   {
     id: "about",
-    slugs: [["about"], ["pages", "about"]],
+    slug: ["about"],
   },
   {
     id: "contact",
-    slugs: [["contact"], ["pages", "contact"]],
+    slug: ["contact"],
   },
   {
     id: "faq",
-    slugs: [["faq"], ["pages", "faq"]],
+    slug: ["faq"],
   },
 ];
 
@@ -106,19 +86,20 @@ export function getLocaleHomePath(locale: AppLocale) {
   return locale === routing.defaultLocale ? "/" : `/${locale}`;
 }
 
+export function getLocalePagePath(locale: AppLocale, slug: string[]) {
+  const pathname = `/${slug.join("/")}`;
+  return locale === routing.defaultLocale ? pathname : `/${locale}${pathname}`;
+}
+
 export function resolveSitePage(slug: string[]) {
-  return sitePages.find((page) =>
-    page.slugs.some((candidate) => candidate.join("/") === slug.join("/")),
-  );
+  return sitePages.find((page) => page.slug.join("/") === slug.join("/"));
 }
 
 export function getAllSitePageParams() {
   return routing.locales.flatMap((locale) =>
-    sitePages.flatMap((page) =>
-      page.slugs.map((slug) => ({
-        locale,
-        slug,
-      })),
-    ),
+    sitePages.map((page) => ({
+      locale,
+      slug: page.slug,
+    })),
   );
 }

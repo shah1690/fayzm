@@ -5,8 +5,10 @@ import { PageShell } from "@/components/layout/page-shell";
 import {
   getAllSitePageParams,
   getLocaleHomePath,
+  getLocalePagePath,
   resolveSitePage,
 } from "@/content/site-pages";
+import type { AppLocale } from "@/i18n/messages";
 import { messages } from "@/i18n/messages";
 import { routing } from "@/i18n/routing";
 
@@ -25,9 +27,9 @@ export async function generateMetadata({
   params,
 }: LocalizedPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const resolvedLocale = hasLocale(routing.locales, locale)
-    ? locale
-    : routing.defaultLocale;
+  const resolvedLocale = (
+    hasLocale(routing.locales, locale) ? locale : routing.defaultLocale
+  ) as AppLocale;
   const page = resolveSitePage(slug);
 
   if (!page) {
@@ -36,6 +38,9 @@ export async function generateMetadata({
 
   return {
     title: messages[resolvedLocale].SitePages[page.id].metaTitle,
+    alternates: {
+      canonical: getLocalePagePath(resolvedLocale, page.slug),
+    },
   };
 }
 
@@ -43,9 +48,9 @@ export default async function LocalizedContentPage({
   params,
 }: LocalizedPageProps) {
   const { locale, slug } = await params;
-  const resolvedLocale = hasLocale(routing.locales, locale)
-    ? locale
-    : routing.defaultLocale;
+  const resolvedLocale = (
+    hasLocale(routing.locales, locale) ? locale : routing.defaultLocale
+  ) as AppLocale;
   const page = resolveSitePage(slug);
 
   if (!page) {
