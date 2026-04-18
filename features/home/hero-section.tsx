@@ -59,7 +59,7 @@ export function HeroSection({ locale }: Props) {
           poster="/logo-light.svg"
           className="absolute inset-0 h-full w-full object-cover"
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
 
         {/* Dark base overlay */}
