@@ -1,0 +1,214 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import type { ProductData } from "@/content/products";
+import type { Locale } from "@/shared/i18n/translations";
+
+const t = {
+  backToCollection: { en: "Collection", uz: "Kolleksiya", ru: "Коллекция" },
+  fabric: { en: "Fabric", uz: "Mato", ru: "Ткань" },
+  composition: { en: "Composition", uz: "Tarkib", ru: "Состав" },
+  weight: { en: "Weight", uz: "Og'irlik", ru: "Вес" },
+  sizes: {
+    en: "Available Sizes",
+    uz: "Mavjud o'lchamlar",
+    ru: "Доступные размеры",
+  },
+  cta: { en: "Request Order", uz: "Buyurtma berish", ru: "Оставить заявку" },
+  ctaSub: {
+    en: "We'll get back to you within 24 hours",
+    uz: "24 soat ichida javob beramiz",
+    ru: "Ответим в течение 24 часов",
+  },
+  collections: { en: "Collections", uz: "Kolleksiyalar", ru: "Коллекции" },
+  women: { en: "Women", uz: "Ayollar", ru: "Женщины" },
+  men: { en: "Men", uz: "Erkaklar", ru: "Мужчины" },
+  madeIn: {
+    en: "Made in Uzbekistan",
+    uz: "O'zbekistonda ishlab chiqarilgan",
+    ru: "Сделано в Узбекистане",
+  },
+};
+
+type Props = Readonly<{ product: ProductData; locale: Locale }>;
+
+export function ProductPageView({ product, locale }: Props) {
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const collectionHref = `/collections/${product.gender}`;
+  const collectionLabel =
+    product.gender === "women" ? t.women[locale] : t.men[locale];
+
+  return (
+    <main className="min-h-[calc(100vh-76px)] px-5 py-6 md:px-10">
+      <div className="mx-auto max-w-[1440px]">
+        {/* Breadcrumb */}
+        <nav className="mb-6 flex items-center gap-2 text-xs text-gray-400">
+          <Link
+            href="/collections"
+            className="hover:text-[#070A0F] transition-colors"
+          >
+            {t.collections[locale]}
+          </Link>
+          <span>/</span>
+          <Link
+            href={collectionHref}
+            className="hover:text-[#070A0F] transition-colors"
+          >
+            {collectionLabel}
+          </Link>
+          <span>/</span>
+          <span className="text-[#070A0F] font-medium">{product.name}</span>
+        </nav>
+
+        {/* Main layout */}
+        <div
+          className="flex flex-col gap-6 md:flex-row md:gap-8"
+          style={{ minHeight: "calc(100vh - 160px)" }}
+        >
+          {/* Left: image */}
+          <div
+            className="relative w-full overflow-hidden md:w-[55%]"
+            style={{ borderRadius: 32, minHeight: 480 }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={product.image}
+              alt={product.name}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+
+            {/* Made in Uzbekistan tag */}
+            <div className="absolute left-5 top-5">
+              <div
+                className="flex items-center gap-1.5 rounded-full px-3 py-1.5 backdrop-blur-md"
+                style={{ background: "rgba(0,0,0,0.4)" }}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+                <span className="text-xs font-medium text-white">
+                  {t.madeIn[locale]}
+                </span>
+              </div>
+            </div>
+
+            {/* Product name watermark */}
+            <div className="absolute bottom-5 right-5">
+              <p
+                className="text-6xl font-black leading-none opacity-10 select-none"
+                style={{ color: "white" }}
+              >
+                {product.name}
+              </p>
+            </div>
+          </div>
+
+          {/* Right: details */}
+          <div className="flex w-full flex-col md:w-[45%]">
+            {/* Top section */}
+            <div className="flex-1">
+              {/* Collection tag */}
+              <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#F5F5F5] px-3 py-1.5">
+                <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  {collectionLabel}
+                </span>
+              </div>
+
+              {/* Name */}
+              <h1 className="mb-4 text-4xl font-black tracking-tight text-[#070A0F] md:text-5xl">
+                {product.name}
+              </h1>
+
+              {/* Description */}
+              <p className="mb-8 text-base leading-relaxed text-gray-500">
+                {product.description[locale]}
+              </p>
+
+              {/* Specs */}
+              <div className="mb-8 grid grid-cols-3 gap-3">
+                {[
+                  { label: t.fabric[locale], value: product.specs.fabric },
+                  {
+                    label: t.composition[locale],
+                    value: product.specs.composition,
+                  },
+                  { label: t.weight[locale], value: product.specs.weight },
+                ].map((spec) => (
+                  <div
+                    key={spec.label}
+                    className="rounded-2xl bg-[#F5F5F5] p-4"
+                  >
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">
+                      {spec.label}
+                    </p>
+                    <p className="text-sm font-semibold text-[#070A0F]">
+                      {spec.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Sizes */}
+              <div className="mb-10">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  {t.sizes[locale]}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {product.sizes.map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() =>
+                        setSelectedSize(size === selectedSize ? null : size)
+                      }
+                      className="flex h-11 min-w-[44px] items-center justify-center rounded-xl px-4 text-sm font-semibold transition-all duration-200"
+                      style={
+                        selectedSize === size
+                          ? {
+                              background: "#070A0F",
+                              color: "#84CC16",
+                              border: "2px solid #070A0F",
+                            }
+                          : {
+                              background: "#F5F5F5",
+                              color: "#070A0F",
+                              border: "2px solid transparent",
+                            }
+                      }
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="relative overflow-hidden rounded-[28px] bg-[#070A0F] p-6">
+              {/* Decorative lime dot */}
+              <div
+                className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-20"
+                style={{ background: "#84CC16" }}
+              />
+              <div className="relative z-10 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-lg font-bold text-white">
+                    {t.cta[locale]}
+                  </p>
+                  <p className="mt-0.5 text-xs text-white/50">
+                    {t.ctaSub[locale]}
+                  </p>
+                </div>
+                <Link
+                  href={`/contact?product=${encodeURIComponent(product.name)}`}
+                  className="flex-shrink-0 rounded-full bg-[#84CC16] px-6 py-3 text-sm font-bold text-[#070A0F] transition-all hover:bg-white"
+                >
+                  {t.cta[locale]} →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
