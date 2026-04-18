@@ -67,14 +67,12 @@ export function ProductGallery({ products }: Props) {
           </div>
 
           {/* Name blur badge — always visible */}
-          <div className="absolute inset-x-3 bottom-3">
+          <div className="absolute bottom-3 left-3">
             <div
               className="rounded-xl px-3 py-2 backdrop-blur-md"
-              style={{ background: "rgba(255,255,255,0.18)" }}
+              style={{ background: "rgba(0,0,0,0.45)" }}
             >
-              <p className="truncate text-sm font-semibold text-white">
-                {product.name}
-              </p>
+              <p className="text-sm font-semibold text-white">{product.name}</p>
             </div>
           </div>
         </Link>
