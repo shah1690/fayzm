@@ -1,6 +1,7 @@
 import { CtaBanner } from "@/features/cta/cta-banner";
 import { FaqSection } from "@/features/faq/faq-section";
 import { BusinessesSection } from "@/features/home/businesses-section";
+import { CollectionsMarqueeSection } from "@/features/home/collections-marquee-section";
 import { HeroSection } from "@/features/home/hero-section";
 import { HomeCTABanner } from "@/features/home/home-cta-banner";
 import { PartnersSection } from "@/features/partners/partners-section";
@@ -13,6 +14,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
   return (
     <main>
       <HeroSection locale={locale} />
+      <CollectionsMarqueeSection locale={locale} />
       <StatsSection locale={locale} />
       <BusinessesSection locale={locale} />
       <HomeCTABanner locale={locale} />

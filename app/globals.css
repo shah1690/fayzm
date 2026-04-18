@@ -120,3 +120,9 @@ h6 {
   width: max-content;
   will-change: transform;
 }
+
+.animate-marquee-reverse {
+  animation: marquee 60s linear infinite reverse;
+  width: max-content;
+  will-change: transform;
+}
