@@ -5,23 +5,47 @@ export const siteConfig = {
     dark: "/logo-dark.svg",
   },
   nav: [
-    { label: "About", href: "/about" },
-    { label: "Service", href: "/services" },
-    { label: "Case Studies", href: "/case-studies" },
-    { label: "Articles", href: "/articles" },
+    { label: "Home", href: "/" },
+    {
+      label: "Collections",
+      href: "/collections",
+      children: [
+        { label: "Women", href: "/collections/women" },
+        { label: "Men", href: "/collections/men" },
+      ],
+    },
+    {
+      label: "Businesses",
+      href: "/businesses",
+      children: [
+        { label: "Knitting", href: "/businesses/knitting" },
+        { label: "Yarn Production", href: "/businesses/yarn-production" },
+        { label: "Garment Production", href: "/businesses/garment-production" },
+        { label: "Petrol", href: "/businesses/petrol" },
+        { label: "Flour", href: "/businesses/flour" },
+        { label: "Farm", href: "/businesses/farm" },
+        { label: "Cottonseed Oil", href: "/businesses/cottonseed-oil" },
+      ],
+    },
+    { label: "About Us", href: "/about" },
+    { label: "FAQ", href: "/#faq" },
   ],
   footer: {
     quickLinks: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services" },
-      { label: "Blog", href: "/blog" },
-    ],
-    company: [
+      { label: "Collections", href: "/collections" },
       { label: "About Us", href: "/about" },
-      { label: "Contact Us", href: "/contact" },
-      { label: "Reviews", href: "/reviews" },
+      { label: "FAQ", href: "/#faq" },
     ],
-    address: "123 Innovation Drive, Tech City, CA 94016, USA",
+    businesses: [
+      { label: "Knitting", href: "/businesses/knitting" },
+      { label: "Yarn Production", href: "/businesses/yarn-production" },
+      { label: "Garment Production", href: "/businesses/garment-production" },
+      { label: "Petrol", href: "/businesses/petrol" },
+      { label: "Flour", href: "/businesses/flour" },
+      { label: "Farm", href: "/businesses/farm" },
+      { label: "Cottonseed Oil", href: "/businesses/cottonseed-oil" },
+    ],
     phones: [
       { label: "Phone Number", value: "+998942600000", href: "tel:+998942600000" },
       { label: "Office Number", value: "+998940871111", href: "tel:+998940871111" },

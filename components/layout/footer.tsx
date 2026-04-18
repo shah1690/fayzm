@@ -55,12 +55,12 @@ function QuickLinksCol() {
   );
 }
 
-function CompanyCol() {
+function BusinessesCol() {
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-base font-medium text-white">Company</h3>
+      <h3 className="text-base font-medium text-white">Businesses</h3>
       <ul className="flex flex-col gap-3">
-        {siteConfig.footer.company.map((item) => (
+        {siteConfig.footer.businesses.map((item) => (
           <li key={item.href}>
             <Link href={item.href} className="text-sm text-white/60 transition-colors duration-200 hover:text-white">
               {item.label}
@@ -124,7 +124,7 @@ export async function Footer() {
         <div className="flex flex-col gap-8 md:hidden">
           <div className="grid grid-cols-2 gap-6">
             <QuickLinksCol />
-            <CompanyCol />
+            <BusinessesCol />
           </div>
           <ContactCol />
           {logoSection}
@@ -135,7 +135,7 @@ export async function Footer() {
           {logoSection}
           <div className="grid grid-cols-3 gap-16">
             <QuickLinksCol />
-            <CompanyCol />
+            <BusinessesCol />
             <ContactCol />
           </div>
         </div>

@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MobileMenu } from "@/components/layout/mobile-menu";
+import { NavDropdown } from "@/components/layout/nav-dropdown";
+import { NavLink } from "@/components/layout/nav-link";
+import { getLocale } from "@/shared/lib/get-locale";
 import { siteConfig } from "@/shared/config/site-config";
 
 function PhoneIcon() {
@@ -28,7 +32,8 @@ function PhoneIcon() {
 }
 
 
-export function Navbar() {
+export async function Navbar() {
+  const locale = await getLocale();
   return (
     <header className="relative w-full border-b border-gray-100 bg-white">
       <nav className="flex h-[76px] items-center justify-between px-5 py-4 md:px-10">
@@ -47,18 +52,18 @@ export function Navbar() {
         <ul className="hidden items-center gap-8 md:flex">
           {siteConfig.nav.map((item) => (
             <li key={item.href}>
-              <Link
-                href={item.href}
-                className="flex items-center gap-1 text-sm text-[#070A0F] transition-opacity hover:opacity-60"
-              >
-                {item.label}
-              </Link>
+              {"children" in item ? (
+                <NavDropdown label={item.label} href={item.href} children={item.children} />
+              ) : (
+                <NavLink href={item.href} label={item.label} />
+              )}
             </li>
           ))}
         </ul>
 
         {/* Desktop actions */}
         <div className="hidden items-center gap-3 md:flex">
+          <LanguageSwitcher current={locale} />
           <Link
             href="/contact"
             className="rounded-full border border-gray-100 bg-white px-5 py-2 text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
