@@ -137,11 +137,11 @@ h6 {
 }
 
 .animate-marquee-up {
-  animation: marquee-up 22s linear infinite;
+  animation: marquee-up 70s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-down {
-  animation: marquee-up 22s linear infinite reverse;
+  animation: marquee-up 70s linear infinite reverse;
   will-change: transform;
 }

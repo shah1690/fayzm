@@ -53,7 +53,7 @@ function ArrowRight() {
 
 type Props = Readonly<{ locale: Locale }>;
 
-const NUM_COLS = 10;
+const NUM_COLS = 12;
 const IMG_W = 230;
 const IMG_H = 300;
 const GAP = 12;
@@ -61,9 +61,19 @@ const GAP = 12;
 export function CollectionsMarqueeSection({ locale }: Props) {
   const all = [...getProductsByGender("women"), ...getProductsByGender("men")];
 
-  // Distribute round-robin into NUM_COLS columns
+  // Fisher-Yates shuffle with per-column LCG seed
+  const shuffle = (arr: typeof all, seed: number) => {
+    const out = [...arr];
+    let s = seed >>> 0;
+    for (let i = out.length - 1; i > 0; i--) {
+      s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+      const j = s % (i + 1);
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  };
   const columns = Array.from({ length: NUM_COLS }, (_, ci) =>
-    all.filter((_, i) => i % NUM_COLS === ci),
+    shuffle(all, (ci + 1) * 2654435761),
   );
 
   return (
@@ -76,10 +86,10 @@ export function CollectionsMarqueeSection({ locale }: Props) {
         className="absolute flex opacity-60"
         style={{
           gap: GAP,
-          top: "-40%",
-          bottom: "-40%",
-          left: "-20%",
-          right: "-20%",
+          top: "-120%",
+          bottom: "-120%",
+          left: "-50%",
+          right: "-50%",
           transform: "rotate(30deg)",
           transformOrigin: "center center",
         }}
@@ -87,11 +97,13 @@ export function CollectionsMarqueeSection({ locale }: Props) {
       >
         {columns.map((col) => {
           const colKey = col.map((p) => p.id).join("-");
-          const items = [0, 1, 2, 3].flatMap((copy) =>
+          const items = [0, 1].flatMap((copy) =>
             col.map((p) => ({ ...p, _key: `${p.id}-c${copy}` })),
           );
-          const isEven = columns.indexOf(col) % 2 === 0;
-          const cls = isEven ? "animate-marquee-up" : "animate-marquee-down";
+          const ci = columns.indexOf(col);
+          const seed = (ci * 2654435761) >>> 0;
+          const cls =
+            seed % 2 === 0 ? "animate-marquee-up" : "animate-marquee-down";
           return (
             <div
               key={colKey}

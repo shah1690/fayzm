@@ -217,8 +217,65 @@ export function Footer({ locale }: FooterProps) {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 border-t border-white/10 pt-6">
+        {/* Address + Email bar */}
+        <div className="mt-10 border-t border-white/10 pt-8">
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-10">
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl bg-white/5">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
+                    fill="#84CC16"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
+                  Address
+                </p>
+                <p className="mt-0.5 text-sm text-white/60">
+                  Uzbekistan, Andijan, Khojaobod, Mustahkam 17
+                </p>
+              </div>
+            </div>
+
+            <div className="hidden h-8 w-px bg-white/10 sm:block" />
+
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl bg-white/5">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                    fill="#84CC16"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
+                  Email
+                </p>
+                <a
+                  href="mailto:fayz-mtex@mail.ru"
+                  className="mt-0.5 block text-sm text-white/60 transition-colors hover:text-white"
+                >
+                  fayz-mtex@mail.ru
+                </a>
+              </div>
+            </div>
+          </div>
+
           <p className="text-sm text-white/40">
             Copyright &copy; {year} {siteConfig.name}. All Rights Reserved.
           </p>

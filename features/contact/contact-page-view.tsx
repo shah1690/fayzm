@@ -74,6 +74,127 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
             {/* Right: form */}
             <ContactForm />
           </div>
+
+          {/* Contact info cards */}
+          <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {/* Address */}
+            <div className="flex flex-col gap-3 rounded-3xl bg-[#F5F5F5] p-6">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#070A0F]">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
+                    fill="#84CC16"
+                  />
+                </svg>
+              </div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                Address
+              </p>
+              <p className="text-sm font-medium leading-relaxed text-[#070A0F]">
+                Uzbekistan, Andijan,
+                <br />
+                Khojaobod, Mustahkam 17
+              </p>
+              <a
+                href="https://maps.google.com/?q=Andijan,Khojaobod,Mustahkam+17,Uzbekistan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-auto text-xs font-semibold text-[#84CC16] hover:underline"
+              >
+                Open in Maps →
+              </a>
+            </div>
+
+            {/* Phone */}
+            <div className="flex flex-col gap-3 rounded-3xl bg-[#070A0F] p-6">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"
+                    fill="#84CC16"
+                  />
+                </svg>
+              </div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-white/40">
+                Phone
+              </p>
+              <div className="flex flex-col gap-1">
+                <a
+                  href="tel:+998942600000"
+                  className="text-sm font-medium text-white hover:text-[#84CC16] transition-colors"
+                >
+                  +998 94 260 00 00
+                </a>
+                <a
+                  href="tel:+998930871111"
+                  className="text-sm font-medium text-white hover:text-[#84CC16] transition-colors"
+                >
+                  +998 93 087 11 11
+                </a>
+              </div>
+              <p className="mt-auto text-xs text-white/30">
+                Working hours — 24/7
+              </p>
+            </div>
+
+            {/* Email */}
+            <div className="flex flex-col gap-3 rounded-3xl bg-[#F5F5F5] p-6">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#070A0F]">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                    fill="#84CC16"
+                  />
+                </svg>
+              </div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                Email
+              </p>
+              <a
+                href="mailto:fayz-mtex@mail.ru"
+                className="text-sm font-medium text-[#070A0F] hover:text-[#84CC16] transition-colors break-all"
+              >
+                fayz-mtex@mail.ru
+              </a>
+              <p className="mt-auto text-xs text-gray-400">
+                We reply within 24h
+              </p>
+            </div>
+          </div>
+
+          {/* Map */}
+          <div
+            className="mt-4 overflow-hidden rounded-3xl"
+            style={{ height: 400 }}
+          >
+            <iframe
+              title="FAYZ-M location"
+              src="https://yandex.uz/map-widget/v1/?um=constructor%3Adea30e4e662d40a9d40482d29fb86890300ab3083ad6f03bd6e666381c081b3d&amp;source=constructor"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
       <FaqSection locale={locale} />
