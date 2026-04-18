@@ -178,8 +178,8 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
               <div className="flex w-1/2 flex-col gap-4">
                 {/* Top card: image */}
                 <div
-                  className="relative overflow-hidden"
-                  style={{ borderRadius: 24, flex: "1 1 0" }}
+                  className="relative min-h-0 flex-1 overflow-hidden"
+                  style={{ borderRadius: 24 }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -221,8 +221,8 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
 
                 {/* Bottom card: dark brand card */}
                 <div
-                  className="flex flex-col justify-between bg-[#070A0F] p-6"
-                  style={{ borderRadius: 24, flex: "1 1 0" }}
+                  className="flex min-h-0 flex-1 flex-col justify-between bg-[#070A0F] p-6"
+                  style={{ borderRadius: 24 }}
                 >
                   <p className="text-xl font-bold text-white">FAYZ-M</p>
                   <div>
