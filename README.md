@@ -25,18 +25,22 @@ Because of that, putting every component into a single `components/` folder woul
 
 ## Recommended Structure
 
-For now, we keep the `app/` directory at the root. This gives us a clean starting point without unnecessary restructuring too early.
+The project now uses locale-based routing with an unprefixed default locale. Internally, all routes live under `app/[locale]`, while the public URLs behave like this:
+- `/` -> English
+- `/uz` -> Uzbek
+- `/ru` -> Russian
 
 ```text
 .
 ├── app/
-│   ├── page.tsx
-│   ├── collections/
-│   ├── businesses/
-│   ├── about/
-│   ├── contact/
-│   ├── faq/
-│   └── api/
+│   └── [locale]/
+│       ├── layout.tsx
+│       ├── page.tsx
+│       ├── collections/
+│       ├── businesses/
+│       ├── about/
+│       ├── contact/
+│       └── faq/
 ├── components/
 │   ├── ui/
 │   ├── layout/
@@ -54,8 +58,13 @@ For now, we keep the `app/` directory at the root. This gives us a clean startin
 │   ├── businesses/
 │   ├── faq/
 │   └── company/
+├── i18n/
+│   ├── messages.ts
+│   ├── request.ts
+│   └── routing.ts
+├── proxy.ts
+├── next.config.ts
 ├── shared/
-│   ├── config/
 │   ├── constants/
 │   ├── lib/
 │   ├── hooks/
@@ -76,14 +85,18 @@ Rules:
 - do not place large section markup here
 - route files should compose blocks from `features/`
 - route-level logic is allowed, but business UI should not live here
+- locale validation, metadata, and locale-scoped providers belong in `app/[locale]/layout.tsx`
 
 Example:
 
 ```tsx
+import { getTranslations } from "next-intl/server";
 import { HomePageView } from "@/features/home/home-page-view";
 
-export default function Page() {
-  return <HomePageView />;
+export default async function Page() {
+  const t = await getTranslations("HomePage");
+
+  return <HomePageView title={t("title")} />;
 }
 ```
 
@@ -131,7 +144,7 @@ Rules:
 
 ### `content/`
 
-Until a CMS exists, all structured content should live here.
+Until a CMS exists, all structured content that is not part of the locale dictionaries should live here.
 
 This is especially important for this project because a large portion of the website is made of text, FAQ items, catalog entries, and business-direction content.
 
@@ -147,6 +160,20 @@ Benefits:
 - moving to a CMS later becomes easier
 - feature components depend on data shape, not on hardcoded copy
 
+### `i18n/`
+
+This folder owns locale routing and translations.
+
+Responsibilities:
+- `i18n/routing.ts` defines supported locales and routing behavior
+- `i18n/request.ts` resolves the active locale and loads locale messages
+- `i18n/messages.ts` stores the current translation catalogs until a dedicated messages directory or CMS is introduced
+
+Rules:
+- locale-specific UI text should not be hardcoded in pages or features
+- if text is translated, it should come from the i18n layer
+- keep the public locale contract stable: English without a prefix, Uzbek and Russian with prefixes
+
 ### `shared/`
 
 This is the framework-independent technical layer.
@@ -155,7 +182,6 @@ Examples:
 - `shared/lib` - utility functions
 - `shared/types` - shared types
 - `shared/constants` - constant values
-- `shared/config` - site config and metadata defaults
 - `shared/hooks` - common custom hooks
 
 Rules:
@@ -174,7 +200,9 @@ The decision rule should stay simple:
    - move it to `components/ui`
 4. Is it text or structured content?
    - move it to `content/`
-5. Is it a utility, type, config, or helper?
+5. Is it translated UI copy or locale routing config?
+   - move it to `i18n/`
+6. Is it a utility, type, config, or helper?
    - move it to `shared/`
 
 We should not turn `components/` into a dumping ground.
@@ -187,6 +215,7 @@ Responsibilities:
 - `app/` route skeleton
 - `components/ui`
 - `components/layout`
+- `i18n/`
 - `shared/`
 - global navigation, footer, and common form primitives
 
@@ -213,6 +242,8 @@ Responsibilities:
 
 Based on the current site, these are the first routes we should expect:
 - `/`
+- `/uz`
+- `/ru`
 - `/collections`
 - `/collections/women`
 - `/collections/men`
@@ -222,7 +253,7 @@ Based on the current site, these are the first routes we should expect:
 - `/contact`
 - `/faq`
 
-Because the project will support three locales, we can move to this structure when locale routing is introduced:
+Because the project supports three locales, the internal route structure should look like this:
 
 ```text
 app/
@@ -235,16 +266,32 @@ app/
     └── faq/
 ```
 
-We should not force that in the very first stage. The better choice for now is to keep the structure simple and stable while preparing the codebase for `en`, `uz`, and `ru`.
+Supporting files:
+
+```text
+i18n/
+├── messages.ts
+├── request.ts
+└── routing.ts
+
+proxy.ts
+next.config.ts
+```
+
+Public URL behavior must stay aligned with the current site:
+- `/` serves English
+- `/uz` serves Uzbek
+- `/ru` serves Russian
 
 ## Practical Rule
 
 If it is not clear where a new file belongs, ask this question:
 
-`Is this page-specific, reusable UI, structured content, or shared technical infrastructure?`
+`Is this page-specific, reusable UI, structured content, i18n logic, or shared technical infrastructure?`
 
 Then place it accordingly:
 - page-specific -> `features/`
 - reusable UI -> `components/`
 - structured content -> `content/`
+- translated copy or locale routing -> `i18n/`
 - shared technical helper -> `shared/`
