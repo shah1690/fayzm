@@ -235,6 +235,42 @@ export const products: ProductData[] = [
     },
     sizes: ["46", "48", "50", "52", "54", "56"],
   },
+  {
+    id: "m-661",
+    slug: "m-661",
+    gender: "men",
+    name: "M-661",
+    description: {
+      en: "Classic crewneck sweatshirt with a clean, minimal silhouette. Soft brushed interior for all-day comfort.",
+      uz: "Klassik yumaloq bo'yin svitshot. Yumshoq ichki qismi bilan butun kun qulay.",
+      ru: "Классический свитшот с круглым вырезом и минималистичным силуэтом. Мягкий начёс внутри для комфорта на весь день.",
+    },
+    image: "/images/products/m-661.jpg",
+    specs: {
+      fabric: "French terry",
+      composition: "100% cotton",
+      weight: "340 g/m²",
+    },
+    sizes: ["46", "48", "50", "52", "54", "56"],
+  },
+  {
+    id: "w-1497",
+    slug: "1497",
+    gender: "women",
+    name: "1497",
+    description: {
+      en: "Relaxed-fit pullover with a soft touch and clean finish. Everyday comfort with a polished look.",
+      uz: "Yumshoq va silliq erkin kesimli pullover. Har kunlik qulay kiyim.",
+      ru: "Пуловер свободного кроя с мягкой текстурой и аккуратной отделкой. Ежедневный комфорт с безупречным видом.",
+    },
+    image: "/images/products/w-1497.jpg",
+    specs: {
+      fabric: "French terry",
+      composition: "100% cotton",
+      weight: "320 g/m²",
+    },
+    sizes: ["44", "46", "48", "50", "52"],
+  },
 ];
 
 export function getProduct(
