@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "fayzm",
-  description: "fayzm",
+  title: "FAYZ-M - Multi-Sector Textile Cluster",
+  description: "Multi-Sector Textile Cluster",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 type RootLayoutProps = Readonly<{
@@ -14,9 +18,10 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-white">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

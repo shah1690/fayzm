@@ -65,13 +65,13 @@ export function Navbar() {
           >
             Contact Us
           </Link>
-          <button
-            type="button"
+          <a
+            href={siteConfig.footer.phones[0].href}
             aria-label="Call us"
             className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-white text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
           >
             <PhoneIcon />
-          </button>
+          </a>
         </div>
 
         {/* Mobile burger */}
