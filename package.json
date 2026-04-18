@@ -9,6 +9,7 @@
     "start": "next start",
     "check": "pnpm run lint && pnpm run type-check && pnpm test",
     "check:full": "pnpm run check && pnpm run build",
+    "drive:upload:pdf": "node scripts/upload-drive-pdf.mjs",
     "test": "vitest run",
     "type-check": "tsc --noEmit",
     "lint": "biome check .",

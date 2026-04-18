@@ -12,6 +12,41 @@ The current public website shows that the project needs to support:
 
 English is the default locale for the project.
 
+## PDF Endpoint
+
+PDF files are served from the direct route `/documents/<slug>.pdf`.
+
+The route expects public Google Drive PDF files and proxies them through the
+site with range support intact.
+
+Configure the shared API key:
+
+```bash
+GOOGLE_DRIVE_API_KEY=your-server-side-drive-api-key
+```
+
+Then register each PDF in [content/documents.ts](/Users/kamafozilov/Projects/fayzm/content/documents.ts):
+
+```ts
+{
+  slug: "catalog.pdf",
+  driveFileUrl: "https://drive.google.com/file/d/FILE_ID/view?usp=sharing",
+  downloadFileName: "catalog.pdf",
+}
+```
+
+Example URLs:
+- `/documents/catalog.pdf`
+- `/documents/men-collection.pdf`
+- `/documents/company-profile.pdf`
+
+Notes:
+- keep the Drive file itself as a stored PDF blob, not a Google Docs export
+- share it publicly if you want to avoid OAuth/service-account setup
+- `driveFileUrl` is the simplest option because the route can derive the file ID from the public share link
+- if needed, each document entry can also use `driveFileId` and `resourceKey`
+- keep the API key server-side and restrict it for Drive API + server usage
+
 Because of that, the most suitable approach for this project is a `route-first + feature-first + shared UI` architecture.
 
 ## Why This Structure
