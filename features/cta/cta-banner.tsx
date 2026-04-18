@@ -68,7 +68,7 @@ export function CtaBanner({ locale }: CtaBannerProps) {
 
   return (
     <section className="px-5 py-10 md:px-10 md:py-16">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1440px]">
         <div
           className="relative overflow-hidden p-8 md:p-12"
           style={{ background: "#1A2E1A", borderRadius: 40 }}
@@ -89,7 +89,6 @@ export function CtaBanner({ locale }: CtaBannerProps) {
                 </div>
                 <h2
                   className="whitespace-pre-line text-4xl leading-tight text-white md:text-5xl"
-                  style={{ fontFamily: "var(--font-primary)" }}
                 >
                   {t.heading[locale]}
                 </h2>

@@ -2,6 +2,7 @@ import { CtaBanner } from "@/features/cta/cta-banner";
 import { FaqSection } from "@/features/faq/faq-section";
 import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
+import { AboutStory } from "@/features/about/about-story";
 import type { Locale } from "@/shared/i18n/translations";
 
 const images = [
@@ -18,7 +19,7 @@ export function AboutPageView({ locale }: AboutPageViewProps) {
     <main>
       {/* Hero */}
       <section className="pb-0 pt-16 md:pt-20">
-        <div className="mx-auto max-w-6xl px-5 md:px-10">
+        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
           {/* Top: label + heading + quote */}
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20">
             <div className="flex flex-col gap-6">
@@ -59,6 +60,7 @@ export function AboutPageView({ locale }: AboutPageViewProps) {
       </div>
 
       <StatsSection locale={locale} />
+      <AboutStory locale={locale} />
       <CtaBanner locale={locale} />
       <PartnersSection locale={locale} />
       <FaqSection locale={locale} />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { manrope } from "@/app/fonts";
+import { manrope, plusJakartaSans } from "@/app/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ type RootLayoutProps = Readonly<{
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={manrope.variable}>
+    <html lang="en" className={`${manrope.variable} ${plusJakartaSans.variable}`}>
       <body className="bg-white font-secondary">
         <Navbar />
         {children}

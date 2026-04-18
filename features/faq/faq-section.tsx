@@ -10,7 +10,7 @@ export function FaqSection({ locale }: FaqSectionProps) {
 
   return (
     <section id="faq" className="bg-white px-5 py-16 md:px-10 md:py-24">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1440px]">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20">
           <div className="flex flex-col justify-between gap-12">
             <div className="flex flex-col gap-4">

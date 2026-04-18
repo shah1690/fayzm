@@ -35,7 +35,7 @@ function PhoneIcon() {
 export async function Navbar() {
   const locale = await getLocale();
   return (
-    <header className="relative w-full border-b border-gray-100 bg-white">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10">
         <Link href="/" className="flex items-center">
           <Image

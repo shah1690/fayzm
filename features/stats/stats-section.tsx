@@ -59,7 +59,7 @@ type StatsSectionProps = Readonly<{ locale: Locale }>;
 export function StatsSection({ locale }: StatsSectionProps) {
   return (
     <section className="bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-5 md:px-10">
+      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-6">
           {stats.map((stat) => {
             const Icon = icons[stat.icon];
