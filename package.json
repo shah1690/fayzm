@@ -7,12 +7,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "check": "pnpm run lint && pnpm run type-check && pnpm test",
+    "check:full": "pnpm run check && pnpm run build",
+    "drive:upload:pdf": "node scripts/upload-drive-pdf.mjs",
+    "test": "vitest run",
     "type-check": "tsc --noEmit",
     "lint": "biome check .",
-    "format": "biome check --write ."
+    "format": "biome check --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.2.4",
+    "next-intl": "4.9.1",
     "react": "19.2.5",
     "react-dom": "19.2.5"
   },
@@ -22,7 +28,9 @@
     "@types/node": "25.6.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "husky": "^9.1.7",
     "tailwindcss": "4.2.2",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "^4.1.4"
   }
 }
