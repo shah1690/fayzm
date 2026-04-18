@@ -6,14 +6,7 @@ export const siteConfig = {
   },
   nav: [
     { label: "Home", href: "/" },
-    {
-      label: "Collections",
-      href: "/collections",
-      children: [
-        { label: "Women", href: "/collections/women" },
-        { label: "Men", href: "/collections/men" },
-      ],
-    },
+    { label: "Collections", href: "/collections" },
     {
       label: "Businesses",
       href: "/businesses",

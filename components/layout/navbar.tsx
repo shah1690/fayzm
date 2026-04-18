@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BusinessesMegaMenu } from "@/components/layout/businesses-mega-menu";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MobileMenu } from "@/components/layout/mobile-menu";
-import { NavDropdown } from "@/components/layout/nav-dropdown";
 import { NavLink } from "@/components/layout/nav-link";
 import { siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
@@ -56,11 +56,7 @@ export function Navbar({ locale }: NavbarProps) {
           {siteConfig.nav.map((item) => (
             <li key={item.href}>
               {"children" in item ? (
-                <NavDropdown
-                  label={item.label}
-                  href={item.href}
-                  items={item.children}
-                />
+                <BusinessesMegaMenu label={item.label} locale={locale} />
               ) : (
                 <NavLink href={item.href} label={item.label} />
               )}

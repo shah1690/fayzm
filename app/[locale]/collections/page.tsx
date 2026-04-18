@@ -9,12 +9,8 @@ type LocalizedCollectionsPageProps = Readonly<{
   }>;
 }>;
 
-export default async function LocalizedCollectionsPage({
-  params,
-}: LocalizedCollectionsPageProps) {
-  const { locale } = await params;
-
-  return <CollectionsPageView locale={locale as Locale} />;
+export default async function LocalizedCollectionsPage() {
+  return <CollectionsPageView />;
 }
 
 export async function generateMetadata({
