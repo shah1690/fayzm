@@ -136,12 +136,50 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
         <div className="fixed left-0 right-0 top-[76px] z-50 border-t border-gray-100 bg-white shadow-xl">
           <div className="mx-auto max-w-[1440px] p-6">
             <div className="flex gap-4" style={{ height: 420 }}>
-              {/* Left: 2 cards stacked vertically */}
+              {/* Left: 2 cards side by side horizontally */}
+              <div className="flex w-1/2 gap-4">
+                {[content.women, content.men].map((cat) => {
+                  const active = pathname === cat.href;
+                  return (
+                    <Link
+                      key={cat.href}
+                      href={cat.href}
+                      onClick={() => setOpen(false)}
+                      className="group relative flex-1 overflow-hidden"
+                      style={{ borderRadius: 24 }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={cat.image}
+                        alt={cat.label[locale]}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      {active && (
+                        <div className="absolute right-3 top-3 h-2 w-2 rounded-full bg-[#84CC16]" />
+                      )}
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <p
+                          className="text-sm font-semibold text-white"
+                          style={active ? gradientText : {}}
+                        >
+                          {cat.label[locale]}
+                        </p>
+                        <p className="mt-0.5 text-xs text-white/60">
+                          {cat.count[locale]}
+                        </p>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Right: 2 cards stacked vertically, equal height */}
               <div className="flex w-1/2 flex-col gap-4">
                 {/* Top card: image */}
                 <div
-                  className="relative flex-1 overflow-hidden"
-                  style={{ borderRadius: 24 }}
+                  className="relative overflow-hidden"
+                  style={{ borderRadius: 24, flex: "1 1 0" }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -183,8 +221,8 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
 
                 {/* Bottom card: dark brand card */}
                 <div
-                  className="flex flex-1 flex-col justify-between bg-[#070A0F] p-6"
-                  style={{ borderRadius: 24 }}
+                  className="flex flex-col justify-between bg-[#070A0F] p-6"
+                  style={{ borderRadius: 24, flex: "1 1 0" }}
                 >
                   <p className="text-xl font-bold text-white">FAYZ-M</p>
                   <div>
@@ -196,44 +234,6 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                     </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Right: 2 cards side by side horizontally */}
-              <div className="flex w-1/2 gap-4">
-                {[content.women, content.men].map((cat) => {
-                  const active = pathname === cat.href;
-                  return (
-                    <Link
-                      key={cat.href}
-                      href={cat.href}
-                      onClick={() => setOpen(false)}
-                      className="group relative flex-1 overflow-hidden"
-                      style={{ borderRadius: 24 }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={cat.image}
-                        alt={cat.label[locale]}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      {active && (
-                        <div className="absolute right-3 top-3 h-2 w-2 rounded-full bg-[#84CC16]" />
-                      )}
-                      <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <p
-                          className="text-sm font-semibold text-white"
-                          style={active ? gradientText : {}}
-                        >
-                          {cat.label[locale]}
-                        </p>
-                        <p className="mt-0.5 text-xs text-white/60">
-                          {cat.count[locale]}
-                        </p>
-                      </div>
-                    </Link>
-                  );
-                })}
               </div>
             </div>
           </div>
