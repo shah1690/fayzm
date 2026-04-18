@@ -126,3 +126,22 @@ h6 {
   width: max-content;
   will-change: transform;
 }
+
+@keyframes marquee-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-marquee-up {
+  animation: marquee-up 22s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-down {
+  animation: marquee-up 22s linear infinite reverse;
+  will-change: transform;
+}

@@ -30,8 +30,6 @@ const t = {
   },
 };
 
-type Props = Readonly<{ locale: Locale }>;
-
 function ArrowRight() {
   return (
     <svg
@@ -53,109 +51,100 @@ function ArrowRight() {
   );
 }
 
-export function CollectionsMarqueeSection({ locale }: Props) {
-  const womenImages = getProductsByGender("women").map((p) => ({
-    src: p.image,
-    alt: p.name,
-    href: `/collections/women/${p.slug}`,
-  }));
-  const menImages = getProductsByGender("men").map((p) => ({
-    src: p.image,
-    alt: p.name,
-    href: `/collections/men/${p.slug}`,
-  }));
+type Props = Readonly<{ locale: Locale }>;
 
-  // Duplicate for seamless loop — key includes copy index for uniqueness
-  const row1 = ["a", "b", "c"].flatMap((copy) =>
-    womenImages.map((img) => ({ ...img, key: `${copy}-${img.src}` })),
-  );
-  const row2 = ["a", "b", "c"].flatMap((copy) =>
-    menImages.map((img) => ({ ...img, key: `${copy}-${img.src}` })),
+const NUM_COLS = 7;
+const IMG_W = 155;
+const IMG_H = 200;
+const GAP = 10;
+
+export function CollectionsMarqueeSection({ locale }: Props) {
+  const all = [...getProductsByGender("women"), ...getProductsByGender("men")];
+
+  // Distribute round-robin into NUM_COLS columns
+  const columns = Array.from({ length: NUM_COLS }, (_, ci) =>
+    all.filter((_, i) => i % NUM_COLS === ci),
   );
 
   return (
-    <section className="relative overflow-hidden bg-[#070A0F] py-16">
-      {/* Marquee rows */}
-      <div className="flex flex-col gap-3 opacity-60">
-        {/* Row 1 — left */}
-        <div className="flex overflow-hidden">
-          <div className="animate-marquee flex gap-3">
-            {row1.map((img) => (
-              <div
-                key={img.key}
-                className="relative flex-shrink-0 overflow-hidden"
-                style={{ width: 160, height: 210, borderRadius: 16 }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="h-full w-full object-cover"
-                />
+    <section
+      className="relative overflow-hidden bg-[#070A0F]"
+      style={{ height: 520 }}
+    >
+      {/* Columns grid */}
+      <div
+        className="absolute inset-0 flex gap-[10px] px-4 opacity-70"
+        aria-hidden="true"
+      >
+        {columns.map((col) => {
+          const colKey = col.map((p) => p.id).join("-");
+          const items = [0, 1, 2, 3].flatMap((copy) =>
+            col.map((p) => ({ ...p, _key: `${p.id}-c${copy}` })),
+          );
+          const isEven = columns.indexOf(col) % 2 === 0;
+          const cls = isEven ? "animate-marquee-up" : "animate-marquee-down";
+          return (
+            <div
+              key={colKey}
+              className="flex-shrink-0 overflow-hidden"
+              style={{ width: IMG_W }}
+            >
+              <div className={`flex flex-col ${cls}`} style={{ gap: GAP }}>
+                {items.map((p) => (
+                  <div
+                    key={p._key}
+                    className="flex-shrink-0 overflow-hidden"
+                    style={{ width: IMG_W, height: IMG_H, borderRadius: 16 }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2 — right */}
-        <div className="flex overflow-hidden">
-          <div className="animate-marquee-reverse flex gap-3">
-            {row2.map((img) => (
-              <div
-                key={img.key}
-                className="relative flex-shrink-0 overflow-hidden"
-                style={{ width: 160, height: 210, borderRadius: 16 }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Left-to-right fade mask */}
+      {/* Top & bottom fade */}
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-1/3 z-10"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24"
         style={{
-          background:
-            "linear-gradient(to right, #070A0F 30%, transparent 100%)",
+          background: "linear-gradient(to bottom, #070A0F, transparent)",
         }}
       />
-      {/* Right-to-left fade mask */}
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-1/4 z-10"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24"
+        style={{ background: "linear-gradient(to top, #070A0F, transparent)" }}
+      />
+
+      {/* Left fade + content */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[45%]"
         style={{
-          background: "linear-gradient(to left, #070A0F 20%, transparent 100%)",
+          background: "linear-gradient(to right, #070A0F 60%, transparent)",
         }}
       />
 
-      {/* Content overlay */}
-      <div className="absolute inset-0 z-20 flex items-center px-10 md:px-16">
-        <div className="max-w-md">
-          {/* Eyebrow */}
+      {/* Text */}
+      <div className="absolute inset-y-0 left-0 z-30 flex items-center px-10 md:px-16">
+        <div className="max-w-sm">
           <div className="mb-4 flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
             <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
               {t.eyebrow[locale]}
             </span>
           </div>
-
-          {/* Heading */}
           <h2 className="mb-3 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl">
             {t.heading[locale]}
           </h2>
-
-          {/* Sub */}
           <p className="mb-8 text-sm leading-relaxed text-white/50">
             {t.sub[locale]}
           </p>
-
-          {/* CTA links */}
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href="/collections/women"
