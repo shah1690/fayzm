@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BusinessesMegaMenu } from "@/components/layout/businesses-mega-menu";
+import { CollectionsMegaMenu } from "@/components/layout/collections-mega-menu";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { NavLink } from "@/components/layout/nav-link";
@@ -57,6 +58,8 @@ export function Navbar({ locale }: NavbarProps) {
             <li key={item.href}>
               {"children" in item ? (
                 <BusinessesMegaMenu label={item.label} locale={locale} />
+              ) : item.href === "/collections" ? (
+                <CollectionsMegaMenu label={item.label} locale={locale} />
               ) : (
                 <NavLink href={item.href} label={item.label} />
               )}
