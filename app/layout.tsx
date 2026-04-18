@@ -12,7 +12,7 @@ type RootLayoutProps = Readonly<{
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="uz">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

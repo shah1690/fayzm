@@ -8,7 +8,9 @@ The current public website shows that the project needs to support:
 - a `businesses` area with several sub-domains
 - content-heavy pages such as `about`, `contact`, and `faq`
 - repeated footer, CTA, and contact blocks
-- likely future multilingual support (`uz`, `en`, `ru`)
+- multilingual support in English (`en`), Uzbek (`uz`), and Russian (`ru`)
+
+English is the default locale for the project.
 
 Because of that, the most suitable approach for this project is a `route-first + feature-first + shared UI` architecture.
 
@@ -220,7 +222,7 @@ Based on the current site, these are the first routes we should expect:
 - `/contact`
 - `/faq`
 
-If multilingual support is added later, we can move to this structure:
+Because the project will support three locales, we can move to this structure when locale routing is introduced:
 
 ```text
 app/
@@ -233,7 +235,7 @@ app/
     └── faq/
 ```
 
-We should not force that in the very first stage. The better choice for now is to keep the structure simple and stable.
+We should not force that in the very first stage. The better choice for now is to keep the structure simple and stable while preparing the codebase for `en`, `uz`, and `ru`.
 
 ## Practical Rule
 
@@ -246,12 +248,3 @@ Then place it accordingly:
 - reusable UI -> `components/`
 - structured content -> `content/`
 - shared technical helper -> `shared/`
-
-## Next Steps For Phase 2
-
-In the next phase, we should:
-- create the real nested folders described in this README
-- add route skeletons for `app/collections`, `app/businesses`, `app/about`, `app/contact`, and `app/faq`
-- add `@/` aliases
-- create skeletons for reusable `layout` and `section` components
-- define the initial mock data format inside `content/`
