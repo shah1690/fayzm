@@ -182,15 +182,16 @@ export async function BusinessPageView({ slug }: BusinessPageViewProps) {
       {/* CTA Banner section */}
       <section className="px-5 py-10 md:px-10 md:py-16">
         <div className="mx-auto max-w-[1440px]">
-          <div className="relative overflow-hidden" style={{ borderRadius: 40, minHeight: 320 }}>
+          <div className="relative overflow-hidden" style={{ borderRadius: 40, minHeight: 460 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/k4.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <img src={business.ctaImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0.7) 40%, rgba(0,0,0,0.3) 100%)" }} />
-            <div className="relative z-10 flex flex-col gap-4 p-10 md:max-w-xl md:p-14">
+            <div className="relative z-10 flex h-full flex-col justify-between p-10 md:p-14" style={{ minHeight: 460 }}>
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L9.5 6.5L15 8L9.5 9.5L8 15L6.5 9.5L1 8L6.5 6.5L8 1Z" fill="white"/></svg>
                 <span className="text-sm text-white/80">{business.label[locale]}</span>
               </div>
+              <div className="flex max-w-xl flex-col gap-4">
               <h2 className="text-3xl font-bold text-white md:text-4xl">
                 {locale === "uz" ? "O'xshash imkoniyatlar kerakmi?" : locale === "ru" ? "Нужны похожие возможности?" : "Interested in Partnership?"}
               </h2>
@@ -200,6 +201,7 @@ export async function BusinessPageView({ slug }: BusinessPageViewProps) {
               <Link href="/contact" className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all hover:bg-gray-100">
                 {locale === "uz" ? "Bog'lanish →" : locale === "ru" ? "Связаться →" : "Request a Consultation →"}
               </Link>
+              </div>
             </div>
           </div>
         </div>

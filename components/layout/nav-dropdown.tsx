@@ -34,15 +34,15 @@ export function NavDropdown({ label, href, children }: NavDropdownProps) {
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Link
-        href={href}
+      <button
+        type="button"
         className="flex items-center gap-1 text-sm text-[#070A0F] transition-opacity hover:opacity-60"
       >
         {label}
         <span className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
           <ChevronDown />
         </span>
-      </Link>
+      </button>
 
       {open && (
         <div className="absolute left-0 top-full z-50 min-w-[160px] pt-2">

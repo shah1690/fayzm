@@ -12,6 +12,7 @@ export type BusinessData = {
   image1: string;
   image2: string;
   image3: string;
+  ctaImage: string;
 };
 
 const img = {
@@ -44,6 +45,14 @@ const img = {
   farm1: "/images/farm1.jpg",
   farm2: "/images/farm2.jpg",
   farm3: "/images/farm3.jpg",
+  // cta images
+  kCta: "/images/k-cta.jpg",
+  yCta: "/images/y-cta.jpg",
+  gCta: "/images/g-cta.jpg",
+  fCta: "/images/f-cta.jpg",
+  pCta: "/images/p-cta.jpg",
+  farmCta: "/images/farm-cta.jpg",
+  oilCta: "/images/oil-cta.jpg",
 };
 
 export const businesses: BusinessData[] = [
@@ -79,7 +88,7 @@ export const businesses: BusinessData[] = [
       { en: "4,000 tons of quality fabric produced annually", uz: "Yiliga 4 000 tonna sifatli mato ishlab chiqariladi", ru: "4 000 тонн качественных тканей в год" },
       { en: "50 employees with internal skills training program", uz: "50 xodim, ichki malaka oshirish dasturi mavjud", ru: "50 сотрудников с внутренней программой обучения" },
     ],
-    image1: img.k1, image2: img.k2, image3: img.k3,
+    image1: img.k1, image2: img.k2, image3: img.k3, ctaImage: img.kCta,
   },
   {
     slug: "yarn-production",
@@ -113,7 +122,7 @@ export const businesses: BusinessData[] = [
       { en: "300 employees on fully automated production lines", uz: "To'liq avtomatlashtirilgan liniyalarda 300 xodim", ru: "300 сотрудников на полностью автоматизированных линиях" },
       { en: "Supplies yarn to internal knitting and weaving divisions", uz: "Ichki trikotaj va to'quv bo'limlariga ip yetkazadi", ru: "Поставляет пряжу во внутренние трикотажные и ткацкие подразделения" },
     ],
-    image1: img.y1, image2: img.y2, image3: img.y3,
+    image1: img.y1, image2: img.y2, image3: img.y3, ctaImage: img.yCta,
   },
   {
     slug: "garment-production",
@@ -147,7 +156,7 @@ export const businesses: BusinessData[] = [
       { en: "Exports to Russia, Turkey, Italy, Poland, Kazakhstan", uz: "Rossiya, Turkiya, Italiya, Polsha, Qozog'istonga eksport", ru: "Экспорт в Россию, Турцию, Италию, Польшу, Казахстан" },
       { en: "Customizable styling, design, and color for B2B orders", uz: "B2B buyurtmalar uchun moslashuvchan uslub, dizayn va rang", ru: "Индивидуальный стиль, дизайн и цвет для B2B заказов" },
     ],
-    image1: img.g1, image2: img.g2, image3: img.g3,
+    image1: img.g1, image2: img.g2, image3: img.g3, ctaImage: img.gCta,
   },
   {
     slug: "flour",
@@ -181,7 +190,7 @@ export const businesses: BusinessData[] = [
       { en: "50 employees, wheat sourced from cluster's own farm", uz: "50 xodim, bug'doy klasterning o'z fermasidan", ru: "50 сотрудников, пшеница с собственной фермы кластера" },
       { en: "Laboratory quality testing and strict hygiene standards", uz: "Laboratoriya sifat sinovlari va qat'iy gigiyena standartlari", ru: "Лабораторный контроль качества и строгие стандарты гигиены" },
     ],
-    image1: img.f1, image2: img.f2, image3: img.f3,
+    image1: img.f1, image2: img.f2, image3: img.f3, ctaImage: img.fCta,
   },
   {
     slug: "petrol",
@@ -215,7 +224,7 @@ export const businesses: BusinessData[] = [
       { en: "Up to 35,000 litres distributed to local community", uz: "Mahalliy jamoaga 35 000 litrgacha tarqatiladi", ru: "До 35 000 л распределяется местному сообществу" },
       { en: "7 employees, 24-hour operations", uz: "7 xodim, 24 soatlik ish", ru: "7 сотрудников, круглосуточная работа" },
     ],
-    image1: img.p1, image2: img.p2, image3: img.p3,
+    image1: img.p1, image2: img.p2, image3: img.p3, ctaImage: img.pCta,
   },
   {
     slug: "farm",
@@ -249,7 +258,7 @@ export const businesses: BusinessData[] = [
       { en: "Self-sustained fodder via maize-barley crop rotation", uz: "Makkajo'xori-arpa almashlab ekish orqali o'z ozuqa ishlab chiqarishi", ru: "Собственное производство кормов через севооборот" },
       { en: "13 permanent jobs, food security for local community", uz: "13 doimiy ish o'rni, mahalliy jamoa uchun oziq-ovqat xavfsizligi", ru: "13 постоянных рабочих мест, продовольственная безопасность" },
     ],
-    image1: img.farm1, image2: img.farm2, image3: img.farm3,
+    image1: img.farm1, image2: img.farm2, image3: img.farm3, ctaImage: img.farmCta,
   },
   {
     slug: "cottonseed-oil",
@@ -283,7 +292,7 @@ export const businesses: BusinessData[] = [
       { en: "By-products (meal, hulls) used as animal feed — zero waste", uz: "Qo'shimcha mahsulotlar (un, qobiq) hayvon ozuqasi — chiqindisiz", ru: "Побочные продукты (шрот, шелуха) — корм для скота, ноль отходов" },
       { en: "Primarily domestic supply with growing export potential", uz: "Asosan ichki ta'minot, o'sib boruvchi eksport salohiyati", ru: "Преимущественно внутренние поставки с растущим экспортным потенциалом" },
     ],
-    image1: img.oil1, image2: img.f1, image3: img.f2,
+    image1: img.oil1, image2: img.f1, image3: img.f2, ctaImage: img.oilCta,
   },
 ];
 
