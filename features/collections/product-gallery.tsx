@@ -5,7 +5,6 @@ import Link from "next/link";
 type Product = {
   id: string;
   name: string;
-  size: string;
   image: string;
   href: string;
 };
@@ -15,8 +14,8 @@ type Props = Readonly<{ products: Product[] }>;
 function ArrowIcon() {
   return (
     <svg
-      width="24"
-      height="24"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -51,22 +50,31 @@ export function ProductGallery({ products }: Props) {
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
-          {/* Default overlay: name + size */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4 transition-opacity duration-300 group-hover:opacity-0">
-            <p className="text-sm font-semibold text-white">{product.name}</p>
-            <p className="mt-0.5 text-xs text-white/60">{product.size}</p>
-          </div>
-
-          {/* Hover overlay: green gradient + arrow */}
+          {/* Green gradient on hover */}
           <div
-            className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
               background:
-                "linear-gradient(180deg, rgba(132,204,22,0.15) 0%, rgba(132,204,22,0.85) 100%)",
+                "linear-gradient(180deg, rgba(132,204,22,0.1) 0%, rgba(132,204,22,0.75) 100%)",
             }}
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+          />
+
+          {/* Arrow icon on hover */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
               <ArrowIcon />
+            </div>
+          </div>
+
+          {/* Name blur badge — always visible */}
+          <div className="absolute inset-x-3 bottom-3">
+            <div
+              className="rounded-xl px-3 py-2 backdrop-blur-md"
+              style={{ background: "rgba(255,255,255,0.18)" }}
+            >
+              <p className="truncate text-sm font-semibold text-white">
+                {product.name}
+              </p>
             </div>
           </div>
         </Link>
