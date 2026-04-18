@@ -18,10 +18,9 @@ export function Accordion({ items }: AccordionProps) {
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : index)}
               className="flex w-full items-center justify-between gap-4 py-6 text-left"
-              style={{ color: "#070A0F" }}
             >
-              <span className="text-base font-medium">{item.question}</span>
-              <span className="flex-shrink-0 text-xl font-light">
+              <span style={{ color: "#070A0F", WebkitTextFillColor: "#070A0F", fontSize: "1rem", fontWeight: 500 }}>{item.question}</span>
+              <span style={{ color: "#070A0F", fontSize: "1.25rem", fontWeight: 300, flexShrink: 0 }}>
                 {isOpen ? "−" : "+"}
               </span>
             </button>

@@ -28,7 +28,6 @@ export const siteConfig = {
       ],
     },
     { label: "About Us", href: "/about" },
-    { label: "FAQ", href: "/#faq" },
   ],
   footer: {
     quickLinks: [

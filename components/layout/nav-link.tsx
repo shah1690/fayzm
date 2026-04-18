@@ -10,12 +10,12 @@ export function NavLink({ href, label }: NavLinkProps) {
   const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <div className="relative flex flex-col items-center gap-1">
+    <div className="relative inline-flex flex-col items-center">
       <Link
         href={href}
         className="text-sm transition-all duration-200"
         style={isActive ? {
-          background: "linear-gradient(90deg, #070A0F 0%, #84CC16 100%)",
+          background: "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -23,9 +23,10 @@ export function NavLink({ href, label }: NavLinkProps) {
       >
         {label}
       </Link>
-      {isActive && (
-        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#84CC16" }} />
-      )}
+      <span
+        className="absolute -bottom-2 h-1.5 w-1.5 rounded-full transition-opacity duration-200"
+        style={{ background: "#84CC16", opacity: isActive ? 1 : 0 }}
+      />
     </div>
   );
 }

@@ -36,7 +36,7 @@ export async function Navbar() {
   const locale = await getLocale();
   return (
     <header className="relative w-full border-b border-gray-100 bg-white">
-      <nav className="flex h-[76px] items-center justify-between px-5 py-4 md:px-10">
+      <nav className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10">
         <Link href="/" className="flex items-center">
           <Image
             src={siteConfig.logo.light}
@@ -62,7 +62,7 @@ export async function Navbar() {
         </ul>
 
         {/* Desktop actions */}
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center justify-end gap-3 md:flex">
           <LanguageSwitcher current={locale} />
           <Link
             href="/contact"
@@ -80,7 +80,7 @@ export async function Navbar() {
         </div>
 
         {/* Mobile burger */}
-        <div className="md:hidden">
+        <div className="justify-self-end md:hidden">
           <MobileMenu />
         </div>
       </nav>

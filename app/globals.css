@@ -80,3 +80,15 @@ h6 { font-size: 1rem;     font-weight: 400; }
 .text-body-lg { font-size: 1.125rem; line-height: 1.6; }
 .text-body-md { font-size: 1rem;     line-height: 1.6; }
 .text-body-sm { font-size: 0.875rem; line-height: 1.5; }
+
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+  width: max-content;
+  will-change: transform;
+}

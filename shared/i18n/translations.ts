@@ -9,4 +9,16 @@ export const translations = {
       ru: "Многоотраслевой текстильный кластер",
     },
   },
+  partners: {
+    title: {
+      en: "Successful Partner",
+      uz: "Muvaffaqiyatli hamkorlar",
+      ru: "Успешное партнёрство",
+    },
+    subtitle: {
+      en: "We guarantee to provide affordable business consulting.",
+      uz: "Biz arzon biznes-konsalting xizmatlarini taqdim etishni kafolatlaymiz.",
+      ru: "Мы гарантируем доступное бизнес-консультирование.",
+    },
+  },
 } as const;
