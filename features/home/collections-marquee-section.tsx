@@ -53,10 +53,10 @@ function ArrowRight() {
 
 type Props = Readonly<{ locale: Locale }>;
 
-const NUM_COLS = 7;
-const IMG_W = 155;
-const IMG_H = 200;
-const GAP = 10;
+const NUM_COLS = 10;
+const IMG_W = 230;
+const IMG_H = 300;
+const GAP = 12;
 
 export function CollectionsMarqueeSection({ locale }: Props) {
   const all = [...getProductsByGender("women"), ...getProductsByGender("men")];
@@ -71,9 +71,18 @@ export function CollectionsMarqueeSection({ locale }: Props) {
       className="relative overflow-hidden bg-[#070A0F]"
       style={{ height: 520 }}
     >
-      {/* Columns grid */}
+      {/* Columns grid — rotated 30° clockwise, oversized to fill section */}
       <div
-        className="absolute inset-0 flex gap-[10px] px-4 opacity-70"
+        className="absolute flex opacity-60"
+        style={{
+          gap: GAP,
+          top: "-40%",
+          bottom: "-40%",
+          left: "-20%",
+          right: "-20%",
+          transform: "rotate(30deg)",
+          transformOrigin: "center center",
+        }}
         aria-hidden="true"
       >
         {columns.map((col) => {
