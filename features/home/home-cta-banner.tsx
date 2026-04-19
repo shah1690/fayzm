@@ -11,14 +11,14 @@ const text = {
     ru: "Заинтересованы в партнёрстве?",
   },
   desc: {
-    en: "Partner with FAYZ-M for quality, reliability, and sustainable long-term growth.",
-    uz: "FAYZ-M bilan hamkorlik qiling — sifat, ishonchlilik va barqaror o'sish.",
-    ru: "Сотрудничайте с FAYZ-M — качество, надёжность и устойчивый рост.",
+    en: "Partner with FAYZ-M for consistent quality, reliable delivery, and long-term growth across every division.",
+    uz: "FAYZ-M bilan hamkorlik qiling — doimiy sifat, ishonchli yetkazib berish va barcha yo'nalishlarda uzoq muddatli o'sish.",
+    ru: "Сотрудничайте с FAYZ-M — стабильное качество, надёжные поставки и долгосрочный рост во всех направлениях.",
   },
   cta: {
-    en: "Request a Consultation →",
-    uz: "Bog'lanish →",
-    ru: "Связаться →",
+    en: "Request a Consultation",
+    uz: "Bog'lanish",
+    ru: "Связаться",
   },
 };
 
@@ -32,7 +32,7 @@ export function HomeCTABanner({ locale }: Props) {
       <div className="mx-auto max-w-[1440px]">
         <div
           className="relative overflow-hidden"
-          style={{ borderRadius: 40, minHeight: 460 }}
+          style={{ borderRadius: 40, minHeight: 480 }}
         >
           <Image
             src={business.ctaImage}
@@ -41,51 +41,56 @@ export function HomeCTABanner({ locale }: Props) {
             sizes="100vw"
             className="object-cover"
           />
+
           <div
-            className="absolute inset-0"
+            className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "linear-gradient(45deg, rgba(132,204,22,0.68) 0%, rgba(132,204,22,0.42) 38%, rgba(132,204,22,0.2) 58%, rgba(0,0,0,0.34) 100%)",
+                "linear-gradient(to right, rgba(7,10,15,0.85) 0%, rgba(7,10,15,0.55) 40%, rgba(7,10,15,0.15) 70%, transparent 100%)",
             }}
+            aria-hidden="true"
           />
 
           <div
-            className="relative z-10 flex h-full flex-col justify-between p-10 md:p-14"
-            style={{ minHeight: 460 }}
+            className="pointer-events-none absolute -bottom-40 -left-40 h-96 w-96 rounded-full opacity-25"
+            style={{
+              background:
+                "radial-gradient(circle, #84CC16 0%, transparent 70%)",
+            }}
+            aria-hidden="true"
+          />
+
+          <div
+            className="relative z-10 flex h-full flex-col justify-end gap-6 p-8 md:p-14"
+            style={{ minHeight: 480 }}
           >
             <div className="flex items-center gap-2">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path
-                  d="M8 1L9.5 6.5L15 8L9.5 9.5L8 15L6.5 9.5L1 8L6.5 6.5L8 1Z"
-                  fill="white"
-                />
-              </svg>
-              <span className="text-sm text-white/80">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/60">
                 {business.label[locale]}
               </span>
             </div>
 
-            <div className="flex max-w-xl flex-col gap-4">
-              <h2 className="text-3xl font-bold text-white md:text-4xl">
-                {text.heading[locale]}
-              </h2>
-              <p className="text-sm leading-relaxed text-white/80">
-                {text.desc[locale]}
-              </p>
-              <Link
-                href={localizeHref(locale, "/contact")}
-                className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all hover:bg-gray-100"
+            <h2 className="max-w-xl text-3xl font-bold leading-[1.1] text-white md:text-5xl">
+              {text.heading[locale]}
+            </h2>
+
+            <p className="max-w-md text-sm leading-relaxed text-white/70 md:text-base">
+              {text.desc[locale]}
+            </p>
+
+            <Link
+              href={localizeHref(locale, "/contact")}
+              className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
+            >
+              {text.cta[locale]}
+              <span
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+                aria-hidden="true"
               >
-                {text.cta[locale]}
-              </Link>
-            </div>
+                →
+              </span>
+            </Link>
           </div>
         </div>
       </div>

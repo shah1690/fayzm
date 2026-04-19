@@ -10,6 +10,8 @@ const avatarSwatches = [
   { color: "#84CC16", label: "+" },
 ] as const;
 
+const CARD_BG = "#121218";
+
 function StatValue({ value, className }: { value: string; className: string }) {
   const [base, ...rest] = value.split("+");
   const hasPlus = rest.length > 0;
@@ -18,25 +20,6 @@ function StatValue({ value, className }: { value: string; className: string }) {
       {base}
       {hasPlus && <span style={{ opacity: 0.35 }}>+</span>}
     </p>
-  );
-}
-
-function SparkleIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d="M9 1L10.5 7.5L17 9L10.5 10.5L9 17L7.5 10.5L1 9L7.5 7.5L9 1Z"
-        fill="#84CC16"
-      />
-    </svg>
   );
 }
 
@@ -52,7 +35,6 @@ function MiniChart() {
       aria-hidden="true"
       focusable="false"
     >
-      {/* vertical grid lines */}
       {gridCols.map((x) => (
         <line
           key={x}
@@ -60,18 +42,16 @@ function MiniChart() {
           y1="0"
           x2={x}
           y2="80"
-          stroke="rgba(255,255,255,0.08)"
+          stroke="rgba(255,255,255,0.06)"
           strokeWidth="1"
         />
       ))}
 
-      {/* fill under curve */}
       <path
         d="M0 70 C20 70 30 45 55 38 C75 32 85 58 110 48 C135 38 150 18 175 12 C185 9 195 6 200 4 L200 80 L0 80 Z"
         fill="url(#chartFill)"
       />
 
-      {/* line */}
       <path
         d="M0 70 C20 70 30 45 55 38 C75 32 85 58 110 48 C135 38 150 18 175 12 C185 9 195 6 200 4"
         stroke="#84CC16"
@@ -107,60 +87,55 @@ export function CtaBanner({ locale }: CtaBannerProps) {
       <div className="mx-auto max-w-[1440px]">
         <div
           className="relative overflow-hidden p-8 md:p-12"
-          style={{ background: "#1A2E1A", borderRadius: 40 }}
+          style={{ background: "#070A0F", borderRadius: 40 }}
         >
-          {/* radial glow */}
           <div
-            className="pointer-events-none absolute -left-20 -top-20 h-80 w-80 rounded-full opacity-20"
+            className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full opacity-25"
             style={{
               background:
                 "radial-gradient(circle, #84CC16 0%, transparent 70%)",
             }}
+            aria-hidden="true"
           />
 
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12">
-            {/* Left: text + CTA */}
+          <div className="relative z-10 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12">
             <div className="flex flex-col justify-between gap-8">
               <div className="flex flex-col gap-6">
                 <div className="flex items-center gap-2">
-                  <SparkleIcon />
-                  <span className="text-sm text-gray-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+                  <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/50">
                     {t.label[locale]}
                   </span>
                 </div>
-                <h2 className="whitespace-pre-line text-4xl leading-tight text-white md:text-5xl">
+                <h2 className="whitespace-pre-line text-3xl font-bold leading-[1.1] text-white md:text-5xl">
                   {t.heading[locale]}
                 </h2>
-                <p className="text-sm leading-relaxed text-gray-400">
+                <p className="max-w-md text-sm leading-relaxed text-white/60 md:text-base">
                   {t.description[locale]}
                 </p>
               </div>
               <Link
                 href={localizeHref(locale, "/contact")}
-                className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-gray-100"
+                className="group inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
               >
                 {t.cta[locale]}
               </Link>
             </div>
 
-            {/* Right: stat cards grid */}
             <div className="grid grid-cols-2 grid-rows-2 gap-4">
-              {/* Card 1: big left — energy + edge-to-edge chart */}
               <div
-                className="row-span-2 flex flex-col overflow-hidden rounded-[24px]"
-                style={{ background: "#243824" }}
+                className="row-span-2 flex flex-col overflow-hidden rounded-[24px] border border-white/5"
+                style={{ background: CARD_BG }}
               >
-                {/* text top */}
                 <div className="p-5 pb-3">
                   <StatValue
                     value={t.card1.value}
                     className="text-3xl font-bold text-white"
                   />
-                  <p className="mt-1 text-sm text-gray-400">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-white/40">
                     {t.card1.label[locale]}
                   </p>
                 </div>
-                {/* chart flush to bottom + sides */}
                 <div
                   className="mt-auto flex items-end"
                   style={{ marginBottom: -1 }}
@@ -169,12 +144,10 @@ export function CtaBanner({ locale }: CtaBannerProps) {
                 </div>
               </div>
 
-              {/* Card 2: employees with avatars */}
               <div
-                className="flex flex-col justify-between rounded-[24px] p-5"
-                style={{ background: "#243824" }}
+                className="flex flex-col justify-between rounded-[24px] border border-white/5 p-5"
+                style={{ background: CARD_BG }}
               >
-                {/* stacked avatars */}
                 <div className="flex">
                   {avatarSwatches.map((avatar, index) => (
                     <div
@@ -182,7 +155,7 @@ export function CtaBanner({ locale }: CtaBannerProps) {
                       className="flex h-9 w-9 items-center justify-center rounded-full border-2 text-sm font-bold text-white"
                       style={{
                         background: avatar.color,
-                        borderColor: "#243824",
+                        borderColor: CARD_BG,
                         marginLeft: index === 0 ? 0 : -10,
                         zIndex: 10 - index,
                       }}
@@ -196,22 +169,21 @@ export function CtaBanner({ locale }: CtaBannerProps) {
                     value={t.card2.value}
                     className="text-2xl font-bold text-white"
                   />
-                  <p className="mt-0.5 text-xs leading-snug text-gray-400">
+                  <p className="mt-0.5 text-xs uppercase tracking-wider text-white/40">
                     {t.card2.label[locale]}
                   </p>
                 </div>
               </div>
 
-              {/* Card 3: partners */}
               <div
-                className="flex flex-col justify-end rounded-[24px] p-5"
-                style={{ background: "#243824" }}
+                className="flex flex-col justify-end rounded-[24px] border border-white/5 p-5"
+                style={{ background: CARD_BG }}
               >
                 <StatValue
                   value={t.card3.value}
                   className="text-2xl font-bold text-white"
                 />
-                <p className="mt-0.5 text-xs text-gray-400">
+                <p className="mt-0.5 text-xs uppercase tracking-wider text-white/40">
                   {t.card3.label[locale]}
                 </p>
               </div>
