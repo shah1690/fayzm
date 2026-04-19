@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
-import { manrope, plusJakartaSans } from "@/app/fonts";
+import { manrope, onest } from "@/app/fonts";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { messages } from "@/i18n/messages";
@@ -45,10 +45,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html
-      lang={locale}
-      className={`${manrope.variable} ${plusJakartaSans.variable}`}
-    >
+    <html lang={locale} className={`${manrope.variable} ${onest.variable}`}>
       <body className="bg-white font-secondary">
         <NextIntlClientProvider>
           <Navbar locale={locale as Locale} />

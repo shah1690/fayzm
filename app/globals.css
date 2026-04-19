@@ -2,7 +2,7 @@
 
 @theme {
   --container-7xl: 1440px;
-  --font-primary: var(--font-primary), "Plus Jakarta Sans", sans-serif;
+  --font-primary: var(--font-primary), "Onest", sans-serif;
   --font-secondary: var(--font-secondary), "Manrope", sans-serif;
 
   /* Primary */
@@ -65,7 +65,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-primary), "Plus Jakarta Sans", sans-serif;
+    font-family: var(--font-primary), "Onest", sans-serif;
     line-height: 1.15;
     font-weight: 700;
   }
