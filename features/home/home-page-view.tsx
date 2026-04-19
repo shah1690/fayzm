@@ -8,6 +8,7 @@ import { FaqSection } from "@/features/faq/faq-section";
 import { BrandVideoSection } from "@/features/home/brand-video-section";
 import { BusinessesSection } from "@/features/home/businesses-section";
 import { CollectionsMarqueeSection } from "@/features/home/collections-marquee-section";
+import { HeroIntroSection } from "@/features/home/hero-intro-section";
 import { HeroSection } from "@/features/home/hero-section";
 import { HomeCTABanner } from "@/features/home/home-cta-banner";
 import { WorldMapSection } from "@/features/home/world-map-section";
@@ -32,6 +33,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
   return (
     <main>
       <HeroSection locale={locale} />
+      <HeroIntroSection locale={locale} />
       <StatsSection locale={locale} />
       <CollectionsMarqueeSection locale={locale} />
       <BusinessesSection locale={locale} />

@@ -1,35 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useRef, useState } from "react";
 import type { Locale } from "@/shared/i18n/translations";
-import { localizeHref } from "@/shared/lib/localize-href";
 
-const content = {
-  heading: {
-    en: "Quality Textiles.\nSustainable Future.",
-    uz: "Sifatli To'qimachilik.\nBarqaror Kelajak.",
-    ru: "Качественный Текстиль.\nУстойчивое Будущее.",
-  },
-  description: {
-    en: "FAYZ-M produces premium yarn, fabric, and garments — supplying global partners with consistent quality and sustainable practices.",
-    uz: "FAYZ-M premium ip, mato va kiyim ishlab chiqaradi — global hamkorlarga doimiy sifat va barqaror amaliyot bilan ta'minlaydi.",
-    ru: "FAYZ-M производит premium пряжу, ткань и одежду — обеспечивая глобальных партнёров стабильным качеством.",
-  },
-  cta: {
-    en: "Get in Touch →",
-    uz: "Bog'lanish →",
-    ru: "Связаться →",
-  },
-  stat: {
-    value: "1500+",
-    label: {
-      en: "Employees across all divisions.",
-      uz: "Barcha bo'limlardagi xodimlar.",
-      ru: "Сотрудников во всех подразделениях.",
-    },
-  },
-};
+const scrollLabel = {
+  en: "Scroll",
+  uz: "Pastga",
+  ru: "Листайте",
+} as const;
 
 type Props = Readonly<{ locale: Locale }>;
 
@@ -44,12 +22,11 @@ export function HeroSection({ locale }: Props) {
   }
 
   return (
-    <section className="px-10 py-6">
+    <section className="px-5 py-6 md:px-10">
       <div
         className="relative w-full overflow-hidden"
         style={{ borderRadius: 42, height: "calc(100vh - 124px)" }}
       >
-        {/* Video background */}
         <video
           ref={videoRef}
           autoPlay
@@ -62,23 +39,20 @@ export function HeroSection({ locale }: Props) {
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
 
-        {/* Dark base overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-black/30" />
-
-        {/* Green gradient left overlay */}
+        {/* Subtle edge vignette so corner controls stay readable */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0.6) 20%, rgba(0,0,0,0) 45%)",
+              "linear-gradient(to bottom, rgba(7,10,15,0.25) 0%, transparent 25%, transparent 75%, rgba(7,10,15,0.35) 100%)",
           }}
+          aria-hidden="true"
         />
 
-        {/* Mute / Unmute button */}
         <button
           type="button"
           onClick={toggleMute}
-          className="absolute right-6 top-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all hover:bg-white/30"
+          className="absolute right-6 top-6 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition-all duration-200 hover:bg-white/25"
           aria-label={muted ? "Unmute" : "Mute"}
         >
           {muted ? (
@@ -118,39 +92,13 @@ export function HeroSection({ locale }: Props) {
           )}
         </button>
 
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-end p-8 md:p-14">
-          {/* Bottom row */}
-          <div className="flex items-end justify-between gap-8">
-            {/* Left: heading + desc + CTA */}
-            <div className="flex max-w-xl flex-col gap-5">
-              <h1 className="whitespace-pre-line text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                {content.heading[locale]}
-              </h1>
-              <p className="max-w-sm text-sm leading-relaxed text-white/80 md:text-base">
-                {content.description[locale]}
-              </p>
-              <Link
-                href={localizeHref(locale, "/contact")}
-                className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all hover:bg-gray-100"
-              >
-                {content.cta[locale]}
-              </Link>
-            </div>
-
-            {/* Right: stat pill */}
-            <div
-              className="hidden flex-col gap-1 rounded-2xl bg-white/15 p-5 backdrop-blur-sm md:flex"
-              style={{ minWidth: 160 }}
-            >
-              <p className="text-3xl font-bold text-white">
-                {content.stat.value}
-              </p>
-              <p className="text-xs leading-snug text-white/75">
-                {content.stat.label[locale]}
-              </p>
-            </div>
-          </div>
+        <div className="pointer-events-none absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/80">
+          <span className="text-[10px] font-medium uppercase tracking-[0.3em]">
+            {scrollLabel[locale]}
+          </span>
+          <span className="flex h-9 w-5 items-start justify-center rounded-full border border-white/40 pt-1.5">
+            <span className="block h-1.5 w-1 animate-scroll-dot rounded-full bg-white" />
+          </span>
         </div>
       </div>
     </section>
