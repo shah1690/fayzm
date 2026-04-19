@@ -11,14 +11,14 @@ export const translations = {
   },
   partners: {
     title: {
-      en: "Successful Partner",
-      uz: "Muvaffaqiyatli hamkorlar",
-      ru: "Успешное партнёрство",
+      en: "Our partners",
+      uz: "Hamkorlarimiz",
+      ru: "Наши партнёры",
     },
     subtitle: {
-      en: "We guarantee to provide affordable business consulting.",
-      uz: "Biz arzon biznes-konsalting xizmatlarini taqdim etishni kafolatlaymiz.",
-      ru: "Мы гарантируем доступное бизнес-консультирование.",
+      en: "Global apparel and textile brands work with FAYZ-M for reliable quality, scale, and long-term supply.",
+      uz: "Butun dunyo bo‘ylab brendlar FAYZ-M bilan sifat, hajm va uzoq muddatli hamkorlik uchun ishlaydi.",
+      ru: "Мировые бренды одежды и текстиля сотрудничают с FAYZ-M ради стабильного качества, масштаба и долгосрочных поставок.",
     },
   },
 } as const;

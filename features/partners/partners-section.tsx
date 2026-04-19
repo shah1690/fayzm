@@ -15,25 +15,25 @@ export function PartnersSection({ locale }: PartnersSectionProps) {
   );
 
   return (
-    <section className="bg-[#F5F5F5] py-10 md:py-14">
+    <section className="bg-[#F5F5F5] py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-16">
+        <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-20">
           {/* Left: label + text */}
-          <div className="flex-shrink-0 md:w-56">
-            <h2 className="text-lg font-semibold text-[#070A0F]">
+          <div className="flex-shrink-0 md:w-72 lg:w-80">
+            <h2 className="text-2xl font-bold tracking-tight text-[#070A0F] md:text-3xl">
               {t.title[locale]}
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-gray-500">
+            <p className="mt-4 text-base leading-relaxed text-gray-500 md:mt-5 md:text-lg">
               {t.subtitle[locale]}
             </p>
           </div>
 
           {/* Right: marquee */}
-          <div className="relative min-w-0 flex-1 overflow-hidden">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#F5F5F5] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#F5F5F5] to-transparent" />
+          <div className="relative min-w-0 flex-1 overflow-hidden py-2 md:py-4">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#F5F5F5] to-transparent md:w-20" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#F5F5F5] to-transparent md:w-20" />
 
-            <div className="flex animate-marquee gap-16 py-2">
+            <div className="flex animate-marquee gap-20 py-3 md:gap-24 md:py-5">
               {doubled.map((partner) => (
                 <div
                   key={partner.marqueeKey}
@@ -44,7 +44,7 @@ export function PartnersSection({ locale }: PartnersSectionProps) {
                     alt={partner.name}
                     width={160}
                     height={60}
-                    className="h-24 w-auto object-contain"
+                    className="h-28 w-auto object-contain md:h-32"
                     unoptimized
                   />
                 </div>

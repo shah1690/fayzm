@@ -45,7 +45,7 @@ export function HomeCTABanner({ locale }: Props) {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0.7) 40%, rgba(0,0,0,0.3) 100%)",
+                "linear-gradient(45deg, rgba(132,204,22,0.68) 0%, rgba(132,204,22,0.42) 38%, rgba(132,204,22,0.2) 58%, rgba(0,0,0,0.34) 100%)",
             }}
           />
 

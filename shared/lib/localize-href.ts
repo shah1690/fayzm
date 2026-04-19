@@ -8,7 +8,18 @@ export function localizeHref(locale: Locale, href: string) {
 
   const [pathname, suffix = ""] = href.split(/([?#].*)/, 2);
 
-  if (locale === routing.defaultLocale && routing.localePrefix !== "always") {
+  const prefixMode = routing.localePrefix as
+    | "always"
+    | "as-needed"
+    | "never"
+    | { mode?: string };
+  const isAlwaysPrefix =
+    prefixMode === "always" ||
+    (typeof prefixMode === "object" &&
+      prefixMode !== null &&
+      prefixMode.mode === "always");
+
+  if (locale === routing.defaultLocale && !isAlwaysPrefix) {
     return `${pathname}${suffix}`;
   }
 
