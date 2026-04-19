@@ -41,30 +41,30 @@ export function HomePageView({ locale }: HomePageViewProps) {
       <HomeCTABanner locale={locale} />
       <WorldMapSection locale={locale} />
       <PartnersSection locale={locale} />
-      <section className="bg-white py-16 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16">
-            <div className="flex flex-col gap-4">
+      <section className="bg-white px-5 py-16 md:px-10 md:py-20">
+        <div className="mx-auto max-w-[1440px]">
+          <div className="mb-10 grid grid-cols-1 gap-6 md:mb-14 md:grid-cols-12 md:items-end md:gap-12">
+            <div className="flex flex-col gap-5 md:col-span-7">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#84CC16]" />
-                <span className="text-sm text-gray-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+                <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-gray-400">
                   {t("contactLabel")}
                 </span>
               </div>
-              <h2 className="text-4xl leading-tight md:text-5xl">
+              <h2 className="text-3xl font-bold leading-[1.1] text-[#070A0F] md:text-5xl">
                 {t("contactHeading")}
               </h2>
             </div>
-            <div className="flex items-end">
+            <div className="md:col-span-5">
               <p className="text-sm leading-relaxed text-gray-500 md:text-base">
                 {t("contactDescription")}
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             <div
               className="relative min-h-[480px] overflow-hidden md:min-h-[580px]"
-              style={{ borderRadius: 40, background: "#FAFAFA" }}
+              style={{ borderRadius: 40, background: "#0A0A0A" }}
             >
               <Image
                 src="/images/portrait.png"
@@ -74,22 +74,31 @@ export function HomePageView({ locale }: HomePageViewProps) {
                 className="object-cover"
               />
               <div
-                className="absolute inset-0"
+                className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0) 60%)",
+                    "linear-gradient(to top, rgba(7,10,15,0.9) 0%, rgba(7,10,15,0.45) 40%, transparent 75%)",
                 }}
+                aria-hidden="true"
               />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <h3 className="text-2xl font-semibold text-white md:text-3xl">
+              <div
+                className="pointer-events-none absolute -bottom-32 -right-32 h-80 w-80 rounded-full opacity-25"
+                style={{
+                  background:
+                    "radial-gradient(circle, #84CC16 0%, transparent 70%)",
+                }}
+                aria-hidden="true"
+              />
+              <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-4 p-8 md:p-10">
+                <h3 className="max-w-sm text-2xl font-bold leading-tight text-white md:text-3xl">
                   {t("preferTalk")}
                 </h3>
-                <p className="mt-2 text-sm text-white/70">
+                <p className="max-w-sm text-sm leading-relaxed text-white/70">
                   {t("instantSupport")}
                 </p>
                 <a
                   href={siteConfig.footer.phones[0].href}
-                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-gray-100"
+                  className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
                 >
                   {t("callUsNow")}
                 </a>
