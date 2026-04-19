@@ -1,11 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { BusinessesMegaMenu } from "@/components/layout/businesses-mega-menu";
 import { CollectionsMegaMenu } from "@/components/layout/collections-mega-menu";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { NavLink } from "@/components/layout/nav-link";
-import { siteConfig } from "@/shared/config/site-config";
+import { getNavLabels, siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -37,7 +40,18 @@ function PhoneIcon() {
 
 type NavbarProps = Readonly<{ locale: Locale }>;
 
+const text = {
+  callUs: {
+    en: "Call us",
+    uz: "Qo'ng'iroq qilish",
+    ru: "Позвонить нам",
+  },
+} as const;
+
 export function Navbar({ locale }: NavbarProps) {
+  const t = useTranslations("Nav");
+  const labels = getNavLabels(locale);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10">
@@ -57,11 +71,20 @@ export function Navbar({ locale }: NavbarProps) {
           {siteConfig.nav.map((item) => (
             <li key={item.href}>
               {"children" in item ? (
-                <BusinessesMegaMenu label={item.label} locale={locale} />
+                <BusinessesMegaMenu
+                  label={labels[item.key as keyof typeof labels]}
+                  locale={locale}
+                />
               ) : item.href === "/collections" ? (
-                <CollectionsMegaMenu label={item.label} locale={locale} />
+                <CollectionsMegaMenu
+                  label={labels[item.key as keyof typeof labels]}
+                  locale={locale}
+                />
               ) : (
-                <NavLink href={item.href} label={item.label} />
+                <NavLink
+                  href={item.href}
+                  label={labels[item.key as keyof typeof labels]}
+                />
               )}
             </li>
           ))}
@@ -74,11 +97,11 @@ export function Navbar({ locale }: NavbarProps) {
             href={localizeHref(locale, "/contact")}
             className="rounded-full border border-gray-100 bg-white px-5 py-2 text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
           >
-            Contact Us
+            {t("contactUs")}
           </Link>
           <a
             href={siteConfig.footer.phones[0].href}
-            aria-label="Call us"
+            aria-label={text.callUs[locale]}
             className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-white text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
           >
             <PhoneIcon />
@@ -87,7 +110,7 @@ export function Navbar({ locale }: NavbarProps) {
 
         {/* Mobile burger */}
         <div className="justify-self-end md:hidden">
-          <MobileMenu />
+          <MobileMenu locale={locale} />
         </div>
       </nav>
     </header>

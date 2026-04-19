@@ -5,6 +5,7 @@ import { useMemo, useRef, useState } from "react";
 import { businesses } from "@/content/businesses";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 type Props = Readonly<{ label: string; locale: Locale }>;
 
@@ -35,6 +36,24 @@ const gradientText = {
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
+} as const;
+
+const text = {
+  divisions: {
+    en: "Business Divisions",
+    uz: "Faoliyat yo'nalishlari",
+    ru: "Направления бизнеса",
+  },
+  ctaHeading: {
+    en: "Partner with FAYZ-M",
+    uz: "FAYZ-M bilan hamkorlik qiling",
+    ru: "Сотрудничайте с FAYZ-M",
+  },
+  ctaButton: {
+    en: "Contact Us →",
+    uz: "Bog'lanish →",
+    ru: "Связаться →",
+  },
 } as const;
 
 export function BusinessesMegaMenu({ label, locale }: Props) {
@@ -140,7 +159,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                 <div className="flex-1 overflow-hidden rounded-[28px] bg-[#F5F5F5] px-5 py-4">
                   <div className="mb-3">
                     <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
-                      Business Divisions
+                      {text.divisions[locale]}
                     </span>
                   </div>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-0">
@@ -151,7 +170,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                       return (
                         <Link
                           key={b.slug}
-                          href={`/businesses/${b.slug}`}
+                          href={localizeHref(locale, `/businesses/${b.slug}`)}
                           onClick={() => setOpen(false)}
                           className="flex items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-white"
                         >
@@ -190,14 +209,14 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                   />
                   <div className="relative z-10 flex h-full items-center justify-between px-8">
                     <h3 className="text-lg font-bold text-white">
-                      Partner with FAYZ-M
+                      {text.ctaHeading[locale]}
                     </h3>
                     <Link
-                      href="/contact"
+                      href={localizeHref(locale, "/contact")}
                       onClick={() => setOpen(false)}
                       className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#84CC16]"
                     >
-                      Contact Us →
+                      {text.ctaButton[locale]}
                     </Link>
                   </div>
                 </div>

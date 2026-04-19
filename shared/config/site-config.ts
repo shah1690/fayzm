@@ -1,3 +1,5 @@
+import type { Locale } from "@/shared/i18n/translations";
+
 export const siteConfig = {
   name: "Fayzm",
   logo: {
@@ -5,47 +7,47 @@ export const siteConfig = {
     dark: "/logo-dark.svg",
   },
   nav: [
-    { label: "Home", href: "/" },
-    { label: "Collections", href: "/collections" },
+    { key: "home", href: "/" },
+    { key: "collections", href: "/collections" },
     {
-      label: "Businesses",
+      key: "businesses",
       href: "/businesses",
       children: [
-        { label: "Knitting", href: "/businesses/knitting" },
-        { label: "Yarn Production", href: "/businesses/yarn-production" },
-        { label: "Garment Production", href: "/businesses/garment-production" },
-        { label: "Petrol", href: "/businesses/petrol" },
-        { label: "Flour", href: "/businesses/flour" },
-        { label: "Farm", href: "/businesses/farm" },
-        { label: "Cottonseed Oil", href: "/businesses/cottonseed-oil" },
+        { key: "knitting", href: "/businesses/knitting" },
+        { key: "yarnProduction", href: "/businesses/yarn-production" },
+        { key: "garmentProduction", href: "/businesses/garment-production" },
+        { key: "petrol", href: "/businesses/petrol" },
+        { key: "flour", href: "/businesses/flour" },
+        { key: "farm", href: "/businesses/farm" },
+        { key: "cottonseedOil", href: "/businesses/cottonseed-oil" },
       ],
     },
-    { label: "About Us", href: "/about" },
+    { key: "aboutUs", href: "/about" },
   ],
   footer: {
     quickLinks: [
-      { label: "Home", href: "/" },
-      { label: "Collections", href: "/collections" },
-      { label: "About Us", href: "/about" },
-      { label: "FAQ", href: "/#faq" },
+      { key: "home", href: "/" },
+      { key: "collections", href: "/collections" },
+      { key: "aboutUs", href: "/about" },
+      { key: "faq", href: "/#faq" },
     ],
     businesses: [
-      { label: "Knitting", href: "/businesses/knitting" },
-      { label: "Yarn Production", href: "/businesses/yarn-production" },
-      { label: "Garment Production", href: "/businesses/garment-production" },
-      { label: "Petrol", href: "/businesses/petrol" },
-      { label: "Flour", href: "/businesses/flour" },
-      { label: "Farm", href: "/businesses/farm" },
-      { label: "Cottonseed Oil", href: "/businesses/cottonseed-oil" },
+      { key: "knitting", href: "/businesses/knitting" },
+      { key: "yarnProduction", href: "/businesses/yarn-production" },
+      { key: "garmentProduction", href: "/businesses/garment-production" },
+      { key: "petrol", href: "/businesses/petrol" },
+      { key: "flour", href: "/businesses/flour" },
+      { key: "farm", href: "/businesses/farm" },
+      { key: "cottonseedOil", href: "/businesses/cottonseed-oil" },
     ],
     phones: [
       {
-        label: "Phone Number",
+        key: "phoneNumber",
         value: "+998942600000",
         href: "tel:+998942600000",
       },
       {
-        label: "Office Number",
+        key: "officeNumber",
         value: "+998940871111",
         href: "tel:+998940871111",
       },
@@ -73,3 +75,93 @@ export const siteConfig = {
     ],
   },
 } as const;
+
+export function getNavLabels(locale: Locale) {
+  return {
+    home:
+      locale === "en" ? "Home" : locale === "uz" ? "Bosh sahifa" : "Главная",
+    collections:
+      locale === "en"
+        ? "Collections"
+        : locale === "uz"
+          ? "Kolleksiyalar"
+          : "Коллекции",
+    businesses:
+      locale === "en"
+        ? "Businesses"
+        : locale === "uz"
+          ? "Faoliyat yo'nalishlari"
+          : "Направления бизнеса",
+    aboutUs:
+      locale === "en"
+        ? "About Us"
+        : locale === "uz"
+          ? "Biz haqimizda"
+          : "О нас",
+    contactUs:
+      locale === "en" ? "Contact Us" : locale === "uz" ? "Aloqa" : "Контакты",
+    knitting:
+      locale === "en" ? "Knitting" : locale === "uz" ? "Trikotaj" : "Вязание",
+    yarnProduction:
+      locale === "en"
+        ? "Yarn Production"
+        : locale === "uz"
+          ? "Ip ishlab chiqarish"
+          : "Производство пряжи",
+    garmentProduction:
+      locale === "en"
+        ? "Garment Production"
+        : locale === "uz"
+          ? "Kiyim ishlab chiqarish"
+          : "Производство одежды",
+    petrol: locale === "en" ? "Petrol" : locale === "uz" ? "Neft" : "Нефть",
+    flour: locale === "en" ? "Flour" : locale === "uz" ? "Un" : "Мука",
+    farm: locale === "en" ? "Farm" : locale === "uz" ? "Ferm" : "Ферма",
+    cottonseedOil:
+      locale === "en"
+        ? "Cottonseed Oil"
+        : locale === "uz"
+          ? "Paxta yog'i"
+          : "Хлопковое масло",
+    faq: "FAQ",
+  };
+}
+
+export function getFooterLabels(locale: Locale) {
+  return {
+    quickLinks:
+      locale === "en"
+        ? "Quick Links"
+        : locale === "uz"
+          ? "Tezkor havolalar"
+          : "Быстрые ссылки",
+    businesses:
+      locale === "en"
+        ? "Businesses"
+        : locale === "uz"
+          ? "Faoliyat yo'nalishlari"
+          : "Направления бизнеса",
+    contactUs:
+      locale === "en" ? "Contact Us" : locale === "uz" ? "Aloqa" : "Контакты",
+    address: locale === "en" ? "Address" : locale === "uz" ? "Manzil" : "Адрес",
+    email: locale === "en" ? "Email" : locale === "uz" ? "Email" : "Email",
+    copyright:
+      locale === "en"
+        ? "All Rights Reserved"
+        : locale === "uz"
+          ? "Barcha huquqlar himoyalangan"
+          : "Все права защищены",
+    phoneNumber:
+      locale === "en"
+        ? "Phone Number"
+        : locale === "uz"
+          ? "Telefon raqami"
+          : "Номер телефона",
+    officeNumber:
+      locale === "en"
+        ? "Office Number"
+        : locale === "uz"
+          ? "Ofis raqami"
+          : "Номер офиса",
+  };
+}

@@ -51,6 +51,32 @@ const ARCS = DESTINATIONS.map((d) => ({
   label: d.label,
 }));
 
+const worldLabels = {
+  origin: { en: "Origin", uz: "Manba", ru: "Источник" },
+  countries: {
+    Uzbekistan: { en: "Uzbekistan", uz: "O'zbekiston", ru: "Узбекистан" },
+    Russia: { en: "Russia", uz: "Rossiya", ru: "Россия" },
+    Belarus: { en: "Belarus", uz: "Belarus", ru: "Беларусь" },
+    Turkey: { en: "Turkey", uz: "Turkiya", ru: "Турция" },
+    Kazakhstan: { en: "Kazakhstan", uz: "Qozog'iston", ru: "Казахстан" },
+    UAE: { en: "UAE", uz: "BAA", ru: "ОАЭ" },
+    "United Arab Emirates": {
+      en: "United Arab Emirates",
+      uz: "Birlashgan Arab Amirliklari",
+      ru: "Объединённые Арабские Эмираты",
+    },
+    Germany: { en: "Germany", uz: "Germaniya", ru: "Германия" },
+    France: { en: "France", uz: "Fransiya", ru: "Франция" },
+    China: { en: "China", uz: "Xitoy", ru: "Китай" },
+  },
+} as const;
+
+function getCountryLabel(name: string, locale: Locale): string {
+  const entry =
+    worldLabels.countries[name as keyof typeof worldLabels.countries];
+  return entry ? entry[locale] : name;
+}
+
 type GeoFeature = { properties: { name: string } };
 type Props = Readonly<{ locale: Locale }>;
 
@@ -174,7 +200,7 @@ export function WorldReachSection({ locale }: Props) {
                 }}
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 polygonLabel={(f: any) =>
-                  `<div style="font-family:Manrope,sans-serif;background:#070A0F;color:white;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid rgba(132,204,22,0.3)">${GEO_NAME_TO_LABEL[f.properties.name] ?? f.properties.name}</div>`
+                  `<div style="font-family:Manrope,sans-serif;background:#070A0F;color:white;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid rgba(132,204,22,0.3)">${getCountryLabel(GEO_NAME_TO_LABEL[f.properties.name] ?? f.properties.name, locale)}</div>`
                 }
                 arcsData={ARCS}
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
@@ -245,8 +271,12 @@ export function WorldReachSection({ locale }: Props) {
                 <span className="text-xs font-black text-[#070A0F]">UZ</span>
               </div>
               <div>
-                <p className="text-sm font-bold text-white">Uzbekistan</p>
-                <p className="text-xs text-white/30">Origin</p>
+                <p className="text-sm font-bold text-white">
+                  {getCountryLabel("Uzbekistan", locale)}
+                </p>
+                <p className="text-xs text-white/30">
+                  {worldLabels.origin[locale]}
+                </p>
               </div>
             </div>
 
@@ -284,7 +314,7 @@ export function WorldReachSection({ locale }: Props) {
                       color: isActive ? "#ffffff" : "rgba(255,255,255,0.5)",
                     }}
                   >
-                    {d.label}
+                    {getCountryLabel(d.label, locale)}
                   </span>
                   <span
                     className="text-xs transition-all duration-200"

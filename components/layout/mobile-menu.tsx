@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { siteConfig } from "@/shared/config/site-config";
+import { getNavLabels, siteConfig } from "@/shared/config/site-config";
+import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 function BurgerIcon() {
   return (
@@ -62,10 +64,19 @@ function CloseIcon() {
   );
 }
 
-export function MobileMenu() {
+type MobileMenuProps = Readonly<{ locale: Locale }>;
+
+const text = {
+  openMenu: { en: "Open menu", uz: "Menyuni ochish", ru: "Открыть меню" },
+  closeMenu: { en: "Close menu", uz: "Menyuni yopish", ru: "Закрыть меню" },
+  contactUs: { en: "Contact Us", uz: "Aloqa", ru: "Контакты" },
+} as const;
+
+export function MobileMenu({ locale }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const labels = getNavLabels(locale);
 
   useEffect(() => {
     if (isOpen) {
@@ -79,7 +90,7 @@ export function MobileMenu() {
     <>
       <button
         type="button"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-label={isOpen ? text.closeMenu[locale] : text.openMenu[locale]}
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-white transition-all duration-200 hover:border-gray-200 hover:bg-gray-50"
       >
@@ -106,18 +117,18 @@ export function MobileMenu() {
                     onClick={() => setIsOpen(false)}
                     className="flex items-center py-3 text-base text-[#070A0F] transition-opacity hover:opacity-60"
                   >
-                    {item.label}
+                    {labels[item.key as keyof typeof labels]}
                   </Link>
                 </li>
               ))}
             </ul>
             <div className="mt-4 border-t border-gray-100 pt-4">
               <Link
-                href="/contact"
+                href={localizeHref(locale, "/contact")}
                 onClick={() => setIsOpen(false)}
                 className="block w-full rounded-full border border-gray-100 bg-white py-2.5 text-center text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
               >
-                Contact Us
+                {text.contactUs[locale]}
               </Link>
             </div>
           </div>

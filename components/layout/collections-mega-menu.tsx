@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 type Props = Readonly<{ label: string; locale: Locale }>;
 
@@ -143,7 +144,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                   return (
                     <Link
                       key={cat.href}
-                      href={cat.href}
+                      href={localizeHref(locale, cat.href)}
                       onClick={() => setOpen(false)}
                       className="group relative flex-1 overflow-hidden"
                       style={{ borderRadius: 24 }}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getProductsByGender } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 const t = {
   eyebrow: {
@@ -168,7 +169,7 @@ export function CollectionsMarqueeSection({ locale }: Props) {
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/collections/women"
+              href={localizeHref(locale, "/collections/women")}
               className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
             >
               {t.women[locale]}
@@ -177,7 +178,7 @@ export function CollectionsMarqueeSection({ locale }: Props) {
               </span>
             </Link>
             <Link
-              href="/collections/men"
+              href={localizeHref(locale, "/collections/men")}
               className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:border-white/60 hover:bg-white/10"
             >
               {t.men[locale]}
