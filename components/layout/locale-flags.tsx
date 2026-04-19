@@ -1,32 +1,68 @@
-import GB from "country-flag-icons/react/3x2/GB";
-import RU from "country-flag-icons/react/3x2/RU";
-import UZ from "country-flag-icons/react/3x2/UZ";
+import type { SVGProps } from "react";
 import type { Locale } from "@/shared/i18n/translations";
 
-/**
- * `country-flag-icons` ships its own `FlagComponent` type whose element
- * is declared as `HTMLElement & SVGElement`, which clashes with the
- * standard `SVGProps<SVGSVGElement>`. We only need `className` and
- * `title`, so we type the map loosely as any flag component that
- * accepts those two props.
- */
-type LocaleFlagComponent = (props: {
-  className?: string;
+type FlagSvgProps = SVGProps<SVGSVGElement> & {
   title?: string;
-}) => React.JSX.Element;
+};
 
-/**
- * Map of app locales → ISO 3166-1 alpha-2 country flags.
- * - `en` → GB (Great Britain) as commonly used for English.
- * - `uz` → UZ (Uzbekistan).
- * - `ru` → RU (Russia).
- * All SVGs come from `country-flag-icons` so they render pixel-identical
- * across every device (no emoji rendering differences).
- */
+type LocaleFlagComponent = (props: FlagSvgProps) => React.JSX.Element;
+
+function GBFlag({ title, ...props }: FlagSvgProps) {
+  return (
+    <svg viewBox="0 0 60 40" aria-hidden="true" {...props}>
+      {title ? <title>{title}</title> : null}
+      <rect width="60" height="40" fill="#012169" />
+      <path d="M0 0l60 40M60 0L0 40" stroke="#fff" strokeWidth="8" />
+      <path d="M0 0l60 40M60 0L0 40" stroke="#C8102E" strokeWidth="4" />
+      <path d="M30 0v40M0 20h60" stroke="#fff" strokeWidth="12" />
+      <path d="M30 0v40M0 20h60" stroke="#C8102E" strokeWidth="8" />
+    </svg>
+  );
+}
+
+function UZFlag({ title, ...props }: FlagSvgProps) {
+  return (
+    <svg viewBox="0 0 60 40" aria-hidden="true" {...props}>
+      {title ? <title>{title}</title> : null}
+      <rect width="60" height="40" fill="#1EB53A" />
+      <rect width="60" height="26.66" fill="#fff" />
+      <rect width="60" height="13.33" fill="#0099E5" />
+      <rect y="13" width="60" height="1.7" fill="#CE1126" />
+      <rect y="25.3" width="60" height="1.7" fill="#CE1126" />
+      <circle cx="10" cy="7" r="4" fill="#fff" />
+      <circle cx="11.3" cy="7" r="3.2" fill="#0099E5" />
+      <g fill="#fff">
+        <circle cx="17" cy="4.5" r="1" />
+        <circle cx="20" cy="4.5" r="1" />
+        <circle cx="23" cy="4.5" r="1" />
+        <circle cx="26" cy="4.5" r="1" />
+        <circle cx="18.5" cy="7.5" r="1" />
+        <circle cx="21.5" cy="7.5" r="1" />
+        <circle cx="24.5" cy="7.5" r="1" />
+        <circle cx="17" cy="10.5" r="1" />
+        <circle cx="20" cy="10.5" r="1" />
+        <circle cx="23" cy="10.5" r="1" />
+        <circle cx="26" cy="10.5" r="1" />
+      </g>
+    </svg>
+  );
+}
+
+function RUFlag({ title, ...props }: FlagSvgProps) {
+  return (
+    <svg viewBox="0 0 60 40" aria-hidden="true" {...props}>
+      {title ? <title>{title}</title> : null}
+      <rect width="60" height="40" fill="#D52B1E" />
+      <rect width="60" height="26.66" y="0" fill="#fff" />
+      <rect width="60" height="13.33" y="13.33" fill="#0039A6" />
+    </svg>
+  );
+}
+
 const flagByLocale: Record<Locale, LocaleFlagComponent> = {
-  en: GB as unknown as LocaleFlagComponent,
-  uz: UZ as unknown as LocaleFlagComponent,
-  ru: RU as unknown as LocaleFlagComponent,
+  en: GBFlag,
+  uz: UZFlag,
+  ru: RUFlag,
 };
 
 const titleByLocale: Record<Locale, string> = {

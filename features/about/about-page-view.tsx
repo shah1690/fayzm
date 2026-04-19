@@ -9,24 +9,44 @@ import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
 import type { Locale } from "@/shared/i18n/translations";
 
-const images = [
-  {
-    src: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop",
-    alt: "Team member",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=500&fit=crop",
-    alt: "Office space",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&h=500&fit=crop",
-    alt: "Work environment",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=400&h=500&fit=crop",
-    alt: "Team collaboration",
-  },
-];
+const galleryImages = {
+  en: [
+    { src: "/images/about-hero.png", alt: "FAYZ-M production complex" },
+    { src: "/images/g1.jpg", alt: "Garment production at FAYZ-M" },
+    { src: "/images/k1.jpg", alt: "Textile production at FAYZ-M" },
+    { src: "/images/eco.jpg", alt: "FAYZ-M green energy facility" },
+    { src: "/images/g2.jpg", alt: "FAYZ-M garment workshop" },
+    { src: "/images/g3.jpg", alt: "FAYZ-M sewing line" },
+    { src: "/images/k2.jpg", alt: "FAYZ-M knitting workshop" },
+    { src: "/images/k3.jpg", alt: "FAYZ-M textile machinery" },
+    { src: "/images/y1.jpg", alt: "FAYZ-M yarn production" },
+    { src: "/images/y2.jpg", alt: "FAYZ-M spinning facility" },
+  ],
+  uz: [
+    { src: "/images/about-hero.png", alt: "FAYZ-M ishlab chiqarish majmuasi" },
+    { src: "/images/g1.jpg", alt: "FAYZ-M tikuvchilik ishlab chiqarishi" },
+    { src: "/images/k1.jpg", alt: "FAYZ-M to'qimachilik ishlab chiqarishi" },
+    { src: "/images/eco.jpg", alt: "FAYZ-M yashil energiya majmuasi" },
+    { src: "/images/g2.jpg", alt: "FAYZ-M tikuv sexi" },
+    { src: "/images/g3.jpg", alt: "FAYZ-M tikuv liniyasi" },
+    { src: "/images/k2.jpg", alt: "FAYZ-M trikotaj sexi" },
+    { src: "/images/k3.jpg", alt: "FAYZ-M to'qimachilik uskunalari" },
+    { src: "/images/y1.jpg", alt: "FAYZ-M ip ishlab chiqarishi" },
+    { src: "/images/y2.jpg", alt: "FAYZ-M yigiruv majmuasi" },
+  ],
+  ru: [
+    { src: "/images/about-hero.png", alt: "Производственный комплекс FAYZ-M" },
+    { src: "/images/g1.jpg", alt: "Швейное производство FAYZ-M" },
+    { src: "/images/k1.jpg", alt: "Текстильное производство FAYZ-M" },
+    { src: "/images/eco.jpg", alt: "Объект зелёной энергии FAYZ-M" },
+    { src: "/images/g2.jpg", alt: "Швейный цех FAYZ-M" },
+    { src: "/images/g3.jpg", alt: "Швейная линия FAYZ-M" },
+    { src: "/images/k2.jpg", alt: "Трикотажный цех FAYZ-M" },
+    { src: "/images/k3.jpg", alt: "Текстильное оборудование FAYZ-M" },
+    { src: "/images/y1.jpg", alt: "Производство пряжи FAYZ-M" },
+    { src: "/images/y2.jpg", alt: "Прядильный комплекс FAYZ-M" },
+  ],
+} as const;
 
 type AboutPageViewProps = Readonly<{ locale: Locale }>;
 
@@ -76,7 +96,7 @@ export function AboutPageView({ locale }: AboutPageViewProps) {
 
       {/* Image gallery — full width, touches edges */}
       <div className="mt-12 flex gap-4 overflow-x-auto pb-4 md:mt-16">
-        {images.map((img) => (
+        {galleryImages[locale].map((img) => (
           <div
             key={img.src}
             className="h-[320px] w-[280px] flex-shrink-0 overflow-hidden rounded-2xl first:ml-5 last:mr-5 md:h-[420px] md:w-[340px] md:first:ml-10 md:last:mr-10"

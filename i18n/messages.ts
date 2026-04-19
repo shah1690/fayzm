@@ -102,11 +102,10 @@ export const messages = {
     },
     About: {
       label: "About Us",
-      heading: "Empowering\nBusinesses To Thrive",
-      quote:
-        "We partner with growth-focused organizations to transform strategy into measurable performance.",
+      heading: "Multi-Sector\nTextile Company",
+      quote: "We turn fibers into fashion —",
       quoteContinued:
-        "Through structured planning, operational clarity, and disciplined execution, we help businesses build sustainable success.",
+        "combining quality, innovation, and elegance with a modern production approach.",
     },
   },
   uz: {
@@ -212,11 +211,10 @@ export const messages = {
     },
     About: {
       label: "Biz haqimizda",
-      heading: "Bizneslarni\nRivojlanishga Yo'naltirish",
-      quote:
-        "Biz o'sishga yo'naltirilgan tashkilotlar bilan hamkorlik qilib, strategiyani o'lchovli natijalarga aylantiramiz.",
+      heading: "Ko'p Tarmoqli\nTo'qimachilik Kompaniyasi",
+      quote: "Biz tolani modaga aylantiramiz —",
       quoteContinued:
-        "Tuzilgan rejalashtirish, operatsion aniqlik va intizamli ijro orqali biz bizneslarni barqaror muvaffaqiyatga erishishga yordam beramiz.",
+        "zamonaviy ishlab chiqarish yondashuvi orqali sifat, innovatsiya va nafislikni birlashtiramiz.",
     },
   },
   ru: {
@@ -322,11 +320,10 @@ export const messages = {
     },
     About: {
       label: "О нас",
-      heading: "Помощь бизнесу\nв процветании",
-      quote:
-        "Мы партнёрствуем с организациями, ориентированными на рост, превращая стратегию в измеримые результаты.",
+      heading: "Многоотраслевая\nТекстильная Компания",
+      quote: "Мы превращаем волокно в моду —",
       quoteContinued:
-        "Через структурированное планирование, операционную ясность и дисциплинированное исполнение мы помогаем бизнесу строить устойчивый успех.",
+        "объединяя качество, инновации и элегантность с современным производственным подходом.",
     },
   },
 } as const;
