@@ -32,6 +32,19 @@ const DESTINATIONS = [
 const HIGHLIGHT_ISOS = new Set(DESTINATIONS.map((d) => d.iso));
 const UZB_ISO = "860";
 
+const sectionText = {
+  heading: {
+    en: "Shipping to 7 countries\nacross Europe & CIS",
+    uz: "7 mamlakatga yetkazamiz —\nYevropa va MDH bo'ylab",
+    ru: "Доставляем в 7 стран\nЕвропы и СНГ",
+  },
+  subtitle: {
+    en: "From Andijan — premium knitwear and garments reach partners across multiple markets.",
+    uz: "Andijondan — premium trikotaj va kiyimlar ko'plab bozorlardagi hamkorlarga yetkazib beriladi.",
+    ru: "Из Андижана — премиум трикотаж и одежда поставляются партнёрам на нескольких рынках.",
+  },
+} as const;
+
 function ArcLines({ hovered }: { hovered: string | null }) {
   // biome-ignore lint/suspicious/noExplicitAny: react-simple-maps MapContext
   const ctx = useContext(MapContext as any);
@@ -45,14 +58,13 @@ function ArcLines({ hovered }: { hovered: string | null }) {
 
   return (
     <>
-      {DESTINATIONS.map((d) => {
+      {DESTINATIONS.map((d, i) => {
         const dp = projection(d.coords) as [number, number] | null;
         if (!dp) return null;
         const [dx, dy] = dp;
         const isHov = hovered === d.name;
         const isVisible = hovered === null || isHov;
 
-        // Quadratic bezier control point — arched upward
         const mx = (ox + dx) / 2;
         const my = (oy + dy) / 2 - Math.abs(dx - ox) * 0.32;
 
@@ -71,7 +83,11 @@ function ArcLines({ hovered }: { hovered: string | null }) {
             strokeWidth={isHov ? 2 : 1}
             strokeLinecap="round"
             strokeDasharray={isHov ? undefined : "5 4"}
-            style={{ transition: "stroke 0.25s, stroke-width 0.25s" }}
+            className="animate-arc-draw"
+            style={{
+              transition: "stroke 0.25s, stroke-width 0.25s",
+              animationDelay: `${i * 140}ms`,
+            }}
           />
         );
       })}
@@ -81,20 +97,28 @@ function ArcLines({ hovered }: { hovered: string | null }) {
 
 type Props = Readonly<{ locale: Locale }>;
 
-export function WorldMapSection({ locale: _locale }: Props) {
+export function WorldMapSection({ locale }: Props) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <section className="overflow-hidden bg-white px-5 py-8 md:px-10 md:py-12">
       <div className="mx-auto max-w-[1440px]">
-        {/* Map container */}
+        <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between md:gap-12">
+          <h2 className="whitespace-pre-line text-3xl font-bold leading-[1.1] text-[#070A0F] md:text-4xl lg:text-5xl">
+            {sectionText.heading[locale]}
+          </h2>
+          <p className="max-w-md text-sm leading-relaxed text-gray-500 md:text-base">
+            {sectionText.subtitle[locale]}
+          </p>
+        </div>
+
         <div
-          className="relative w-full overflow-hidden"
+          className="relative w-full select-none overflow-hidden"
           style={{ background: "#F0F2EA", borderRadius: 40 }}
         >
           <ComposableMap
             projection="geoMercator"
-            projectionConfig={{ scale: 460, center: [58, 33] }}
+            projectionConfig={{ scale: 460, center: [52, 38] }}
             style={{ width: "100%", height: "auto" }}
             viewBox="0 0 800 420"
           >
@@ -114,6 +138,7 @@ export function WorldMapSection({ locale: _locale }: Props) {
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
+                        tabIndex={-1}
                         style={{
                           default: {
                             fill: "rgba(160,175,150,0.12)",
@@ -125,7 +150,10 @@ export function WorldMapSection({ locale: _locale }: Props) {
                             fill: "rgba(160,175,150,0.12)",
                             outline: "none",
                           },
-                          pressed: { outline: "none" },
+                          pressed: {
+                            fill: "rgba(160,175,150,0.12)",
+                            outline: "none",
+                          },
                         }}
                       />
                     );
@@ -135,6 +163,7 @@ export function WorldMapSection({ locale: _locale }: Props) {
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
+                      tabIndex={-1}
                       onMouseEnter={() => dest && setHovered(dest.name)}
                       onMouseLeave={() => setHovered(null)}
                       style={{
@@ -159,7 +188,16 @@ export function WorldMapSection({ locale: _locale }: Props) {
                           strokeWidth: isUzb ? 1 : 0.6,
                           outline: "none",
                         },
-                        pressed: { outline: "none" },
+                        pressed: {
+                          fill: isUzb
+                            ? "#84CC16"
+                            : isHovered
+                              ? "rgba(132,204,22,0.45)"
+                              : "rgba(132,204,22,0.22)",
+                          stroke: isUzb ? "#5DA016" : "rgba(132,204,22,0.4)",
+                          strokeWidth: isUzb ? 1 : 0.6,
+                          outline: "none",
+                        },
                       }}
                     />
                   );
@@ -167,10 +205,8 @@ export function WorldMapSection({ locale: _locale }: Props) {
               }
             </Geographies>
 
-            {/* Curved arc lines from Andijan to destinations */}
             <ArcLines hovered={hovered} />
 
-            {/* Uzbekistan country label */}
             <Marker coordinates={[63.5, 41.4] as [number, number]}>
               <text
                 textAnchor="middle"
@@ -183,16 +219,20 @@ export function WorldMapSection({ locale: _locale }: Props) {
                   fontFamily: "Manrope,sans-serif",
                   letterSpacing: 1,
                   pointerEvents: "none",
+                  userSelect: "none",
                 }}
               >
                 UZBEKISTAN
               </text>
             </Marker>
 
-            {/* Origin — Andijan */}
             <Marker coordinates={ORIGIN}>
+              <circle
+                r={13}
+                fill="rgba(132,204,22,0.2)"
+                className="animate-origin-pulse"
+              />
               <circle r={6} fill="#84CC16" stroke="white" strokeWidth={2} />
-              <circle r={13} fill="rgba(132,204,22,0.18)" />
               <text
                 textAnchor="middle"
                 y={-14}
@@ -202,13 +242,14 @@ export function WorldMapSection({ locale: _locale }: Props) {
                   fontWeight: 800,
                   fontFamily: "Manrope,sans-serif",
                   letterSpacing: 0.3,
+                  pointerEvents: "none",
+                  userSelect: "none",
                 }}
               >
                 Andijan
               </text>
             </Marker>
 
-            {/* Destination markers */}
             {DESTINATIONS.map((d) => {
               const isHov = hovered === d.name;
               return (
@@ -234,6 +275,8 @@ export function WorldMapSection({ locale: _locale }: Props) {
                       fontWeight: isHov ? 800 : 500,
                       fontFamily: "Manrope,sans-serif",
                       transition: "all 0.2s",
+                      pointerEvents: "none",
+                      userSelect: "none",
                     }}
                   >
                     {d.name}
@@ -242,29 +285,6 @@ export function WorldMapSection({ locale: _locale }: Props) {
               );
             })}
           </ComposableMap>
-
-          {/* Country pill filters */}
-          <div className="flex flex-wrap justify-center gap-2 px-6 pb-5 pt-1">
-            {DESTINATIONS.map((d) => (
-              <button
-                key={d.name}
-                type="button"
-                onMouseEnter={() => setHovered(d.name)}
-                onMouseLeave={() => setHovered(null)}
-                className="rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200"
-                style={
-                  hovered === d.name
-                    ? { background: "#84CC16", color: "#070A0F" }
-                    : {
-                        background: "rgba(0,0,0,0.06)",
-                        color: "#6b7a5f",
-                      }
-                }
-              >
-                {d.name}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     </section>

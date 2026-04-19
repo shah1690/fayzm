@@ -184,3 +184,39 @@
 .animate-scroll-dot {
   animation: scroll-dot 1.8s ease-in-out infinite;
 }
+
+/* World map: arc stagger fade-in */
+@keyframes arc-draw {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-arc-draw {
+  opacity: 0;
+  animation: arc-draw 0.9s ease-out forwards;
+  transform-origin: center;
+}
+
+/* World map: origin breathing pulse */
+@keyframes origin-pulse {
+  0% {
+    r: 10;
+    opacity: 0.55;
+  }
+  100% {
+    r: 24;
+    opacity: 0;
+  }
+}
+
+.animate-origin-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: origin-pulse 2s ease-out infinite;
+}
