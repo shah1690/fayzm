@@ -13,20 +13,6 @@ import type { Locale } from "@/shared/i18n/translations";
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-const t = {
-  tag: { en: "Global Reach", uz: "Jahon miqyosi", ru: "Мировой охват" },
-  heading: {
-    en: "Shipped from Andijan\nto the World.",
-    uz: "Andijondan\nbutun dunyoga.",
-    ru: "Из Андижана\nв весь мир.",
-  },
-  sub: {
-    en: "Our knitwear reaches partners across Europe, Central Asia, and the Middle East.",
-    uz: "Trikotajimiz Yevropa, Markaziy Osiyo va Yaqin Sharq hamkorlariga yetib boradi.",
-    ru: "Наш трикотаж доставляется партнёрам по всей Европе, Центральной Азии и Ближнему Востоку.",
-  },
-};
-
 const ORIGIN = [72.3442, 40.7821] as [number, number];
 
 const DESTINATIONS = [
@@ -96,47 +82,16 @@ function ArcLines({ hovered }: { hovered: string | null }) {
 
 type Props = Readonly<{ locale: Locale }>;
 
-export function WorldMapSection({ locale }: Props) {
+export function WorldMapSection({ locale: _locale }: Props) {
   const [hovered, setHovered] = useState<string | null>(null);
-  const headingLines = t.heading[locale].split("\n");
 
   return (
     <section className="overflow-hidden bg-white py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        {/* Header */}
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="mb-3 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
-                {t.tag[locale]}
-              </span>
-            </div>
-            <h2
-              className="font-black leading-tight text-[#070A0F]"
-              style={{ fontSize: "clamp(2rem,4vw,3.5rem)" }}
-            >
-              {headingLines[0]}
-              <br />
-              <span
-                style={{
-                  WebkitTextStroke: "1.5px #070A0F",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                {headingLines[1]}
-              </span>
-            </h2>
-          </div>
-          <p className="max-w-sm text-sm leading-relaxed text-gray-400 md:text-right">
-            {t.sub[locale]}
-          </p>
-        </div>
-
         {/* Map container */}
         <div
-          className="relative w-full overflow-hidden rounded-3xl"
-          style={{ background: "#F0F2EA" }}
+          className="relative w-full overflow-hidden"
+          style={{ background: "#F0F2EA", borderRadius: 40 }}
         >
           <ComposableMap
             projection="geoMercator"
