@@ -38,8 +38,11 @@ export const messages = {
       address: "Address",
       email: "Email",
       copyright: "All Rights Reserved",
-      phoneNumber: "Phone Number",
-      officeNumber: "Office Number",
+      phoneNumber: "Phone",
+      officeNumber: "Office",
+      backToTop: "Back to top",
+      tagline:
+        "A multi-sector textile cluster in Uzbekistan producing premium knitwear, yarn, and garments for global markets.",
     },
     Collections: {
       quote: "Quality at every stitch.",
@@ -149,8 +152,11 @@ export const messages = {
       address: "Manzil",
       email: "Email",
       copyright: "Barcha huquqlar himoyalangan",
-      phoneNumber: "Telefon raqami",
-      officeNumber: "Ofis raqami",
+      phoneNumber: "Telefon",
+      officeNumber: "Ofis",
+      backToTop: "Tepaga",
+      tagline:
+        "O'zbekistondagi ko'p tarmoqli to'qimachilik klasteri — premium trikotaj, ip va kiyimni jahon bozoriga yetkazib beramiz.",
     },
     Collections: {
       quote: "Har bir tikuvda sifat.",
@@ -260,8 +266,11 @@ export const messages = {
       address: "Адрес",
       email: "Email",
       copyright: "Все права защищены",
-      phoneNumber: "Номер телефона",
-      officeNumber: "Номер офиса",
+      phoneNumber: "Телефон",
+      officeNumber: "Офис",
+      backToTop: "Наверх",
+      tagline:
+        "Многоотраслевой текстильный кластер в Узбекистане — премиальный трикотаж, пряжа и одежда для мировых рынков.",
     },
     Collections: {
       quote: "Качество в каждом стежке.",

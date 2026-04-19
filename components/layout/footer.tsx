@@ -5,15 +5,14 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { getNavLabels, siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
-import { translations } from "@/shared/i18n/translations";
 import { formatPhone } from "@/shared/lib/format-phone";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 function InstagramIcon() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -38,8 +37,8 @@ function InstagramIcon() {
 function YoutubeIcon() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +66,8 @@ function YoutubeIcon() {
 function FacebookIcon() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -92,108 +91,71 @@ const socialIcons = {
   youtube: YoutubeIcon,
 };
 
-type FooterColumnProps = Readonly<{ locale: Locale }>;
+const address = {
+  en: "Uzbekistan, Andijan, Khojaobod, Mustahkam 17",
+  uz: "O'zbekiston, Andijon, Xo'jaobod, Mustahkam 17",
+  ru: "Узбекистан, Андижан, Ходжаабад, Мустаҳкам 17",
+} as const;
 
-function QuickLinksCol({ locale }: FooterColumnProps) {
-  const t = useTranslations("Footer");
-  const labels = getNavLabels(locale);
-
-  return (
-    <div className="flex flex-col gap-4">
-      <h3 className="text-base font-medium text-white">{t("quickLinks")}</h3>
-      <ul className="flex flex-col gap-3">
-        {siteConfig.footer.quickLinks.map((item) => (
-          <li key={item.href}>
-            <Link
-              href={localizeHref(locale, item.href)}
-              className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
-            >
-              {labels[item.key as keyof typeof labels]}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function BusinessesCol({ locale }: FooterColumnProps) {
-  const t = useTranslations("Footer");
-  const labels = getNavLabels(locale);
-
-  return (
-    <div className="flex flex-col gap-4">
-      <h3 className="text-base font-medium text-white">{t("businesses")}</h3>
-      <ul className="flex flex-col gap-3">
-        {siteConfig.footer.businesses.map((item) => (
-          <li key={item.href}>
-            <Link
-              href={localizeHref(locale, item.href)}
-              className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
-            >
-              {labels[item.key as keyof typeof labels]}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function ContactCol() {
-  const t = useTranslations("Footer");
-
-  return (
-    <div className="flex flex-col gap-4">
-      <h3 className="text-base font-medium text-white">{t("contactUs")}</h3>
-      <div className="flex flex-col gap-3">
-        {siteConfig.footer.phones.map((phone) => (
-          <div key={phone.href} className="flex flex-col gap-0.5">
-            <span className="text-xs text-white/40">
-              {t(phone.key as "phoneNumber" | "officeNumber")}
-            </span>
-            <a
-              href={phone.href}
-              className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
-            >
-              {formatPhone(phone.value)}
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+const headingClass =
+  "text-[11px] font-medium uppercase tracking-[0.18em] text-white/40";
+const linkClass =
+  "text-sm text-white/70 transition-colors duration-200 hover:text-white";
+const labelClass = "text-[11px] uppercase tracking-wider text-white/35";
 
 type FooterProps = Readonly<{ locale: Locale }>;
 
-const text = {
-  address: {
-    en: "Uzbekistan, Andijan, Khojaobod, Mustahkam 17",
-    uz: "O'zbekiston, Andijon, Xo'jaobod, Mustahkam 17",
-    ru: "Узбекистан, Андижан, Ходжаабад, Мустаҳкам 17",
-  },
-} as const;
+type ContactItemProps = Readonly<{
+  label: string;
+  value: string;
+  href?: string;
+}>;
+
+function ContactItem({ label, value, href }: ContactItemProps) {
+  return (
+    <li className="flex flex-col gap-1">
+      <span className={labelClass}>{label}</span>
+      {href ? (
+        <a href={href} className={linkClass}>
+          {value}
+        </a>
+      ) : (
+        <span className="text-sm text-white/70">{value}</span>
+      )}
+    </li>
+  );
+}
 
 export function Footer({ locale }: FooterProps) {
   const t = useTranslations("Footer");
+  const labels = getNavLabels(locale);
   const year = new Date().getFullYear();
 
-  const logoSection = (
+  const scrollToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const brand = (
     <div className="flex flex-col gap-6">
-      <Link href={localizeHref(locale, "/")}>
+      <Link
+        href={localizeHref(locale, "/")}
+        className="inline-flex w-fit"
+        aria-label={siteConfig.name}
+      >
         <Image
           src={siteConfig.logo.dark}
           alt={siteConfig.name}
-          width={100}
-          height={32}
-          className="h-8 w-auto"
+          width={180}
+          height={48}
+          className="h-10 w-auto md:h-11"
         />
       </Link>
-      <p className="max-w-xs text-sm leading-relaxed text-white/50">
-        {translations.footer.tagline[locale]}
+      <p className="max-w-sm text-sm leading-relaxed text-white/55">
+        {t("tagline")}
       </p>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         {siteConfig.footer.social.map((item) => {
           const Icon = socialIcons[item.icon as keyof typeof socialIcons];
           return (
@@ -203,7 +165,7 @@ export function Footer({ locale }: FooterProps) {
               aria-label={item.label}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-all duration-200 hover:border-white hover:text-white"
+              className="text-white/50 transition-colors duration-200 hover:text-white"
             >
               <Icon />
             </Link>
@@ -213,94 +175,91 @@ export function Footer({ locale }: FooterProps) {
     </div>
   );
 
+  const quickLinks = (
+    <nav aria-label={t("quickLinks")} className="flex flex-col gap-6">
+      <h3 className={headingClass}>{t("quickLinks")}</h3>
+      <ul className="flex flex-col gap-3">
+        {siteConfig.footer.quickLinks.map((item) => (
+          <li key={item.href}>
+            <Link href={localizeHref(locale, item.href)} className={linkClass}>
+              {labels[item.key as keyof typeof labels]}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+
+  const businessesNav = (
+    <nav aria-label={t("businesses")} className="flex flex-col gap-6">
+      <h3 className={headingClass}>{t("businesses")}</h3>
+      <ul className="flex flex-col gap-3">
+        {siteConfig.footer.businesses.map((item) => (
+          <li key={item.href}>
+            <Link href={localizeHref(locale, item.href)} className={linkClass}>
+              {labels[item.key as keyof typeof labels]}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+
+  const contact = (
+    <div className="flex flex-col gap-6">
+      <h3 className={headingClass}>{t("contactUs")}</h3>
+      <ul className="flex flex-col gap-4">
+        {siteConfig.footer.phones.map((phone) => (
+          <ContactItem
+            key={phone.href}
+            label={t(phone.key as "phoneNumber" | "officeNumber")}
+            value={formatPhone(phone.value)}
+            href={phone.href}
+          />
+        ))}
+        <ContactItem
+          label={t("email")}
+          value="fayz-mtex@mail.ru"
+          href="mailto:fayz-mtex@mail.ru"
+        />
+        <ContactItem label={t("address")} value={address[locale]} />
+      </ul>
+    </div>
+  );
+
   return (
     <div className="bg-white p-3 md:p-5">
-      <footer
-        className="bg-gray-950 px-5 py-10 text-white md:px-10 md:py-12"
-        style={{ borderRadius: "40px" }}
-      >
-        {/* Mobile layout */}
-        <div className="flex flex-col gap-8 md:hidden">
-          <div className="grid grid-cols-2 gap-6">
-            <QuickLinksCol locale={locale} />
-            <BusinessesCol locale={locale} />
+      <footer className="rounded-[32px] bg-gray-950 px-6 py-12 text-white md:px-12 md:py-14 lg:px-16">
+        {/* Mobile + tablet */}
+        <div className="flex flex-col gap-12 lg:hidden">
+          {brand}
+          <div className="grid grid-cols-2 gap-10 sm:gap-12">
+            {quickLinks}
+            {businessesNav}
           </div>
-          <ContactCol />
-          {logoSection}
+          {contact}
         </div>
 
-        {/* Desktop layout */}
-        <div className="hidden md:grid md:grid-cols-[1fr_auto] md:items-start md:gap-16">
-          {logoSection}
-          <div className="grid grid-cols-3 gap-16">
-            <QuickLinksCol locale={locale} />
-            <BusinessesCol locale={locale} />
-            <ContactCol />
-          </div>
+        {/* Desktop */}
+        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-16">
+          <div className="lg:col-span-4">{brand}</div>
+          <div className="lg:col-span-2">{quickLinks}</div>
+          <div className="lg:col-span-3">{businessesNav}</div>
+          <div className="lg:col-span-3">{contact}</div>
         </div>
 
-        {/* Address + Email bar */}
-        <div className="mt-10 border-t border-white/10 pt-8">
-          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-10">
-            <div className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl bg-white/5">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
-                    fill="#84CC16"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
-                  {t("address")}
-                </p>
-                <p className="mt-0.5 text-sm text-white/60">
-                  {text.address[locale]}
-                </p>
-              </div>
-            </div>
-
-            <div className="hidden h-8 w-px bg-white/10 sm:block" />
-
-            <div className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl bg-white/5">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                    fill="#84CC16"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
-                  {t("email")}
-                </p>
-                <a
-                  href="mailto:fayz-mtex@mail.ru"
-                  className="mt-0.5 block text-sm text-white/60 transition-colors hover:text-white"
-                >
-                  fayz-mtex@mail.ru
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <p className="text-sm text-white/40">
-            Copyright &copy; {year} {siteConfig.name}. {t("copyright")}.
+        {/* Bottom bar */}
+        <div className="mt-16 flex flex-col-reverse items-start gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-white/40">
+            © {year} {siteConfig.name}. {t("copyright")}.
           </p>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/40 transition-colors duration-200 hover:text-white"
+          >
+            {t("backToTop")} ↑
+          </button>
         </div>
       </footer>
     </div>
