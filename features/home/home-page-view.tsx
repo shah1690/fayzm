@@ -10,6 +10,7 @@ import { BusinessesSection } from "@/features/home/businesses-section";
 import { CollectionsMarqueeSection } from "@/features/home/collections-marquee-section";
 import { HeroSection } from "@/features/home/hero-section";
 import { HomeCTABanner } from "@/features/home/home-cta-banner";
+import { WorldMapSection } from "@/features/home/world-map-section";
 import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
 import { siteConfig } from "@/shared/config/site-config";
@@ -36,6 +37,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
       <BrandVideoSection />
       <BusinessesSection locale={locale} />
       <HomeCTABanner locale={locale} />
+      <WorldMapSection locale={locale} />
       <PartnersSection locale={locale} />
       <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">

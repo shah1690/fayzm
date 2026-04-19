@@ -22,7 +22,8 @@
     "next-intl": "4.9.1",
     "react": "19.2.5",
     "react-dom": "19.2.5",
-    "react-globe.gl": "^2.37.1"
+    "react-globe.gl": "^2.37.1",
+    "react-simple-maps": "^3.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.12",
