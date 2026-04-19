@@ -77,6 +77,7 @@ export function Navbar({ locale }: NavbarProps) {
             height={32}
             priority
             className="h-8 w-auto"
+            style={{ width: "auto" }}
           />
         </Link>
 

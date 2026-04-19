@@ -150,6 +150,7 @@ export function Footer({ locale }: FooterProps) {
           width={180}
           height={48}
           className="h-10 w-auto md:h-11"
+          style={{ width: "auto" }}
         />
       </Link>
       <p className="max-w-sm text-sm leading-relaxed text-white/55">
