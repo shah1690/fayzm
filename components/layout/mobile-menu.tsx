@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { businesses } from "@/content/businesses";
-import { Link } from "@/i18n/navigation";
+import { Link as LocaleLink } from "@/i18n/navigation";
 import { getNavLabels, siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
 import { localizeHref } from "@/shared/lib/localize-href";
@@ -130,29 +131,16 @@ export function MobileMenu({ locale }: MobileMenuProps) {
           ref={menuRef}
           className="animate-dropdown fixed inset-0 top-[76px] z-50 overflow-y-auto bg-white"
         >
-          {/* Pattern bg */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/pattern.svg"
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-            style={{ filter: "brightness(0)", opacity: 0.05 }}
-          />
-
-          <div
-            className="relative z-10 px-5 pb-10 pt-4"
-            style={{ color: "#070A0F" }}
-          >
+          <div className="px-5 pb-10 pt-4">
             <ul className="flex flex-col divide-y divide-gray-100">
               {/* Home */}
               <li>
                 <Link
                   href={localizeHref(locale, "/")}
                   onClick={close}
-                  className="flex items-center py-4 text-base font-medium text-[#070A0F] transition-opacity hover:opacity-60"
+                  className="flex min-h-14 items-center py-4 text-base font-medium text-[#070A0F] transition-opacity hover:opacity-60"
                 >
-                  {labels.home}
+                  <span className="text-[#070A0F]">{labels.home}</span>
                 </Link>
               </li>
 
@@ -161,9 +149,9 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                 <button
                   type="button"
                   onClick={() => toggleSection("collections")}
-                  className="flex w-full items-center justify-between py-4 text-base font-medium text-[#070A0F]"
+                  className="flex min-h-14 w-full items-center justify-between py-4 text-base font-medium text-[#070A0F]"
                 >
-                  {labels.collections}
+                  <span className="text-[#070A0F]">{labels.collections}</span>
                   <ChevronDown open={openSection === "collections"} />
                 </button>
                 {openSection === "collections" && (
@@ -191,9 +179,9 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                 <button
                   type="button"
                   onClick={() => toggleSection("businesses")}
-                  className="flex w-full items-center justify-between py-4 text-base font-medium text-[#070A0F]"
+                  className="flex min-h-14 w-full items-center justify-between py-4 text-base font-medium text-[#070A0F]"
                 >
-                  {labels.businesses}
+                  <span className="text-[#070A0F]">{labels.businesses}</span>
                   <ChevronDown open={openSection === "businesses"} />
                 </button>
                 {openSection === "businesses" && (
@@ -218,9 +206,9 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                 <Link
                   href={localizeHref(locale, "/about")}
                   onClick={close}
-                  className="flex items-center py-4 text-base font-medium text-[#070A0F] transition-opacity hover:opacity-60"
+                  className="flex min-h-14 items-center py-4 text-base font-medium text-[#070A0F] transition-opacity hover:opacity-60"
                 >
-                  {labels.aboutUs}
+                  <span className="text-[#070A0F]">{labels.aboutUs}</span>
                 </Link>
               </li>
 
@@ -229,9 +217,9 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                 <Link
                   href={localizeHref(locale, "/faq")}
                   onClick={close}
-                  className="flex items-center py-4 text-base font-medium text-[#070A0F] transition-opacity hover:opacity-60"
+                  className="flex min-h-14 items-center py-4 text-base font-medium text-[#070A0F] transition-opacity hover:opacity-60"
                 >
-                  {labels.faq}
+                  <span className="text-[#070A0F]">{labels.faq}</span>
                 </Link>
               </li>
             </ul>
@@ -239,7 +227,7 @@ export function MobileMenu({ locale }: MobileMenuProps) {
             {/* Language switcher */}
             <div className="mt-5 flex items-center gap-2">
               {(["uz", "en", "ru"] as Locale[]).map((lang) => (
-                <Link
+                <LocaleLink
                   key={lang}
                   href="/"
                   locale={lang}
@@ -252,7 +240,7 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                   }
                 >
                   {lang}
-                </Link>
+                </LocaleLink>
               ))}
             </div>
 
