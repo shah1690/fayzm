@@ -96,19 +96,12 @@ type MobileMenuProps = Readonly<{ locale: Locale }>;
 
 export function MobileMenu({ locale }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const labels = getNavLabels(locale);
 
   useEffect(() => {
-    if (isOpen) {
-      requestAnimationFrame(() => setMounted(true));
-      document.body.style.overflow = "hidden";
-    } else {
-      setMounted(false);
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -135,11 +128,7 @@ export function MobileMenu({ locale }: MobileMenuProps) {
       {isOpen && (
         <div
           ref={menuRef}
-          className="fixed inset-0 top-[76px] z-50 overflow-y-auto bg-white transition-all duration-300 ease-out"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(-6px)",
-          }}
+          className="animate-dropdown fixed inset-0 top-[76px] z-50 overflow-y-auto bg-white"
         >
           {/* Pattern bg */}
           {/* eslint-disable-next-line @next/next/no-img-element */}

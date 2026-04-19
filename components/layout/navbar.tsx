@@ -64,11 +64,17 @@ export function Navbar({ locale }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
-      <nav className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10">
+      <nav className="relative flex h-[76px] items-center justify-between px-5 py-4 md:grid md:grid-cols-[1fr_auto_1fr] md:px-10">
+        {/* Mobile: burger left. Desktop: hidden */}
+        <div className="md:hidden">
+          <MobileMenu locale={locale} />
+        </div>
+
+        {/* Logo: absolute center on mobile, left grid col on desktop */}
         <Link
           href={homeHref}
           onClick={handleLogoClick}
-          className="flex cursor-pointer items-center"
+          className="absolute left-1/2 flex -translate-x-1/2 cursor-pointer items-center md:static md:translate-x-0"
         >
           <Image
             src={siteConfig.logo.light}
@@ -123,10 +129,8 @@ export function Navbar({ locale }: NavbarProps) {
           </a>
         </div>
 
-        {/* Mobile burger */}
-        <div className="justify-self-end md:hidden">
-          <MobileMenu locale={locale} />
-        </div>
+        {/* Mobile: right spacer to balance burger. Desktop: hidden */}
+        <div className="h-10 w-10 md:hidden" />
       </nav>
     </header>
   );
