@@ -8,10 +8,18 @@ export function NavLink({ href, label }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = href === "/" ? pathname === "/" : pathname === href;
 
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isActive) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="relative inline-flex flex-col items-center">
       <Link
         href={href}
+        onClick={handleClick}
         className={`cursor-pointer text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#84CC16]" : ""}`}
         style={
           isActive

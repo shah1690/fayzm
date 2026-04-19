@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { BusinessesMegaMenu } from "@/components/layout/businesses-mega-menu";
 import { CollectionsMegaMenu } from "@/components/layout/collections-mega-menu";
@@ -51,12 +52,22 @@ const text = {
 export function Navbar({ locale }: NavbarProps) {
   const t = useTranslations("Nav");
   const labels = getNavLabels(locale);
+  const pathname = usePathname();
+  const homeHref = localizeHref(locale, "/");
+
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === homeHref) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10">
         <Link
-          href={localizeHref(locale, "/")}
+          href={homeHref}
+          onClick={handleLogoClick}
           className="flex cursor-pointer items-center"
         >
           <Image

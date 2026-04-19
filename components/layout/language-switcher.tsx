@@ -38,7 +38,7 @@ export function LanguageSwitcher({ current }: LanguageSwitcherProps) {
     }
 
     startTransition(() => {
-      router.replace(pathname, { locale });
+      router.replace(pathname, { locale, scroll: false });
     });
   }
 
