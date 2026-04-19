@@ -140,7 +140,10 @@ export function MobileMenu({ locale }: MobileMenuProps) {
             style={{ filter: "brightness(0)", opacity: 0.05 }}
           />
 
-          <div className="relative z-10 px-5 pb-10 pt-4">
+          <div
+            className="relative z-10 px-5 pb-10 pt-4"
+            style={{ color: "#070A0F" }}
+          >
             <ul className="flex flex-col divide-y divide-gray-100">
               {/* Home */}
               <li>
