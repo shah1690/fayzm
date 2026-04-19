@@ -17,6 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "country-flag-icons": "^1.6.16",
     "next": "16.2.4",
     "next-intl": "4.9.1",
     "react": "19.2.5",

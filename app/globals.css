@@ -145,3 +145,19 @@ h6 {
   animation: marquee-up 70s linear infinite reverse;
   will-change: transform;
 }
+
+/* Mega menu dropdown entrance */
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-dropdown {
+  animation: dropdown-in 0.2s ease-out forwards;
+}

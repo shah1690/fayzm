@@ -81,7 +81,7 @@ export function MobileMenu() {
         type="button"
         aria-label={isOpen ? "Close menu" : "Open menu"}
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-white transition-all duration-200 hover:border-gray-200 hover:bg-gray-50"
+        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-white transition-all duration-200 hover:border-gray-200 hover:bg-gray-50"
       >
         <span className="transition-all duration-200" style={{ opacity: 1 }}>
           {isOpen ? <CloseIcon /> : <BurgerIcon />}
@@ -104,7 +104,7 @@ export function MobileMenu() {
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center py-3 text-base text-[#070A0F] transition-opacity hover:opacity-60"
+                    className="flex cursor-pointer items-center py-3 text-base text-[#070A0F] transition-opacity hover:opacity-60"
                   >
                     {item.label}
                   </Link>
@@ -115,7 +115,7 @@ export function MobileMenu() {
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block w-full rounded-full border border-gray-100 bg-white py-2.5 text-center text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
+                className="block w-full cursor-pointer rounded-full border border-gray-100 bg-white py-2.5 text-center text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
               >
                 Contact Us
               </Link>

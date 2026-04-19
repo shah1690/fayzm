@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BusinessesMegaMenu } from "@/components/layout/businesses-mega-menu";
-import { CollectionsMegaMenu } from "@/components/layout/collections-mega-menu";
+import { DesktopNav } from "@/components/layout/desktop-nav";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MobileMenu } from "@/components/layout/mobile-menu";
-import { NavLink } from "@/components/layout/nav-link";
 import { siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
 import { localizeHref } from "@/shared/lib/localize-href";
@@ -41,7 +39,10 @@ export function Navbar({ locale }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10">
-        <Link href={localizeHref(locale, "/")} className="flex items-center">
+        <Link
+          href={localizeHref(locale, "/")}
+          className="flex cursor-pointer items-center"
+        >
           <Image
             src={siteConfig.logo.light}
             alt={siteConfig.name}
@@ -53,26 +54,14 @@ export function Navbar({ locale }: NavbarProps) {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden items-center gap-8 md:flex">
-          {siteConfig.nav.map((item) => (
-            <li key={item.href}>
-              {"children" in item ? (
-                <BusinessesMegaMenu label={item.label} locale={locale} />
-              ) : item.href === "/collections" ? (
-                <CollectionsMegaMenu label={item.label} locale={locale} />
-              ) : (
-                <NavLink href={item.href} label={item.label} />
-              )}
-            </li>
-          ))}
-        </ul>
+        <DesktopNav locale={locale} />
 
         {/* Desktop actions */}
         <div className="hidden items-center justify-end gap-3 md:flex">
           <LanguageSwitcher current={locale} />
           <Link
             href={localizeHref(locale, "/contact")}
-            className="rounded-full border border-gray-100 bg-white px-5 py-2 text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
+            className="cursor-pointer rounded-full border border-gray-100 bg-white px-5 py-2 text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
           >
             Contact Us
           </Link>

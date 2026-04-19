@@ -1,11 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
 
-type Props = Readonly<{ label: string; locale: Locale }>;
+type Props = Readonly<{
+  label: string;
+  locale: Locale;
+  open: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}>;
 
 const content = {
   topCard: {
@@ -92,35 +97,30 @@ const gradientText = {
   backgroundClip: "text",
 } as const;
 
-export function CollectionsMegaMenu({ label, locale }: Props) {
-  const [open, setOpen] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+export function CollectionsMegaMenu({
+  label,
+  locale,
+  open,
+  onMouseEnter,
+  onMouseLeave,
+}: Props) {
   const pathname = usePathname();
   const isActive =
     pathname === "/collections" || pathname.startsWith("/collections/");
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setOpen(false), 150);
-  };
-
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: hover trigger for mega menu
-    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {/* Trigger */}
       <div className="relative inline-flex flex-col items-center">
         <button
           type="button"
-          className="flex items-center gap-1 text-sm transition-all duration-200"
-          style={isActive ? gradientText : { color: "#070A0F" }}
+          className={`flex cursor-pointer items-center gap-1 text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#84CC16]" : ""}`}
+          style={isActive ? gradientText : undefined}
         >
           {label}
           <span
-            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
           >
             <ChevronDown />
           </span>
@@ -133,7 +133,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
 
       {/* Mega panel */}
       {open && (
-        <div className="fixed left-0 right-0 top-[76px] z-50 border-t border-gray-100 bg-white shadow-xl">
+        <div className="animate-dropdown fixed left-0 right-0 top-[76px] z-50 border-t border-gray-100 bg-white shadow-xl">
           <div className="mx-auto max-w-[1440px] p-6">
             <div className="flex gap-4" style={{ height: 420 }}>
               {/* Left: 2 cards side by side horizontally */}
@@ -144,8 +144,8 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                     <Link
                       key={cat.href}
                       href={cat.href}
-                      onClick={() => setOpen(false)}
-                      className="group relative flex-1 overflow-hidden"
+                      onClick={onMouseLeave}
+                      className="group relative flex-1 cursor-pointer overflow-hidden"
                       style={{ borderRadius: 24 }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}

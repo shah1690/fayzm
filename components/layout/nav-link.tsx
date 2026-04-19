@@ -12,7 +12,7 @@ export function NavLink({ href, label }: NavLinkProps) {
     <div className="relative inline-flex flex-col items-center">
       <Link
         href={href}
-        className="text-sm transition-all duration-200"
+        className={`cursor-pointer text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#84CC16]" : ""}`}
         style={
           isActive
             ? {
@@ -21,7 +21,7 @@ export function NavLink({ href, label }: NavLinkProps) {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }
-            : { color: "#070A0F" }
+            : undefined
         }
       >
         {label}

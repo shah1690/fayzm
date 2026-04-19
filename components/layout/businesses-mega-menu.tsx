@@ -1,12 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
 import { businesses } from "@/content/businesses";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
 
-type Props = Readonly<{ label: string; locale: Locale }>;
+type Props = Readonly<{
+  label: string;
+  locale: Locale;
+  open: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}>;
 
 function ChevronDown() {
   return (
@@ -37,9 +43,13 @@ const gradientText = {
   backgroundClip: "text",
 } as const;
 
-export function BusinessesMegaMenu({ label, locale }: Props) {
-  const [open, setOpen] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+export function BusinessesMegaMenu({
+  label,
+  locale,
+  open,
+  onMouseEnter,
+  onMouseLeave,
+}: Props) {
   const pathname = usePathname();
   const isActive = businesses.some((b) =>
     pathname.startsWith(`/businesses/${b.slug}`),
@@ -49,28 +59,19 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
     [],
   );
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setOpen(false), 150);
-  };
-
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: hover trigger for mega menu
-    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {/* Trigger */}
       <div className="relative inline-flex flex-col items-center">
         <button
           type="button"
-          className="flex items-center gap-1 text-sm transition-all duration-200"
-          style={isActive ? gradientText : { color: "#070A0F" }}
+          className={`flex cursor-pointer items-center gap-1 text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#84CC16]" : ""}`}
+          style={isActive ? gradientText : undefined}
         >
           {label}
           <span
-            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
           >
             <ChevronDown />
           </span>
@@ -83,7 +84,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
 
       {/* Mega panel */}
       {open && (
-        <div className="fixed left-0 right-0 top-[76px] z-50 border-t border-gray-100 bg-white shadow-xl">
+        <div className="animate-dropdown fixed left-0 right-0 top-[76px] z-50 border-t border-gray-100 bg-white shadow-xl">
           <div className="mx-auto max-w-[1440px] p-6">
             <div className="flex gap-4" style={{ height: 420 }}>
               {/* Left: image card */}
@@ -152,8 +153,8 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                         <Link
                           key={b.slug}
                           href={`/businesses/${b.slug}`}
-                          onClick={() => setOpen(false)}
-                          className="flex items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-white"
+                          onClick={onMouseLeave}
+                          className="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-white"
                         >
                           <span
                             className="text-sm font-medium"
@@ -194,8 +195,8 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                     </h3>
                     <Link
                       href="/contact"
-                      onClick={() => setOpen(false)}
-                      className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#84CC16]"
+                      onClick={onMouseLeave}
+                      className="cursor-pointer rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#84CC16]"
                     >
                       Contact Us →
                     </Link>
