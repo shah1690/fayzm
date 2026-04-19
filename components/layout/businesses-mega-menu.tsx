@@ -153,13 +153,21 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
               {/* Right: two stacked cards */}
               <div className="flex flex-1 flex-col gap-4">
                 {/* Business list card */}
-                <div className="flex-1 overflow-hidden rounded-[28px] bg-[#F5F5F5] px-5 py-4">
-                  <div className="mb-3">
+                <div className="relative flex-1 overflow-hidden rounded-[28px] bg-[#F5F5F5] px-5 py-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/pattern.svg"
+                    alt=""
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+                    style={{ filter: "brightness(0)", opacity: 0.06 }}
+                  />
+                  <div className="relative z-10 mb-3">
                     <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
                       {text.divisions[locale]}
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-0">
+                  <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-0">
                     {businesses.map((b) => {
                       const active = pathname.startsWith(
                         `/businesses/${b.slug}`,

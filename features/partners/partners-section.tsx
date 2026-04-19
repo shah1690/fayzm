@@ -15,8 +15,16 @@ export function PartnersSection({ locale }: PartnersSectionProps) {
   );
 
   return (
-    <section className="bg-[#F5F5F5] px-5 py-16 md:px-10 md:py-20 lg:py-24">
-      <div className="mx-auto max-w-[1440px]">
+    <section className="relative overflow-hidden bg-[#F5F5F5] py-16 md:py-20 lg:py-24">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/images/pattern.svg"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        style={{ filter: "brightness(0)", opacity: 0.05 }}
+      />
+      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-20">
           {/* Left: label + text */}
           <div className="flex-shrink-0 md:w-72 lg:w-80">

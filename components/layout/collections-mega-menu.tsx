@@ -36,31 +36,23 @@ const content = {
   },
   women: {
     label: {
-      en: "Women's Knitwear",
-      uz: "Ayollar trikotaji",
-      ru: "Женский трикотаж",
+      en: "Women",
+      uz: "Ayollar",
+      ru: "Женщины",
     },
-    image: "/images/k2.jpg",
+    image: "/images/collection-women.jpg",
+    objectPosition: "right center",
     href: "/collections/women",
-    count: {
-      en: "2,800+ items/month",
-      uz: "2,800+ dona/oy",
-      ru: "2 800+ ед./мес.",
-    },
   },
   men: {
     label: {
-      en: "Men's Knitwear",
-      uz: "Erkaklar trikotaji",
-      ru: "Мужской трикотаж",
+      en: "Men",
+      uz: "Erkaklar",
+      ru: "Мужчины",
     },
-    image: "/images/k3.jpg",
+    image: "/images/collection-men.jpg",
+    objectPosition: "left center",
     href: "/collections/men",
-    count: {
-      en: "1,200+ items/month",
-      uz: "1,200+ dona/oy",
-      ru: "1 200+ ед./мес.",
-    },
   },
 };
 
@@ -139,7 +131,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
             <div className="flex gap-4" style={{ height: 420 }}>
               {/* Left: 2 cards side by side horizontally */}
               <div className="flex w-1/2 gap-4">
-                {[content.women, content.men].map((cat) => {
+                {[content.men, content.women].map((cat) => {
                   const active = pathname === cat.href;
                   return (
                     <Link
@@ -154,20 +146,18 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                         src={cat.image}
                         alt={cat.label[locale]}
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        style={{ objectPosition: cat.objectPosition }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                       {active && (
                         <div className="absolute right-3 top-3 h-2 w-2 rounded-full bg-[#84CC16]" />
                       )}
-                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
                         <p
-                          className="text-sm font-semibold text-white"
+                          className="text-2xl font-black leading-tight text-white"
                           style={active ? gradientText : {}}
                         >
                           {cat.label[locale]}
-                        </p>
-                        <p className="mt-0.5 text-xs text-white/60">
-                          {cat.count[locale]}
                         </p>
                       </div>
                     </Link>
@@ -175,66 +165,103 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                 })}
               </div>
 
-              {/* Right: 2 cards stacked vertically, equal height */}
+              {/* Right: 2 equal-height cards with pattern bg */}
               <div className="flex w-1/2 flex-col gap-4">
-                {/* Top card: image */}
-                <div
-                  className="relative min-h-0 flex-1 overflow-hidden"
-                  style={{ borderRadius: 24 }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={content.topCard.image}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(160deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.4) 100%)",
-                    }}
-                  />
-                  <div className="relative z-10 flex h-full flex-col justify-between p-6">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        aria-hidden="true"
-                        focusable="false"
+                {[
+                  {
+                    key: "women",
+                    label: { en: "Women", uz: "Ayollar", ru: "Женщины" },
+                    sub: {
+                      en: "New Releases",
+                      uz: "Yangi kolleksiya",
+                      ru: "Новинки",
+                    },
+                    href: "/collections/women",
+                    bg: "#e5d6c9",
+                    textColor: "#012555",
+                    subColor: "rgba(1,37,85,0.45)",
+                    patternFilter: "brightness(0)",
+                    patternOpacity: 0.18,
+                    btnBg: "#012555",
+                    btnStroke: "#e5d6c9",
+                  },
+                  {
+                    key: "men",
+                    label: { en: "Men", uz: "Erkaklar", ru: "Мужчины" },
+                    sub: {
+                      en: "New Releases",
+                      uz: "Yangi kolleksiya",
+                      ru: "Новинки",
+                    },
+                    href: "/collections/men",
+                    bg: "#012555",
+                    textColor: "#ffffff",
+                    subColor: "rgba(255,255,255,0.4)",
+                    patternFilter: "none",
+                    patternOpacity: 0.2,
+                    btnBg: "#84CC16",
+                    btnStroke: "#012555",
+                  },
+                ].map((card) => (
+                  <Link
+                    key={card.key}
+                    href={localizeHref(locale, card.href)}
+                    onClick={() => setOpen(false)}
+                    className="group relative min-h-0 flex-1 overflow-hidden"
+                    style={{ borderRadius: 24, background: card.bg }}
+                  >
+                    {/* Pattern background */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/images/pattern.svg"
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full object-cover"
+                      style={{
+                        filter: card.patternFilter,
+                        opacity: card.patternOpacity,
+                      }}
+                    />
+                    {/* Content */}
+                    <div className="relative z-10 flex h-full flex-col justify-between p-6">
+                      <span
+                        className="text-xs font-semibold uppercase tracking-widest"
+                        style={{ color: card.subColor }}
                       >
-                        <path
-                          d="M8 1L9.5 6.5L15 8L9.5 9.5L8 15L6.5 9.5L1 8L6.5 6.5L8 1Z"
-                          fill="white"
-                        />
-                      </svg>
-                      <span className="text-xs text-white/70">
-                        {content.topCard.sub[locale]}
+                        {card.sub[locale]}
                       </span>
+                      <div className="flex items-end justify-between">
+                        <p
+                          className="text-3xl font-black"
+                          style={{ color: card.textColor }}
+                        >
+                          {card.label[locale]}
+                        </p>
+                        {/* Hover arrow btn */}
+                        <span
+                          className="flex h-9 w-9 items-center justify-center rounded-full opacity-0 transition-all duration-300 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
+                          style={{ background: card.btnBg }}
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M5 12h14M13 6l6 6-6 6"
+                              stroke={card.btnStroke}
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </span>
+                      </div>
                     </div>
-                    <p className="text-lg font-bold uppercase leading-tight text-white">
-                      &ldquo;{content.topCard.heading[locale]}&rdquo;
-                    </p>
-                  </div>
-                </div>
-
-                {/* Bottom card: dark brand card */}
-                <div
-                  className="flex min-h-0 flex-1 flex-col justify-between bg-[#070A0F] p-6"
-                  style={{ borderRadius: 24 }}
-                >
-                  <p className="text-xl font-bold text-white">FAYZ-M</p>
-                  <div>
-                    <p className="text-base font-semibold text-white">
-                      {content.bottomCard.heading[locale]}
-                    </p>
-                    <p className="mt-1 text-xs text-white/50">
-                      {content.bottomCard.sub[locale]}
-                    </p>
-                  </div>
-                </div>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
