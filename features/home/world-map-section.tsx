@@ -24,10 +24,8 @@ const DESTINATIONS = [
     coords: [71.45, 51.18] as [number, number],
     iso: "398",
   },
-  { name: "UAE", coords: [55.27, 25.2] as [number, number], iso: "784" },
-  { name: "Germany", coords: [13.4, 52.52] as [number, number], iso: "276" },
-  { name: "France", coords: [2.35, 48.85] as [number, number], iso: "250" },
-  { name: "China", coords: [116.39, 39.9] as [number, number], iso: "156" },
+  { name: "Poland", coords: [19.94, 52.22] as [number, number], iso: "616" },
+  { name: "Ukraine", coords: [30.52, 50.45] as [number, number], iso: "804" },
 ];
 
 const HIGHLIGHT_ISOS = new Set(DESTINATIONS.map((d) => d.iso));
