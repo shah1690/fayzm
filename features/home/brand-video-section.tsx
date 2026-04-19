@@ -20,19 +20,21 @@ export function BrandVideoSection() {
   }, []);
 
   return (
-    <section
-      className="relative w-full overflow-hidden"
-      style={{ height: 750 }}
-    >
-      {/* biome-ignore lint/a11y/useMediaCaption: decorative brand video */}
-      <video
-        ref={videoRef}
-        src="/videos/brand.mp4"
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+    <section className="bg-white px-5 py-6 md:px-10">
+      <div
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden"
+        style={{ borderRadius: 42 }}
+      >
+        {/* biome-ignore lint/a11y/useMediaCaption: decorative brand video */}
+        <video
+          ref={videoRef}
+          src="/videos/brand.mp4"
+          muted
+          loop
+          playsInline
+          className="block h-auto w-full"
+        />
+      </div>
     </section>
   );
 }

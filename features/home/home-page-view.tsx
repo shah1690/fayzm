@@ -34,8 +34,8 @@ export function HomePageView({ locale }: HomePageViewProps) {
       <HeroSection locale={locale} />
       <StatsSection locale={locale} />
       <CollectionsMarqueeSection locale={locale} />
-      <BrandVideoSection />
       <BusinessesSection locale={locale} />
+      <BrandVideoSection />
       <HomeCTABanner locale={locale} />
       <WorldMapSection locale={locale} />
       <PartnersSection locale={locale} />
