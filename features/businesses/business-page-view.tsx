@@ -39,6 +39,44 @@ type BusinessPageViewProps = Readonly<{
   locale: Locale;
 }>;
 
+const text = {
+  contactUs: {
+    en: "Contact Us →",
+    uz: "Bog'lanish →",
+    ru: "Связаться →",
+  },
+  quote: {
+    en: "Quality starts at the source — from cotton field to finished product, every step is controlled.",
+    uz: "Sifat manbadan boshlanadi — paxta dalasidan tayyor mahsulotgacha har bosqich nazorat qilinadi.",
+    ru: "Качество начинается у истока — от хлопкового поля до готового продукта каждый этап под контролем.",
+  },
+  employeesStat: {
+    en: "Employees across all business divisions, making FAYZ-M one of the largest employers in the Khodjaabad district.",
+    uz: "Barcha yo'nalishlar bo'ylab xodimlar soni FAYZ-M ni Xo'jaobod tumanidagi eng yirik ish beruvchilardan biriga aylantiradi.",
+    ru: "Количество сотрудников во всех направлениях делает FAYZ-M одним из крупнейших работодателей Ходжаабадского района.",
+  },
+  energyStat: {
+    en: "Solar energy capacity operational since 2023, with a target of 2 megawatts and 100% green energy production.",
+    uz: "2023 yildan beri ishlayotgan quyosh energiyasi quvvati 2 megavatt va 100% yashil energiya maqsadiga yo'naltirilgan.",
+    ru: "Солнечная энергетика работает с 2023 года с целью достичь 2 мегаватт и 100% зелёной энергии.",
+  },
+  partnershipHeading: {
+    en: "Interested in Partnership?",
+    uz: "Hamkorlik qiziqtiradimi?",
+    ru: "Интересует партнёрство?",
+  },
+  partnershipDesc: {
+    en: "Partner with FAYZ-M for quality, reliability, and sustainable long-term growth.",
+    uz: "FAYZ-M bilan sifat, ishonchlilik va barqaror uzoq muddatli o'sish uchun hamkorlik qiling.",
+    ru: "Сотрудничайте с FAYZ-M ради качества, надёжности и устойчивого долгосрочного роста.",
+  },
+  partnershipCta: {
+    en: "Request a Consultation →",
+    uz: "Bog'lanish →",
+    ru: "Связаться →",
+  },
+} as const;
+
 export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
   const business = getBusinessBySlug(slug);
 
@@ -130,7 +168,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                   href={localizeHref(locale, "/contact")}
                   className="inline-flex w-fit items-center gap-2 rounded-full border border-gray-200 px-5 py-2.5 text-sm text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
                 >
-                  Contact Us →
+                  {text.contactUs[locale]}
                 </Link>
               </div>
             </div>
@@ -145,8 +183,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
             {/* Quote + author */}
             <div className="flex flex-col justify-between gap-8">
               <p className="text-2xl font-semibold leading-snug text-[#070A0F] md:text-3xl">
-                &ldquo;Quality starts at the source — from cotton field to
-                finished product, every step is controlled.&rdquo;
+                &ldquo;{text.quote[locale]}&rdquo;
               </p>
             </div>
 
@@ -159,8 +196,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                 className="text-sm leading-relaxed"
                 style={{ color: "#6B7280" }}
               >
-                Employees across all business divisions, making FAYZ-M one of
-                the largest employers in the Khodjaabad district.
+                {text.employeesStat[locale]}
               </p>
             </div>
 
@@ -176,8 +212,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                 className="text-sm leading-relaxed"
                 style={{ color: "#6B7280" }}
               >
-                Solar energy capacity operational since 2023, with a target of 2
-                megawatts and 100% green energy production.
+                {text.energyStat[locale]}
               </p>
             </div>
           </div>
@@ -284,28 +319,16 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
               </div>
               <div className="flex max-w-xl flex-col gap-4">
                 <h2 className="text-3xl font-bold text-white md:text-4xl">
-                  {locale === "uz"
-                    ? "O'xshash imkoniyatlar kerakmi?"
-                    : locale === "ru"
-                      ? "Нужны похожие возможности?"
-                      : "Interested in Partnership?"}
+                  {text.partnershipHeading[locale]}
                 </h2>
                 <p className="text-sm leading-relaxed text-white/80">
-                  {locale === "uz"
-                    ? "FAYZ-M bilan hamkorlik qiling — sifat, ishonchlilik va barqarorlik."
-                    : locale === "ru"
-                      ? "Сотрудничайте с FAYZ-M — качество, надёжность и устойчивость."
-                      : "Partner with FAYZ-M for quality, reliability, and sustainable long-term growth."}
+                  {text.partnershipDesc[locale]}
                 </p>
                 <Link
                   href={localizeHref(locale, "/contact")}
                   className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all hover:bg-gray-100"
                 >
-                  {locale === "uz"
-                    ? "Bog'lanish →"
-                    : locale === "ru"
-                      ? "Связаться →"
-                      : "Request a Consultation →"}
+                  {text.partnershipCta[locale]}
                 </Link>
               </div>
             </div>

@@ -5,6 +5,10 @@ import { ProductGallery } from "./product-gallery";
 
 type MenPageViewProps = Readonly<{ locale: Locale }>;
 
+const text = {
+  products: { en: "products", uz: "mahsulot", ru: "товаров" },
+} as const;
+
 export function MenPageView({ locale }: MenPageViewProps) {
   const products = getProductsByGender("men").map((p) => ({
     id: p.id,
@@ -21,7 +25,7 @@ export function MenPageView({ locale }: MenPageViewProps) {
             {pageMetadata.collectionsMen.heading[locale]}
           </h1>
           <p className="mt-1 text-sm text-gray-400">
-            {products.length} products
+            {products.length} {text.products[locale]}
           </p>
         </div>
         <ProductGallery products={products} />

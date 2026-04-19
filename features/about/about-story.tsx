@@ -6,6 +6,19 @@ import { localizeHref } from "@/shared/lib/localize-href";
 
 type Props = Readonly<{ locale: Locale }>;
 
+const text = {
+  productionAlt: {
+    en: "FAYZ-M production",
+    uz: "FAYZ-M ishlab chiqarishi",
+    ru: "Производство FAYZ-M",
+  },
+  facilityAlt: {
+    en: "FAYZ-M facility",
+    uz: "FAYZ-M majmuasi",
+    ru: "Предприятие FAYZ-M",
+  },
+} as const;
+
 export function AboutStory({ locale }: Props) {
   const s1 = aboutContent.section1;
   const s2 = aboutContent.section2;
@@ -36,7 +49,7 @@ export function AboutStory({ locale }: Props) {
             <div className="relative h-[420px] overflow-hidden rounded-2xl md:h-auto">
               <Image
                 src={s1.image}
-                alt="FAYZ-M production"
+                alt={text.productionAlt[locale]}
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -103,7 +116,7 @@ export function AboutStory({ locale }: Props) {
             <div className="relative h-[360px] overflow-hidden rounded-2xl md:h-auto">
               <Image
                 src={s2.image}
-                alt="FAYZ-M facility"
+                alt={text.facilityAlt[locale]}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"

@@ -1,6 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 export function CollectionsPageView() {
+  const t = useTranslations("Collections");
+  const locale = useLocale() as Locale;
+
   return (
     <main>
       {/* Hero: 2-column card layout */}
@@ -30,11 +38,9 @@ export function CollectionsPageView() {
             <div className="relative z-10 flex h-full flex-col justify-between p-8 md:p-10">
               <div className="max-w-md">
                 <p className="text-3xl font-bold uppercase leading-tight text-white md:text-4xl">
-                  &ldquo;Quality at every stitch.&rdquo;
+                  &ldquo;{t("quote")}&rdquo;
                 </p>
-                <p className="mt-3 text-sm text-white/70">
-                  Premium Textile &amp; Garment Collections
-                </p>
+                <p className="mt-3 text-sm text-white/70">{t("subtitle")}</p>
               </div>
               <div className="flex items-center gap-2">
                 <svg
@@ -50,9 +56,7 @@ export function CollectionsPageView() {
                     fill="white"
                   />
                 </svg>
-                <span className="text-sm text-white/60">
-                  Made in Uzbekistan
-                </span>
+                <span className="text-sm text-white/60">{t("madeIn")}</span>
               </div>
             </div>
           </div>
@@ -65,15 +69,15 @@ export function CollectionsPageView() {
               style={{ borderRadius: 32 }}
             >
               <div>
-                <p className="text-2xl font-bold text-[#070A0F]">FAYZ-M</p>
+                <p className="text-2xl font-bold text-[#070A0F]">
+                  {t("brand")}
+                </p>
                 <p className="mt-1 text-sm text-gray-400">
-                  Textile Collections
+                  {t("textileCollections")}
                 </p>
               </div>
               <p className="text-sm leading-relaxed text-gray-500">
-                Crafted in Khodjaabad, Uzbekistan — premium knitwear and
-                garments produced by 700+ skilled workers, exported to 5+
-                countries worldwide.
+                {t("description")}
               </p>
             </div>
 
@@ -99,13 +103,13 @@ export function CollectionsPageView() {
                 style={{ minHeight: 200 }}
               >
                 <h2 className="max-w-[200px] text-xl font-bold uppercase leading-tight text-white md:text-2xl">
-                  Explore Our Product Range
+                  {t("exploreRange")}
                 </h2>
                 <Link
-                  href="/contact"
+                  href={localizeHref(locale, "/contact")}
                   className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#84CC16]"
                 >
-                  Request Catalogue →
+                  {t("requestCatalogue")}
                 </Link>
               </div>
             </div>
@@ -119,27 +123,27 @@ export function CollectionsPageView() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {[
               {
-                label: "Women's Knitwear",
+                label: t("womenKnitwear"),
                 href: "/collections/women",
                 image: "/images/k2.jpg",
-                count: "2,800+ items/month",
+                count: t("womenCount"),
               },
               {
-                label: "Men's Knitwear",
+                label: t("menKnitwear"),
                 href: "/collections/men",
                 image: "/images/k3.jpg",
-                count: "1,200+ items/month",
+                count: t("menCount"),
               },
               {
-                label: "Export Collections",
+                label: t("exportCollections"),
                 href: "/contact",
                 image: "/images/g2.jpg",
-                count: "7M+ units/year",
+                count: t("exportCount"),
               },
             ].map((cat) => (
               <Link
                 key={cat.href}
-                href={cat.href}
+                href={localizeHref(locale, cat.href)}
                 className="group relative overflow-hidden"
                 style={{ borderRadius: 24, minHeight: 260 }}
               >

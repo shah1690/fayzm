@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { ProductData } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
 const t = {
   backToCollection: { en: "Collection", uz: "Kolleksiya", ru: "Коллекция" },
@@ -31,11 +32,51 @@ const t = {
   },
 };
 
+const specTranslations = {
+  "French terry": {
+    en: "French terry",
+    uz: "Fransuz terri",
+    ru: "Френч терри",
+  },
+  "Rib knit": { en: "Rib knit", uz: "Rib trikotaj", ru: "Рибана" },
+  Interlock: { en: "Interlock", uz: "Interlok", ru: "Интерлок" },
+  "Single jersey": {
+    en: "Single jersey",
+    uz: "Single jersey",
+    ru: "Кулирная гладь",
+  },
+  "Purl knit": { en: "Purl knit", uz: "Purl trikotaj", ru: "Изнаночная вязка" },
+  "Fine knit": { en: "Fine knit", uz: "Nozik trikotaj", ru: "Тонкий трикотаж" },
+  "Tricot knit": { en: "Tricot knit", uz: "Triko trikotaj", ru: "Трико" },
+  Fleece: { en: "Fleece", uz: "Flis", ru: "Флис" },
+  "100% cotton": { en: "100% cotton", uz: "100% paxta", ru: "100% хлопок" },
+  "95% cotton / 5% elastane": {
+    en: "95% cotton / 5% elastane",
+    uz: "95% paxta / 5% elastan",
+    ru: "95% хлопок / 5% эластан",
+  },
+  "80% cotton / 20% polyester": {
+    en: "80% cotton / 20% polyester",
+    uz: "80% paxta / 20% poliester",
+    ru: "80% хлопок / 20% полиэстер",
+  },
+  "90% polyester / 10% elastane": {
+    en: "90% polyester / 10% elastane",
+    uz: "90% poliester / 10% elastan",
+    ru: "90% полиэстер / 10% эластан",
+  },
+} as const;
+
+function localizeSpec(value: string, locale: Locale): string {
+  const entry = specTranslations[value as keyof typeof specTranslations];
+  return entry ? entry[locale] : value;
+}
+
 type Props = Readonly<{ product: ProductData; locale: Locale }>;
 
 export function ProductPageView({ product, locale }: Props) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const collectionHref = `/collections/${product.gender}`;
+  const collectionHref = localizeHref(locale, `/collections/${product.gender}`);
   const collectionLabel =
     product.gender === "women" ? t.women[locale] : t.men[locale];
 
@@ -45,7 +86,7 @@ export function ProductPageView({ product, locale }: Props) {
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-2 text-xs text-gray-400">
           <Link
-            href="/collections"
+            href={localizeHref(locale, "/collections")}
             className="hover:text-[#070A0F] transition-colors"
           >
             {t.collections[locale]}
@@ -126,10 +167,13 @@ export function ProductPageView({ product, locale }: Props) {
               {/* Specs */}
               <div className="mb-8 grid grid-cols-3 gap-3">
                 {[
-                  { label: t.fabric[locale], value: product.specs.fabric },
+                  {
+                    label: t.fabric[locale],
+                    value: localizeSpec(product.specs.fabric, locale),
+                  },
                   {
                     label: t.composition[locale],
-                    value: product.specs.composition,
+                    value: localizeSpec(product.specs.composition, locale),
                   },
                   { label: t.weight[locale], value: product.specs.weight },
                 ].map((spec) => (
@@ -199,7 +243,7 @@ export function ProductPageView({ product, locale }: Props) {
                   </p>
                 </div>
                 <Link
-                  href={`/contact?product=${encodeURIComponent(product.name)}`}
+                  href={`${localizeHref(locale, "/contact")}?product=${encodeURIComponent(product.name)}`}
                   className="flex-shrink-0 rounded-full bg-[#84CC16] px-6 py-3 text-sm font-bold text-[#070A0F] transition-all hover:bg-white"
                 >
                   {t.cta[locale]} →

@@ -1,16 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
-type Props = Readonly<{
-  label: string;
-  locale: Locale;
-  open: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}>;
+type Props = Readonly<{ label: string; locale: Locale }>;
 
 const content = {
   topCard: {
@@ -97,20 +93,25 @@ const gradientText = {
   backgroundClip: "text",
 } as const;
 
-export function CollectionsMegaMenu({
-  label,
-  locale,
-  open,
-  onMouseEnter,
-  onMouseLeave,
-}: Props) {
+export function CollectionsMegaMenu({ label, locale }: Props) {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const isActive =
     pathname === "/collections" || pathname.startsWith("/collections/");
 
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
+
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: hover trigger for mega menu
-    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {/* Trigger */}
       <div className="relative inline-flex flex-col items-center">
         <button
@@ -120,7 +121,7 @@ export function CollectionsMegaMenu({
         >
           {label}
           <span
-            className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           >
             <ChevronDown />
           </span>
@@ -143,8 +144,8 @@ export function CollectionsMegaMenu({
                   return (
                     <Link
                       key={cat.href}
-                      href={cat.href}
-                      onClick={onMouseLeave}
+                      href={localizeHref(locale, cat.href)}
+                      onClick={() => setOpen(false)}
                       className="group relative flex-1 cursor-pointer overflow-hidden"
                       style={{ borderRadius: 24 }}
                     >

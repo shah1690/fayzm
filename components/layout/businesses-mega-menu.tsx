@@ -1,18 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useRef, useState } from "react";
 import { businesses } from "@/content/businesses";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 
-type Props = Readonly<{
-  label: string;
-  locale: Locale;
-  open: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}>;
+type Props = Readonly<{ label: string; locale: Locale }>;
 
 function ChevronDown() {
   return (
@@ -43,13 +38,27 @@ const gradientText = {
   backgroundClip: "text",
 } as const;
 
-export function BusinessesMegaMenu({
-  label,
-  locale,
-  open,
-  onMouseEnter,
-  onMouseLeave,
-}: Props) {
+const text = {
+  divisions: {
+    en: "Business Divisions",
+    uz: "Faoliyat yo'nalishlari",
+    ru: "Направления бизнеса",
+  },
+  ctaHeading: {
+    en: "Partner with FAYZ-M",
+    uz: "FAYZ-M bilan hamkorlik qiling",
+    ru: "Сотрудничайте с FAYZ-M",
+  },
+  ctaButton: {
+    en: "Contact Us →",
+    uz: "Bog'lanish →",
+    ru: "Связаться →",
+  },
+} as const;
+
+export function BusinessesMegaMenu({ label, locale }: Props) {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const isActive = businesses.some((b) =>
     pathname.startsWith(`/businesses/${b.slug}`),
@@ -59,9 +68,18 @@ export function BusinessesMegaMenu({
     [],
   );
 
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
+
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: hover trigger for mega menu
-    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {/* Trigger */}
       <div className="relative inline-flex flex-col items-center">
         <button
@@ -71,7 +89,7 @@ export function BusinessesMegaMenu({
         >
           {label}
           <span
-            className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           >
             <ChevronDown />
           </span>
@@ -141,7 +159,7 @@ export function BusinessesMegaMenu({
                 <div className="flex-1 overflow-hidden rounded-[28px] bg-[#F5F5F5] px-5 py-4">
                   <div className="mb-3">
                     <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
-                      Business Divisions
+                      {text.divisions[locale]}
                     </span>
                   </div>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-0">
@@ -152,8 +170,8 @@ export function BusinessesMegaMenu({
                       return (
                         <Link
                           key={b.slug}
-                          href={`/businesses/${b.slug}`}
-                          onClick={onMouseLeave}
+                          href={localizeHref(locale, `/businesses/${b.slug}`)}
+                          onClick={() => setOpen(false)}
                           className="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-white"
                         >
                           <span
@@ -191,14 +209,14 @@ export function BusinessesMegaMenu({
                   />
                   <div className="relative z-10 flex h-full items-center justify-between px-8">
                     <h3 className="text-lg font-bold text-white">
-                      Partner with FAYZ-M
+                      {text.ctaHeading[locale]}
                     </h3>
                     <Link
-                      href="/contact"
-                      onClick={onMouseLeave}
+                      href={localizeHref(locale, "/contact")}
+                      onClick={() => setOpen(false)}
                       className="cursor-pointer rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#84CC16]"
                     >
-                      Contact Us →
+                      {text.ctaButton[locale]}
                     </Link>
                   </div>
                 </div>

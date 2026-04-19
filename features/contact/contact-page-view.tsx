@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { ContactForm } from "@/features/contact/contact-form";
 import { FaqSection } from "@/features/faq/faq-section";
 import { siteConfig } from "@/shared/config/site-config";
@@ -6,7 +9,27 @@ import type { Locale } from "@/shared/i18n/translations";
 
 type ContactPageViewProps = Readonly<{ locale: Locale }>;
 
+const text = {
+  imageAlt: {
+    en: "FAYZ-M team",
+    uz: "FAYZ-M jamoasi",
+    ru: "Команда FAYZ-M",
+  },
+  address: {
+    en: "Uzbekistan, Andijan,\nKhojaobod, Mustahkam 17",
+    uz: "O'zbekiston, Andijon,\nXo'jaobod, Mustahkam 17",
+    ru: "Узбекистан, Андижан,\nХоджаабад, Мустаҳкам 17",
+  },
+  mapTitle: {
+    en: "FAYZ-M location",
+    uz: "FAYZ-M manzili",
+    ru: "Локация FAYZ-M",
+  },
+} as const;
+
 export function ContactPageView({ locale }: ContactPageViewProps) {
+  const t = useTranslations("Contact");
+
   return (
     <main>
       <section className="bg-white py-16 md:py-20">
@@ -16,16 +39,15 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-[#84CC16]" />
-                <span className="text-sm text-gray-400">Contact Us</span>
+                <span className="text-sm text-gray-400">{t("label")}</span>
               </div>
               <h1 className="text-4xl leading-tight md:text-5xl">
-                Get In touch with us
+                {t("heading")}
               </h1>
             </div>
             <div className="flex items-end">
               <p className="text-sm leading-relaxed text-gray-500 md:text-base">
-                Helping businesses overcome complexity, achieve growth, and
-                build sustainable partnerships.
+                {t("description")}
               </p>
             </div>
           </div>
@@ -39,7 +61,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
             >
               <Image
                 src="/images/portrait.png"
-                alt="FAYZ-M team"
+                alt={text.imageAlt[locale]}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover"
@@ -56,17 +78,16 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
               {/* bottom text */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <h2 className="text-2xl font-semibold text-white md:text-3xl">
-                  Prefer to Talk to Us Directly?
+                  {t("preferTalk")}
                 </h2>
                 <p className="mt-2 text-sm text-white/70">
-                  Get instant support from our team for urgent inquiries or
-                  quick questions.
+                  {t("instantSupport")}
                 </p>
                 <a
                   href={siteConfig.footer.phones[0].href}
                   className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-gray-100"
                 >
-                  Call Us Now →
+                  {t("callUsNow")}
                 </a>
               </div>
             </div>
@@ -94,12 +115,10 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
                 </svg>
               </div>
               <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-                Address
+                {t("address")}
               </p>
-              <p className="text-sm font-medium leading-relaxed text-[#070A0F]">
-                Uzbekistan, Andijan,
-                <br />
-                Khojaobod, Mustahkam 17
+              <p className="whitespace-pre-line text-sm font-medium leading-relaxed text-[#070A0F]">
+                {text.address[locale]}
               </p>
               <a
                 href="https://maps.google.com/?q=Andijan,Khojaobod,Mustahkam+17,Uzbekistan"
@@ -107,7 +126,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
                 rel="noopener noreferrer"
                 className="mt-auto text-xs font-semibold text-[#84CC16] hover:underline"
               >
-                Open in Maps →
+                {t("openInMaps")}
               </a>
             </div>
 
@@ -128,7 +147,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
                 </svg>
               </div>
               <p className="text-xs font-semibold uppercase tracking-widest text-white/40">
-                Phone
+                {t("phone")}
               </p>
               <div className="flex flex-col gap-1">
                 <a
@@ -145,7 +164,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
                 </a>
               </div>
               <p className="mt-auto text-xs text-white/30">
-                Working hours — 24/7
+                {t("workingHours")}
               </p>
             </div>
 
@@ -166,7 +185,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
                 </svg>
               </div>
               <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-                Email
+                {t("email")}
               </p>
               <a
                 href="mailto:fayz-mtex@mail.ru"
@@ -174,9 +193,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
               >
                 fayz-mtex@mail.ru
               </a>
-              <p className="mt-auto text-xs text-gray-400">
-                We reply within 24h
-              </p>
+              <p className="mt-auto text-xs text-gray-400">{t("replyTime")}</p>
             </div>
           </div>
 
@@ -186,7 +203,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
             style={{ height: 400 }}
           >
             <iframe
-              title="FAYZ-M location"
+              title={text.mapTitle[locale]}
               src="https://yandex.uz/map-widget/v1/?um=constructor%3Adea30e4e662d40a9d40482d29fb86890300ab3083ad6f03bd6e666381c081b3d&amp;source=constructor"
               width="100%"
               height="100%"

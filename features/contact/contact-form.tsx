@@ -1,17 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-
-const services = [
-  "Knitting",
-  "Yarn Production",
-  "Garment Production",
-  "Flour",
-  "Cottonseed Oil",
-  "Petrol",
-  "Farm",
-  "Other",
-];
 
 function NameIcon() {
   return (
@@ -99,7 +89,19 @@ const inputBase =
   "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-[#070A0F] outline-none transition-all placeholder:text-gray-400 focus:border-[#070A0F]";
 
 export function ContactForm() {
+  const t = useTranslations("ContactForm");
   const [submitted, setSubmitted] = useState(false);
+
+  const services = [
+    t("services.knitting"),
+    t("services.yarnProduction"),
+    t("services.garmentProduction"),
+    t("services.flour"),
+    t("services.cottonseedOil"),
+    t("services.petrol"),
+    t("services.farm"),
+    t("services.other"),
+  ];
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -112,16 +114,16 @@ export function ContactForm() {
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#070A0F] text-white text-2xl">
           ✓
         </div>
-        <h3 className="text-xl font-semibold text-[#070A0F]">Message Sent!</h3>
-        <p className="text-sm text-gray-500">
-          We'll get back to you within 24 hours.
-        </p>
+        <h3 className="text-xl font-semibold text-[#070A0F]">
+          {t("messageSent")}
+        </h3>
+        <p className="text-sm text-gray-500">{t("replyWithin")}</p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
           className="mt-2 rounded-full border border-gray-200 px-5 py-2 text-sm text-[#070A0F] hover:bg-[#070A0F] hover:text-white transition-all"
         >
-          Send Another
+          {t("sendAnother")}
         </button>
       </div>
     );
@@ -139,7 +141,7 @@ export function ContactForm() {
           htmlFor="full-name"
           className="text-sm font-medium text-[#070A0F]"
         >
-          Full Name
+          {t("fullName")}
         </label>
         <div className="relative flex items-center">
           <span className="pointer-events-none absolute left-3">
@@ -149,7 +151,7 @@ export function ContactForm() {
             id="full-name"
             required
             type="text"
-            placeholder="Enter your name"
+            placeholder={t("fullNamePlaceholder")}
             className={`${inputBase} pl-9`}
           />
         </div>
@@ -159,7 +161,7 @@ export function ContactForm() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <label htmlFor="email" className="text-sm font-medium text-[#070A0F]">
-            Email
+            {t("email")}
           </label>
           <div className="relative flex items-center">
             <span className="pointer-events-none absolute left-3">
@@ -169,14 +171,14 @@ export function ContactForm() {
               id="email"
               required
               type="email"
-              placeholder="Enter your email"
+              placeholder={t("emailPlaceholder")}
               className={`${inputBase} pl-9`}
             />
           </div>
         </div>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="phone" className="text-sm font-medium text-[#070A0F]">
-            Phone
+            {t("phone")}
           </label>
           <div className="relative flex items-center">
             <span className="pointer-events-none absolute left-3">
@@ -185,7 +187,7 @@ export function ContactForm() {
             <input
               id="phone"
               type="tel"
-              placeholder="Enter your number"
+              placeholder={t("phonePlaceholder")}
               className={`${inputBase} pl-9`}
             />
           </div>
@@ -195,7 +197,7 @@ export function ContactForm() {
       {/* Select service */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="service" className="text-sm font-medium text-[#070A0F]">
-          Select a Service
+          {t("selectService")}
         </label>
         <div className="relative">
           <select
@@ -204,7 +206,7 @@ export function ContactForm() {
             defaultValue=""
           >
             <option value="" disabled>
-              Choose your service
+              {t("chooseService")}
             </option>
             {services.map((s) => (
               <option key={s} value={s}>
@@ -236,12 +238,12 @@ export function ContactForm() {
       {/* Message */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="message" className="text-sm font-medium text-[#070A0F]">
-          Message
+          {t("message")}
         </label>
         <textarea
           id="message"
           required
-          placeholder="Enter your message"
+          placeholder={t("messagePlaceholder")}
           rows={5}
           className={`${inputBase} resize-none`}
         />
@@ -251,7 +253,7 @@ export function ContactForm() {
         type="submit"
         className="inline-flex w-fit items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
       >
-        Send Message →
+        {t("sendMessage")}
       </button>
     </form>
   );

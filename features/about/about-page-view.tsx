@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { AboutStory } from "@/features/about/about-story";
 import { CtaBanner } from "@/features/cta/cta-banner";
 import { FaqSection } from "@/features/faq/faq-section";
@@ -28,6 +31,8 @@ const images = [
 type AboutPageViewProps = Readonly<{ locale: Locale }>;
 
 export function AboutPageView({ locale }: AboutPageViewProps) {
+  const t = useTranslations("About");
+
   return (
     <main>
       {/* Hero */}
@@ -38,13 +43,9 @@ export function AboutPageView({ locale }: AboutPageViewProps) {
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-secondary-500" />
-                <span className="text-body-sm text-grey-400">About Us</span>
+                <span className="text-body-sm text-grey-400">{t("label")}</span>
               </div>
-              <h1 className="text-5xl md:text-6xl">
-                Empowering
-                <br />
-                Businesses To Thrive
-              </h1>
+              <h1 className="text-5xl md:text-6xl">{t("heading")}</h1>
             </div>
 
             <div className="flex flex-col justify-end gap-4">
@@ -64,14 +65,9 @@ export function AboutPageView({ locale }: AboutPageViewProps) {
               </svg>
               <p className="text-body-lg leading-relaxed text-grey-500">
                 <strong className="font-semibold text-grey-800">
-                  We partner with growth-focused organizations to transform
-                  strategy into measurable performance.
+                  {t("quote")}
                 </strong>{" "}
-                <span className="text-primary-400">
-                  Through structured planning, operational clarity, and
-                  disciplined execution, we help businesses build sustainable
-                  success.
-                </span>
+                <span className="text-primary-400">{t("quoteContinued")}</span>
               </p>
             </div>
           </div>

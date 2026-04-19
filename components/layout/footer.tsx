@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { siteConfig } from "@/shared/config/site-config";
+import { useTranslations } from "next-intl";
+import { getNavLabels, siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
 import { translations } from "@/shared/i18n/translations";
 import { formatPhone } from "@/shared/lib/format-phone";
@@ -92,9 +95,12 @@ const socialIcons = {
 type FooterColumnProps = Readonly<{ locale: Locale }>;
 
 function QuickLinksCol({ locale }: FooterColumnProps) {
+  const t = useTranslations("Footer");
+  const labels = getNavLabels(locale);
+
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-base font-medium text-white">Quick Links</h3>
+      <h3 className="text-base font-medium text-white">{t("quickLinks")}</h3>
       <ul className="flex flex-col gap-3">
         {siteConfig.footer.quickLinks.map((item) => (
           <li key={item.href}>
@@ -102,7 +108,7 @@ function QuickLinksCol({ locale }: FooterColumnProps) {
               href={localizeHref(locale, item.href)}
               className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
             >
-              {item.label}
+              {labels[item.key as keyof typeof labels]}
             </Link>
           </li>
         ))}
@@ -112,9 +118,12 @@ function QuickLinksCol({ locale }: FooterColumnProps) {
 }
 
 function BusinessesCol({ locale }: FooterColumnProps) {
+  const t = useTranslations("Footer");
+  const labels = getNavLabels(locale);
+
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-base font-medium text-white">Businesses</h3>
+      <h3 className="text-base font-medium text-white">{t("businesses")}</h3>
       <ul className="flex flex-col gap-3">
         {siteConfig.footer.businesses.map((item) => (
           <li key={item.href}>
@@ -122,7 +131,7 @@ function BusinessesCol({ locale }: FooterColumnProps) {
               href={localizeHref(locale, item.href)}
               className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
             >
-              {item.label}
+              {labels[item.key as keyof typeof labels]}
             </Link>
           </li>
         ))}
@@ -132,13 +141,17 @@ function BusinessesCol({ locale }: FooterColumnProps) {
 }
 
 function ContactCol() {
+  const t = useTranslations("Footer");
+
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-base font-medium text-white">Contact Us</h3>
+      <h3 className="text-base font-medium text-white">{t("contactUs")}</h3>
       <div className="flex flex-col gap-3">
         {siteConfig.footer.phones.map((phone) => (
           <div key={phone.href} className="flex flex-col gap-0.5">
-            <span className="text-xs text-white/40">{phone.label}</span>
+            <span className="text-xs text-white/40">
+              {t(phone.key as "phoneNumber" | "officeNumber")}
+            </span>
             <a
               href={phone.href}
               className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
@@ -154,7 +167,16 @@ function ContactCol() {
 
 type FooterProps = Readonly<{ locale: Locale }>;
 
+const text = {
+  address: {
+    en: "Uzbekistan, Andijan, Khojaobod, Mustahkam 17",
+    uz: "O'zbekiston, Andijon, Xo'jaobod, Mustahkam 17",
+    ru: "Узбекистан, Андижан, Ходжаабад, Мустаҳкам 17",
+  },
+} as const;
+
 export function Footer({ locale }: FooterProps) {
+  const t = useTranslations("Footer");
   const year = new Date().getFullYear();
 
   const logoSection = (
@@ -237,10 +259,10 @@ export function Footer({ locale }: FooterProps) {
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
-                  Address
+                  {t("address")}
                 </p>
                 <p className="mt-0.5 text-sm text-white/60">
-                  Uzbekistan, Andijan, Khojaobod, Mustahkam 17
+                  {text.address[locale]}
                 </p>
               </div>
             </div>
@@ -264,7 +286,7 @@ export function Footer({ locale }: FooterProps) {
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
-                  Email
+                  {t("email")}
                 </p>
                 <a
                   href="mailto:fayz-mtex@mail.ru"
@@ -277,7 +299,7 @@ export function Footer({ locale }: FooterProps) {
           </div>
 
           <p className="text-sm text-white/40">
-            Copyright &copy; {year} {siteConfig.name}. All Rights Reserved.
+            Copyright &copy; {year} {siteConfig.name}. {t("copyright")}.
           </p>
         </div>
       </footer>
