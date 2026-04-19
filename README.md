@@ -25,6 +25,24 @@ Configure the shared API key:
 GOOGLE_DRIVE_API_KEY=your-server-side-drive-api-key
 ```
 
+## Telegram Contact Form
+
+Contact form submissions are sent server-side to Telegram Bot API.
+
+Configure required server-only environment variables:
+
+```bash
+TELEGRAM_BOT_TOKEN=your-server-side-telegram-bot-token
+TELEGRAM_CHAT_ID=your-telegram-chat-id
+```
+
+Notes:
+- never expose bot token in client code
+- use a dedicated bot for production leads
+- keep `TELEGRAM_CHAT_ID` as a private target chat, group, or channel
+- the API route sends only core lead fields: full name, email, phone, service, product, and message
+- form includes a honeypot field and minimum fill-time guard to reduce spam
+
 Then register each PDF in [content/documents.ts](/Users/kamafozilov/Projects/fayzm/content/documents.ts):
 
 ```ts

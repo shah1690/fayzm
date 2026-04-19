@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { ContactSubmissionPayload } from "@/shared/lib/contact-form";
 
 function NameIcon() {
   return (
@@ -88,9 +89,32 @@ function PhoneIcon() {
 const inputBase =
   "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-[#070A0F] outline-none transition-all placeholder:text-gray-400 focus:border-[#070A0F]";
 
+type SubmitState = "idle" | "submitting" | "success" | "error";
+
+type FormValues = {
+  fullName: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+  honeypot: string;
+};
+
+const initialFormValues: FormValues = {
+  fullName: "",
+  email: "",
+  phone: "",
+  service: "",
+  message: "",
+  honeypot: "",
+};
+
 export function ContactForm() {
   const t = useTranslations("ContactForm");
-  const [submitted, setSubmitted] = useState(false);
+  const startedAtRef = useRef(Date.now());
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const services = [
     t("services.knitting"),
@@ -103,15 +127,59 @@ export function ContactForm() {
     t("services.other"),
   ];
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
+  function updateField<Key extends keyof FormValues>(
+    key: Key,
+    value: FormValues[Key],
+  ) {
+    setFormValues((current) => ({
+      ...current,
+      [key]: value,
+    }));
   }
 
-  if (submitted) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitState("submitting");
+    setSubmitError(null);
+
+    const payload: ContactSubmissionPayload = {
+      fullName: formValues.fullName,
+      email: formValues.email,
+      phone: formValues.phone,
+      service: formValues.service,
+      message: formValues.message,
+      product:
+        new URLSearchParams(window.location.search).get("product") ?? undefined,
+      honeypot: formValues.honeypot,
+      startedAt: startedAtRef.current,
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      setSubmitState("success");
+      setFormValues(initialFormValues);
+      startedAtRef.current = Date.now();
+    } catch {
+      setSubmitState("error");
+      setSubmitError(t("submitError"));
+    }
+  }
+
+  if (submitState === "success") {
     return (
       <div className="flex h-full min-h-[400px] flex-col items-center justify-center gap-4 rounded-2xl border border-gray-100 bg-white p-8 text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#070A0F] text-white text-2xl">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#070A0F] text-2xl text-white">
           ✓
         </div>
         <h3 className="text-xl font-semibold text-[#070A0F]">
@@ -120,8 +188,11 @@ export function ContactForm() {
         <p className="text-sm text-gray-500">{t("replyWithin")}</p>
         <button
           type="button"
-          onClick={() => setSubmitted(false)}
-          className="mt-2 rounded-full border border-gray-200 px-5 py-2 text-sm text-[#070A0F] hover:bg-[#070A0F] hover:text-white transition-all"
+          onClick={() => {
+            setSubmitState("idle");
+            setSubmitError(null);
+          }}
+          className="mt-2 rounded-full border border-gray-200 px-5 py-2 text-sm text-[#070A0F] transition-all hover:bg-[#070A0F] hover:text-white"
         >
           {t("sendAnother")}
         </button>
@@ -135,7 +206,17 @@ export function ContactForm() {
       className="flex flex-col gap-5 bg-[#FAFAFA] p-6 md:p-8"
       style={{ borderRadius: 40 }}
     >
-      {/* Full Name */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="company-name">Company</label>
+        <input
+          id="company-name"
+          tabIndex={-1}
+          autoComplete="off"
+          value={formValues.honeypot}
+          onChange={(e) => updateField("honeypot", e.target.value)}
+        />
+      </div>
+
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="full-name"
@@ -152,12 +233,13 @@ export function ContactForm() {
             required
             type="text"
             placeholder={t("fullNamePlaceholder")}
+            value={formValues.fullName}
+            onChange={(e) => updateField("fullName", e.target.value)}
             className={`${inputBase} pl-9`}
           />
         </div>
       </div>
 
-      {/* Email + Phone */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <label htmlFor="email" className="text-sm font-medium text-[#070A0F]">
@@ -172,6 +254,8 @@ export function ContactForm() {
               required
               type="email"
               placeholder={t("emailPlaceholder")}
+              value={formValues.email}
+              onChange={(e) => updateField("email", e.target.value)}
               className={`${inputBase} pl-9`}
             />
           </div>
@@ -188,13 +272,14 @@ export function ContactForm() {
               id="phone"
               type="tel"
               placeholder={t("phonePlaceholder")}
+              value={formValues.phone}
+              onChange={(e) => updateField("phone", e.target.value)}
               className={`${inputBase} pl-9`}
             />
           </div>
         </div>
       </div>
 
-      {/* Select service */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="service" className="text-sm font-medium text-[#070A0F]">
           {t("selectService")}
@@ -202,12 +287,11 @@ export function ContactForm() {
         <div className="relative">
           <select
             id="service"
-            className={`${inputBase} appearance-none pr-10 cursor-pointer`}
-            defaultValue=""
+            value={formValues.service}
+            onChange={(e) => updateField("service", e.target.value)}
+            className={`${inputBase} cursor-pointer appearance-none pr-10`}
           >
-            <option value="" disabled>
-              {t("chooseService")}
-            </option>
+            <option value="">{t("chooseService")}</option>
             {services.map((s) => (
               <option key={s} value={s}>
                 {s}
@@ -235,7 +319,6 @@ export function ContactForm() {
         </div>
       </div>
 
-      {/* Message */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="message" className="text-sm font-medium text-[#070A0F]">
           {t("message")}
@@ -245,16 +328,24 @@ export function ContactForm() {
           required
           placeholder={t("messagePlaceholder")}
           rows={5}
+          value={formValues.message}
+          onChange={(e) => updateField("message", e.target.value)}
           className={`${inputBase} resize-none`}
         />
       </div>
 
-      <button
-        type="submit"
-        className="inline-flex w-fit items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white"
-      >
-        {t("sendMessage")}
-      </button>
+      <div className="flex flex-col items-start gap-3">
+        <button
+          type="submit"
+          disabled={submitState === "submitting"}
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:border-[#070A0F] hover:bg-[#070A0F] hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {submitState === "submitting" ? t("sending") : t("sendMessage")}
+        </button>
+        {submitError ? (
+          <p className="text-sm text-red-500">{submitError}</p>
+        ) : null}
+      </div>
     </form>
   );
 }
