@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
-import { businesses } from "@/content/businesses";
+import { businesses, getMegaMenuFeaturedBusiness } from "@/content/businesses";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
 import { localizeHref } from "@/shared/lib/localize-href";
@@ -63,10 +63,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
   const isActive = businesses.some((b) =>
     pathname.startsWith(`/businesses/${b.slug}`),
   );
-  const featured = useMemo(
-    () => businesses[Math.floor(Math.random() * businesses.length)],
-    [],
-  );
+  const featured = useMemo(() => getMegaMenuFeaturedBusiness(locale), [locale]);
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { businesses } from "@/content/businesses";
+import { getHomeCtaBusiness } from "@/content/businesses";
 import type { Locale } from "@/shared/i18n/translations";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -25,7 +25,7 @@ const text = {
 type Props = Readonly<{ locale: Locale }>;
 
 export function HomeCTABanner({ locale }: Props) {
-  const business = businesses[Math.floor(Math.random() * businesses.length)];
+  const business = getHomeCtaBusiness(locale);
 
   return (
     <section className="px-5 py-10 md:px-10 md:py-16">

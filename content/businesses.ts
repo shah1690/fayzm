@@ -1,3 +1,5 @@
+import type { Locale } from "@/shared/i18n/translations";
+
 export type BusinessData = {
   slug: string;
   label: { en: string; uz: string; ru: string };
@@ -527,4 +529,18 @@ export const businesses: BusinessData[] = [
 
 export function getBusinessBySlug(slug: string): BusinessData | undefined {
   return businesses.find((b) => b.slug === slug);
+}
+
+const LOCALE_INDEX: Record<Locale, number> = { en: 0, uz: 1, ru: 2 };
+
+/** Deterministic pick so SSR and client match (no Math.random). */
+export function getHomeCtaBusiness(locale: Locale): BusinessData {
+  const i = LOCALE_INDEX[locale];
+  return businesses[i % businesses.length];
+}
+
+/** Featured card in mega menu: stable per locale, distinct from home CTA. */
+export function getMegaMenuFeaturedBusiness(locale: Locale): BusinessData {
+  const i = LOCALE_INDEX[locale];
+  return businesses[(i + 3) % businesses.length];
 }
