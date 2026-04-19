@@ -152,24 +152,26 @@ export function CollectionsMarqueeSection({ locale }: Props) {
       />
 
       {/* Text */}
-      <div className="absolute inset-y-0 left-0 z-30 flex items-center px-10 md:px-16">
-        <div className="max-w-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
-              {t.eyebrow[locale]}
-            </span>
+      <div className="absolute inset-y-0 left-0 z-30 flex max-w-[calc(100vw-2.5rem)] items-center px-10 md:max-w-none md:px-16">
+        <div className="min-w-0">
+          <div className="max-w-sm">
+            <div className="mb-4 flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
+                {t.eyebrow[locale]}
+              </span>
+            </div>
+            <h2 className="mb-3 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl">
+              {t.heading[locale]}
+            </h2>
+            <p className="mb-8 text-sm leading-relaxed text-white/50">
+              {t.sub[locale]}
+            </p>
           </div>
-          <h2 className="mb-3 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl">
-            {t.heading[locale]}
-          </h2>
-          <p className="mb-8 text-sm leading-relaxed text-white/50">
-            {t.sub[locale]}
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/collections/women"
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
+              className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16] sm:w-auto"
             >
               {t.women[locale]}
               <span className="transition-transform duration-200 group-hover:translate-x-1">
@@ -178,7 +180,7 @@ export function CollectionsMarqueeSection({ locale }: Props) {
             </Link>
             <Link
               href="/collections/men"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:border-white/60 hover:bg-white/10"
+              className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:border-white/60 hover:bg-white/10 sm:w-auto"
             >
               {t.men[locale]}
               <span className="transition-transform duration-200 group-hover:translate-x-1">
