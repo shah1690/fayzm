@@ -26,6 +26,7 @@ const DESTINATIONS = [
   },
   { name: "Poland", coords: [19.94, 52.22] as [number, number], iso: "616" },
   { name: "Ukraine", coords: [30.52, 50.45] as [number, number], iso: "804" },
+  { name: "Italy", coords: [12.5, 41.9] as [number, number], iso: "380" },
 ];
 
 const HIGHLIGHT_ISOS = new Set(DESTINATIONS.map((d) => d.iso));
@@ -84,7 +85,7 @@ export function WorldMapSection({ locale: _locale }: Props) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="overflow-hidden bg-white py-16 md:py-24">
+    <section className="overflow-hidden bg-white py-8 md:py-12">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         {/* Map container */}
         <div
@@ -93,9 +94,9 @@ export function WorldMapSection({ locale: _locale }: Props) {
         >
           <ComposableMap
             projection="geoMercator"
-            projectionConfig={{ scale: 148, center: [60, 46] }}
+            projectionConfig={{ scale: 460, center: [58, 33] }}
             style={{ width: "100%", height: "auto" }}
-            viewBox="0 0 800 400"
+            viewBox="0 0 800 420"
           >
             <Geographies geography={GEO_URL}>
               {/* biome-ignore lint/suspicious/noExplicitAny: react-simple-maps internal type */}
@@ -168,6 +169,25 @@ export function WorldMapSection({ locale: _locale }: Props) {
 
             {/* Curved arc lines from Andijan to destinations */}
             <ArcLines hovered={hovered} />
+
+            {/* Uzbekistan country label */}
+            <Marker coordinates={[63.5, 41.4] as [number, number]}>
+              <text
+                textAnchor="middle"
+                y={0}
+                transform="rotate(40)"
+                style={{
+                  fontSize: 6.5,
+                  fill: "#ffffff",
+                  fontWeight: 800,
+                  fontFamily: "Manrope,sans-serif",
+                  letterSpacing: 1,
+                  pointerEvents: "none",
+                }}
+              >
+                UZBEKISTAN
+              </text>
+            </Marker>
 
             {/* Origin — Andijan */}
             <Marker coordinates={ORIGIN}>
