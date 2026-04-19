@@ -10,7 +10,6 @@ import { BusinessesSection } from "@/features/home/businesses-section";
 import { CollectionsMarqueeSection } from "@/features/home/collections-marquee-section";
 import { HeroSection } from "@/features/home/hero-section";
 import { HomeCTABanner } from "@/features/home/home-cta-banner";
-import { WorldReachSection } from "@/features/home/world-reach-section";
 import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
 import { siteConfig } from "@/shared/config/site-config";
@@ -35,7 +34,6 @@ export function HomePageView({ locale }: HomePageViewProps) {
       <StatsSection locale={locale} />
       <CollectionsMarqueeSection locale={locale} />
       <BrandVideoSection />
-      <WorldReachSection locale={locale} />
       <BusinessesSection locale={locale} />
       <HomeCTABanner locale={locale} />
       <PartnersSection locale={locale} />
