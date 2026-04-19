@@ -85,8 +85,8 @@ export function WorldMapSection({ locale: _locale }: Props) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="overflow-hidden bg-white py-8 md:py-12">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+    <section className="overflow-hidden bg-white px-5 py-8 md:px-10 md:py-12">
+      <div className="mx-auto max-w-[1440px]">
         {/* Map container */}
         <div
           className="relative w-full overflow-hidden"

@@ -15,8 +15,8 @@ export function PartnersSection({ locale }: PartnersSectionProps) {
   );
 
   return (
-    <section className="bg-[#F5F5F5] py-16 md:py-20 lg:py-24">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+    <section className="bg-[#F5F5F5] px-5 py-16 md:px-10 md:py-20 lg:py-24">
+      <div className="mx-auto max-w-[1440px]">
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-20">
           {/* Left: label + text */}
           <div className="flex-shrink-0 md:w-72 lg:w-80">

@@ -251,8 +251,8 @@ type Props = Readonly<{ locale: Locale }>;
 
 export function BusinessesSection({ locale }: Props) {
   return (
-    <section className="bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+    <section className="bg-white px-5 py-16 md:px-10 md:py-24">
+      <div className="mx-auto max-w-[1440px]">
         {/* Heading */}
         <div className="mb-14 flex flex-col items-center gap-3 text-center">
           <h2 className="text-3xl md:text-4xl">
