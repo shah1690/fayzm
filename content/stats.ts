@@ -1,27 +1,39 @@
 export type Stat = {
-  value: string;
+  /** Numeric part shown with count-up animation (e.g. 7 for “7mln+”). */
+  target: number;
+  /** Suffix immediately after the number (e.g. `mln`, `kw`, or empty). */
+  unit: string;
+  showPlus: boolean;
   label: { en: string; uz: string; ru: string };
   icon: "tshirt" | "briefcase" | "handshake" | "bolt";
 };
 
 export const stats: Stat[] = [
   {
-    value: "7mln+",
+    target: 7,
+    unit: "mln",
+    showPlus: true,
     icon: "tshirt",
     label: { en: "Products", uz: "Mahsulotlar", ru: "Продуктов" },
   },
   {
-    value: "1500+",
+    target: 1500,
+    unit: "",
+    showPlus: true,
     icon: "briefcase",
     label: { en: "Jobs", uz: "Ish o'rinlari", ru: "Рабочих мест" },
   },
   {
-    value: "20+",
+    target: 20,
+    unit: "",
+    showPlus: true,
     icon: "handshake",
     label: { en: "Partners", uz: "Hamkorlar", ru: "Партнёров" },
   },
   {
-    value: "900kw+",
+    target: 900,
+    unit: "kw",
+    showPlus: true,
     icon: "bolt",
     label: { en: "Green Energy", uz: "Yashil energiya", ru: "Зелёная энергия" },
   },

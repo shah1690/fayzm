@@ -1,15 +1,6 @@
 import { stats } from "@/content/stats";
+import { AnimatedStatValue } from "@/features/stats/animated-stat-value";
 import type { Locale } from "@/shared/i18n/translations";
-
-function StatValue({ value }: { value: string }) {
-  const [base, ...rest] = value.split("+");
-  return (
-    <span>
-      {base}
-      {rest.length > 0 && <span style={{ opacity: 0.35 }}>+</span>}
-    </span>
-  );
-}
 
 function TshirtIcon() {
   return (
@@ -136,19 +127,24 @@ export function StatsSection({ locale }: StatsSectionProps) {
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-6">
-          {stats.map((stat) => {
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4 md:gap-x-8 md:gap-y-10">
+          {stats.map((stat, index) => {
             const Icon = icons[stat.icon];
             return (
               <div
                 key={stat.icon}
                 className="flex flex-col items-center gap-4 text-center"
               >
-                <Icon />
-                <div>
-                  <p className="text-3xl font-bold text-[#070A0F] md:text-4xl">
-                    <StatValue value={stat.value} />
-                  </p>
+                <div className="text-[#070A0F] [&_svg]:h-12 [&_svg]:w-12 md:[&_svg]:h-14 md:[&_svg]:w-14">
+                  <Icon />
+                </div>
+                <div className="w-full min-w-0">
+                  <AnimatedStatValue
+                    target={stat.target}
+                    unit={stat.unit}
+                    showPlus={stat.showPlus}
+                    delayMs={index * 100}
+                  />
                   <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-gray-400">
                     {stat.label[locale]}
                   </p>
