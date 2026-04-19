@@ -84,7 +84,7 @@ export function CollectionsMarqueeSection({ locale }: Props) {
     >
       {/* Columns grid — rotated 30° clockwise, oversized to fill section */}
       <div
-        className="absolute flex opacity-60"
+        className="absolute flex opacity-35"
         style={{
           gap: GAP,
           top: "-120%",
@@ -144,32 +144,32 @@ export function CollectionsMarqueeSection({ locale }: Props) {
         style={{ background: "linear-gradient(to top, #070A0F, transparent)" }}
       />
 
-      {/* Left fade + content */}
+      {/* Center vignette for text readability */}
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[45%]"
+        className="pointer-events-none absolute inset-0 z-20"
         style={{
-          background: "linear-gradient(to right, #070A0F 60%, transparent)",
+          background:
+            "radial-gradient(ellipse 55% 70% at center, rgba(7,10,15,0.8) 0%, rgba(7,10,15,0.4) 50%, transparent 85%)",
         }}
+        aria-hidden="true"
       />
 
-      {/* Text */}
-      <div className="absolute inset-y-0 left-0 z-30 flex max-w-[calc(100vw-2.5rem)] items-center px-10 md:max-w-none md:px-16">
-        <div className="min-w-0">
-          <div className="max-w-sm">
-            <div className="mb-4 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
-                {t.eyebrow[locale]}
-              </span>
-            </div>
-            <h2 className="mb-3 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl">
-              {t.heading[locale]}
-            </h2>
-            <p className="mb-8 text-sm leading-relaxed text-white/50">
-              {t.sub[locale]}
-            </p>
+      {/* Centered content */}
+      <div className="relative z-30 flex h-full items-center justify-center px-6 md:px-10">
+        <div className="flex w-full max-w-2xl flex-col items-center text-center">
+          <div className="mb-4 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
+              {t.eyebrow[locale]}
+            </span>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <h2 className="mb-4 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl">
+            {t.heading[locale]}
+          </h2>
+          <p className="mb-8 max-w-lg text-sm leading-relaxed text-white/70 md:text-base">
+            {t.sub[locale]}
+          </p>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href={localizeHref(locale, "/collections/women")}
               className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16] sm:w-auto"
