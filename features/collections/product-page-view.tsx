@@ -125,7 +125,7 @@ export function ProductPageView({ product, locale }: Props) {
                 className="flex items-center gap-1.5 rounded-full px-3 py-1.5 backdrop-blur-md"
                 style={{ background: "rgba(0,0,0,0.4)" }}
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#003566]" />
                 <span className="text-xs font-medium text-white">
                   {t.madeIn[locale]}
                 </span>
@@ -209,7 +209,7 @@ export function ProductPageView({ product, locale }: Props) {
                         selectedSize === size
                           ? {
                               background: "#070A0F",
-                              color: "#84CC16",
+                              color: "white",
                               border: "2px solid #070A0F",
                             }
                           : {
@@ -231,7 +231,7 @@ export function ProductPageView({ product, locale }: Props) {
               {/* Decorative lime dot */}
               <div
                 className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-20"
-                style={{ background: "#84CC16" }}
+                style={{ background: "#003566" }}
               />
               <div className="relative z-10 flex items-center justify-between gap-4">
                 <div>
@@ -244,7 +244,7 @@ export function ProductPageView({ product, locale }: Props) {
                 </div>
                 <Link
                   href={`${localizeHref(locale, "/contact")}?product=${encodeURIComponent(product.name)}`}
-                  className="flex-shrink-0 rounded-full bg-[#84CC16] px-6 py-3 text-sm font-bold text-[#070A0F] transition-all hover:bg-white"
+                  className="flex-shrink-0 rounded-full bg-[#003566] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-white hover:text-[#070A0F]"
                 >
                   {t.cta[locale]} →
                 </Link>

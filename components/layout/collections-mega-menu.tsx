@@ -79,7 +79,7 @@ function ChevronDown() {
 }
 
 const gradientText = {
-  background: "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
+  background: "linear-gradient(180deg, #070A0F 0%, #003566 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
@@ -108,7 +108,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
       <div className="relative inline-flex flex-col items-center">
         <button
           type="button"
-          className={`flex cursor-pointer items-center gap-1 text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#84CC16]" : ""}`}
+          className={`flex cursor-pointer items-center gap-1 text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#003566]" : ""}`}
           style={isActive ? gradientText : undefined}
         >
           {label}
@@ -120,7 +120,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
         </button>
         <span
           className="absolute -bottom-2 h-1.5 w-1.5 rounded-full transition-opacity duration-200"
-          style={{ background: "#84CC16", opacity: isActive ? 1 : 0 }}
+          style={{ background: "#003566", opacity: isActive ? 1 : 0 }}
         />
       </div>
 
@@ -150,7 +150,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                       {active && (
-                        <div className="absolute right-3 top-3 h-2 w-2 rounded-full bg-[#84CC16]" />
+                        <div className="absolute right-3 top-3 h-2 w-2 rounded-full bg-white" />
                       )}
                       <div className="absolute bottom-0 left-0 right-0 p-6">
                         <p
@@ -178,11 +178,11 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                     },
                     href: "/collections/women",
                     bg: "#e5d6c9",
-                    textColor: "#012555",
+                    textColor: "#003566",
                     subColor: "rgba(1,37,85,0.45)",
                     patternFilter: "brightness(0)",
                     patternOpacity: 0.18,
-                    btnBg: "#012555",
+                    btnBg: "#003566",
                     btnStroke: "#e5d6c9",
                   },
                   {
@@ -194,13 +194,13 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                       ru: "Новинки",
                     },
                     href: "/collections/men",
-                    bg: "#012555",
+                    bg: "#003566",
                     textColor: "#ffffff",
                     subColor: "rgba(255,255,255,0.4)",
                     patternFilter: "none",
                     patternOpacity: 0.2,
-                    btnBg: "#84CC16",
-                    btnStroke: "#012555",
+                    btnBg: "#003566",
+                    btnStroke: "#003566",
                   },
                 ].map((card) => (
                   <Link

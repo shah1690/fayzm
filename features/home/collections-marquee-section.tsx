@@ -158,8 +158,8 @@ export function CollectionsMarqueeSection({ locale }: Props) {
       <div className="relative z-30 flex h-full items-center justify-center px-6 md:px-10">
         <div className="flex w-full max-w-2xl flex-col items-center text-center">
           <div className="mb-4 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#E5D6C9]" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#E5D6C9]">
               {t.eyebrow[locale]}
             </span>
           </div>
@@ -172,7 +172,7 @@ export function CollectionsMarqueeSection({ locale }: Props) {
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href={localizeHref(locale, "/collections/women")}
-              className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16] sm:w-auto"
+              className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white sm:w-auto"
             >
               {t.women[locale]}
               <span className="transition-transform duration-200 group-hover:translate-x-1">

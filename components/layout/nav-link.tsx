@@ -20,11 +20,11 @@ export function NavLink({ href, label }: NavLinkProps) {
       <Link
         href={href}
         onClick={handleClick}
-        className={`cursor-pointer text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#84CC16]" : ""}`}
+        className={`cursor-pointer text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#003566]" : ""}`}
         style={
           isActive
             ? {
-                background: "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
+                background: "linear-gradient(180deg, #070A0F 0%, #003566 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -36,7 +36,7 @@ export function NavLink({ href, label }: NavLinkProps) {
       </Link>
       <span
         className="absolute -bottom-2 h-1.5 w-1.5 rounded-full transition-opacity duration-200"
-        style={{ background: "#84CC16", opacity: isActive ? 1 : 0 }}
+        style={{ background: "#003566", opacity: isActive ? 1 : 0 }}
       />
     </div>
   );

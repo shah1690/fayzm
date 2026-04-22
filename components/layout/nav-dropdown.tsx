@@ -65,7 +65,7 @@ export function NavDropdown({ label, href, children }: NavDropdownProps) {
             isActiveParent
               ? {
                   background:
-                    "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
+                    "linear-gradient(180deg, #070A0F 0%, #003566 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -76,14 +76,14 @@ export function NavDropdown({ label, href, children }: NavDropdownProps) {
           {label}
           <span
             className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-            style={isActiveParent ? { color: "#84CC16" } : {}}
+            style={isActiveParent ? { color: "#003566" } : {}}
           >
             <ChevronDown />
           </span>
         </button>
         <span
           className="absolute -bottom-2 h-1.5 w-1.5 rounded-full transition-opacity duration-200"
-          style={{ background: "#84CC16", opacity: isActiveParent ? 1 : 0 }}
+          style={{ background: "#003566", opacity: isActiveParent ? 1 : 0 }}
         />
       </div>
 
@@ -109,7 +109,7 @@ export function NavDropdown({ label, href, children }: NavDropdownProps) {
                     isActive
                       ? {
                           background:
-                            "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
+                            "linear-gradient(180deg, #070A0F 0%, #003566 100%)",
                           WebkitBackgroundClip: "text",
                           WebkitTextFillColor: "transparent",
                           backgroundClip: "text",
@@ -122,7 +122,7 @@ export function NavDropdown({ label, href, children }: NavDropdownProps) {
                   {isActive && (
                     <span
                       className="ml-2 h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                      style={{ background: "#84CC16" }}
+                      style={{ background: "#003566" }}
                     />
                   )}
                 </Link>

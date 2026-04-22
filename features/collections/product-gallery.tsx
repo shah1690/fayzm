@@ -55,7 +55,7 @@ export function ProductGallery({ products }: Props) {
             className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
               background:
-                "linear-gradient(180deg, rgba(132,204,22,0.1) 0%, rgba(132,204,22,0.75) 100%)",
+                "linear-gradient(180deg, rgba(0,53,102,0.1) 0%, rgba(0,53,102,0.75) 100%)",
             }}
           />
 

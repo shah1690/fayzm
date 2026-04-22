@@ -55,7 +55,7 @@ export function HomeCTABanner({ locale }: Props) {
             className="pointer-events-none absolute -bottom-40 -left-40 h-96 w-96 rounded-full opacity-25"
             style={{
               background:
-                "radial-gradient(circle, #84CC16 0%, transparent 70%)",
+                "radial-gradient(circle, #003566 0%, transparent 70%)",
             }}
             aria-hidden="true"
           />
@@ -65,7 +65,7 @@ export function HomeCTABanner({ locale }: Props) {
             style={{ minHeight: 480 }}
           >
             <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#E5D6C9]" />
               <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/60">
                 {business.label[locale]}
               </span>
@@ -81,7 +81,7 @@ export function HomeCTABanner({ locale }: Props) {
 
             <Link
               href={localizeHref(locale, "/contact")}
-              className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
+              className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white"
             >
               {text.cta[locale]}
               <span

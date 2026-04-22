@@ -132,8 +132,8 @@ export function WorldReachSection({ locale }: Props) {
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="mb-4 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#84CC16]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#E5D6C9]" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#E5D6C9]">
                 {t.tag[locale]}
               </span>
             </div>
@@ -179,17 +179,17 @@ export function WorldReachSection({ locale }: Props) {
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 polygonCapColor={(f: any) => {
                   const name = f.properties.name;
-                  if (name === "Uzbekistan") return "rgba(132,204,22,0.4)";
-                  if (hoveredGeoName === name) return "rgba(132,204,22,0.35)";
+                  if (name === "Uzbekistan") return "rgba(0,53,102,0.4)";
+                  if (hoveredGeoName === name) return "rgba(0,53,102,0.35)";
                   return "rgba(255,255,255,0.04)";
                 }}
                 polygonSideColor={() => "rgba(0,0,0,0)"}
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 polygonStrokeColor={(f: any) => {
                   const name = f.properties.name;
-                  if (name === "Uzbekistan") return "#84CC16";
-                  if (hoveredGeoName === name) return "#84CC16";
-                  return "rgba(132,204,22,0.2)";
+                  if (name === "Uzbekistan") return "#003566";
+                  if (hoveredGeoName === name) return "#003566";
+                  return "rgba(0,53,102,0.2)";
                 }}
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 polygonAltitude={(f: any) => {
@@ -200,14 +200,14 @@ export function WorldReachSection({ locale }: Props) {
                 }}
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 polygonLabel={(f: any) =>
-                  `<div style="font-family:Manrope,sans-serif;background:#070A0F;color:white;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid rgba(132,204,22,0.3)">${getCountryLabel(GEO_NAME_TO_LABEL[f.properties.name] ?? f.properties.name, locale)}</div>`
+                  `<div style="font-family:Manrope,sans-serif;background:#070A0F;color:white;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid rgba(0,53,102,0.3)">${getCountryLabel(GEO_NAME_TO_LABEL[f.properties.name] ?? f.properties.name, locale)}</div>`
                 }
                 arcsData={ARCS}
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 arcColor={(arc: any) =>
                   hovered === "Uzbekistan" || hovered === arc.label
-                    ? "#84CC16"
-                    : "rgba(132,204,22,0.12)"
+                    ? "#003566"
+                    : "rgba(0,53,102,0.12)"
                 }
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 arcAltitude={(arc: any) =>
@@ -222,7 +222,7 @@ export function WorldReachSection({ locale }: Props) {
                 // biome-ignore lint/suspicious/noExplicitAny: react-globe.gl internal API
                 pointColor={(p: any) =>
                   p.isOrigin
-                    ? "#84CC16"
+                    ? "#003566"
                     : hovered === p.label
                       ? "#ffffff"
                       : "rgba(255,255,255,0.4)"
@@ -266,9 +266,9 @@ export function WorldReachSection({ locale }: Props) {
 
           {/* Destination list */}
           <div className="flex w-full flex-col lg:w-[30%]">
-            <div className="mb-3 flex items-center gap-3 rounded-2xl bg-[#84CC16]/10 px-4 py-3 ring-1 ring-[#84CC16]/30">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#84CC16]">
-                <span className="text-xs font-black text-[#070A0F]">UZ</span>
+            <div className="mb-3 flex items-center gap-3 rounded-2xl bg-[#003566]/10 px-4 py-3 ring-1 ring-[#003566]/30">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#003566]">
+                <span className="text-xs font-black text-white">UZ</span>
               </div>
               <div>
                 <p className="text-sm font-bold text-white">
@@ -294,8 +294,8 @@ export function WorldReachSection({ locale }: Props) {
                   style={
                     isActive
                       ? {
-                          background: "rgba(132,204,22,0.08)",
-                          outline: "1px solid rgba(132,204,22,0.25)",
+                          background: "rgba(0,53,102,0.08)",
+                          outline: "1px solid rgba(0,53,102,0.25)",
                         }
                       : undefined
                   }
@@ -303,8 +303,8 @@ export function WorldReachSection({ locale }: Props) {
                   <span
                     className="h-2 w-2 flex-shrink-0 rounded-full transition-all duration-200"
                     style={{
-                      background: isActive ? "#84CC16" : "rgba(132,204,22,0.3)",
-                      boxShadow: isActive ? "0 0 8px #84CC16" : undefined,
+                      background: isActive ? "#003566" : "rgba(0,53,102,0.3)",
+                      boxShadow: isActive ? "0 0 8px #003566" : undefined,
                       transform: isActive ? "scale(1.4)" : "scale(1)",
                     }}
                   />
@@ -319,7 +319,7 @@ export function WorldReachSection({ locale }: Props) {
                   <span
                     className="text-xs transition-all duration-200"
                     style={{
-                      color: isActive ? "#84CC16" : "rgba(255,255,255,0.15)",
+                      color: isActive ? "#E5D6C9" : "rgba(255,255,255,0.15)",
                       transform: isActive ? "translateX(3px)" : "none",
                     }}
                   >

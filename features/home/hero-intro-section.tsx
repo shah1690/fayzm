@@ -40,7 +40,7 @@ export function HeroIntroSection({ locale }: Props) {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end md:gap-16">
           <div className="flex flex-col gap-5 md:col-span-7">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-[#84CC16]" />
+              <span className="h-2 w-2 rounded-full bg-[#003566]" />
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
                 {content.eyebrow[locale]}
               </span>
@@ -57,7 +57,7 @@ export function HeroIntroSection({ locale }: Props) {
             </p>
             <Link
               href={localizeHref(locale, "/contact")}
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-[#070A0F] px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-[#84CC16] hover:text-[#070A0F]"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-[#070A0F] px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-[#003566]"
             >
               {content.cta[locale]}
             </Link>

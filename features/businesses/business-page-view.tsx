@@ -92,7 +92,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
           <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16">
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#84CC16]" />
+                <span className="h-2 w-2 rounded-full bg-[#003566]" />
                 <span className="text-sm text-gray-400">
                   {business.label[locale]}
                 </span>
@@ -126,7 +126,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0) 55%)",
+                    "linear-gradient(45deg, #003566 0%, rgba(0,53,102,0) 55%)",
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -251,7 +251,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                       className="flex items-start gap-3 text-sm"
                       style={{ color: "#6B7280" }}
                     >
-                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#84CC16] text-white text-xs">
+                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#003566] text-white text-xs">
                         ✓
                       </span>
                       {feature[locale]}
@@ -292,7 +292,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0.7) 40%, rgba(0,0,0,0.3) 100%)",
+                  "linear-gradient(45deg, #003566 0%, rgba(0,53,102,0.7) 40%, rgba(0,0,0,0.3) 100%)",
               }}
             />
             <div

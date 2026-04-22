@@ -74,11 +74,7 @@ function ArcLines({ hovered }: { hovered: string | null }) {
             d={`M ${ox} ${oy} Q ${mx} ${my} ${dx} ${dy}`}
             fill="none"
             stroke={
-              isHov
-                ? "#5DA016"
-                : isVisible
-                  ? "#84CC16"
-                  : "rgba(132,204,22,0.18)"
+              isHov ? "#002B52" : isVisible ? "#003566" : "rgba(0,53,102,0.18)"
             }
             strokeWidth={isHov ? 2 : 1}
             strokeLinecap="round"
@@ -114,7 +110,7 @@ export function WorldMapSection({ locale }: Props) {
 
         <div
           className="relative w-full select-none overflow-hidden"
-          style={{ background: "#F0F2EA", borderRadius: 40 }}
+          style={{ background: "#EDF3FA", borderRadius: 40 }}
         >
           <ComposableMap
             projection="geoMercator"
@@ -169,32 +165,32 @@ export function WorldMapSection({ locale }: Props) {
                       style={{
                         default: {
                           fill: isUzb
-                            ? "#84CC16"
+                            ? "#003566"
                             : isHovered
-                              ? "rgba(132,204,22,0.45)"
-                              : "rgba(132,204,22,0.22)",
+                              ? "rgba(0,53,102,0.45)"
+                              : "rgba(0,53,102,0.22)",
                           stroke: isUzb
-                            ? "#5DA016"
+                            ? "#002B52"
                             : isHovered
-                              ? "#84CC16"
-                              : "rgba(132,204,22,0.4)",
+                              ? "#003566"
+                              : "rgba(0,53,102,0.4)",
                           strokeWidth: isUzb ? 1 : 0.6,
                           outline: "none",
                           transition: "fill 0.2s",
                         },
                         hover: {
-                          fill: isUzb ? "#84CC16" : "rgba(132,204,22,0.45)",
-                          stroke: isUzb ? "#5DA016" : "#84CC16",
+                          fill: isUzb ? "#003566" : "rgba(0,53,102,0.45)",
+                          stroke: isUzb ? "#002B52" : "#003566",
                           strokeWidth: isUzb ? 1 : 0.6,
                           outline: "none",
                         },
                         pressed: {
                           fill: isUzb
-                            ? "#84CC16"
+                            ? "#003566"
                             : isHovered
-                              ? "rgba(132,204,22,0.45)"
-                              : "rgba(132,204,22,0.22)",
-                          stroke: isUzb ? "#5DA016" : "rgba(132,204,22,0.4)",
+                              ? "rgba(0,53,102,0.45)"
+                              : "rgba(0,53,102,0.22)",
+                          stroke: isUzb ? "#002B52" : "rgba(0,53,102,0.4)",
                           strokeWidth: isUzb ? 1 : 0.6,
                           outline: "none",
                         },
@@ -229,16 +225,16 @@ export function WorldMapSection({ locale }: Props) {
             <Marker coordinates={ORIGIN}>
               <circle
                 r={13}
-                fill="rgba(132,204,22,0.2)"
+                fill="rgba(0,53,102,0.2)"
                 className="animate-origin-pulse"
               />
-              <circle r={6} fill="#84CC16" stroke="white" strokeWidth={2} />
+              <circle r={6} fill="#003566" stroke="white" strokeWidth={2} />
               <text
                 textAnchor="middle"
                 y={-14}
                 style={{
                   fontSize: 7.5,
-                  fill: "#2a4a10",
+                  fill: "#001D43",
                   fontWeight: 800,
                   fontFamily: "Manrope,sans-serif",
                   letterSpacing: 0.3,
@@ -261,7 +257,7 @@ export function WorldMapSection({ locale }: Props) {
                 >
                   <circle
                     r={isHov ? 5.5 : 3.5}
-                    fill={isHov ? "#84CC16" : "rgba(93,160,22,0.75)"}
+                    fill={isHov ? "#003566" : "rgba(0,43,82,0.75)"}
                     stroke="white"
                     strokeWidth={1.5}
                     style={{ transition: "all 0.2s" }}
@@ -271,7 +267,7 @@ export function WorldMapSection({ locale }: Props) {
                     y={-10}
                     style={{
                       fontSize: isHov ? 7.5 : 6.5,
-                      fill: isHov ? "#2a4a10" : "#5a6a50",
+                      fill: isHov ? "#001D43" : "#4A6A8A",
                       fontWeight: isHov ? 800 : 500,
                       fontFamily: "Manrope,sans-serif",
                       transition: "all 0.2s",

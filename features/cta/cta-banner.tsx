@@ -7,7 +7,7 @@ const avatarSwatches = [
   { color: "#8BB8C8", label: "" },
   { color: "#C49A9A", label: "" },
   { color: "#8B9E8B", label: "" },
-  { color: "#84CC16", label: "+" },
+  { color: "#003566", label: "+" },
 ] as const;
 
 const CARD_BG = "#121218";
@@ -54,7 +54,7 @@ function MiniChart() {
 
       <path
         d="M0 70 C20 70 30 45 55 38 C75 32 85 58 110 48 C135 38 150 18 175 12 C185 9 195 6 200 4"
-        stroke="#84CC16"
+        stroke="#003566"
         strokeWidth="2"
         strokeLinecap="round"
         fill="none"
@@ -69,8 +69,8 @@ function MiniChart() {
           y2="1"
           gradientUnits="objectBoundingBox"
         >
-          <stop offset="0%" stopColor="#84CC16" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#84CC16" stopOpacity="0" />
+          <stop offset="0%" stopColor="#003566" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#003566" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>
@@ -93,7 +93,7 @@ export function CtaBanner({ locale }: CtaBannerProps) {
             className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full opacity-25"
             style={{
               background:
-                "radial-gradient(circle, #84CC16 0%, transparent 70%)",
+                "radial-gradient(circle, #003566 0%, transparent 70%)",
             }}
             aria-hidden="true"
           />
@@ -102,7 +102,7 @@ export function CtaBanner({ locale }: CtaBannerProps) {
             <div className="flex flex-col justify-between gap-8">
               <div className="flex flex-col gap-6">
                 <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#E5D6C9]" />
                   <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/50">
                     {t.label[locale]}
                   </span>
@@ -116,7 +116,7 @@ export function CtaBanner({ locale }: CtaBannerProps) {
               </div>
               <Link
                 href={localizeHref(locale, "/contact")}
-                className="group inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
+                className="group inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white"
               >
                 {t.cta[locale]}
               </Link>

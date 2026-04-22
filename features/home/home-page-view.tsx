@@ -46,7 +46,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
           <div className="mb-10 grid grid-cols-1 gap-6 md:mb-14 md:grid-cols-12 md:items-end md:gap-12">
             <div className="flex flex-col gap-5 md:col-span-7">
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#003566]" />
                 <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-gray-400">
                   {t("contactLabel")}
                 </span>
@@ -85,7 +85,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
                 className="pointer-events-none absolute -bottom-32 -right-32 h-80 w-80 rounded-full opacity-25"
                 style={{
                   background:
-                    "radial-gradient(circle, #84CC16 0%, transparent 70%)",
+                    "radial-gradient(circle, #003566 0%, transparent 70%)",
                 }}
                 aria-hidden="true"
               />
@@ -98,7 +98,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
                 </p>
                 <a
                   href={siteConfig.footer.phones[0].href}
-                  className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#84CC16]"
+                  className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white"
                 >
                   {t("callUsNow")}
                 </a>

@@ -107,7 +107,7 @@ export function CollectionsPageView() {
                 </h2>
                 <Link
                   href={localizeHref(locale, "/contact")}
-                  className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#84CC16]"
+                  className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#003566] hover:text-white"
                 >
                   {t("requestCatalogue")}
                 </Link>

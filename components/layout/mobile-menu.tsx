@@ -164,9 +164,9 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                         key={item.href}
                         href={localizeHref(locale, item.href)}
                         onClick={close}
-                        className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#84CC16]"
+                        className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#003566]"
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#84CC16]" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#003566]" />
                         {item.label}
                       </Link>
                     ))}
@@ -191,9 +191,9 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                         key={b.slug}
                         href={localizeHref(locale, `/businesses/${b.slug}`)}
                         onClick={close}
-                        className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#84CC16]"
+                        className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#003566]"
                       >
-                        <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#84CC16]" />
+                        <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#003566]" />
                         {b.label[locale]}
                       </Link>
                     ))}
@@ -235,7 +235,7 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                   className="rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all duration-200"
                   style={
                     locale === lang
-                      ? { background: "#84CC16", color: "#070A0F" }
+                      ? { background: "#003566", color: "white" }
                       : { background: "#F5F5F5", color: "#6b7280" }
                   }
                 >
@@ -249,7 +249,7 @@ export function MobileMenu({ locale }: MobileMenuProps) {
               <Link
                 href={localizeHref(locale, "/contact")}
                 onClick={close}
-                className="block w-full rounded-full bg-[#070A0F] py-3 text-center text-sm font-semibold text-white transition-all duration-200 hover:bg-[#84CC16] hover:text-[#070A0F]"
+                className="block w-full rounded-full bg-[#070A0F] py-3 text-center text-sm font-semibold text-white transition-all duration-200 hover:bg-[#003566]"
               >
                 {text.contactUs[locale]}
               </Link>
@@ -259,7 +259,7 @@ export function MobileMenu({ locale }: MobileMenuProps) {
             {siteConfig.footer.phones[0] && (
               <a
                 href={siteConfig.footer.phones[0].href}
-                className="mt-3 block text-center text-sm text-gray-400 transition-colors hover:text-[#84CC16]"
+                className="mt-3 block text-center text-sm text-gray-400 transition-colors hover:text-[#003566]"
               >
                 {siteConfig.footer.phones[0].value}
               </a>

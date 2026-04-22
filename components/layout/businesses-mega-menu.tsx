@@ -32,7 +32,7 @@ function ChevronDown() {
 }
 
 const gradientText = {
-  background: "linear-gradient(180deg, #070A0F 0%, #84CC16 100%)",
+  background: "linear-gradient(180deg, #070A0F 0%, #003566 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
@@ -81,7 +81,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
       <div className="relative inline-flex flex-col items-center">
         <button
           type="button"
-          className={`flex cursor-pointer items-center gap-1 text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#84CC16]" : ""}`}
+          className={`flex cursor-pointer items-center gap-1 text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#003566]" : ""}`}
           style={isActive ? gradientText : undefined}
         >
           {label}
@@ -93,7 +93,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
         </button>
         <span
           className="absolute -bottom-2 h-1.5 w-1.5 rounded-full transition-opacity duration-200"
-          style={{ background: "#84CC16", opacity: isActive ? 1 : 0 }}
+          style={{ background: "#003566", opacity: isActive ? 1 : 0 }}
         />
       </div>
 
@@ -117,7 +117,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(45deg, #84CC16 0%, rgba(132,204,22,0.5) 35%, rgba(0,0,0,0.2) 100%)",
+                      "linear-gradient(45deg, #003566 0%, rgba(0,53,102,0.5) 35%, rgba(0,0,0,0.2) 100%)",
                   }}
                 />
                 <div className="relative z-10 flex h-full flex-col justify-between p-8">
@@ -188,7 +188,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                           {active && (
                             <span
                               className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                              style={{ background: "#84CC16" }}
+                              style={{ background: "#003566" }}
                             />
                           )}
                         </Link>
@@ -219,7 +219,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                     <Link
                       href={localizeHref(locale, "/contact")}
                       onClick={() => setOpen(false)}
-                      className="cursor-pointer rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#84CC16]"
+                      className="cursor-pointer rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#003566] hover:text-white"
                     >
                       {text.ctaButton[locale]}
                     </Link>
