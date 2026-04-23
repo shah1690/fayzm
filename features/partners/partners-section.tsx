@@ -16,12 +16,14 @@ export function PartnersSection({ locale }: PartnersSectionProps) {
 
   return (
     <section className="relative overflow-hidden bg-[#F5F5F5] py-16 md:py-20 lg:py-24">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src="/images/pattern.svg"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        fill
+        sizes="100vw"
+        unoptimized
+        className="pointer-events-none absolute inset-0 object-cover"
         style={{ filter: "brightness(0)", opacity: 0.05 }}
       />
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">

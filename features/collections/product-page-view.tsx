@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { ProductData } from "@/content/products";
@@ -112,11 +113,12 @@ export function ProductPageView({ product, locale }: Props) {
             className="relative w-full overflow-hidden md:w-[55%]"
             style={{ borderRadius: 32, minHeight: 480 }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={product.image}
               alt={product.name}
-              className="absolute inset-0 h-full w-full object-cover"
+              fill
+              sizes="55vw"
+              className="absolute inset-0 object-cover"
             />
 
             {/* Made in Uzbekistan tag */}

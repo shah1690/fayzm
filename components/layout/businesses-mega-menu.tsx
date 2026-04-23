@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { businesses, getMegaMenuFeaturedBusiness } from "@/content/businesses";
@@ -58,12 +59,24 @@ const text = {
 
 export function BusinessesMegaMenu({ label, locale }: Props) {
   const [open, setOpen] = useState(false);
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
-  const isActive = businesses.some((b) =>
-    pathname.startsWith(`/businesses/${b.slug}`),
+  const activeBusiness = useMemo(
+    () =>
+      businesses.find((b) => pathname.startsWith(`/businesses/${b.slug}`)) ??
+      null,
+    [pathname],
   );
+  const isActive = activeBusiness !== null;
   const featured = useMemo(() => getMegaMenuFeaturedBusiness(locale), [locale]);
+  const previewBusiness = useMemo(
+    () =>
+      businesses.find((b) => b.slug === hoveredSlug) ??
+      activeBusiness ??
+      featured,
+    [activeBusiness, featured, hoveredSlug],
+  );
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -71,7 +84,10 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
   };
 
   const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+    timeoutRef.current = setTimeout(() => {
+      setOpen(false);
+      setHoveredSlug(null);
+    }, 150);
   };
 
   return (
@@ -107,11 +123,13 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                 className="relative w-[42%] overflow-hidden"
                 style={{ borderRadius: 28 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={featured.ctaImage}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover"
+                <Image
+                  key={`${previewBusiness.slug}-image`}
+                  src={previewBusiness.ctaImage}
+                  alt={previewBusiness.label[locale]}
+                  fill
+                  sizes="42vw"
+                  className="animate-mega-preview object-cover"
                 />
                 <div
                   className="absolute inset-0"
@@ -120,7 +138,10 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                       "linear-gradient(45deg, #003566 0%, rgba(0,53,102,0.5) 35%, rgba(0,0,0,0.2) 100%)",
                   }}
                 />
-                <div className="relative z-10 flex h-full flex-col justify-between p-8">
+                <div
+                  key={`${previewBusiness.slug}-content`}
+                  className="animate-mega-preview relative z-10 flex h-full flex-col justify-between p-8"
+                >
                   <div className="flex items-center gap-2">
                     <svg
                       width="14"
@@ -136,15 +157,15 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                       />
                     </svg>
                     <span className="text-sm font-medium text-white">
-                      {featured.label[locale]}
+                      {previewBusiness.label[locale]}
                     </span>
                   </div>
                   <div className="flex flex-col gap-3">
                     <h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">
-                      {featured.heading[locale]}
+                      {previewBusiness.heading[locale]}
                     </h2>
                     <p className="text-sm text-white/70">
-                      {featured.cardText[locale]}
+                      {previewBusiness.cardText[locale]}
                     </p>
                   </div>
                 </div>
@@ -154,12 +175,14 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
               <div className="flex flex-1 flex-col gap-4">
                 {/* Business list card */}
                 <div className="relative flex-1 overflow-hidden rounded-[28px] bg-[#F5F5F5] px-5 py-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src="/images/pattern.svg"
                     alt=""
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+                    fill
+                    sizes="58vw"
+                    unoptimized
+                    className="pointer-events-none object-cover"
                     style={{ filter: "brightness(0)", opacity: 0.06 }}
                   />
                   <div className="relative z-10 mb-3">
@@ -172,23 +195,47 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                       const active = pathname.startsWith(
                         `/businesses/${b.slug}`,
                       );
+                      const previewed = previewBusiness.slug === b.slug;
                       return (
                         <Link
                           key={b.slug}
                           href={localizeHref(locale, `/businesses/${b.slug}`)}
-                          onClick={() => setOpen(false)}
-                          className="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-white"
+                          onClick={() => {
+                            setOpen(false);
+                            setHoveredSlug(null);
+                          }}
+                          onMouseEnter={() => setHoveredSlug(b.slug)}
+                          onFocus={() => setHoveredSlug(b.slug)}
+                          className="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 transition-all duration-200 hover:bg-white"
+                          style={{
+                            background: previewed
+                              ? "rgba(255,255,255,0.9)"
+                              : undefined,
+                            transform: previewed
+                              ? "translateX(6px)"
+                              : undefined,
+                          }}
                         >
                           <span
-                            className="text-sm font-medium"
-                            style={active ? gradientText : { color: "#070A0F" }}
+                            className="text-sm font-medium transition-all duration-200"
+                            style={
+                              active || previewed
+                                ? gradientText
+                                : { color: "#070A0F" }
+                            }
                           >
                             {b.label[locale]}
                           </span>
-                          {active && (
+                          {(active || previewed) && (
                             <span
-                              className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                              style={{ background: "#003566" }}
+                              className="h-1.5 w-1.5 flex-shrink-0 rounded-full transition-all duration-200"
+                              style={{
+                                background: "#003566",
+                                opacity: previewed ? 1 : 0.55,
+                                transform: previewed
+                                  ? "scale(1.15)"
+                                  : undefined,
+                              }}
                             />
                           )}
                         </Link>
@@ -202,12 +249,15 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                   className="relative overflow-hidden rounded-[28px] bg-[#070A0F]"
                   style={{ height: 130 }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src="/images/k1.jpg"
                     alt=""
-                    className="absolute right-0 top-0 h-full w-1/2 object-cover opacity-20"
+                    aria-hidden="true"
+                    fill
+                    sizes="20vw"
+                    className="absolute right-0 top-0 ml-auto h-full w-1/2 object-cover opacity-20"
                     style={{
+                      left: "auto",
                       maskImage:
                         "linear-gradient(to left, rgba(0,0,0,0.8), transparent)",
                     }}
@@ -218,7 +268,10 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                     </h3>
                     <Link
                       href={localizeHref(locale, "/contact")}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setOpen(false);
+                        setHoveredSlug(null);
+                      }}
                       className="cursor-pointer rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all hover:bg-[#003566] hover:text-white"
                     >
                       {text.ctaButton[locale]}

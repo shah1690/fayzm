@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
@@ -141,11 +142,12 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                       className="group relative flex-1 cursor-pointer overflow-hidden"
                       style={{ borderRadius: 24 }}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={cat.image}
                         alt={cat.label[locale]}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        sizes="25vw"
+                        className="absolute inset-0 object-cover transition-transform duration-500 group-hover:scale-105"
                         style={{ objectPosition: cat.objectPosition }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -211,12 +213,14 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                     style={{ borderRadius: 24, background: card.bg }}
                   >
                     {/* Pattern background */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src="/images/pattern.svg"
                       alt=""
                       aria-hidden="true"
-                      className="absolute inset-0 h-full w-full object-cover"
+                      fill
+                      sizes="25vw"
+                      unoptimized
+                      className="absolute inset-0 object-cover"
                       style={{
                         filter: card.patternFilter,
                         opacity: card.patternOpacity,

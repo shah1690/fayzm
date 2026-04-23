@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 type Product = {
@@ -43,11 +44,12 @@ export function ProductGallery({ products }: Props) {
           className="group relative overflow-hidden"
           style={{ borderRadius: 20, aspectRatio: "3/4" }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={product.image}
             alt={product.name}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            fill
+            sizes="25vw"
+            className="absolute inset-0 object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
           {/* Green gradient on hover */}

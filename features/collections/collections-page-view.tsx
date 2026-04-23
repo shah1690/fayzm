@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/shared/i18n/translations";
@@ -22,11 +23,12 @@ export function CollectionsPageView() {
             className="relative min-h-[480px] flex-1 overflow-hidden md:min-h-0"
             style={{ borderRadius: 32 }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/images/g1.jpg"
               alt=""
-              className="absolute inset-0 h-full w-full object-cover"
+              fill
+              sizes="58vw"
+              className="absolute inset-0 object-cover"
             />
             <div
               className="absolute inset-0"
@@ -86,12 +88,15 @@ export function CollectionsPageView() {
               className="relative overflow-hidden bg-[#070A0F]"
               style={{ borderRadius: 32, minHeight: 200 }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/g-cta.jpg"
                 alt=""
-                className="absolute right-0 top-0 h-full w-2/3 object-cover"
+                aria-hidden="true"
+                fill
+                sizes="28vw"
+                className="absolute right-0 top-0 ml-auto h-full w-2/3 object-cover"
                 style={{
+                  left: "auto",
                   maskImage:
                     "linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 80%)",
                   WebkitMaskImage:
@@ -147,11 +152,12 @@ export function CollectionsPageView() {
                 className="group relative overflow-hidden"
                 style={{ borderRadius: 24, minHeight: 260 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={cat.image}
                   alt={cat.label}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  sizes="33vw"
+                  className="absolute inset-0 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">

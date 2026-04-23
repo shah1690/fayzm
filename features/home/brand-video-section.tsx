@@ -25,7 +25,6 @@ export function BrandVideoSection() {
         className="relative mx-auto w-full max-w-[1440px] overflow-hidden"
         style={{ borderRadius: 42 }}
       >
-        {/* biome-ignore lint/a11y/useMediaCaption: decorative brand video */}
         <video
           ref={videoRef}
           src="/videos/brand.mp4"

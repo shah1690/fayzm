@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getProductsByGender } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
@@ -118,10 +119,11 @@ export function CollectionsMarqueeSection({ locale }: Props) {
                     className="flex-shrink-0 overflow-hidden"
                     style={{ width: IMG_W, height: IMG_H, borderRadius: 16 }}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={p.image}
                       alt={p.name}
+                      width={IMG_W}
+                      height={IMG_H}
                       className="h-full w-full object-cover"
                     />
                   </div>
