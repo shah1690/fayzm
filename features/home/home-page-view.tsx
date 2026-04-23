@@ -16,6 +16,7 @@ import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
 import { siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 
 type HomePageViewProps = Readonly<{ locale: Locale }>;
 
@@ -72,6 +73,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover"
+                {...shimmerImageProps(1200, 1400)}
               />
               <div
                 className="pointer-events-none absolute inset-0"

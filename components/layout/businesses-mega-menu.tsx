@@ -6,6 +6,7 @@ import { useMemo, useRef, useState } from "react";
 import { businesses, getMegaMenuFeaturedBusiness } from "@/content/businesses";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 type Props = Readonly<{ label: string; locale: Locale }>;
@@ -130,6 +131,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                   fill
                   sizes="42vw"
                   className="animate-mega-preview object-cover"
+                  {...shimmerImageProps(1200, 900)}
                 />
                 <div
                   className="absolute inset-0"
@@ -261,6 +263,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
                       maskImage:
                         "linear-gradient(to left, rgba(0,0,0,0.8), transparent)",
                     }}
+                    {...shimmerImageProps(800, 400)}
                   />
                   <div className="relative z-10 flex h-full items-center justify-between px-8">
                     <h3 className="text-lg font-bold text-white">

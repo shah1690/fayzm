@@ -8,6 +8,7 @@ import { FaqSection } from "@/features/faq/faq-section";
 import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 
 const galleryImages = {
   en: [
@@ -108,6 +109,7 @@ export function AboutPageView({ locale }: AboutPageViewProps) {
               height={500}
               sizes="(min-width: 768px) 340px, 280px"
               className="h-full w-full object-cover"
+              {...shimmerImageProps(400, 500)}
             />
           </div>
         ))}

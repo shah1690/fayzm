@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getHomeCtaBusiness } from "@/content/businesses";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 const text = {
@@ -40,6 +41,7 @@ export function HomeCTABanner({ locale }: Props) {
             fill
             sizes="100vw"
             className="object-cover"
+            {...shimmerImageProps(1600, 900)}
           />
 
           <div

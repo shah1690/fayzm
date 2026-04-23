@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 
 type Product = {
   id: string;
@@ -50,6 +51,7 @@ export function ProductGallery({ products }: Props) {
             fill
             sizes="25vw"
             className="absolute inset-0 object-cover transition-transform duration-500 group-hover:scale-105"
+            {...shimmerImageProps(900, 1200)}
           />
 
           {/* Green gradient on hover */}

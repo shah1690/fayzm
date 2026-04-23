@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 type Props = Readonly<{ label: string; locale: Locale }>;
@@ -149,6 +150,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                         sizes="25vw"
                         className="absolute inset-0 object-cover transition-transform duration-500 group-hover:scale-105"
                         style={{ objectPosition: cat.objectPosition }}
+                        {...shimmerImageProps(900, 1200)}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                       {active && (

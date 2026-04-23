@@ -6,6 +6,7 @@ import { ContactForm } from "@/features/contact/contact-form";
 import { FaqSection } from "@/features/faq/faq-section";
 import { siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 
 type ContactPageViewProps = Readonly<{ locale: Locale }>;
 
@@ -65,6 +66,7 @@ export function ContactPageView({ locale }: ContactPageViewProps) {
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover"
+                {...shimmerImageProps(1200, 1400)}
               />
               {/* gradient overlay */}
               <div

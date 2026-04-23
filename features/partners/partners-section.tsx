@@ -2,6 +2,7 @@ import Image from "next/image";
 import { partners } from "@/content/partners";
 import type { Locale } from "@/shared/i18n/translations";
 import { translations } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 
 type PartnersSectionProps = Readonly<{ locale: Locale }>;
 
@@ -56,6 +57,7 @@ export function PartnersSection({ locale }: PartnersSectionProps) {
                     height={60}
                     className="h-28 w-auto object-contain md:h-32"
                     unoptimized
+                    {...shimmerImageProps(160, 60)}
                   />
                 </div>
               ))}

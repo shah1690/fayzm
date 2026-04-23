@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProductsByGender } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 const t = {
@@ -125,6 +126,7 @@ export function CollectionsMarqueeSection({ locale }: Props) {
                       width={IMG_W}
                       height={IMG_H}
                       className="h-full w-full object-cover"
+                      {...shimmerImageProps(IMG_W, IMG_H)}
                     />
                   </div>
                 ))}

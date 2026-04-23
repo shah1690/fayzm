@@ -53,6 +53,7 @@
   }
 
   body {
+    overflow-x: hidden;
     font-family: "Manrope", sans-serif;
     font-size: 1rem;
     line-height: 1.6;
@@ -178,6 +179,80 @@
 
 .animate-mega-preview {
   animation: mega-preview-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Page transition */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.992);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes page-overlay-in {
+  from {
+    opacity: 0.18;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
+
+.page-transition-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-transition-content {
+  position: relative;
+  z-index: 1;
+  animation: page-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+
+.page-transition-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.5) 28%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    radial-gradient(
+      circle at top center,
+      rgba(0, 53, 102, 0.08),
+      transparent 52%
+    );
+  animation: page-overlay-in 0.65s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-content,
+  .page-transition-overlay,
+  .animate-dropdown,
+  .animate-mega-preview,
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .animate-marquee-up,
+  .animate-marquee-down,
+  .animate-scroll-dot,
+  .animate-arc-draw,
+  .animate-origin-pulse {
+    animation: none;
+    transition-duration: 0.01ms;
+  }
 }
 
 /* Hero scroll indicator dot */

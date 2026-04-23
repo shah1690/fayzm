@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { ProductData } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 const t = {
@@ -119,6 +120,7 @@ export function ProductPageView({ product, locale }: Props) {
               fill
               sizes="55vw"
               className="absolute inset-0 object-cover"
+              {...shimmerImageProps(1200, 1400)}
             />
 
             {/* Made in Uzbekistan tag */}

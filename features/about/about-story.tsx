@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { aboutContent } from "@/content/about";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 type Props = Readonly<{ locale: Locale }>;
@@ -53,6 +54,7 @@ export function AboutStory({ locale }: Props) {
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 33vw"
+                {...shimmerImageProps(900, 1200)}
               />
             </div>
 
@@ -120,6 +122,7 @@ export function AboutStory({ locale }: Props) {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                {...shimmerImageProps(1200, 900)}
               />
             </div>
           </div>

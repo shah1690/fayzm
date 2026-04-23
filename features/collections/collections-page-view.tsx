@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/shared/i18n/translations";
+import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 export function CollectionsPageView() {
@@ -29,6 +30,7 @@ export function CollectionsPageView() {
               fill
               sizes="58vw"
               className="absolute inset-0 object-cover"
+              {...shimmerImageProps(1200, 1400)}
             />
             <div
               className="absolute inset-0"
@@ -102,6 +104,7 @@ export function CollectionsPageView() {
                   WebkitMaskImage:
                     "linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 80%)",
                 }}
+                {...shimmerImageProps(900, 600)}
               />
               <div
                 className="relative z-10 flex h-full flex-col justify-between p-8 md:p-10"
@@ -158,6 +161,7 @@ export function CollectionsPageView() {
                   fill
                   sizes="33vw"
                   className="absolute inset-0 object-cover transition-transform duration-500 group-hover:scale-105"
+                  {...shimmerImageProps(900, 1200)}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
