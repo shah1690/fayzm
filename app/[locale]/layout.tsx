@@ -1,14 +1,24 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { manrope, onest } from "@/app/fonts";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { ReplainWidget } from "@/components/layout/replain-widget";
 import { messages } from "@/i18n/messages";
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/shared/i18n/translations";
 import "../globals.css";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://fayzm.uz";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#003566",
+  colorScheme: "light",
+};
 
 type LocaleLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -29,7 +39,32 @@ export async function generateMetadata({
     ? locale
     : routing.defaultLocale;
 
-  return messages[resolvedLocale].Metadata;
+  const metadata = messages[resolvedLocale].Metadata;
+
+  return {
+    metadataBase: new URL(siteUrl),
+    applicationName: "FAYZ-M",
+    title: {
+      default: metadata.title,
+      template: "%s",
+    },
+    description: metadata.description,
+    manifest: "/manifest.webmanifest",
+    icons: {
+      icon: "/favicon.ico",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+  };
 }
 
 export default async function LocaleLayout({
@@ -51,6 +86,7 @@ export default async function LocaleLayout({
           <Navbar locale={locale as Locale} />
           {children}
           <Footer locale={locale as Locale} />
+          <ReplainWidget />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,7 +1,9 @@
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
+
 export type ContactSubmissionPayload = {
   fullName: string;
   email: string;
-  phone?: string;
+  phone: string;
   service?: string;
   message: string;
   product?: string;
@@ -17,6 +19,35 @@ export function cleanValue(value: unknown): string {
 
 export function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+export function normalizePhoneInput(value: string): string {
+  const cleaned = value.replace(/[^\d+]/g, "");
+  const digits = cleaned.replace(/\D/g, "");
+
+  return digits ? `+${digits}` : "+";
+}
+
+export function parseValidInternationalPhone(value: string): string | null {
+  const normalized = normalizePhoneInput(value);
+  const phoneNumber = parsePhoneNumberFromString(normalized);
+
+  return phoneNumber?.isValid() ? phoneNumber.number : null;
+}
+
+export function formatInternationalPhone(value: string): string {
+  const normalized = normalizePhoneInput(value);
+  const phoneNumber = parsePhoneNumberFromString(normalized);
+
+  return phoneNumber?.isValid()
+    ? phoneNumber.formatInternational()
+    : normalized;
+}
+
+export function formatPhoneAsYouType(value: string): string {
+  const normalized = normalizePhoneInput(value);
+
+  return new AsYouType().input(normalized);
 }
 
 export function truncate(value: string, maxLength: number): string {

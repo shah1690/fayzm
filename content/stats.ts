@@ -10,14 +10,14 @@ export type Stat = {
 
 export const stats: Stat[] = [
   {
-    target: 7,
+    target: 10,
     unit: "mln",
-    showPlus: true,
+    showPlus: false,
     icon: "tshirt",
     label: { en: "Products", uz: "Mahsulotlar", ru: "Продуктов" },
   },
   {
-    target: 1500,
+    target: 1800,
     unit: "",
     showPlus: true,
     icon: "briefcase",
@@ -31,8 +31,8 @@ export const stats: Stat[] = [
     label: { en: "Partners", uz: "Hamkorlar", ru: "Партнёров" },
   },
   {
-    target: 900,
-    unit: "kw",
+    target: 2000,
+    unit: "kW",
     showPlus: true,
     icon: "bolt",
     label: { en: "Green Energy", uz: "Yashil energiya", ru: "Зелёная энергия" },
@@ -57,12 +57,12 @@ export const ctaContent = {
   },
   cta: { en: "Contact Us →", uz: "Bog'lanish →", ru: "Связаться →" },
   card1: {
-    value: "900kw+",
+    value: "2 000 kW+",
     label: { en: "green energy", uz: "yashil energiya", ru: "зелёная энергия" },
   },
   card2: {
-    value: "1500+",
-    label: { en: "Employees worldwide.", uz: "Xodimlar.", ru: "Сотрудников." },
+    value: "1800+",
+    label: { en: "employees", uz: "xodimlar", ru: "сотрудников" },
   },
   card3: {
     value: "20+",

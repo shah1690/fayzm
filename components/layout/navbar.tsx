@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { AnimatedLogo } from "@/components/layout/animated-logo";
 import { BusinessesMegaMenu } from "@/components/layout/businesses-mega-menu";
 import { CollectionsMegaMenu } from "@/components/layout/collections-mega-menu";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
@@ -66,21 +66,13 @@ export function Navbar({ locale }: NavbarProps) {
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="flex h-[76px] items-center justify-between px-5 py-4 md:grid md:grid-cols-[1fr_auto_1fr] md:px-10">
         {/* Logo */}
-        <Link
+        <AnimatedLogo
           href={homeHref}
           onClick={handleLogoClick}
-          className="flex cursor-pointer items-center"
-        >
-          <Image
-            src={siteConfig.logo.light}
-            alt={siteConfig.name}
-            width={100}
-            height={32}
-            priority
-            className="h-8 w-auto"
-            style={{ width: "auto" }}
-          />
-        </Link>
+          variant="light"
+          size="nav"
+          priority
+        />
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-8 md:flex">

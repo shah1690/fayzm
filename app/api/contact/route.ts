@@ -4,6 +4,7 @@ import {
   cleanValue,
   isValidEmail,
   MIN_FORM_FILL_MS,
+  parseValidInternationalPhone,
   truncate,
 } from "@/shared/lib/contact-form";
 
@@ -86,13 +87,13 @@ export async function POST(request: NextRequest) {
 
   const fullName = cleanValue(payload.fullName);
   const email = cleanValue(payload.email);
-  const phone = cleanValue(payload.phone);
+  const phone = parseValidInternationalPhone(cleanValue(payload.phone));
   const service = cleanValue(payload.service);
   const message = cleanValue(payload.message);
   const product = cleanValue(payload.product);
   const startedAt = Number(payload.startedAt ?? 0);
 
-  if (!fullName || !email || !message) {
+  if (!fullName || !email || !phone || !message) {
     return NextResponse.json(
       { ok: false, message: "Required fields are missing." },
       { status: 400 },

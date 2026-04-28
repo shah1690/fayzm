@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/content/page-metadata";
 import { WomenPageView } from "@/features/collections/women-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { buildPageMetadata } from "@/shared/lib/seo";
 
 type LocalizedWomenPageProps = Readonly<{
   params: Promise<{
@@ -22,7 +23,10 @@ export async function generateMetadata({
 }: LocalizedWomenPageProps): Promise<Metadata> {
   const { locale } = await params;
 
-  return {
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/collections/women",
     title: pageMetadata.collectionsWomen.title[locale as Locale],
-  };
+    description: pageMetadata.collectionsWomen.description[locale as Locale],
+  });
 }

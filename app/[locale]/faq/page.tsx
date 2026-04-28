@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/content/page-metadata";
 import { FaqPageView } from "@/features/faq/faq-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { buildPageMetadata } from "@/shared/lib/seo";
 
 type LocalizedFaqPageProps = Readonly<{
   params: Promise<{
@@ -22,7 +23,10 @@ export async function generateMetadata({
 }: LocalizedFaqPageProps): Promise<Metadata> {
   const { locale } = await params;
 
-  return {
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/faq",
     title: pageMetadata.faq.title[locale as Locale],
-  };
+    description: pageMetadata.faq.description[locale as Locale],
+  });
 }

@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { AnimatedLogo } from "@/components/layout/animated-logo";
 import { getNavLabels, siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
 import { formatPhone } from "@/shared/lib/format-phone";
@@ -98,10 +98,10 @@ const address = {
 } as const;
 
 const headingClass =
-  "text-[11px] font-medium uppercase tracking-[0.18em] text-white/40";
+  "text-[11px] font-medium uppercase tracking-[0.18em] text-white/65";
 const linkClass =
-  "text-sm text-white/70 transition-colors duration-200 hover:text-white";
-const labelClass = "text-[11px] uppercase tracking-wider text-white/35";
+  "text-sm text-white/75 transition-colors duration-200 hover:text-white";
+const labelClass = "text-[11px] uppercase tracking-wider text-white/60";
 
 type FooterProps = Readonly<{ locale: Locale }>;
 
@@ -139,21 +139,13 @@ export function Footer({ locale }: FooterProps) {
 
   const brand = (
     <div className="flex flex-col gap-6">
-      <Link
+      <AnimatedLogo
         href={localizeHref(locale, "/")}
-        className="inline-flex w-fit"
-        aria-label={siteConfig.name}
-      >
-        <Image
-          src={siteConfig.logo.dark}
-          alt={siteConfig.name}
-          width={180}
-          height={48}
-          className="h-10 w-auto md:h-11"
-          style={{ width: "auto" }}
-        />
-      </Link>
-      <p className="max-w-sm text-sm leading-relaxed text-white/55">
+        variant="dark"
+        size="footer"
+        className="w-fit"
+      />
+      <p className="max-w-sm text-sm leading-relaxed text-white/70">
         {t("tagline")}
       </p>
       <div className="flex items-center gap-4">
@@ -166,7 +158,7 @@ export function Footer({ locale }: FooterProps) {
               aria-label={item.label}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/50 transition-colors duration-200 hover:text-white"
+              className="text-white/70 transition-colors duration-200 hover:text-white"
             >
               <Icon />
             </Link>
@@ -251,13 +243,13 @@ export function Footer({ locale }: FooterProps) {
 
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col-reverse items-start gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/60">
             © {year} {siteConfig.name}. {t("copyright")}.
           </p>
           <button
             type="button"
             onClick={scrollToTop}
-            className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/40 transition-colors duration-200 hover:text-white"
+            className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/65 transition-colors duration-200 hover:text-white"
           >
             {t("backToTop")} ↑
           </button>

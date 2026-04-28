@@ -1,7 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import type { CSSProperties } from "react";
 import { AboutStory } from "@/features/about/about-story";
 import { CtaBanner } from "@/features/cta/cta-banner";
 import { FaqSection } from "@/features/faq/faq-section";
@@ -9,6 +8,14 @@ import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
 import type { Locale } from "@/shared/i18n/translations";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
+
+const galleryMotion = [
+  { rotate: "-2.5deg", float: "-18px", activeRotate: "-0.5deg" },
+  { rotate: "1.5deg", float: "14px", activeRotate: "0.25deg" },
+  { rotate: "-0.8deg", float: "-12px", activeRotate: "1deg" },
+  { rotate: "2.4deg", float: "16px", activeRotate: "0.4deg" },
+  { rotate: "-1.6deg", float: "-16px", activeRotate: "-0.2deg" },
+] as const;
 
 const galleryImages = {
   en: [
@@ -95,27 +102,49 @@ export function AboutPageView({ locale }: AboutPageViewProps) {
         </div>
       </section>
 
-      {/* Image gallery — full width, touches edges */}
-      <div className="mt-12 flex gap-4 overflow-x-auto pb-4 md:mt-16">
-        {galleryImages[locale].map((img) => (
-          <div
-            key={img.src}
-            className="h-[320px] w-[280px] flex-shrink-0 overflow-hidden rounded-2xl first:ml-5 last:mr-5 md:h-[420px] md:w-[340px] md:first:ml-10 md:last:mr-10"
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={400}
-              height={500}
-              sizes="(min-width: 768px) 340px, 280px"
-              className="h-full w-full object-cover"
-              {...shimmerImageProps(400, 500)}
-            />
-          </div>
-        ))}
-      </div>
-
       <StatsSection locale={locale} />
+
+      {/* Kinetic image gallery */}
+      <section className="about-gallery relative overflow-hidden py-7 md:py-10">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-white to-transparent md:w-32" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-white to-transparent md:w-32" />
+        <div className="about-gallery-track flex w-max gap-5 px-5 md:gap-6 md:px-10">
+          {(["primary", "secondary"] as const).flatMap((loopId) =>
+            galleryImages[locale].map((img, imageIndex) => {
+              const motion = galleryMotion[imageIndex % galleryMotion.length];
+              const style = {
+                "--about-rotate": motion.rotate,
+                "--about-float": motion.float,
+                "--about-active-rotate": motion.activeRotate,
+                "--about-delay": `${(imageIndex % galleryMotion.length) * 0.28}s`,
+              } as CSSProperties;
+
+              return (
+                <figure
+                  key={`${loopId}-${img.src}`}
+                  className="about-gallery-card group relative h-[260px] w-[220px] flex-shrink-0 overflow-hidden rounded-[28px] bg-[#F4EFE8] shadow-[0_24px_70px_rgba(7,10,15,0.12)] ring-1 ring-black/5 sm:h-[320px] sm:w-[280px] md:h-[420px] md:w-[340px]"
+                  style={style}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={400}
+                    height={500}
+                    sizes="(min-width: 768px) 340px, (min-width: 640px) 280px, 220px"
+                    quality={60}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+                    {...shimmerImageProps(400, 500)}
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#003566]/28 via-transparent to-white/10 opacity-70" />
+                  <figcaption className="pointer-events-none absolute bottom-4 left-4 right-4 translate-y-2 rounded-2xl border border-white/20 bg-white/12 px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-white opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                    {img.alt}
+                  </figcaption>
+                </figure>
+              );
+            }),
+          )}
+        </div>
+      </section>
       <AboutStory locale={locale} />
       <CtaBanner locale={locale} />
       <PartnersSection locale={locale} />

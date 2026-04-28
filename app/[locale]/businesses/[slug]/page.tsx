@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getBusinessBySlug } from "@/content/businesses";
 import { BusinessPageView } from "@/features/businesses/business-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { buildPageMetadata } from "@/shared/lib/seo";
 
 type LocalizedBusinessPageProps = Readonly<{
   params: Promise<{
@@ -36,7 +37,11 @@ export async function generateMetadata({
     };
   }
 
-  return {
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: `/businesses/${slug}`,
     title: `${business.label[locale as Locale]} | FAYZ-M`,
-  };
+    description: business.description[locale as Locale],
+    image: business.ctaImage,
+  });
 }

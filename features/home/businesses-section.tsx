@@ -18,12 +18,12 @@ const sectionContent = {
 const divisions = [
   {
     slug: "knitting",
-    label: { en: "Knitting", uz: "Trikotaj", ru: "Трикотаж" },
-    title: { en: "Knitting", uz: "Trikotaj", ru: "Трикотаж" },
+    label: { en: "Knitting", uz: "Trikotaj mato", ru: "Трикотаж" },
+    title: { en: "Knitting", uz: "Trikotaj mato", ru: "Трикотаж" },
     desc: {
-      en: "4,000 tons of quality fabric annually. Equipment from TAYFAN, HonKnit & Boosan.",
-      uz: "Yiliga 4 000 tonna sifatli mato. TAYFAN, HonKnit va Boosan jihozlari.",
-      ru: "4 000 тонн тканей в год. Оборудование от TAYFAN, HonKnit и Boosan.",
+      en: "4,015 tons of quality fabric annually. Equipment from TAYFAN, HonKnit & Boosan.",
+      uz: "Yillik quvvati 4 015 tonna. Taifan, Honknit, Boosan va Jacquard uskunalari bilan jihozlangan.",
+      ru: "4 015 тонн тканей в год. Оборудование от TAYFAN, HonKnit и Boosan.",
     },
     icon: (
       <svg
@@ -55,9 +55,9 @@ const divisions = [
       ru: "Производство пряжи",
     },
     desc: {
-      en: "9,417 tons of yarn per year. 24-ton daily capacity spinning mill launched in 2022.",
-      uz: "Yiliga 9 417 tonna ip. 2022 yilda ishga tushirilgan 24 tonna/kunlik zavod.",
-      ru: "9 417 тонн пряжи в год. Прядильная фабрика мощностью 24 т/сут запущена в 2022 году.",
+      en: "9,417 tons production capacity. Automated RIETER spinning line.",
+      uz: "Ishlab chiqarish quvvati 9 417 tonna. Avtomatlashtirilgan RIETER liniyasi.",
+      ru: "Производственная мощность 9 417 тонн. Автоматизированная линия RIETER.",
     },
     icon: (
       <svg
@@ -91,9 +91,9 @@ const divisions = [
       ru: "Швейное производство",
     },
     desc: {
-      en: "7 million garments per year. Exported to Poland, Turkey, Russia, Italy & Kazakhstan.",
-      uz: "Yiliga 7 million kiyim. Polsha, Turkiya, Rossiya, Italiya va Qozog'istonga eksport.",
-      ru: "7 миллионов изделий в год. Экспорт в Польшу, Турцию, Россию, Италию и Казахстан.",
+      en: "10 million garments per year. Exported to Poland, Turkey, Russia, Italy & Kazakhstan.",
+      uz: "Yiliga 10 million dona kiyim. Polsha, Turkiya, Rossiya, Italiya va Qozog'istonga eksport.",
+      ru: "10 миллионов изделий в год. Экспорт в Польшу, Турцию, Россию, Италию и Казахстан.",
     },
     icon: (
       <svg
@@ -125,9 +125,9 @@ const divisions = [
       ru: "Производство муки",
     },
     desc: {
-      en: "14,600 tons of flour per year. Modern milling with strict quality and hygiene standards.",
-      uz: "Yiliga 14 600 tonna un. Qat'iy sifat va gigiyena standartlariga mos zamonaviy tegirmon.",
-      ru: "14 600 тонн муки в год. Современный помол со строгим контролем качества.",
+      en: "29,200 tons annual production capacity. Started operations in 2022.",
+      uz: "Yillik ishlab chiqarish quvvati 29 200 tonna. 2022 yilda faoliyat boshlagan.",
+      ru: "Годовая мощность 29 200 тонн. Начало работу в 2022 году.",
     },
     icon: (
       <svg
@@ -152,17 +152,17 @@ const divisions = [
     slug: "petrol",
     label: {
       en: "Petrol Station",
-      uz: "Yoqilg'i stansiyasi",
-      ru: "Автозаправка",
+      uz: "Yoqilg'i quyish shoxobchasi",
+      ru: "АЗС",
     },
     title: {
       en: "Petrol Station",
-      uz: "Yoqilg'i stansiyasi",
-      ru: "Автозаправка",
+      uz: "Yoqilg'i quyish shoxobchasi",
+      ru: "АЗС",
     },
     desc: {
       en: "Fuel supply for the cluster's fleet and surrounding community. Reliable energy infrastructure.",
-      uz: "Klaster transporti va atrofdagi jamiyat uchun yoqilg'i ta'minoti.",
+      uz: "FAYZ-M texnikalari va yaqin atrofdagi aholi uchun yoqilg'i ta'minoti. Saqlash quvvati 100 000 litr.",
       ru: "Топливное обеспечение автопарка кластера и окружающего сообщества.",
     },
     icon: (
@@ -187,16 +187,16 @@ const divisions = [
   },
   {
     slug: "farm",
-    label: { en: "Farm", uz: "Dehqonchilik", ru: "Сельское хозяйство" },
+    label: { en: "Farm", uz: "Chorvachilik", ru: "Фермерское хозяйство" },
     title: {
       en: "Farm & Agriculture",
-      uz: "Dehqonchilik",
-      ru: "Сельское хозяйство",
+      uz: "Chorvachilik",
+      ru: "Фермерское хозяйство",
     },
     desc: {
-      en: "Cultivating cotton and crops to feed the cluster's raw material supply chain sustainably.",
-      uz: "Klasterning xom ashyo ta'minot zanjirini barqaror ta'minlash uchun paxta va ekinlar yetishtiriladi.",
-      ru: "Выращивание хлопка и культур для устойчивого снабжения сырьём кластера.",
+      en: "Established in 2018 with cattle, 1,000+ pedigree sheep, and 20+ horses from Europe.",
+      uz: "2018 yilda tashkil etilgan. Zotli qoramol, 1000+ qo'y va 20+ ot mavjud.",
+      ru: "Основано в 2018 году. Племенной скот, 1 000+ овец и 20+ лошадей из Европы.",
     },
     icon: (
       <svg
@@ -220,12 +220,12 @@ const divisions = [
   },
   {
     slug: "cottonseed-oil",
-    label: { en: "Cottonseed Oil", uz: "Paxta moyi", ru: "Хлопковое масло" },
-    title: { en: "Cottonseed Oil", uz: "Paxta moyi", ru: "Хлопковое масло" },
+    label: { en: "Cottonseed Oil", uz: "Paxta yog'i", ru: "Хлопковое масло" },
+    title: { en: "Cottonseed Oil", uz: "Paxta yog'i", ru: "Хлопковое масло" },
     desc: {
-      en: "Refined cottonseed oil production from cluster-grown cotton. Zero-waste processing approach.",
-      uz: "Klasterda yetishtirilgan paxtadan tozalangan paxta moyi. Chiqindisiz qayta ishlash.",
-      ru: "Рафинированное хлопковое масло из хлопка кластера. Безотходная переработка.",
+      en: "Refined cottonseed oil from cluster-grown cottonseed. Zero-waste processing approach.",
+      uz: "Klasterda yetishtirilgan chigitdan tozalangan paxta yog'i. Chiqindisiz qayta ishlash.",
+      ru: "Рафинированное хлопковое масло из семян хлопка кластера. Безотходная переработка.",
     },
     icon: (
       <svg

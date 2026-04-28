@@ -8,7 +8,6 @@ export const manrope = Manrope({
 
 export const onest = Onest({
   subsets: ["latin", "cyrillic"],
-  weight: ["500", "600", "700", "800"],
   variable: "--font-primary",
   display: "swap",
 });

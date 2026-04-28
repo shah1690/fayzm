@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "@/i18n/navigation";
 
 type PageTransitionProps = Readonly<{ children: React.ReactNode }>;
@@ -11,7 +11,7 @@ export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname();
   const contentRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const root = contentRef.current;
 
     if (!root || typeof window === "undefined") {

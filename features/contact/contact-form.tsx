@@ -2,7 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
-import type { ContactSubmissionPayload } from "@/shared/lib/contact-form";
+import {
+  type ContactSubmissionPayload,
+  formatInternationalPhone,
+  formatPhoneAsYouType,
+  parseValidInternationalPhone,
+} from "@/shared/lib/contact-form";
 
 function NameIcon() {
   return (
@@ -115,6 +120,7 @@ export function ContactForm() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
 
   const services = [
     t("services.knitting"),
@@ -137,15 +143,42 @@ export function ContactForm() {
     }));
   }
 
+  function handlePhoneChange(value: string) {
+    updateField("phone", formatPhoneAsYouType(value));
+    setPhoneError(null);
+  }
+
+  function handlePhoneBlur() {
+    const validPhone = parseValidInternationalPhone(formValues.phone);
+
+    if (!validPhone) {
+      setPhoneError(t("phoneInvalid"));
+      return;
+    }
+
+    updateField("phone", formatInternationalPhone(validPhone));
+    setPhoneError(null);
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitState("submitting");
     setSubmitError(null);
 
+    const validPhone = parseValidInternationalPhone(formValues.phone);
+
+    if (!validPhone) {
+      setSubmitState("idle");
+      setPhoneError(t("phoneInvalid"));
+      return;
+    }
+
+    setPhoneError(null);
+
     const payload: ContactSubmissionPayload = {
       fullName: formValues.fullName,
       email: formValues.email,
-      phone: formValues.phone,
+      phone: validPhone,
       service: formValues.service,
       message: formValues.message,
       product:
@@ -270,13 +303,27 @@ export function ContactForm() {
             </span>
             <input
               id="phone"
+              required
               type="tel"
+              inputMode="tel"
+              autoComplete="tel"
               placeholder={t("phonePlaceholder")}
               value={formValues.phone}
-              onChange={(e) => updateField("phone", e.target.value)}
-              className={`${inputBase} pl-9`}
+              onFocus={() => {
+                if (!formValues.phone) updateField("phone", "+");
+              }}
+              onBlur={handlePhoneBlur}
+              onChange={(e) => handlePhoneChange(e.target.value)}
+              aria-invalid={phoneError ? "true" : "false"}
+              aria-describedby={phoneError ? "phone-error" : undefined}
+              className={`${inputBase} pl-9 ${phoneError ? "border-red-400 focus:border-red-500" : ""}`}
             />
           </div>
+          {phoneError ? (
+            <p id="phone-error" className="text-xs text-red-500">
+              {phoneError}
+            </p>
+          ) : null}
         </div>
       </div>
 

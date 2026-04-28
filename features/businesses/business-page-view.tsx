@@ -69,19 +69,19 @@ const text = {
     ru: "Связаться →",
   },
   overview: {
-    en: "Operational overview",
-    uz: "Operatsion ko'rinish",
-    ru: "Операционный обзор",
+    en: "Overview",
+    uz: "Faoliyat sharhi",
+    ru: "Обзор направления",
   },
   capabilityFrame: {
-    en: "Capability framework",
-    uz: "Imkoniyatlar tizimi",
-    ru: "Каркас возможностей",
+    en: "Production capabilities",
+    uz: "Ishlab chiqarish imkoniyatlari",
+    ru: "Производственные возможности",
   },
   whatWeBuilt: {
-    en: "What we built",
-    uz: "Nima qildik",
-    ru: "Что мы сделали",
+    en: "Key strengths",
+    uz: "Asosiy imkoniyatlar",
+    ru: "Ключевые возможности",
   },
   clusterScale: {
     en: "Cluster scale",
@@ -99,14 +99,14 @@ const text = {
     ru: "Энергия",
   },
   fitHeading: {
-    en: "How this division fits cluster",
-    uz: "Bu yo'nalish klasterga qanday ulanadi",
-    ru: "Как это направление встроено в кластер",
+    en: "How this division works in the cluster",
+    uz: "Bu yo'nalish klasterda qanday ishlaydi",
+    ru: "Как это направление работает в кластере",
   },
   quote: {
-    en: "Quality starts at source — from field and fiber to finished output, every stage stays under control.",
-    uz: "Sifat manbadan boshlanadi — dala va tolalardan tayyor mahsulotgacha har bosqich nazoratda turadi.",
-    ru: "Качество начинается у истока — от поля и волокна до готового результата каждый этап остаётся под контролем.",
+    en: "Product quality begins with carefully selected raw materials. Every production stage is managed under one system.",
+    uz: "Mahsulot sifati xom ashyoni to'g'ri tanlashdan boshlanadi. Ishlab chiqarishning har bir bosqichi yagona tizimda nazorat qilinadi.",
+    ru: "Качество продукции начинается с правильного выбора сырья. Каждый этап производства контролируется в единой системе.",
   },
   employeesStat: {
     en: "Employees across all business divisions, making FAYZ-M one of largest employers in Khojaobod district.",
@@ -114,9 +114,9 @@ const text = {
     ru: "Численность сотрудников по всем направлениям делает FAYZ-M одним из крупнейших работодателей Ходжаабадского района.",
   },
   energyStat: {
-    en: "Solar capacity in operation since 2023, targeting 2 megawatts and a fully green production loop.",
-    uz: "2023 yildan ishlayotgan quyosh quvvati 2 megavatt va to'liq yashil ishlab chiqarish zanjiriga yo'naltirilgan.",
-    ru: "Солнечная мощность работает с 2023 года и ведёт к 2 мегаваттам и полностью зелёному производственному циклу.",
+    en: "2,000 kW of solar capacity has been operating since 2023, supporting a greener production chain.",
+    uz: "2023 yildan beri 2 000 kW quyosh quvvati ishlamoqda; maqsad — yashil ishlab chiqarish ulushini oshirish.",
+    ru: "С 2023 года работает 2 000 кВт солнечной мощности; цель — увеличить долю зелёного производства.",
   },
   partnershipHeading: {
     en: "Interested in partnership?",
@@ -580,14 +580,14 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <StatCard
-                  value="1500"
+                  value="1800"
                   suffix="+"
                   title={text.employees[locale]}
                   description={text.employeesStat[locale]}
                 />
                 <StatCard
-                  value="900"
-                  suffix="kw+"
+                  value="2000"
+                  suffix="kW+"
                   title={text.energy[locale]}
                   description={text.energyStat[locale]}
                 />

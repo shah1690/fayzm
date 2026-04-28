@@ -24,7 +24,7 @@ export const products: ProductData[] = [
     name: "1474",
     description: {
       en: "Soft knitwear hoodie with a relaxed fit and brushed interior. Crafted from premium cotton blend for all-day comfort.",
-      uz: "Yumshoq trikotaj tolali keng kesimli kurti. Premium paxta aralashmasi asosida ishlab chiqarilgan.",
+      uz: "Yumshoq trikotajdan tikilgan erkin bichimli xudi. Kun bo'yi qulaylik uchun premium paxta aralashmasidan tayyorlangan.",
       ru: "Мягкое трикотажное худи свободного кроя с начёсом внутри. Из премиальной хлопковой смеси для комфорта на весь день.",
     },
     image: "/images/products/w-1474.jpg",
@@ -78,7 +78,7 @@ export const products: ProductData[] = [
     name: "9149",
     description: {
       en: "Slim turtleneck with a smooth knit surface. Elegant and versatile — from office to evening.",
-      uz: "Silliq trikotaj yuzali ingichka rulonli bo'yin. Ofisdan kechki vaqtgacha — universallik timsoli.",
+      uz: "Silliq trikotaj yuzali yupqa vodolazka. Ofisdan kechki uchrashuvgacha mos keladigan nafis model.",
       ru: "Облегающая водолазка с гладкой вязаной поверхностью. Элегантная и универсальная — от офиса до вечера.",
     },
     image: "/images/products/w-9149.jpg",
@@ -96,7 +96,7 @@ export const products: ProductData[] = [
     name: "1495",
     description: {
       en: "Cropped cardigan with button closure and structured silhouette. Pairs seamlessly with high-waist styles.",
-      uz: "Tugmalik qisqa kardigan. Yuqori bel uslublari bilan mukammal juftlanadi.",
+      uz: "Tugmali qisqa kardigan. Baland belli kiyimlar bilan yaxshi mos tushadi.",
       ru: "Укороченный кардиган с пуговицами и структурированным силуэтом. Идеально сочетается с завышенной талией.",
     },
     image: "/images/products/w-1495.jpg",
@@ -114,7 +114,7 @@ export const products: ProductData[] = [
     name: "W-1456",
     description: {
       en: "V-neck sweater in a relaxed silhouette. Timeless design with a fine texture that flatters every body type.",
-      uz: "V-bo'yin sviter. Har qanday tana tipini bezaydigan bezatilmagan klassik dizayn.",
+      uz: "V-bo'yin sviter. Mayin teksturali, har xil qomatga mos tushadigan klassik dizayn.",
       ru: "Свитер с V-образным вырезом в свободном силуэте. Вневременной дизайн с тонкой текстурой для любой фигуры.",
     },
     image: "/images/products/w-1456.jpg",
@@ -152,7 +152,7 @@ export const products: ProductData[] = [
     name: "M-874",
     description: {
       en: "Zip-up hoodie with a stonewashed finish. High-quality cotton French terry with a soft interior — built for warmth and comfort during chilly days.",
-      uz: "Toshlangan effektli fermuarli kofta. Yumshoq ichki qismi bilan sifatli paxta fransuz terri — sovuq kunlar uchun yaratilgan.",
+      uz: "Stonewashed effektli fermuarli xudi. Yumshoq ichki qismi va sifatli French terry matosi sovuq kunlarda issiqlik va qulaylik beradi.",
       ru: "Худи на молнии со стираным эффектом. Высококачественный хлопковый French terry с мягкой подкладкой — создан для тепла и комфорта в прохладные дни.",
     },
     image: "/images/products/m-874.jpg",
@@ -224,7 +224,7 @@ export const products: ProductData[] = [
     name: "M-627",
     description: {
       en: "Half-zip sweatshirt with brushed fleece interior. A performance-inspired silhouette that transitions from outdoor to everyday use.",
-      uz: "Cho'tkalangan fleece ichki qismi bilan yarim fermuarli svitshot. Tashqaridan kundalik foydalanishga o'tadigan siluet.",
+      uz: "Ichki qismi taralgan flisdan ishlangan yarim fermuarli svitshot. Faol dam olish va kundalik kiyish uchun qulay model.",
       ru: "Свитшот на полумолнии с начёсом из флиса. Силуэт, вдохновлённый перформансом, — от активного отдыха до повседневной носки.",
     },
     image: "/images/products/m-627.jpg",

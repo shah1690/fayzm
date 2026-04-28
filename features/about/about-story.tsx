@@ -54,6 +54,7 @@ export function AboutStory({ locale }: Props) {
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 33vw"
+                quality={62}
                 {...shimmerImageProps(900, 1200)}
               />
             </div>
@@ -122,6 +123,7 @@ export function AboutStory({ locale }: Props) {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                quality={62}
                 {...shimmerImageProps(1200, 900)}
               />
             </div>

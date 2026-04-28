@@ -1,7 +1,7 @@
 import type { Locale } from "@/shared/i18n/translations";
 
 export const siteConfig = {
-  name: "Fayzm",
+  name: "FAYZ-M",
   logo: {
     light: "/logo-light.svg",
     dark: "/logo-dark.svg",
@@ -71,7 +71,7 @@ export const siteConfig = {
     ],
     legal: [
       { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms & Conditions", href: "/terms" },
+      { label: "Terms", href: "/terms" },
     ],
   },
 } as const;
@@ -101,7 +101,11 @@ export function getNavLabels(locale: Locale) {
     contactUs:
       locale === "en" ? "Contact Us" : locale === "uz" ? "Aloqa" : "Контакты",
     knitting:
-      locale === "en" ? "Knitting" : locale === "uz" ? "Trikotaj" : "Вязание",
+      locale === "en"
+        ? "Knitting"
+        : locale === "uz"
+          ? "Trikotaj mato"
+          : "Трикотаж",
     yarnProduction:
       locale === "en"
         ? "Yarn Production"
@@ -112,11 +116,26 @@ export function getNavLabels(locale: Locale) {
       locale === "en"
         ? "Garment Production"
         : locale === "uz"
-          ? "Kiyim ishlab chiqarish"
-          : "Производство одежды",
-    petrol: locale === "en" ? "Petrol" : locale === "uz" ? "Neft" : "Нефть",
-    flour: locale === "en" ? "Flour" : locale === "uz" ? "Un" : "Мука",
-    farm: locale === "en" ? "Farm" : locale === "uz" ? "Ferm" : "Ферма",
+          ? "Tikuvchilik"
+          : "Швейное производство",
+    petrol:
+      locale === "en"
+        ? "Petrol Station"
+        : locale === "uz"
+          ? "Yoqilg'i quyish shoxobchasi"
+          : "АЗС",
+    flour:
+      locale === "en"
+        ? "Flour Production"
+        : locale === "uz"
+          ? "Un ishlab chiqarish"
+          : "Производство муки",
+    farm:
+      locale === "en"
+        ? "Farm"
+        : locale === "uz"
+          ? "Chorvachilik"
+          : "Фермерское хозяйство",
     cottonseedOil:
       locale === "en"
         ? "Cottonseed Oil"

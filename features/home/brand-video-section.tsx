@@ -28,6 +28,7 @@ export function BrandVideoSection() {
         <video
           ref={videoRef}
           src="/videos/brand.mp4"
+          preload="none"
           muted
           loop
           playsInline

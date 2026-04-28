@@ -2,7 +2,7 @@ export const aboutContent = {
   section1: {
     heading: {
       en: "Company\nHistory",
-      uz: "Kompaniya\nTarixi",
+      uz: "Kompaniya\ntarixi",
       ru: "История\nКомпании",
     },
     description: {
@@ -20,7 +20,7 @@ export const aboutContent = {
       {
         title: {
           en: "1999 — First Step",
-          uz: "1999 — Birinchi Qadam",
+          uz: "1999 — Birinchi qadam",
           ru: "1999 — Первый Шаг",
         },
         text: {
@@ -44,13 +44,13 @@ export const aboutContent = {
       {
         title: {
           en: "2023 — Green Transition",
-          uz: "2023 — Yashil O'tish",
+          uz: "2023 — Yashil o'tish",
           ru: "2023 — Переход к Зелёной Энергии",
         },
         text: {
-          en: "Since 2023, FAYZ-M has been transitioning to green energy, already operating 900 kW of solar capacity while expanding exports to Poland, Turkey, Russia, Italy, Kazakhstan, and beyond.",
-          uz: "2023 yildan boshlab FAYZ-M yashil energiyaga o'tishni boshladi: allaqachon 900 kVt quyosh quvvati ishlamoqda, eksport esa Polsha, Turkiya, Rossiya, Italiya, Qozog'iston va boshqa bozorlarga kengaymoqda.",
-          ru: "С 2023 года FAYZ-M переходит на зелёную энергию: уже работает 900 кВт солнечной мощности, а экспорт расширяется в Польшу, Турцию, Россию, Италию, Казахстан и другие страны.",
+          en: "Since 2023, FAYZ-M has been transitioning to green energy, already operating 2,000 kW of solar capacity while expanding exports to Poland, Turkey, Russia, Italy, Kazakhstan, and beyond.",
+          uz: "2023 yildan boshlab FAYZ-M yashil energiyaga o'tishni boshladi: allaqachon 2 000 kVt quyosh quvvati ishlamoqda, eksport esa Polsha, Turkiya, Rossiya, Italiya, Qozog'iston va boshqa bozorlarga kengaymoqda.",
+          ru: "С 2023 года FAYZ-M переходит на зелёную энергию: уже работает 2 000 кВт солнечной мощности, а экспорт расширяется в Польшу, Турцию, Россию, Италию, Казахстан и другие страны.",
         },
       },
     ],
@@ -58,7 +58,7 @@ export const aboutContent = {
   section2: {
     heading: {
       en: "Company Values\nAnd Future Plans",
-      uz: "Kompaniya Qadriyatlari\nVa Kelajak Rejalari",
+      uz: "Kompaniya qadriyatlari\nva kelajak rejalari",
       ru: "Ценности Компании\nИ Планы На Будущее",
     },
     description: {
@@ -70,12 +70,12 @@ export const aboutContent = {
       icon: "⚡",
       title: {
         en: "Next Stage Growth Targets",
-        uz: "Keyingi Bosqich O'sish Maqsadlari",
+        uz: "Keyingi bosqich maqsadlari",
         ru: "Цели Роста На Следующий Этап",
       },
       text: {
         en: "FAYZ-M aims to reach 10,000 tons of yarn, 5,000 tons of fabric, and 10 million garments per year, grow solar capacity to 2 MW, achieve 100% green energy usage, launch recycled-material clothing lines, raise female employment to 50%, and strengthen partnerships with European and Asian brands.",
-        uz: "FAYZ-M yiliga 10 000 tonna ip, 5 000 tonna mato va 10 million dona kiyim ishlab chiqarish, quyosh quvvatini 2 MVt ga yetkazish, 100% yashil energiyadan foydalanish, qayta ishlangan materiallardan kiyim liniyalarini ishga tushirish, ayollar bandligini 50% ga oshirish hamda Yevropa va Osiyo brendlari bilan hamkorlikni kuchaytirishni maqsad qilgan.",
+        uz: "FAYZ-M yiliga 10 000 tonna ip, 5 000 tonna mato va 10 million dona kiyim ishlab chiqarishni, mavjud 2 MVt quyosh quvvatidan samarali foydalanishni, yashil energiya ulushini oshirishni va Yevropa hamda Osiyo brendlari bilan hamkorlikni kengaytirishni maqsad qilgan.",
         ru: "FAYZ-M стремится выйти на 10 000 тонн пряжи, 5 000 тонн ткани и 10 миллионов изделий в год, увеличить солнечную мощность до 2 МВт, достичь 100% использования зелёной энергии, запустить линии одежды из переработанных материалов, довести долю женской занятости до 50% и укрепить партнёрства с европейскими и азиатскими брендами.",
       },
       cta: {

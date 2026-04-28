@@ -33,10 +33,11 @@ export function HeroSection({ locale }: Props) {
           muted
           loop
           playsInline
-          poster="/logo-light.svg"
+          poster="/images/hero-poster.jpg"
+          preload="metadata"
           className="absolute inset-0 h-full w-full object-cover"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src="/videos/hero-loop.mp4" type="video/mp4" />
         </video>
 
         {/* Subtle edge vignette so corner controls stay readable */}

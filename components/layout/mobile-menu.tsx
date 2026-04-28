@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { businesses } from "@/content/businesses";
 import { Link as LocaleLink } from "@/i18n/navigation";
 import { getNavLabels, siteConfig } from "@/shared/config/site-config";
@@ -99,6 +99,8 @@ export function MobileMenu({ locale }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const collectionsPanelId = useId();
+  const businessesPanelId = useId();
   const labels = getNavLabels(locale);
 
   useEffect(() => {
@@ -148,6 +150,8 @@ export function MobileMenu({ locale }: MobileMenuProps) {
               <li>
                 <button
                   type="button"
+                  aria-expanded={openSection === "collections"}
+                  aria-controls={collectionsPanelId}
                   onClick={() => toggleSection("collections")}
                   className="flex min-h-14 w-full items-center justify-between py-4 text-base font-medium text-[#070A0F]"
                 >
@@ -155,7 +159,10 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                   <ChevronDown open={openSection === "collections"} />
                 </button>
                 {openSection === "collections" && (
-                  <div className="mb-3 flex flex-col gap-1 pl-3">
+                  <div
+                    id={collectionsPanelId}
+                    className="mb-3 flex flex-col gap-1 pl-3"
+                  >
                     {[
                       { label: text.women[locale], href: "/collections/women" },
                       { label: text.men[locale], href: "/collections/men" },
@@ -178,6 +185,8 @@ export function MobileMenu({ locale }: MobileMenuProps) {
               <li>
                 <button
                   type="button"
+                  aria-expanded={openSection === "businesses"}
+                  aria-controls={businessesPanelId}
                   onClick={() => toggleSection("businesses")}
                   className="flex min-h-14 w-full items-center justify-between py-4 text-base font-medium text-[#070A0F]"
                 >
@@ -185,7 +194,10 @@ export function MobileMenu({ locale }: MobileMenuProps) {
                   <ChevronDown open={openSection === "businesses"} />
                 </button>
                 {openSection === "businesses" && (
-                  <div className="mb-3 grid grid-cols-2 gap-1 pl-3">
+                  <div
+                    id={businessesPanelId}
+                    className="mb-3 grid grid-cols-2 gap-1 pl-3"
+                  >
                     {businesses.map((b) => (
                       <Link
                         key={b.slug}

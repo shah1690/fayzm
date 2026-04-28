@@ -145,7 +145,7 @@ export function StatsSection({ locale }: StatsSectionProps) {
                     showPlus={stat.showPlus}
                     delayMs={index * 100}
                   />
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-gray-600">
                     {stat.label[locale]}
                   </p>
                 </div>

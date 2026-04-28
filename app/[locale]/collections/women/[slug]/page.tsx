@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getProduct, getProductsByGender } from "@/content/products";
 import { ProductPageView } from "@/features/collections/product-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { buildPageMetadata } from "@/shared/lib/seo";
 
 type Props = Readonly<{ params: Promise<{ locale: string; slug: string }> }>;
 
@@ -16,10 +17,18 @@ export default async function WomenProductPage({ params }: Props) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const product = getProduct("women", slug);
 
-  return { title: product ? `${product.name} | FAYZ-M` : "FAYZ-M" };
+  if (!product) return { title: "FAYZ-M" };
+
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: `/collections/women/${slug}`,
+    title: `${product.name} | FAYZ-M`,
+    description: product.description[locale as Locale],
+    image: product.image,
+  });
 }
 
 export function generateStaticParams() {

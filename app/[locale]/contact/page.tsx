@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/content/page-metadata";
 import { ContactPageView } from "@/features/contact/contact-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { buildPageMetadata } from "@/shared/lib/seo";
 
 type LocalizedContactPageProps = Readonly<{
   params: Promise<{
@@ -22,7 +23,10 @@ export async function generateMetadata({
 }: LocalizedContactPageProps): Promise<Metadata> {
   const { locale } = await params;
 
-  return {
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/contact",
     title: pageMetadata.contact.title[locale as Locale],
-  };
+    description: pageMetadata.contact.description[locale as Locale],
+  });
 }

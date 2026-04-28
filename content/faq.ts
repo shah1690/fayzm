@@ -42,11 +42,10 @@ export const faqContent = {
     ] satisfies FaqItem[],
   },
   uz: {
-    title: "Ko'p So'raladigan\nSavollar",
-    subtitle: "Biz haqimizda tez-tez so'raladigan savollarga javoblar.",
+    title: "Ko'p so'raladigan\nsavollar",
+    subtitle: "Hamkorlar ko'p so'raydigan savollarga qisqa javoblar.",
     stillHaveQuestions: "Savollar qoldimi?",
-    stillHaveDesc:
-      "Javob topa olmadingizmi? Bizning do'stona jamoamiz bilan bog'laning!",
+    stillHaveDesc: "Kerakli javobni topmadingizmi? Jamoamiz bilan bog'laning.",
     scheduleCall: "Qo'ng'iroq rejalashtirish",
     items: [
       {
@@ -57,12 +56,12 @@ export const faqContent = {
       {
         question: "Qanday to'lov usullarini qabul qilasiz?",
         answer:
-          "Kompaniya ishlab chiqarishni boshlash uchun 30% avans to'lovini talab qiladi. Tovarlar tayyor bo'lgach, mijoz qolgan 70% ni olishdan oldin to'laydi.",
+          "Ishlab chiqarishni boshlash uchun 30% avans to'lovi qilinadi. Buyurtma tayyor bo'lgach, qolgan 70% mahsulotni olishdan oldin to'lanadi.",
       },
       {
         question: "Bizning brend nomi ostida mahsulot ishlab chiqara olasizmi?",
         answer:
-          "Ha, albatta, biz mahsulotlarni sizning brendingiz ostida ishlab chiqara olamiz.",
+          "Ha, mahsulotlarni sizning brendingiz ostida ishlab chiqaramiz.",
       },
       {
         question: "To'lovdan keyin ishlab chiqarish qancha vaqt oladi?",
@@ -73,12 +72,12 @@ export const faqContent = {
         question:
           "Buyurtma va ishlab chiqarish jarayonida bizning aloqa nuqtamiz kim bo'ladi?",
         answer:
-          "Avval maxsus namuna tayyorlanib, tasdiqlanadi. Keyin shaxsiy savdo menejeri tayinlanib, ishlab chiqarish davomida har kuni muloqot qiladi.",
+          "Avval namuna tayyorlanadi va tasdiqlanadi. Keyin shaxsiy savdo menejeri buyurtma jarayonini kuzatib boradi.",
       },
       {
         question: "Bizga maxsus dizayn yaratib bera olasizmi?",
         answer:
-          "Albatta. Agar shaxsiy dizayn kerak bo'lsa, uni siz uchun ishlab chiqishimiz mumkin. Maxsus dizaynlarni himoya qilish uchun eksklyuziv shartnomalar ham mavjud.",
+          "Ha. Kerak bo'lsa, siz uchun maxsus dizayn ishlab chiqamiz. Eksklyuziv dizaynlar bo'yicha alohida kelishuv ham mumkin.",
       },
     ] satisfies FaqItem[],
   },

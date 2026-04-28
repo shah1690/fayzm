@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState } from "react";
 import { businesses, getMegaMenuFeaturedBusiness } from "@/content/businesses";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
@@ -62,6 +62,7 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
   const [open, setOpen] = useState(false);
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const panelId = useId();
   const pathname = usePathname();
   const activeBusiness = useMemo(
     () =>
@@ -98,6 +99,11 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
       <div className="relative inline-flex flex-col items-center">
         <button
           type="button"
+          aria-expanded={open}
+          aria-haspopup="true"
+          aria-controls={panelId}
+          onClick={() => setOpen((prev) => !prev)}
+          onFocus={handleMouseEnter}
           className={`flex cursor-pointer items-center gap-1 text-sm transition-all duration-200 ${!isActive ? "text-[#070A0F] hover:text-[#003566]" : ""}`}
           style={isActive ? gradientText : undefined}
         >
@@ -116,7 +122,10 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
 
       {/* Mega panel */}
       {open && (
-        <div className="animate-dropdown fixed left-0 right-0 top-[76px] z-50 border-t border-gray-100 bg-white shadow-xl">
+        <div
+          id={panelId}
+          className="animate-dropdown fixed left-0 right-0 top-[76px] z-50 border-t border-gray-100 bg-white shadow-xl"
+        >
           <div className="mx-auto max-w-[1440px] p-6">
             <div className="flex gap-4" style={{ height: 420 }}>
               {/* Left: image card */}

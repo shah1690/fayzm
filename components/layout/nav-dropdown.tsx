@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 
 type DropdownItem = Readonly<{ label: string; href: string }>;
@@ -36,6 +36,7 @@ function ChevronDown() {
 export function NavDropdown({ label, href, children }: NavDropdownProps) {
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const panelId = useId();
   const pathname = usePathname();
   const isActiveParent =
     pathname === href ||
@@ -60,6 +61,11 @@ export function NavDropdown({ label, href, children }: NavDropdownProps) {
       <div className="relative inline-flex flex-col items-center">
         <button
           type="button"
+          aria-expanded={open}
+          aria-haspopup="true"
+          aria-controls={panelId}
+          onClick={() => setOpen((prev) => !prev)}
+          onFocus={handleMouseEnter}
           className="flex items-center gap-1 text-sm transition-all duration-200"
           style={
             isActiveParent
@@ -90,6 +96,7 @@ export function NavDropdown({ label, href, children }: NavDropdownProps) {
       {open && (
         <div className="absolute left-0 top-full z-50 min-w-[160px] pt-2">
           <div
+            id={panelId}
             className="overflow-hidden rounded-xl border border-gray-100 bg-white py-1 shadow-lg"
             style={{
               opacity: open ? 1 : 0,
