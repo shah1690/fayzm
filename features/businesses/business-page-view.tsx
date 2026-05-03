@@ -62,6 +62,20 @@ type BusinessDesign = {
   highlightIndex: number;
 };
 
+type LocalizedText = Record<Locale, string>;
+
+type BusinessOverviewStat = {
+  value: string;
+  suffix?: LocalizedText;
+  title: LocalizedText;
+  description: LocalizedText;
+};
+
+type BusinessOverview = {
+  quote: LocalizedText;
+  stats: [BusinessOverviewStat, BusinessOverviewStat];
+};
+
 const text = {
   contactUs: {
     en: "Contact Us →",
@@ -88,36 +102,6 @@ const text = {
     uz: "Klaster ko'lami",
     ru: "Масштаб кластера",
   },
-  employees: {
-    en: "Employees",
-    uz: "Xodimlar",
-    ru: "Сотрудники",
-  },
-  energy: {
-    en: "Energy",
-    uz: "Energiya",
-    ru: "Энергия",
-  },
-  fitHeading: {
-    en: "How this division works in the cluster",
-    uz: "Bu yo'nalish klasterda qanday ishlaydi",
-    ru: "Как это направление работает в кластере",
-  },
-  quote: {
-    en: "Product quality begins with carefully selected raw materials. Every production stage is managed under one system.",
-    uz: "Mahsulot sifati xom ashyoni to'g'ri tanlashdan boshlanadi. Ishlab chiqarishning har bir bosqichi yagona tizimda nazorat qilinadi.",
-    ru: "Качество продукции начинается с правильного выбора сырья. Каждый этап производства контролируется в единой системе.",
-  },
-  employeesStat: {
-    en: "Employees across all business divisions, making FAYZ-M one of largest employers in Khojaobod district.",
-    uz: "Barcha yo'nalishlar bo'ylab xodimlar soni FAYZ-M ni Xo'jaobod tumanidagi yirik ish beruvchilardan biriga aylantiradi.",
-    ru: "Численность сотрудников по всем направлениям делает FAYZ-M одним из крупнейших работодателей Ходжаабадского района.",
-  },
-  energyStat: {
-    en: "2,000 kW of solar capacity has been operating since 2023, supporting a greener production chain.",
-    uz: "2023 yildan beri 2 000 kW quyosh quvvati ishlamoqda; maqsad — yashil ishlab chiqarish ulushini oshirish.",
-    ru: "С 2023 года работает 2 000 кВт солнечной мощности; цель — увеличить долю зелёного производства.",
-  },
   partnershipHeading: {
     en: "Interested in partnership?",
     uz: "Hamkorlik qiziqtiradimi?",
@@ -134,6 +118,255 @@ const text = {
     ru: "Связаться →",
   },
 } as const;
+
+const businessOverviews: Record<string, BusinessOverview> = {
+  knitting: {
+    quote: {
+      en: "Fabric quality starts with the right yarn and controlled knitting tension. Every roll is planned for consistent texture, stretch, and finish.",
+      uz: "Mato sifati to'g'ri tanlangan ip va nazoratdagi trikotaj tarangligidan boshlanadi. Har bir rulon bir xil tuzilish, cho'ziluvchanlik va pardoz uchun rejalashtiriladi.",
+      ru: "Качество ткани начинается с правильной пряжи и контролируемого натяжения вязания. Каждый рулон планируется для стабильной фактуры, эластичности и отделки.",
+    },
+    stats: [
+      {
+        value: "4 015",
+        suffix: { en: "t", uz: "t", ru: "т" },
+        title: {
+          en: "Annual fabric output",
+          uz: "Yillik mato quvvati",
+          ru: "Годовой выпуск ткани",
+        },
+        description: {
+          en: "The knitting division produces 4,015 tons of fabric per year for internal garment lines and B2B supply.",
+          uz: "Trikotaj bo'limi ichki tikuvchilik liniyalari va B2B ta'minot uchun yiliga 4 015 tonna mato ishlab chiqaradi.",
+          ru: "Трикотажное направление выпускает 4 015 тонн ткани в год для внутренних швейных линий и B2B-поставок.",
+        },
+      },
+      {
+        value: "50",
+        suffix: { en: "+", uz: "+", ru: "+" },
+        title: { en: "Specialists", uz: "Mutaxassislar", ru: "Специалисты" },
+        description: {
+          en: "Operators and technicians manage fabric quality with modern TAYFAN, HonKnit, Boosan, and Jacquard equipment.",
+          uz: "Operator va texniklar TAYFAN, HonKnit, Boosan hamda Jacquard uskunalarida mato sifatini boshqaradi.",
+          ru: "Операторы и техники контролируют качество ткани на оборудовании TAYFAN, HonKnit, Boosan и Jacquard.",
+        },
+      },
+    ],
+  },
+  "yarn-production": {
+    quote: {
+      en: "Stable yarn begins with precise fiber preparation. Automated RIETER lines keep every spindle aligned with one cluster quality standard.",
+      uz: "Barqaror ip aniq tola tayyorlashdan boshlanadi. Avtomatlashtirilgan RIETER liniyalari har bir urchuqni yagona klaster sifati standartida ushlab turadi.",
+      ru: "Стабильная пряжа начинается с точной подготовки волокна. Автоматизированные линии RIETER держат каждое веретено в едином стандарте качества кластера.",
+    },
+    stats: [
+      {
+        value: "9 417",
+        suffix: { en: "t", uz: "t", ru: "т" },
+        title: {
+          en: "Annual yarn capacity",
+          uz: "Yillik ip quvvati",
+          ru: "Годовая мощность пряжи",
+        },
+        description: {
+          en: "The spinning mill supplies consistent yarn for FAYZ-M knitting and garment production at industrial scale.",
+          uz: "Egrish zavodi FAYZ-M trikotaj va tikuvchilik ishlab chiqarishi uchun sanoat miqyosida barqaror ip yetkazadi.",
+          ru: "Прядильная фабрика поставляет стабильную пряжу для трикотажного и швейного производства FAYZ-M в промышленном масштабе.",
+        },
+      },
+      {
+        value: "300",
+        suffix: { en: "+", uz: "+", ru: "+" },
+        title: {
+          en: "Line employees",
+          uz: "Liniya xodimlari",
+          ru: "Сотрудники линий",
+        },
+        description: {
+          en: "Teams run fully automated lines commissioned in 2023 with Swiss spinning technology partner RIETER.",
+          uz: "Jamoalar 2023 yilda Shveytsariyaning RIETER texnologik hamkori bilan ishga tushirilgan avtomatlashtirilgan liniyalarni boshqaradi.",
+          ru: "Команды управляют автоматизированными линиями, запущенными в 2023 году со швейцарским технологическим партнёром RIETER.",
+        },
+      },
+    ],
+  },
+  "garment-production": {
+    quote: {
+      en: "Finished garments carry discipline from every previous stage. Design, cutting, sewing, and inspection move through one traceable workflow.",
+      uz: "Tayyor kiyim har bir oldingi bosqich intizomini o'zida olib yuradi. Dizayn, bichish, tikish va tekshiruv bitta kuzatiladigan jarayonda yuradi.",
+      ru: "Готовое изделие несёт дисциплину всех предыдущих этапов. Дизайн, раскрой, пошив и инспекция проходят в одном прослеживаемом процессе.",
+    },
+    stats: [
+      {
+        value: "10",
+        suffix: { en: "M+", uz: "mln+", ru: "млн+" },
+        title: {
+          en: "Garments per year",
+          uz: "Yillik kiyim hajmi",
+          ru: "Изделий в год",
+        },
+        description: {
+          en: "FAYZ-M produces everyday and seasonal knitwear for regional and export markets from one integrated base.",
+          uz: "FAYZ-M kundalik va mavsumiy trikotaj kiyimlarni hududiy hamda eksport bozorlari uchun yagona integratsiyalashgan bazada ishlab chiqaradi.",
+          ru: "FAYZ-M производит повседневный и сезонный трикотаж для региональных и экспортных рынков на единой интегрированной базе.",
+        },
+      },
+      {
+        value: "700",
+        suffix: { en: "+", uz: "+", ru: "+" },
+        title: {
+          en: "Skilled workers",
+          uz: "Malakali ishchilar",
+          ru: "Квалифицированные работники",
+        },
+        description: {
+          en: "Most team members are local women trained in production discipline, quality control, and export requirements.",
+          uz: "Jamoaning katta qismi ishlab chiqarish intizomi, sifat nazorati va eksport talablari bo'yicha tayyorlangan mahalliy ayollardan iborat.",
+          ru: "Большинство команды — местные женщины, обученные производственной дисциплине, контролю качества и экспортным требованиям.",
+        },
+      },
+    ],
+  },
+  flour: {
+    quote: {
+      en: "Food quality depends on clean grain, accurate milling, and laboratory control. The mill keeps field-to-bag traceability inside the cluster.",
+      uz: "Oziq-ovqat sifati toza don, aniq tortish va laboratoriya nazoratiga bog'liq. Tegirmon daladan qopgacha kuzatuvni klaster ichida saqlaydi.",
+      ru: "Качество пищевого продукта зависит от чистого зерна, точного помола и лабораторного контроля. Мельница сохраняет прослеживаемость от поля до мешка внутри кластера.",
+    },
+    stats: [
+      {
+        value: "29 200",
+        suffix: { en: "t", uz: "t", ru: "т" },
+        title: {
+          en: "Annual flour output",
+          uz: "Yillik un quvvati",
+          ru: "Годовой выпуск муки",
+        },
+        description: {
+          en: "Wheat from FAYZ-M fields is milled for domestic supply and cluster food needs with year-round operation.",
+          uz: "FAYZ-M dalalaridagi bug'doy ichki ta'minot va klaster oziq-ovqat ehtiyojlari uchun yil davomida tortiladi.",
+          ru: "Пшеница с полей FAYZ-M круглый год перемалывается для внутреннего снабжения и пищевых нужд кластера.",
+        },
+      },
+      {
+        value: "50",
+        suffix: { en: "+", uz: "+", ru: "+" },
+        title: {
+          en: "Mill employees",
+          uz: "Tegirmon xodimlari",
+          ru: "Сотрудники мельницы",
+        },
+        description: {
+          en: "Full-time teams operate milling, hygiene, and lab testing workflows with strict production discipline.",
+          uz: "Doimiy jamoalar tortish, gigiyena va laboratoriya sinovi jarayonlarini qat'iy ishlab chiqarish intizomi bilan boshqaradi.",
+          ru: "Постоянные команды ведут помол, гигиену и лабораторные проверки с жёсткой производственной дисциплиной.",
+        },
+      },
+    ],
+  },
+  petrol: {
+    quote: {
+      en: "Reliable fuel supply keeps production transport moving. Storage, distribution, and service are managed from one controlled point.",
+      uz: "Ishonchli yoqilg'i ta'minoti ishlab chiqarish transportini harakatda ushlab turadi. Saqlash, tarqatish va servis bir nazorat nuqtasidan boshqariladi.",
+      ru: "Надёжное топливное снабжение поддерживает движение производственного транспорта. Хранение, распределение и сервис управляются из одной контрольной точки.",
+    },
+    stats: [
+      {
+        value: "100",
+        suffix: { en: "k L", uz: "ming l", ru: "тыс. л" },
+        title: {
+          en: "Storage capacity",
+          uz: "Saqlash quvvati",
+          ru: "Ёмкость хранения",
+        },
+        description: {
+          en: "Modern storage supports cluster machinery, logistics, and controlled local fuel service without operational delay.",
+          uz: "Zamonaviy saqlash quvvati klaster texnikasi, logistika va mahalliy yoqilg'i xizmatini uzilishsiz qo'llab-quvvatlaydi.",
+          ru: "Современное хранилище поддерживает технику кластера, логистику и контролируемый местный топливный сервис без задержек.",
+        },
+      },
+      {
+        value: "24",
+        suffix: { en: "/7", uz: "/7", ru: "/7" },
+        title: { en: "Service mode", uz: "Xizmat rejimi", ru: "Режим сервиса" },
+        description: {
+          en: "Seven employees maintain daily fuel access for FAYZ-M operations and nearby community demand.",
+          uz: "7 xodim FAYZ-M operatsiyalari va yaqin atrofdagi aholi ehtiyoji uchun kundalik yoqilg'i xizmatini ta'minlaydi.",
+          ru: "7 сотрудников обеспечивают ежедневный доступ к топливу для операций FAYZ-M и потребностей жителей рядом.",
+        },
+      },
+    ],
+  },
+  farm: {
+    quote: {
+      en: "Strong livestock operations start with pedigree breeds and controlled feed. Animal care, fodder production, and local food supply work as one system.",
+      uz: "Kuchli chorvachilik zotli nasl va nazoratdagi ozuqadan boshlanadi. Hayvon parvarishi, ozuqa yetishtirish va mahalliy oziq-ovqat ta'minoti bitta tizimda ishlaydi.",
+      ru: "Сильное животноводство начинается с племенных пород и контролируемых кормов. Уход за животными, производство кормов и местное снабжение работают как одна система.",
+    },
+    stats: [
+      {
+        value: "1 300",
+        suffix: { en: "+", uz: "+", ru: "+" },
+        title: {
+          en: "Livestock headcount",
+          uz: "Chorva bosh soni",
+          ru: "Голов скота",
+        },
+        description: {
+          en: "Cattle, sheep, and horses from Europe support stable meat and dairy supply for the local market.",
+          uz: "Yevropadan keltirilgan qoramol, qo'y va otlar mahalliy bozor uchun barqaror go'sht va sut ta'minotini qo'llab-quvvatlaydi.",
+          ru: "Крупный рогатый скот, овцы и лошади из Европы поддерживают стабильные поставки мяса и молока для местного рынка.",
+        },
+      },
+      {
+        value: "2018",
+        title: { en: "Established", uz: "Tashkil etilgan", ru: "Основано" },
+        description: {
+          en: "The farm expanded from 30 cattle into a multi-species operation with its own fodder production cycle.",
+          uz: "Xo'jalik 30 ta qoramoldan o'z ozuqa yetishtirish aylanishiga ega ko'p turdagi chorvachilik tizimigacha kengaydi.",
+          ru: "Ферма выросла с 30 голов скота до многоотраслевого хозяйства с собственным циклом производства кормов.",
+        },
+      },
+    ],
+  },
+  "cottonseed-oil": {
+    quote: {
+      en: "Cottonseed becomes more valuable when every by-product is used. Oil, meal, and hulls move through one zero-waste production flow.",
+      uz: "Chigit har bir qo'shimcha mahsulot ishlatilganda ko'proq qiymat yaratadi. Yog', kunjara va qobiq bitta chiqindisiz ishlab chiqarish oqimida yuradi.",
+      ru: "Хлопковые семена создают больше ценности, когда используется каждый побочный продукт. Масло, шрот и шелуха проходят через единый безотходный поток.",
+    },
+    stats: [
+      {
+        value: "7 300",
+        suffix: { en: "t", uz: "t", ru: "т" },
+        title: {
+          en: "Annual oil output",
+          uz: "Yillik yog' quvvati",
+          ru: "Годовой выпуск масла",
+        },
+        description: {
+          en: "Refined cottonseed oil is produced from FAYZ-M fields for domestic supply and future export potential.",
+          uz: "Tozalangan paxta yog'i FAYZ-M dalalaridagi chigitdan ichki ta'minot va eksport salohiyati uchun ishlab chiqariladi.",
+          ru: "Рафинированное хлопковое масло производится из семян с полей FAYZ-M для внутреннего снабжения и будущего экспортного потенциала.",
+        },
+      },
+      {
+        value: "0",
+        suffix: { en: "waste", uz: "chiqindi", ru: "отходов" },
+        title: {
+          en: "Circular processing",
+          uz: "Aylanma qayta ishlash",
+          ru: "Циклическая переработка",
+        },
+        description: {
+          en: "Meal and hulls return to the farm as animal feed, keeping more value inside the integrated cluster.",
+          uz: "Kunjara va qobiq chorva ozuqasi sifatida xo'jalikka qaytadi, qiymatning katta qismi klaster ichida qoladi.",
+          ru: "Шрот и шелуха возвращаются на ферму как корм, сохраняя больше ценности внутри интегрированного кластера.",
+        },
+      },
+    ],
+  },
+};
 
 const designs: Record<string, BusinessDesign> = {
   knitting: {
@@ -425,6 +658,8 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
   }
 
   const design = designs[business.slug] ?? designs.knitting;
+  const overview =
+    businessOverviews[business.slug] ?? businessOverviews.knitting;
   const ctaAlignClass =
     design.ctaAlign === "right"
       ? "items-start md:items-end md:text-right"
@@ -574,23 +809,20 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                   {text.overview[locale]}
                 </p>
                 <p className="mt-5 text-2xl font-semibold leading-snug md:text-3xl">
-                  &ldquo;{text.quote[locale]}&rdquo;
+                  &ldquo;{overview.quote[locale]}&rdquo;
                 </p>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <StatCard
-                  value="1800"
-                  suffix="+"
-                  title={text.employees[locale]}
-                  description={text.employeesStat[locale]}
-                />
-                <StatCard
-                  value="2000"
-                  suffix="kW+"
-                  title={text.energy[locale]}
-                  description={text.energyStat[locale]}
-                />
+                {overview.stats.map((stat) => (
+                  <StatCard
+                    key={stat.title.en}
+                    value={stat.value}
+                    suffix={stat.suffix?.[locale]}
+                    title={stat.title[locale]}
+                    description={stat.description[locale]}
+                  />
+                ))}
               </div>
             </div>
 
@@ -623,18 +855,6 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                     </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="rounded-[32px] border border-[#E5E7EB] bg-white p-6 md:p-8">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#003566]/60">
-                  {text.fitHeading[locale]}
-                </p>
-                <p
-                  className="mt-4 max-w-[62ch] text-sm leading-relaxed md:text-base"
-                  style={{ color: "#6B7280" }}
-                >
-                  {business.bodyText[locale]}
-                </p>
               </div>
             </div>
           </div>
