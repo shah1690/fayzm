@@ -4,6 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   poweredByHeader: false,
   compress: true,
   images: {
@@ -13,6 +14,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "fayzm.uz",
+      },
+      {
+        protocol: "https",
+        hostname: "media.fayzm.uz",
       },
       {
         protocol: "https",

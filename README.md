@@ -16,13 +16,18 @@ English is the default locale for the project.
 
 PDF files are served from the direct route `/documents/<slug>.pdf`.
 
-The route expects public Google Drive PDF files and proxies them through the
-site with range support intact.
+The route proxies PDF objects from MinIO with range support intact. In Docker,
+MinIO is available internally at `http://minio:9000`, while public media links
+are served through `https://media.fayzm.uz`.
 
-Configure the shared API key:
+Configure MinIO:
 
 ```bash
-GOOGLE_DRIVE_API_KEY=your-server-side-drive-api-key
+MINIO_INTERNAL_ENDPOINT=http://minio:9000
+MINIO_PUBLIC_URL=https://media.fayzm.uz
+MINIO_BUCKET=fayzm-media
+MINIO_ROOT_USER=fayzm_minio
+MINIO_ROOT_PASSWORD=change-this-minio-password
 ```
 
 ## Telegram Contact Form
@@ -43,27 +48,30 @@ Notes:
 - the API route sends only core lead fields: full name, email, phone, service, product, and message
 - form includes a honeypot field and minimum fill-time guard to reduce spam
 
-Then register each PDF in [content/documents.ts](/Users/kamafozilov/Projects/fayzm/content/documents.ts):
+Then upload PDFs to MinIO bucket `fayzm-media` and register each object in [content/documents.ts](/Users/kamafozilov/Projects/fayzm/content/documents.ts):
 
 ```ts
 {
   slug: "catalog.pdf",
-  driveFileUrl: "https://drive.google.com/file/d/FILE_ID/view?usp=sharing",
+  objectName: "documents/catalog.pdf",
   downloadFileName: "catalog.pdf",
 }
 ```
 
-Example URLs:
+Example site URLs:
 - `/documents/catalog.pdf`
 - `/documents/men-collection.pdf`
 - `/documents/company-profile.pdf`
 
+Example public media URLs:
+- `https://media.fayzm.uz/documents/catalog.pdf`
+- `https://media.fayzm.uz/documents/men-collection.pdf`
+- `https://media.fayzm.uz/documents/company-profile.pdf`
+
 Notes:
-- keep the Drive file itself as a stored PDF blob, not a Google Docs export
-- share it publicly if you want to avoid OAuth/service-account setup
-- `driveFileUrl` is the simplest option because the route can derive the file ID from the public share link
-- if needed, each document entry can also use `driveFileId` and `resourceKey`
-- keep the API key server-side and restrict it for Drive API + server usage
+- upload real PDF blobs into MinIO, not exported Google Docs files
+- keep object names aligned with `content/documents.ts`
+- `docker-compose.yaml` creates the bucket and enables anonymous download access
 
 Because of that, the most suitable approach for this project is a `route-first + feature-first + shared UI` architecture.
 
