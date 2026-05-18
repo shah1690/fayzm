@@ -18,7 +18,7 @@ PDF files are served from the direct route `/documents/<slug>.pdf`.
 
 The route proxies PDF objects from MinIO with range support intact. In Docker,
 MinIO is available internally at `http://minio:9000`, while public media links
-are served through `https://media.fayzm.uz`.
+are served through the `media` proxy at `https://media.fayzm.uz`.
 
 Configure MinIO:
 
@@ -64,15 +64,16 @@ Example site URLs:
 - `/documents/men-collection.pdf`
 - `/documents/company-profile.pdf`
 
-Example public MinIO URLs:
-- `https://media.fayzm.uz/fayzm-media/documents/catalog.pdf`
-- `https://media.fayzm.uz/fayzm-media/documents/men-collection.pdf`
-- `https://media.fayzm.uz/fayzm-media/documents/company-profile.pdf`
+Example public media URLs:
+- `https://media.fayzm.uz/documents/catalog.pdf`
+- `https://media.fayzm.uz/documents/men-collection.pdf`
+- `https://media.fayzm.uz/documents/company-profile.pdf`
 
 Notes:
 - upload real PDF blobs into MinIO, not exported Google Docs files
 - keep object names aligned with `content/documents.ts`
 - `docker-compose.yaml` creates the bucket and enables anonymous download access
+- map `media.fayzm.uz` to the `media` service on port `80` in Coolify
 
 Because of that, the most suitable approach for this project is a `route-first + feature-first + shared UI` architecture.
 

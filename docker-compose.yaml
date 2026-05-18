@@ -60,6 +60,50 @@ services:
     networks:
       - fayzm
 
+  media:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      MINIO_BUCKET: ${MINIO_BUCKET:-fayzm-media}
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cat > /etc/nginx/conf.d/default.conf <<'EOF'
+        server {
+          listen 80;
+          server_name _;
+          client_max_body_size 0;
+
+          location = / {
+            add_header Content-Type text/plain;
+            return 200 "Fayzm media storage\n";
+          }
+
+          location /__MINIO_BUCKET__/ {
+            proxy_http_version 1.1;
+            proxy_set_header Host minio:9000;
+            proxy_pass http://minio:9000;
+          }
+
+          location / {
+            rewrite ^/(.*)$ /__MINIO_BUCKET__/$1 break;
+            proxy_http_version 1.1;
+            proxy_set_header Host minio:9000;
+            proxy_pass http://minio:9000;
+          }
+        }
+        EOF
+        sed -i "s/__MINIO_BUCKET__/$${MINIO_BUCKET}/g" /etc/nginx/conf.d/default.conf
+        nginx -g 'daemon off;'
+    expose:
+      - "80"
+    networks:
+      - fayzm
+
 volumes:
   minio_data:
 
