@@ -150,6 +150,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
   const pathname = usePathname();
   const isActive =
     pathname === "/collections" || pathname.startsWith("/collections/");
+  const pdfLanguage = locale === "ru" ? "rus" : "eng";
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -241,7 +242,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                     key: "women",
                     label: { en: "Women", uz: "Ayollar", ru: "Женщины" },
                     sub: { en: "PDF", uz: "PDF", ru: "PDF" },
-                    href: "/documents/eng-man-stream.pdf",
+                    href: `/documents/${pdfLanguage}-woman.pdf`,
                     bg: "#e5d6c9",
                     textColor: "#003566",
                     subColor: "rgba(1,37,85,0.48)",
@@ -253,7 +254,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                     key: "men",
                     label: { en: "Men", uz: "Erkaklar", ru: "Мужчины" },
                     sub: { en: "PDF", uz: "PDF", ru: "PDF" },
-                    href: "/documents/eng-man.pdf",
+                    href: `/documents/${pdfLanguage}-man.pdf`,
                     bg: "#003566",
                     textColor: "#ffffff",
                     subColor: "rgba(255,255,255,0.5)",

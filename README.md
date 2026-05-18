@@ -14,21 +14,16 @@ English is the default locale for the project.
 
 ## PDF Endpoint
 
-PDF files are served from the direct route `/documents/<slug>.pdf`.
+PDF files are served from `https://media.fayzm.uz` by an Nginx `media` service
+backed by the persistent Docker volume `media_data`.
 
-The route proxies PDF objects from MinIO with range support intact. In Docker,
-MinIO is available internally at `http://minio:9000`, while public media links
-are served through the `media` proxy at `https://media.fayzm.uz`.
+Site routes such as `/documents/eng-man.pdf` redirect to the public media file,
+so large PDFs are streamed directly by Nginx with byte-range support.
 
-Configure MinIO:
+Configure media URL:
 
 ```bash
-MINIO_INTERNAL_ENDPOINT=http://minio:9000
-MINIO_PUBLIC_URL=https://media.fayzm.uz
-MINIO_BUCKET=fayzm-media
-MINIO_ROOT_USER=fayzm_minio
-MINIO_ROOT_PASSWORD=change-this-minio-password
-MINIO_BROWSER_REDIRECT=off
+MEDIA_PUBLIC_URL=https://media.fayzm.uz
 ```
 
 ## Telegram Contact Form
@@ -49,31 +44,38 @@ Notes:
 - the API route sends only core lead fields: full name, email, phone, service, product, and message
 - form includes a honeypot field and minimum fill-time guard to reduce spam
 
-Then upload PDFs to MinIO bucket `fayzm-media` and register each object in [content/documents.ts](/Users/kamafozilov/Projects/fayzm/content/documents.ts):
+Upload the four production PDFs into the Docker volume:
 
-```ts
-{
-  slug: "catalog.pdf",
-  objectName: "documents/catalog.pdf",
-  downloadFileName: "catalog.pdf",
-}
+```bash
+DEPLOY_HOST=your-server-ip PROJECT_NAME=h11besufm6xn4ur5iz5vjbsr \
+  ./scripts/upload-media-pdfs.sh \
+  "eng man.pdf" "eng woman.pdf" "rus man.pdf" "rus woman.pdf"
 ```
 
-Example site URLs:
-- `/documents/catalog.pdf`
-- `/documents/men-collection.pdf`
-- `/documents/company-profile.pdf`
+The files are stored in the volume as:
+
+```text
+/documents/eng man.pdf
+/documents/eng woman.pdf
+/documents/rus man.pdf
+/documents/rus woman.pdf
+```
+
+Registered site URLs:
+- `/documents/eng-man.pdf`
+- `/documents/eng-woman.pdf`
+- `/documents/rus-man.pdf`
+- `/documents/rus-woman.pdf`
 
 Example public media URLs:
-- `https://media.fayzm.uz/documents/catalog.pdf`
-- `https://media.fayzm.uz/documents/men-collection.pdf`
-- `https://media.fayzm.uz/documents/company-profile.pdf`
+- `https://media.fayzm.uz/documents/eng%20man.pdf`
+- `https://media.fayzm.uz/documents/eng%20woman.pdf`
+- `https://media.fayzm.uz/documents/rus%20man.pdf`
+- `https://media.fayzm.uz/documents/rus%20woman.pdf`
 
 Notes:
-- upload real PDF blobs into MinIO, not exported Google Docs files
-- keep object names aligned with `content/documents.ts`
-- `docker-compose.yaml` creates the bucket and enables anonymous download access
 - map `media.fayzm.uz` to the `media` service on port `80` in Coolify
+- upload real PDF blobs; Nginx serves them directly with `sendfile` and range requests
 
 Because of that, the most suitable approach for this project is a `route-first + feature-first + shared UI` architecture.
 
