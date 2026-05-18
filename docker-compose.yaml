@@ -60,29 +60,8 @@ services:
     networks:
       - fayzm
 
-  caddy:
-    image: caddy:2-alpine
-    restart: unless-stopped
-    environment:
-      MINIO_BUCKET: ${MINIO_BUCKET:-fayzm-media}
-    expose:
-      - "80"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      frontend:
-        condition: service_started
-      minio:
-        condition: service_healthy
-    networks:
-      - fayzm
-
 volumes:
   minio_data:
-  caddy_data:
-  caddy_config:
 
 networks:
   fayzm:
