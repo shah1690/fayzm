@@ -50,6 +50,7 @@ services:
 
           types {
             application/pdf pdf;
+            image/jpeg jpg jpeg;
           }
           default_type application/octet-stream;
 

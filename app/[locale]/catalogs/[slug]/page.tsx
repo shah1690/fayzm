@@ -1,14 +1,18 @@
 import { notFound } from "next/navigation";
-import { PdfRangeViewer } from "@/features/catalog/pdf-range-viewer";
+import { ImageCatalogViewer } from "@/features/catalog/image-catalog-viewer";
 
 type CatalogConfig = {
-  pdfPath: string;
+  downloadPath: string;
+  imagePath: string;
+  pageCount: number;
   title: string;
 };
 
 const catalogs: Record<string, CatalogConfig> = {
   "eng-woman": {
-    pdfPath: "documents/eng woman.pdf",
+    downloadPath: "documents/eng woman.pdf",
+    imagePath: "catalogs/eng-woman",
+    pageCount: 221,
     title: "Fayzm Women Catalog",
   },
 };
@@ -40,8 +44,10 @@ export default async function CatalogViewerPage({ params }: Props) {
   ).replace(/\/+$/, "");
 
   return (
-    <PdfRangeViewer
-      pdfUrl={`${mediaBaseUrl}/${encodeObjectPath(catalog.pdfPath)}`}
+    <ImageCatalogViewer
+      downloadUrl={`${mediaBaseUrl}/${encodeObjectPath(catalog.downloadPath)}`}
+      imageBaseUrl={`${mediaBaseUrl}/${encodeObjectPath(catalog.imagePath)}`}
+      pageCount={catalog.pageCount}
       title={catalog.title}
     />
   );
