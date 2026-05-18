@@ -21,6 +21,7 @@
     "libphonenumber-js": "^1.12.42",
     "next": "16.2.4",
     "next-intl": "4.9.1",
+    "pdfjs-dist": "^5.7.284",
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "react-globe.gl": "^2.37.1",
