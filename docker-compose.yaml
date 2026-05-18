@@ -28,7 +28,7 @@ services:
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-fayzm_minio}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-change-this-minio-password}
-      MINIO_BROWSER_REDIRECT_URL: https://media.fayzm.uz
+      MINIO_BROWSER_REDIRECT: ${MINIO_BROWSER_REDIRECT:-off}
     volumes:
       - minio_data:/data
     expose:

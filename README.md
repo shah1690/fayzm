@@ -28,6 +28,7 @@ MINIO_PUBLIC_URL=https://media.fayzm.uz
 MINIO_BUCKET=fayzm-media
 MINIO_ROOT_USER=fayzm_minio
 MINIO_ROOT_PASSWORD=change-this-minio-password
+MINIO_BROWSER_REDIRECT=off
 ```
 
 ## Telegram Contact Form
@@ -63,10 +64,10 @@ Example site URLs:
 - `/documents/men-collection.pdf`
 - `/documents/company-profile.pdf`
 
-Example public media URLs:
-- `https://media.fayzm.uz/documents/catalog.pdf`
-- `https://media.fayzm.uz/documents/men-collection.pdf`
-- `https://media.fayzm.uz/documents/company-profile.pdf`
+Example public MinIO URLs:
+- `https://media.fayzm.uz/fayzm-media/documents/catalog.pdf`
+- `https://media.fayzm.uz/fayzm-media/documents/men-collection.pdf`
+- `https://media.fayzm.uz/fayzm-media/documents/company-profile.pdf`
 
 Notes:
 - upload real PDF blobs into MinIO, not exported Google Docs files
