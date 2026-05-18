@@ -1,13 +1,13 @@
-fayzm.uz {
+http://fayzm.uz {
 	encode zstd gzip
 	reverse_proxy frontend:3000
 }
 
-www.fayzm.uz {
+http://www.fayzm.uz {
 	redir https://fayzm.uz{uri} permanent
 }
 
-media.fayzm.uz {
+http://media.fayzm.uz {
 	encode zstd gzip
 
 	@bucketPath path /{$MINIO_BUCKET}/*
