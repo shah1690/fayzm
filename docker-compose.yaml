@@ -13,15 +13,12 @@ services:
       TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
     expose:
       - "3000"
-    networks:
-      - fayzm
 
   media:
     image: nginx:1.27-alpine
     restart: unless-stopped
     labels:
       - traefik.enable=true
-      - traefik.docker.network=${COOLIFY_RESOURCE_UUID:-h11besufm6xn4ur5iz5vjbsr}
       - traefik.http.middlewares.media-gzip.compress=true
       - traefik.http.middlewares.media-redirect-to-https.redirectscheme.scheme=https
       - traefik.http.routers.media-http.entryPoints=http
@@ -75,12 +72,6 @@ services:
       - media_data:/usr/share/nginx/html:ro
     expose:
       - "80"
-    networks:
-      - fayzm
 
 volumes:
   media_data:
-
-networks:
-  fayzm:
-    driver: bridge
