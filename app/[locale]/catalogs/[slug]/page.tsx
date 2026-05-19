@@ -9,11 +9,29 @@ type CatalogConfig = {
 };
 
 const catalogs: Record<string, CatalogConfig> = {
+  "eng-man": {
+    downloadPath: "documents/eng man.pdf",
+    imagePath: "catalogs/eng-man",
+    pageCount: 163,
+    title: "Fayzm Men Catalog",
+  },
   "eng-woman": {
     downloadPath: "documents/eng woman.pdf",
     imagePath: "catalogs/eng-woman",
     pageCount: 221,
     title: "Fayzm Women Catalog",
+  },
+  "rus-man": {
+    downloadPath: "documents/rus man.pdf",
+    imagePath: "catalogs/rus-man",
+    pageCount: 163,
+    title: "Fayzm Мужской каталог",
+  },
+  "rus-woman": {
+    downloadPath: "documents/rus woman.pdf",
+    imagePath: "catalogs/rus-woman",
+    pageCount: 213,
+    title: "Fayzm Женский каталог",
   },
 };
 

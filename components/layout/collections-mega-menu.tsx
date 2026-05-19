@@ -151,10 +151,11 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
   const isActive =
     pathname === "/collections" || pathname.startsWith("/collections/");
   const pdfLanguage = locale === "ru" ? "rus" : "eng";
-  const womenCatalogHref =
-    pdfLanguage === "eng"
-      ? localizeHref(locale, "/catalogs/eng-woman")
-      : `/documents/${pdfLanguage}-woman.pdf`;
+  const womenCatalogHref = localizeHref(
+    locale,
+    `/catalogs/${pdfLanguage}-woman`,
+  );
+  const menCatalogHref = localizeHref(locale, `/catalogs/${pdfLanguage}-man`);
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -258,7 +259,7 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                     key: "men",
                     label: { en: "Men", uz: "Erkaklar", ru: "Мужчины" },
                     sub: { en: "PDF", uz: "PDF", ru: "PDF" },
-                    href: `/documents/${pdfLanguage}-man.pdf`,
+                    href: menCatalogHref,
                     bg: "#003566",
                     textColor: "#ffffff",
                     subColor: "rgba(255,255,255,0.5)",
