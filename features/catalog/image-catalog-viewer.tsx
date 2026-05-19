@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo } from "react";
 
 type Props = Readonly<{
@@ -24,7 +23,7 @@ export function ImageCatalogViewer({
 
   return (
     <main className="min-h-screen bg-[#f3eee8] text-[#102033]">
-      <div className="sticky top-0 z-20 border-black/10 border-b bg-white/90 px-4 py-3 shadow-sm backdrop-blur-xl">
+      <header className="sticky top-0 z-20 border-black/10 border-b bg-white/90 px-4 py-3 shadow-sm backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
           <div>
             <h1 className="font-black text-base tracking-tight md:text-xl">
@@ -43,34 +42,33 @@ export function ImageCatalogViewer({
             PDF
           </a>
         </div>
-      </div>
+      </header>
 
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 p-2 md:gap-5 md:p-6">
+      <ol className="mx-auto flex max-w-5xl list-none flex-col gap-3 p-2 md:gap-5 md:p-6">
         {pages.map((pageNumber) => {
           const paddedPage = String(pageNumber).padStart(3, "0");
           const src = `${normalizedBaseUrl}/pages/page-${paddedPage}.jpg`;
 
           return (
-            <section
+            <li
               className="overflow-hidden rounded-xl bg-white shadow-[0_10px_35px_rgba(16,32,51,0.14)] md:rounded-2xl"
               key={pageNumber}
             >
-              <Image
+              {/* biome-ignore lint/performance/noImgElement: catalog pages are pre-optimized static JPGs from media CDN */}
+              <img
                 alt={`${title} page ${pageNumber}`}
-                className="h-auto w-full bg-white"
+                className="block h-auto w-full bg-white"
+                decoding="async"
+                fetchPriority={pageNumber === 1 ? "high" : "auto"}
                 height={1268}
                 loading={pageNumber <= 2 ? "eager" : "lazy"}
-                priority={pageNumber === 1}
-                quality={72}
-                sizes="(max-width: 1024px) 100vw, 1024px"
                 src={src}
-                unoptimized
                 width={897}
               />
-            </section>
+            </li>
           );
         })}
-      </div>
+      </ol>
     </main>
   );
 }
