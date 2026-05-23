@@ -46,16 +46,20 @@ export const ctaContent = {
     ru: "Многоотраслевой кластер",
   },
   heading: {
-    en: "Ready To Grow\nWith FAYZ-M?",
-    uz: "FAYZ-M bilan\no'sishga tayyormisiz?",
-    ru: "Готовы расти\nвместе с FAYZ-M?",
+    en: "Take your business\nto the next level\nwith FAYZ-M",
+    uz: "FAYZ-M bilan biznesingizni\nyangi bosqichga olib chiqing",
+    ru: "Выведите свой бизнес\nна новый уровень\nвместе с FAYZ-M",
   },
   description: {
-    en: "Quality production, disciplined execution, and sustainable growth — everything you need to move from complexity to confident results.",
-    uz: "Sifatli ishlab chiqarish, intizomli bajarish va barqaror o'sish — murakkablikdan ishonchli natijalarga o'tish uchun kerak bo'lgan hamma narsa.",
-    ru: "Качественное производство, дисциплинированное исполнение и устойчивый рост — всё, что нужно для уверенного развития.",
+    en: "Quality, discipline, and sustainability — the standard of our work. From complex ideas to perfect results, we combine every opportunity for success.",
+    uz: "Sifat, intizom va barqarorlik — bizning faoliyat mezoni. Murakkab g'oyalardan mukammal natijalarga qadar — muvaffaqiyat uchun barcha imkoniyatlarni birlashtiramiz.",
+    ru: "Качество, дисциплина и устойчивость — стандарт нашей работы. От сложных идей до безупречных результатов — объединяем все возможности для успеха.",
   },
-  cta: { en: "Contact Us →", uz: "Bog'lanish →", ru: "Связаться →" },
+  cta: {
+    en: "Start Partnership →",
+    uz: "Hamkorlikni boshlash →",
+    ru: "Начать сотрудничество →",
+  },
   card1: {
     value: "2 000 kW+",
     label: { en: "green energy", uz: "yashil energiya", ru: "зелёная энергия" },

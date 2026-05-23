@@ -19,11 +19,15 @@ const divisions = [
   {
     slug: "knitting",
     label: { en: "Knitting", uz: "Trikotaj mato", ru: "Трикотаж" },
-    title: { en: "Knitting", uz: "Trikotaj mato", ru: "Трикотаж" },
+    title: {
+      en: "Knit Fabric Production",
+      uz: "Trikotaj mato ishlab chiqarish",
+      ru: "Производство трикотажной ткани",
+    },
     desc: {
-      en: "4,015 tons of quality fabric annually. Equipment from TAYFAN, HonKnit & Boosan.",
-      uz: "Yillik quvvati 4 015 tonna. Taifan, Honknit, Boosan va Jacquard uskunalari bilan jihozlangan.",
-      ru: "4 015 тонн тканей в год. Оборудование от TAYFAN, HonKnit и Boosan.",
+      en: "Annual capacity 4,015 tons. Equipped with advanced machinery such as Taifan, Honknit, Boosan and Jacquard.",
+      uz: "Yillik quvvati 4 015 tonna. Taifan, Honknit, Boosan va Jacquard kabi ilg'or uskunalar bilan jihozlangan.",
+      ru: "Годовая мощность 4 015 тонн. Оснащено передовым оборудованием Taifan, Honknit, Boosan и Jacquard.",
     },
     icon: (
       <svg
@@ -55,9 +59,9 @@ const divisions = [
       ru: "Производство пряжи",
     },
     desc: {
-      en: "9,417 tons production capacity. Automated RIETER spinning line.",
-      uz: "Ishlab chiqarish quvvati 9 417 tonna. Avtomatlashtirilgan RIETER liniyasi.",
-      ru: "Производственная мощность 9 417 тонн. Автоматизированная линия RIETER.",
+      en: "Annual production capacity 9,417 tons. Fully automated RIETER (Switzerland) lines installed.",
+      uz: "Yillik ishlab chiqarish quvvati 9 417 tonna. To'liq avtomatlashtirilgan RIETER (Shveysariya) liniyalari o'rnatilgan.",
+      ru: "Годовая производственная мощность 9 417 тонн. Установлены полностью автоматизированные линии RIETER (Швейцария).",
     },
     icon: (
       <svg
@@ -86,14 +90,14 @@ const divisions = [
       ru: "Швейное производство",
     },
     title: {
-      en: "Garment Production",
-      uz: "Tikuvchilik",
-      ru: "Швейное производство",
+      en: "Garment Factory",
+      uz: "Tikuvchilik fabrikasi",
+      ru: "Швейная фабрика",
     },
     desc: {
-      en: "10 million garments per year. Exported to Poland, Turkey, Russia, Italy & Kazakhstan.",
-      uz: "Yiliga 10 million dona kiyim. Polsha, Turkiya, Rossiya, Italiya va Qozog'istonga eksport.",
-      ru: "10 миллионов изделий в год. Экспорт в Польшу, Турцию, Россию, Италию и Казахстан.",
+      en: "10 million finished garments per year. Products are exported to Poland, Turkey, Russia, Italy and Kazakhstan.",
+      uz: "Yiliga 10 million dona tayyor kiyim-kechak. Mahsulotlar Polsha, Turkiya, Rossiya, Italiya va Qozog'istonga eksport qilinadi.",
+      ru: "10 миллионов готовых изделий в год. Продукция экспортируется в Польшу, Турцию, Россию, Италию и Казахстан.",
     },
     icon: (
       <svg
@@ -125,9 +129,9 @@ const divisions = [
       ru: "Производство муки",
     },
     desc: {
-      en: "29,200 tons annual production capacity. Started operations in 2022.",
-      uz: "Yillik ishlab chiqarish quvvati 29 200 tonna. 2022 yilda faoliyat boshlagan.",
-      ru: "Годовая мощность 29 200 тонн. Начало работу в 2022 году.",
+      en: "Annual production capacity 29,200 tons. Supplying high-quality flour products since 2022.",
+      uz: "Yillik ishlab chiqarish quvvati 29 200 tonna. 2022-yildan buyon yuqori sifatli un mahsulotlarini yetkazib bermoqda.",
+      ru: "Годовая производственная мощность 29 200 тонн. С 2022 года поставляет высококачественную мучную продукцию.",
     },
     icon: (
       <svg
@@ -161,9 +165,9 @@ const divisions = [
       ru: "АЗС",
     },
     desc: {
-      en: "Fuel supply for the cluster's fleet and surrounding community. Reliable energy infrastructure.",
-      uz: "FAYZ-M texnikalari va yaqin atrofdagi aholi uchun yoqilg'i ta'minoti. Saqlash quvvati 100 000 litr.",
-      ru: "Топливное обеспечение автопарка кластера и окружающего сообщества.",
+      en: "Quality fuel supply for FAYZ-M machinery and the local community. Storage capacity: 100,000 litres.",
+      uz: "FAYZ-M texnikalari va mahalliy aholi uchun sifatli yoqilg'i ta'minoti. Saqlash quvvati: 100 000 litr.",
+      ru: "Качественное топливное обеспечение техники FAYZ-M и местного населения. Объём хранения: 100 000 литров.",
     },
     icon: (
       <svg
@@ -189,14 +193,14 @@ const divisions = [
     slug: "farm",
     label: { en: "Farm", uz: "Chorvachilik", ru: "Фермерское хозяйство" },
     title: {
-      en: "Farm & Agriculture",
-      uz: "Chorvachilik",
-      ru: "Фермерское хозяйство",
+      en: "Livestock Complex",
+      uz: "Chorvachilik kompleksi",
+      ru: "Животноводческий комплекс",
     },
     desc: {
-      en: "Established in 2018 with cattle, 1,000+ pedigree sheep, and 20+ horses from Europe.",
-      uz: "2018 yilda tashkil etilgan. Zotli qoramol, 1000+ qo'y va 20+ ot mavjud.",
-      ru: "Основано в 2018 году. Племенной скот, 1 000+ овец и 20+ лошадей из Европы.",
+      en: "Established in 2018. The complex raises pedigree cattle, more than 1,000 sheep, and over 20 horses.",
+      uz: "2018-yilda tashkil etilgan. Majmuada zotli qoramollar, 1000 dan ortiq qo'y va 20 dan ziyod otlar parvarishlanadi.",
+      ru: "Основан в 2018 году. В комплексе содержатся племенной крупный рогатый скот, более 1 000 овец и свыше 20 лошадей.",
     },
     icon: (
       <svg
@@ -221,11 +225,15 @@ const divisions = [
   {
     slug: "cottonseed-oil",
     label: { en: "Cottonseed Oil", uz: "Paxta yog'i", ru: "Хлопковое масло" },
-    title: { en: "Cottonseed Oil", uz: "Paxta yog'i", ru: "Хлопковое масло" },
+    title: {
+      en: "Cottonseed Oil Production",
+      uz: "Paxta yog'i ishlab chiqarish",
+      ru: "Производство хлопкового масла",
+    },
     desc: {
-      en: "Refined cottonseed oil from cluster-grown cottonseed. Zero-waste processing approach.",
-      uz: "Klasterda yetishtirilgan chigitdan tozalangan paxta yog'i. Chiqindisiz qayta ishlash.",
-      ru: "Рафинированное хлопковое масло из семян хлопка кластера. Безотходная переработка.",
+      en: "Refined cottonseed oil from cottonseed grown in the cluster's fields. Zero-waste processing technology.",
+      uz: "Klaster dalalarida yetishtirilgan chigitdan tozalangan paxta yog'i. Chiqindisiz qayta ishlash texnologiyasi.",
+      ru: "Рафинированное хлопковое масло из семян, выращенных на полях кластера. Безотходная технология переработки.",
     },
     icon: (
       <svg

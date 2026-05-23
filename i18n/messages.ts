@@ -10,10 +10,10 @@ export const messages = {
       contactHeading: "Get In touch with us",
       contactDescription:
         "Helping businesses overcome complexity, achieve growth, and build sustainable partnerships.",
-      preferTalk: "Prefer to Talk to Us Directly?",
+      preferTalk: "Have questions? Contact our specialist directly.",
       instantSupport:
-        "Get instant support from our team for urgent inquiries or quick questions.",
-      callUsNow: "Call Us Now →",
+        "Reach out to our specialists for fast and precise answers.",
+      callUsNow: "Call Now →",
     },
     Nav: {
       home: "Home",
@@ -66,10 +66,10 @@ export const messages = {
       heading: "Get In touch with us",
       description:
         "Helping businesses overcome complexity, achieve growth, and build sustainable partnerships.",
-      preferTalk: "Prefer to Talk to Us Directly?",
+      preferTalk: "Have questions? Contact our specialist directly.",
       instantSupport:
-        "Get instant support from our team for urgent inquiries or quick questions.",
-      callUsNow: "Call Us Now →",
+        "Reach out to our specialists for fast and precise answers.",
+      callUsNow: "Call Now →",
       address: "Address",
       phone: "Phone",
       email: "Email",
@@ -111,7 +111,7 @@ export const messages = {
       heading: "Multi-Sector\nTextile Company",
       quote: "We turn fibers into fashion —",
       quoteContinued:
-        "combining quality, innovation, and elegance with a modern production approach.",
+        "combining quality, innovation, and elegance with a modern approach.",
     },
   },
   uz: {
@@ -125,10 +125,11 @@ export const messages = {
       contactHeading: "Biz bilan bog'laning",
       contactDescription:
         "Sifatli ishlab chiqarish, ishonchli yetkazib berish va uzoq muddatli hamkorlik uchun jamoamiz bilan bog'laning.",
-      preferTalk: "To'g'ridan-to'g'ri gaplashishni afzal ko'rasizmi?",
+      preferTalk:
+        "Savollaringiz bormi? Mutaxassisimiz bilan bevosita bog'laning.",
       instantSupport:
-        "Muhim savollar yoki tezkor javoblar uchun jamoamizdan tezkor yordam oling.",
-      callUsNow: "Hozir qo'ng'iroq qiling →",
+        "Savollaringizga tezkor va aniq javob olish uchun mutaxassislarimizga murojaat qiling.",
+      callUsNow: "Hozir qo'ng'iroq qilish →",
     },
     Nav: {
       home: "Bosh sahifa",
@@ -181,10 +182,11 @@ export const messages = {
       heading: "Biz bilan bog'laning",
       description:
         "Sifatli ishlab chiqarish, ishonchli yetkazib berish va uzoq muddatli hamkorlik uchun jamoamiz bilan bog'laning.",
-      preferTalk: "To'g'ridan-to'g'ri gaplashishni afzal ko'rasizmi?",
+      preferTalk:
+        "Savollaringiz bormi? Mutaxassisimiz bilan bevosita bog'laning.",
       instantSupport:
-        "Muhim savollar yoki tezkor javoblar uchun jamoamizdan tezkor yordam oling.",
-      callUsNow: "Hozir qo'ng'iroq qiling →",
+        "Savollaringizga tezkor va aniq javob olish uchun mutaxassislarimizga murojaat qiling.",
+      callUsNow: "Hozir qo'ng'iroq qilish →",
       address: "Manzil",
       phone: "Telefon",
       email: "Email",
@@ -226,7 +228,7 @@ export const messages = {
       heading: "Ko'p tarmoqli\nto'qimachilik kompaniyasi",
       quote: "Biz tolani modaga aylantiramiz —",
       quoteContinued:
-        "zamonaviy ishlab chiqarish yondashuvi orqali sifat, innovatsiya va nafislikni birlashtiramiz.",
+        "zamonaviy yondashuv orqali sifat, innovatsiya va nafislikni birlashtiramiz.",
     },
   },
   ru: {
@@ -240,9 +242,9 @@ export const messages = {
       contactHeading: "Свяжитесь с нами",
       contactDescription:
         "Помогаем бизнесам преодолевать сложность, достигать роста и строить устойчивые партнёрства.",
-      preferTalk: "Предпочитаете поговорить напрямую?",
+      preferTalk: "Есть вопросы? Свяжитесь с нашим специалистом напрямую.",
       instantSupport:
-        "Получите мгновенную поддержку от нашей команды для срочных запросов или быстрых вопросов.",
+        "Обратитесь к нашим специалистам для быстрых и точных ответов.",
       callUsNow: "Позвонить сейчас →",
     },
     Nav: {
@@ -296,9 +298,9 @@ export const messages = {
       heading: "Свяжитесь с нами",
       description:
         "Помогаем бизнесам преодолевать сложность, достигать роста и строить устойчивые партнёрства.",
-      preferTalk: "Предпочитаете поговорить напрямую?",
+      preferTalk: "Есть вопросы? Свяжитесь с нашим специалистом напрямую.",
       instantSupport:
-        "Получите мгновенную поддержку от нашей команды для срочных запросов или быстрых вопросов.",
+        "Обратитесь к нашим специалистам для быстрых и точных ответов.",
       callUsNow: "Позвонить сейчас →",
       address: "Адрес",
       phone: "Телефон",
@@ -341,7 +343,7 @@ export const messages = {
       heading: "Многоотраслевая\nТекстильная Компания",
       quote: "Мы превращаем волокно в моду —",
       quoteContinued:
-        "объединяя качество, инновации и элегантность с современным производственным подходом.",
+        "объединяя качество, инновации и элегантность с современным подходом.",
     },
   },
 } as const;

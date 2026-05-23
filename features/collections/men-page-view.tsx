@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/content/page-metadata";
 import { getProductsByGender } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { localizeHref } from "@/shared/lib/localize-href";
 import { ProductGallery } from "./product-gallery";
 
 type MenPageViewProps = Readonly<{ locale: Locale }>;
@@ -14,7 +15,7 @@ export function MenPageView({ locale }: MenPageViewProps) {
     id: p.id,
     name: p.name,
     image: p.image,
-    href: `/collections/men/${p.slug}`,
+    href: localizeHref(locale, `/collections/men/${p.slug}`),
   }));
 
   return (

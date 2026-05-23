@@ -14,9 +14,9 @@ const content = {
     ru: "Качественный Текстиль.\nУстойчивое Будущее.",
   },
   description: {
-    en: "FAYZ-M produces premium yarn, fabric, and garments — supplying global partners with consistent quality and sustainable practices.",
-    uz: "FAYZ-M premium ip, mato va kiyim ishlab chiqaradi — global hamkorlarga doimiy sifat va barqaror amaliyot bilan ta'minlaydi.",
-    ru: "FAYZ-M производит premium пряжу, ткань и одежду — обеспечивая глобальных партнёров стабильным качеством.",
+    en: "FAYZ-M — a producer of high-quality yarn, fabric, and garments. We guarantee our global partners consistent quality and sustainable cooperation.",
+    uz: "FAYZ-M — yuqori sifatli ip, mato va kiyim-kechak ishlab chiqaruvchi. Biz global hamkorlarimizga doimiy sifat va barqaror hamkorlikni kafolatlaymiz.",
+    ru: "FAYZ-M — производитель высококачественной пряжи, ткани и одежды. Мы гарантируем нашим глобальным партнёрам стабильное качество и устойчивое сотрудничество.",
   },
   cta: {
     en: "Get in Touch →",

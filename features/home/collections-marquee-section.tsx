@@ -12,14 +12,14 @@ const t = {
     ru: "Трикотажные Коллекции",
   },
   heading: {
-    en: "Crafted for every body.",
-    uz: "Har kimga mo'ljallangan.",
-    ru: "Создано для каждого.",
+    en: "Harmony of quality and style.",
+    uz: "Sifat va uslub uyg'unligi.",
+    ru: "Гармония качества и стиля.",
   },
   sub: {
-    en: "Premium cotton knitwear crafted in Uzbekistan — blending traditional textile heritage with modern production to deliver quality garments worn across continents.",
-    uz: "O'zbekistonda mahorat bilan tayyorlangan premium paxta trikotaji — an'anaviy to'qimachilik merosi va zamonaviy ishlab chiqarishni birlashtirib, jahon bozoriga sifatli kiyim taklif etamiz.",
-    ru: "Премиум хлопковый трикотаж, созданный в Узбекистане — сочетаем традиции текстильного мастерства и современное производство, чтобы предлагать качественную одежду по всему миру.",
+    en: "Premium cotton knitwear crafted in Uzbekistan. We blend traditional heritage with modern technology to deliver high-quality garments to the global market.",
+    uz: "O'zbekistonda mahorat bilan tayyorlangan premium paxta trikotaji. Biz an'anaviy meros va zamonaviy texnologiyalarni birlashtirib, jahon bozoriga yuqori sifatli kiyim-kechaklarni taqdim etamiz.",
+    ru: "Премиум хлопковый трикотаж, созданный в Узбекистане. Мы сочетаем традиционное наследие и современные технологии, чтобы поставлять на мировой рынок высококачественную одежду.",
   },
   women: {
     en: "Women's Collection",

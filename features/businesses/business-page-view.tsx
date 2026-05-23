@@ -74,6 +74,7 @@ type BusinessOverviewStat = {
 type BusinessOverview = {
   quote: LocalizedText;
   stats: [BusinessOverviewStat, BusinessOverviewStat];
+  partnershipDesc?: LocalizedText;
 };
 
 const text = {
@@ -103,14 +104,14 @@ const text = {
     ru: "Масштаб кластера",
   },
   partnershipHeading: {
-    en: "Interested in partnership?",
-    uz: "Hamkorlik qiziqtiradimi?",
-    ru: "Интересует партнёрство?",
+    en: "Want to partner with us?",
+    uz: "Biz bilan hamkorlik qilishni xohlaysizmi?",
+    ru: "Хотите сотрудничать с нами?",
   },
   partnershipDesc: {
-    en: "Partner with FAYZ-M for quality, reliable delivery, and long-term growth across integrated operations.",
-    uz: "FAYZ-M bilan sifat, ishonchli yetkazib berish va integratsiyalashgan yo'nalishlar bo'ylab uzoq muddatli o'sish uchun hamkorlik qiling.",
-    ru: "Сотрудничайте с FAYZ-M ради качества, надёжных поставок и долгосрочного роста во всей интегрированной системе.",
+    en: "Get quality fabric supply and a long-term reliable partnership with FAYZ-M. Get in touch and let's take the next step together!",
+    uz: "FAYZ-M bilan sifatli mato ta'minoti va uzoq muddatli ishonchli hamkorlikka ega bo'ling. Biz bilan bog'laning va yangi bosqichga birga qadam tashlaylik!",
+    ru: "Получите качественное снабжение тканями и долгосрочное надёжное партнёрство с FAYZ-M. Свяжитесь с нами и сделаем следующий шаг вместе!",
   },
   partnershipCta: {
     en: "Request a consultation →",
@@ -122,9 +123,9 @@ const text = {
 const businessOverviews: Record<string, BusinessOverview> = {
   knitting: {
     quote: {
-      en: "Fabric quality starts with the right yarn and controlled knitting tension. Every roll is planned for consistent texture, stretch, and finish.",
-      uz: "Mato sifati to'g'ri tanlangan ip va nazoratdagi trikotaj tarangligidan boshlanadi. Har bir rulon bir xil tuzilish, cho'ziluvchanlik va pardoz uchun rejalashtiriladi.",
-      ru: "Качество ткани начинается с правильной пряжи и контролируемого натяжения вязания. Каждый рулон планируется для стабильной фактуры, эластичности и отделки.",
+      en: "Fabric quality is the result of carefully selected yarn and precision in knit construction. Every roll is produced with consistent structure, stretch and impeccable finish.",
+      uz: "Mato sifati — to'g'ri tanlangan ip va trikotaj to'qilishidagi aniqlik natijasidir. Bizda har bir rulon bir xil tuzilish, cho'ziluvchanlik va mukammal pardoz bilan ishlab chiqariladi.",
+      ru: "Качество ткани — результат правильно подобранной пряжи и точности трикотажной вязки. Каждый рулон производится с одинаковой структурой, эластичностью и безупречной отделкой.",
     },
     stats: [
       {
@@ -146,9 +147,9 @@ const businessOverviews: Record<string, BusinessOverview> = {
         suffix: { en: "+", uz: "+", ru: "+" },
         title: { en: "Specialists", uz: "Mutaxassislar", ru: "Специалисты" },
         description: {
-          en: "Operators and technicians manage fabric quality with modern TAYFAN, HonKnit, Boosan, and Jacquard equipment.",
-          uz: "Operator va texniklar TAYFAN, HonKnit, Boosan hamda Jacquard uskunalarida mato sifatini boshqaradi.",
-          ru: "Операторы и техники контролируют качество ткани на оборудовании TAYFAN, HonKnit, Boosan и Jacquard.",
+          en: "Our experienced team monitors product quality every second on Taifan, Honknit, Boosan and Jacquard equipment.",
+          uz: "Bizning tajribali jamoamiz Taifan, Honknit, Boosan va Jacquard uskunalarida mahsulot sifatini har soniyada nazorat qiladi.",
+          ru: "Наша опытная команда ежесекундно контролирует качество продукции на оборудовании Taifan, Honknit, Boosan и Jacquard.",
         },
       },
     ],
@@ -192,9 +193,9 @@ const businessOverviews: Record<string, BusinessOverview> = {
   },
   "garment-production": {
     quote: {
-      en: "Finished garments carry discipline from every previous stage. Design, cutting, sewing, and inspection move through one traceable workflow.",
-      uz: "Tayyor kiyim har bir oldingi bosqich intizomini o'zida olib yuradi. Dizayn, bichish, tikish va tekshiruv bitta kuzatiladigan jarayonda yuradi.",
-      ru: "Готовое изделие несёт дисциплину всех предыдущих этапов. Дизайн, раскрой, пошив и инспекция проходят в одном прослеживаемом процессе.",
+      en: "For us, quality is not an accident — it is the product of systematic discipline. Design, cutting and sewing are unified into a single technological chain, which guarantees accountability for every stitch.",
+      uz: "Bizda sifat tasodif emas, balki tizimli intizom mahsulidir. Dizayn, bichish va tikish jarayonlari yagona texnologik zanjirga birlashtirilgan bo'lib, bu har bir chok uchun mas'uliyatni kafolatlaydi.",
+      ru: "У нас качество — не случайность, а результат системной дисциплины. Дизайн, раскрой и пошив объединены в единую технологическую цепочку, что гарантирует ответственность за каждый стежок.",
     },
     stats: [
       {
@@ -266,9 +267,9 @@ const businessOverviews: Record<string, BusinessOverview> = {
   },
   petrol: {
     quote: {
-      en: "Reliable fuel supply keeps production transport moving. Storage, distribution, and service are managed from one controlled point.",
-      uz: "Ishonchli yoqilg'i ta'minoti ishlab chiqarish transportini harakatda ushlab turadi. Saqlash, tarqatish va servis bir nazorat nuqtasidan boshqariladi.",
-      ru: "Надёжное топливное снабжение поддерживает движение производственного транспорта. Хранение, распределение и сервис управляются из одной контрольной точки.",
+      en: "Fuel is the power source of the production chain. Every process — from storage to distribution — is managed from a single control point, ensuring quality and accuracy.",
+      uz: "Yoqilg'i — ishlab chiqarish zanjirining quvvat manbai. Saqlashdan tortib tarqatishgacha bo'lgan barcha jarayonlar yagona nazorat nuqtasidan boshqariladi, bu esa sifat va aniqlikni ta'minlaydi.",
+      ru: "Топливо — источник энергии производственной цепочки. Все процессы — от хранения до распределения — управляются из единой точки контроля, что обеспечивает качество и точность.",
     },
     stats: [
       {
@@ -280,9 +281,9 @@ const businessOverviews: Record<string, BusinessOverview> = {
           ru: "Ёмкость хранения",
         },
         description: {
-          en: "Modern storage supports cluster machinery, logistics, and controlled local fuel service without operational delay.",
-          uz: "Zamonaviy saqlash quvvati klaster texnikasi, logistika va mahalliy yoqilg'i xizmatini uzilishsiz qo'llab-quvvatlaydi.",
-          ru: "Современное хранилище поддерживает технику кластера, логистику и контролируемый местный топливный сервис без задержек.",
+          en: "Massive reserve capacity. Modern technology strictly controls both fuel quality and volume.",
+          uz: "Ulkan zaxira quvvati. Zamonaviy texnologiyalar yordamida yoqilg'i sifati va miqdori qat'iy nazorat qilinadi.",
+          ru: "Огромная резервная мощность. Современные технологии обеспечивают строгий контроль качества и объёма топлива.",
         },
       },
       {
@@ -290,12 +291,17 @@ const businessOverviews: Record<string, BusinessOverview> = {
         suffix: { en: "/7", uz: "/7", ru: "/7" },
         title: { en: "Service mode", uz: "Xizmat rejimi", ru: "Режим сервиса" },
         description: {
-          en: "Seven employees maintain daily fuel access for FAYZ-M operations and nearby community demand.",
-          uz: "7 xodim FAYZ-M operatsiyalari va yaqin atrofdagi aholi ehtiyoji uchun kundalik yoqilg'i xizmatini ta'minlaydi.",
-          ru: "7 сотрудников обеспечивают ежедневный доступ к топливу для операций FAYZ-M и потребностей жителей рядом.",
+          en: "Non-stop service. Our station serves both the company's machinery and the local community around the clock.",
+          uz: "Uzluksiz xizmat rejimi. Bizning shoxobchamiz sutka davomida ham korxona texnikalariga, ham mahalliy aholiga xizmat ko'rsatadi.",
+          ru: "Непрерывный режим работы. Наша станция круглосуточно обслуживает как технику предприятия, так и местное население.",
         },
       },
     ],
+    partnershipDesc: {
+      en: "Get quality fuel supply and a long-term reliable partnership with FAYZ-M. Get in touch and let's take the next step together!",
+      uz: "FAYZ-M bilan sifatli yoqilg'i ta'minoti va uzoq muddatli ishonchli hamkorlikka ega bo'ling. Biz bilan bog'laning va yangi bosqichga birga qadam tashlaylik!",
+      ru: "Получите качественное топливное снабжение и долгосрочное надёжное партнёрство с FAYZ-M. Свяжитесь с нами и сделаем следующий шаг вместе!",
+    },
   },
   farm: {
     quote: {
@@ -331,9 +337,9 @@ const businessOverviews: Record<string, BusinessOverview> = {
   },
   "cottonseed-oil": {
     quote: {
-      en: "Cottonseed becomes more valuable when every by-product is used. Oil, meal, and hulls move through one zero-waste production flow.",
-      uz: "Chigit har bir qo'shimcha mahsulot ishlatilganda ko'proq qiymat yaratadi. Yog', kunjara va qobiq bitta chiqindisiz ishlab chiqarish oqimida yuradi.",
-      ru: "Хлопковые семена создают больше ценности, когда используется каждый побочный продукт. Масло, шрот и шелуха проходят через единый безотходный поток.",
+      en: "We extract maximum value from every gram of cottonseed. Refined oil for food, meal and hulls for livestock — all unified into a single zero-waste production flow.",
+      uz: "Biz chigitning har bir grammidan maksimal foyda chiqaramiz. Tozalangan yog' oziq-ovqat uchun, kunjara va qobiq esa chorvachilik uchun — barchasi yagona chiqindisiz ishlab chiqarish oqimida birlashgan.",
+      ru: "Мы извлекаем максимальную пользу из каждого грамма хлопкового семени. Рафинированное масло — для пищевой промышленности, шрот и шелуха — для животноводства, всё объединено в единый безотходный производственный поток.",
     },
     stats: [
       {
@@ -354,14 +360,14 @@ const businessOverviews: Record<string, BusinessOverview> = {
         value: "0",
         suffix: { en: "waste", uz: "chiqindi", ru: "отходов" },
         title: {
-          en: "Circular processing",
-          uz: "Aylanma qayta ishlash",
-          ru: "Циклическая переработка",
+          en: "100% efficiency",
+          uz: "100% samaradorlik",
+          ru: "100% эффективность",
         },
         description: {
-          en: "Meal and hulls return to the farm as animal feed, keeping more value inside the integrated cluster.",
-          uz: "Kunjara va qobiq chorva ozuqasi sifatida xo'jalikka qaytadi, qiymatning katta qismi klaster ichida qoladi.",
-          ru: "Шрот и шелуха возвращаются на ферму как корм, сохраняя больше ценности внутри интегрированного кластера.",
+          en: "No waste remains from the production process — by-products are directed to the livestock farms inside the cluster.",
+          uz: "Ishlab chiqarish jarayonida hech qanday chiqindi qolmaydi — qo'shimcha mahsulotlar klaster ichidagi chorvachilik xo'jaliklariga yo'naltiriladi.",
+          ru: "В процессе производства не остаётся отходов — побочные продукты направляются на животноводческие хозяйства внутри кластера.",
         },
       },
     ],
@@ -961,7 +967,7 @@ export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
                   {text.partnershipHeading[locale]}
                 </h2>
                 <p className="text-sm leading-relaxed text-white/75 md:text-base">
-                  {text.partnershipDesc[locale]}
+                  {(overview.partnershipDesc ?? text.partnershipDesc)[locale]}
                 </p>
                 <Link
                   href={localizeHref(locale, "/contact")}

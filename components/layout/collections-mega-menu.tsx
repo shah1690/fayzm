@@ -130,9 +130,9 @@ function PdfBookVisual({ tone }: Readonly<{ tone: "cream" | "blue" }>) {
 
 const pdfText = {
   open: {
-    en: "Open",
-    uz: "Ochish",
-    ru: "Открыть",
+    en: "View Catalogue",
+    uz: "Katalogni ko'rish",
+    ru: "Посмотреть каталог",
   },
 } as const;
 

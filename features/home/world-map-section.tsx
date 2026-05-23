@@ -34,9 +34,9 @@ const UZB_ISO = "860";
 
 const sectionText = {
   heading: {
-    en: "Shipping to 7 countries\nacross Europe & CIS",
-    uz: "7 mamlakatga yetkazamiz —\nYevropa va MDH bo'ylab",
-    ru: "Доставляем в 7 стран\nЕвропы и СНГ",
+    en: "Our products are delivered to 7 countries:\nacross Europe & CIS",
+    uz: "Mahsulotlarimiz dunyoning 7 mamlakatiga\nyetkazib berilmoqda: Yevropa va MDH bo'ylab",
+    ru: "Наша продукция поставляется в 7 стран мира:\nпо Европе и СНГ",
   },
   subtitle: {
     en: "From Andijan — premium knitwear and garments reach partners across multiple markets.",
