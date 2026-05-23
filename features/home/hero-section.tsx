@@ -7,6 +7,7 @@ const scrollLabel = {
   en: "Scroll",
   uz: "Pastga",
   ru: "Листайте",
+  zh: "Scroll",
 } as const;
 
 type Props = Readonly<{ locale: Locale }>;

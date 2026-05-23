@@ -82,41 +82,49 @@ const text = {
     en: "Contact Us →",
     uz: "Bog'lanish →",
     ru: "Связаться →",
+    zh: "联系我们 →",
   },
   overview: {
     en: "Overview",
     uz: "Faoliyat sharhi",
     ru: "Обзор направления",
+    zh: "业务概览",
   },
   capabilityFrame: {
     en: "Production capabilities",
     uz: "Ishlab chiqarish imkoniyatlari",
     ru: "Производственные возможности",
+    zh: "生产能力",
   },
   whatWeBuilt: {
     en: "Key strengths",
     uz: "Asosiy imkoniyatlar",
     ru: "Ключевые возможности",
+    zh: "核心优势",
   },
   clusterScale: {
     en: "Cluster scale",
     uz: "Klaster ko'lami",
     ru: "Масштаб кластера",
+    zh: "集群规模",
   },
   partnershipHeading: {
     en: "Want to partner with us?",
     uz: "Biz bilan hamkorlik qilishni xohlaysizmi?",
     ru: "Хотите сотрудничать с нами?",
+    zh: "想与我们合作吗？",
   },
   partnershipDesc: {
     en: "Get quality fabric supply and a long-term reliable partnership with FAYZ-M. Get in touch and let's take the next step together!",
     uz: "FAYZ-M bilan sifatli mato ta'minoti va uzoq muddatli ishonchli hamkorlikka ega bo'ling. Biz bilan bog'laning va yangi bosqichga birga qadam tashlaylik!",
     ru: "Получите качественное снабжение тканями и долгосрочное надёжное партнёрство с FAYZ-M. Свяжитесь с нами и сделаем следующий шаг вместе!",
+    zh: "与 FAYZ-M 携手获得优质面料供应与长期可靠的合作。立即联系我们，共同迈向新阶段！",
   },
   partnershipCta: {
     en: "Request a consultation →",
     uz: "Bog'lanish →",
     ru: "Связаться →",
+    zh: "预约咨询 →",
   },
 } as const;
 
@@ -126,67 +134,81 @@ const businessOverviews: Record<string, BusinessOverview> = {
       en: "Fabric quality is the result of carefully selected yarn and precision in knit construction. Every roll is produced with consistent structure, stretch and impeccable finish.",
       uz: "Mato sifati — to'g'ri tanlangan ip va trikotaj to'qilishidagi aniqlik natijasidir. Bizda har bir rulon bir xil tuzilish, cho'ziluvchanlik va mukammal pardoz bilan ishlab chiqariladi.",
       ru: "Качество ткани — результат правильно подобранной пряжи и точности трикотажной вязки. Каждый рулон производится с одинаковой структурой, эластичностью и безупречной отделкой.",
+      zh: "面料品质源于精选的纱线与精准的针织工艺。我们生产的每一卷面料都拥有一致的结构、延展性和完美的表面处理。",
     },
     stats: [
       {
         value: "4 015",
-        suffix: { en: "t", uz: "t", ru: "т" },
+        suffix: { en: "t", uz: "t", ru: "т", zh: "吨" },
         title: {
           en: "Annual fabric output",
           uz: "Yillik mato quvvati",
           ru: "Годовой выпуск ткани",
+          zh: "年产面料",
         },
         description: {
           en: "The knitting division produces 4,015 tons of fabric per year for internal garment lines and B2B supply.",
           uz: "Trikotaj bo'limi ichki tikuvchilik liniyalari va B2B ta'minot uchun yiliga 4 015 tonna mato ishlab chiqaradi.",
           ru: "Трикотажное направление выпускает 4 015 тонн ткани в год для внутренних швейных линий и B2B-поставок.",
+          zh: "针织部门每年生产 4,015 吨面料，供应集团内部服装生产线和 B2B 客户。",
         },
       },
       {
         value: "50",
-        suffix: { en: "+", uz: "+", ru: "+" },
-        title: { en: "Specialists", uz: "Mutaxassislar", ru: "Специалисты" },
+        suffix: { en: "+", uz: "+", ru: "+", zh: "+" },
+        title: {
+          en: "Specialists",
+          uz: "Mutaxassislar",
+          ru: "Специалисты",
+          zh: "专业人员",
+        },
         description: {
           en: "Our experienced team monitors product quality every second on Taifan, Honknit, Boosan and Jacquard equipment.",
           uz: "Bizning tajribali jamoamiz Taifan, Honknit, Boosan va Jacquard uskunalarida mahsulot sifatini har soniyada nazorat qiladi.",
           ru: "Наша опытная команда ежесекундно контролирует качество продукции на оборудовании Taifan, Honknit, Boosan и Jacquard.",
+          zh: "我们经验丰富的团队在 Taifan、Honknit、Boosan 与 Jacquard 设备上对产品质量进行实时监控。",
         },
       },
     ],
   },
   "yarn-production": {
     quote: {
-      en: "Stable yarn begins with precise fiber preparation. Automated RIETER lines keep every spindle aligned with one cluster quality standard.",
-      uz: "Barqaror ip aniq tola tayyorlashdan boshlanadi. Avtomatlashtirilgan RIETER liniyalari har bir urchuqni yagona klaster sifati standartida ushlab turadi.",
-      ru: "Стабильная пряжа начинается с точной подготовки волокна. Автоматизированные линии RIETER держат каждое веретено в едином стандарте качества кластера.",
+      en: "The foundation of quality yarn is a precise technological process. RIETER lines ensure that every spindle meets our cluster's strict standards — a solid base for our knitwear production.",
+      uz: "Sifatli ipning asosi — aniq texnologik jarayon. RIETER liniyalari har bir urchuqning klasterimizning qat'iy standartlariga mos kelishini ta'minlaydi, bu esa trikotaj ishlab chiqarishimiz uchun mustahkam poydevordir.",
+      ru: "Основа качественной пряжи — точный технологический процесс. Линии RIETER гарантируют соответствие каждого веретена строгим стандартам нашего кластера, что служит надёжной основой для нашего трикотажного производства.",
+      zh: "高品质纱线的根基在于精准的工艺流程。RIETER 生产线确保每一锭纱都符合我们集群的严格标准，为针织生产打下坚实基础。",
     },
     stats: [
       {
         value: "9 417",
-        suffix: { en: "t", uz: "t", ru: "т" },
+        suffix: { en: "t", uz: "t", ru: "т", zh: "吨" },
         title: {
           en: "Annual yarn capacity",
           uz: "Yillik ip quvvati",
           ru: "Годовая мощность пряжи",
+          zh: "年纱线产能",
         },
         description: {
-          en: "The spinning mill supplies consistent yarn for FAYZ-M knitting and garment production at industrial scale.",
-          uz: "Egrish zavodi FAYZ-M trikotaj va tikuvchilik ishlab chiqarishi uchun sanoat miqyosida barqaror ip yetkazadi.",
-          ru: "Прядильная фабрика поставляет стабильную пряжу для трикотажного и швейного производства FAYZ-M в промышленном масштабе.",
+          en: "Scale and capacity. While fully covering the cluster's needs, we also supply high-quality yarn to export markets.",
+          uz: "Masshtab va quvvat. Klaster ehtiyojlarini to'liq qoplash bilan birga, yuqori sifatli ipni eksport bozorlariga ham yetkazib beramiz.",
+          ru: "Масштаб и мощность. Полностью покрывая потребности кластера, мы также поставляем высококачественную пряжу на экспортные рынки.",
+          zh: "规模与产能并重。在充分满足集群内部需求的同时，我们也向出口市场供应优质纱线。",
         },
       },
       {
         value: "300",
-        suffix: { en: "+", uz: "+", ru: "+" },
+        suffix: { en: "+", uz: "+", ru: "+", zh: "+" },
         title: {
           en: "Line employees",
           uz: "Liniya xodimlari",
           ru: "Сотрудники линий",
+          zh: "生产线员工",
         },
         description: {
-          en: "Teams run fully automated lines commissioned in 2023 with Swiss spinning technology partner RIETER.",
-          uz: "Jamoalar 2023 yilda Shveytsariyaning RIETER texnologik hamkori bilan ishga tushirilgan avtomatlashtirilgan liniyalarni boshqaradi.",
-          ru: "Команды управляют автоматизированными линиями, запущенными в 2023 году со швейцарским технологическим партнёром RIETER.",
+          en: "Human capital and automation. Our team consists of professionals with specialised training in operating Swiss technologies.",
+          uz: "Inson kapitali va avtomatizatsiya. Jamoamiz Shveytsariya texnologiyalarini boshqarish bo'yicha maxsus tayyorgarlikdan o'tgan professional mutaxassislardan iborat.",
+          ru: "Человеческий капитал и автоматизация. Наша команда состоит из профессионалов, прошедших специальную подготовку по управлению швейцарскими технологиями.",
+          zh: "人才与自动化并举。我们的团队由经过专业培训、熟练操作瑞士技术设备的专业人员组成。",
         },
       },
     ],
@@ -196,71 +218,81 @@ const businessOverviews: Record<string, BusinessOverview> = {
       en: "For us, quality is not an accident — it is the product of systematic discipline. Design, cutting and sewing are unified into a single technological chain, which guarantees accountability for every stitch.",
       uz: "Bizda sifat tasodif emas, balki tizimli intizom mahsulidir. Dizayn, bichish va tikish jarayonlari yagona texnologik zanjirga birlashtirilgan bo'lib, bu har bir chok uchun mas'uliyatni kafolatlaydi.",
       ru: "У нас качество — не случайность, а результат системной дисциплины. Дизайн, раскрой и пошив объединены в единую технологическую цепочку, что гарантирует ответственность за каждый стежок.",
+      zh: "对我们而言，品质并非偶然，而是源于系统化的纪律。设计、裁剪与缝制被整合进同一条技术链，从而对每一道针脚负责。",
     },
     stats: [
       {
         value: "10",
-        suffix: { en: "M+", uz: "mln+", ru: "млн+" },
+        suffix: { en: "M+", uz: "mln+", ru: "млн+", zh: "百万+" },
         title: {
           en: "Garments per year",
           uz: "Yillik kiyim hajmi",
           ru: "Изделий в год",
+          zh: "年产成衣",
         },
         description: {
           en: "FAYZ-M produces everyday and seasonal knitwear for regional and export markets from one integrated base.",
           uz: "FAYZ-M kundalik va mavsumiy trikotaj kiyimlarni hududiy hamda eksport bozorlari uchun yagona integratsiyalashgan bazada ishlab chiqaradi.",
           ru: "FAYZ-M производит повседневный и сезонный трикотаж для региональных и экспортных рынков на единой интегрированной базе.",
+          zh: "FAYZ-M 在统一的一体化基地中，为本地与出口市场生产日常款与季节款针织服装。",
         },
       },
       {
         value: "700",
-        suffix: { en: "+", uz: "+", ru: "+" },
+        suffix: { en: "+", uz: "+", ru: "+", zh: "+" },
         title: {
           en: "Skilled workers",
           uz: "Malakali ishchilar",
           ru: "Квалифицированные работники",
+          zh: "熟练员工",
         },
         description: {
           en: "Most team members are local women trained in production discipline, quality control, and export requirements.",
           uz: "Jamoaning katta qismi ishlab chiqarish intizomi, sifat nazorati va eksport talablari bo'yicha tayyorlangan mahalliy ayollardan iborat.",
           ru: "Большинство команды — местные женщины, обученные производственной дисциплине, контролю качества и экспортным требованиям.",
+          zh: "团队大多数成员是来自当地的女性，并经过生产纪律、质量管控和出口标准的专业培训。",
         },
       },
     ],
   },
   flour: {
     quote: {
-      en: "Food quality depends on clean grain, accurate milling, and laboratory control. The mill keeps field-to-bag traceability inside the cluster.",
-      uz: "Oziq-ovqat sifati toza don, aniq tortish va laboratoriya nazoratiga bog'liq. Tegirmon daladan qopgacha kuzatuvni klaster ichida saqlaydi.",
-      ru: "Качество пищевого продукта зависит от чистого зерна, точного помола и лабораторного контроля. Мельница сохраняет прослеживаемость от поля до мешка внутри кластера.",
+      en: "Quality is our primary measure. Every stage — from grain intake to the finished flour bag — passes through laboratory control. We guarantee product purity through a full chain of control inside the cluster.",
+      uz: "Sifat — bizning bosh mezonimiz. Donni qabul qilishdan tortib, tayyor un qoplariga qadar har bir bosqich laboratoriya nazoratidan o'tadi. Biz klaster ichidagi to'liq nazorat zanjiri orqali mahsulot sofligini kafolatlaymiz.",
+      ru: "Качество — наш главный критерий. Каждый этап — от приёмки зерна до готовых мешков муки — проходит лабораторный контроль. Мы гарантируем чистоту продукции через полную цепочку контроля внутри кластера.",
+      zh: "品质是我们的首要标准。从谷物入库到面粉成袋的每一个环节都经过实验室检测。我们通过集群内的完整管控链条，保证产品的纯净。",
     },
     stats: [
       {
         value: "29 200",
-        suffix: { en: "t", uz: "t", ru: "т" },
+        suffix: { en: "t", uz: "t", ru: "т", zh: "吨" },
         title: {
           en: "Annual flour output",
           uz: "Yillik un quvvati",
           ru: "Годовой выпуск муки",
+          zh: "年产面粉",
         },
         description: {
           en: "Wheat from FAYZ-M fields is milled for domestic supply and cluster food needs with year-round operation.",
           uz: "FAYZ-M dalalaridagi bug'doy ichki ta'minot va klaster oziq-ovqat ehtiyojlari uchun yil davomida tortiladi.",
           ru: "Пшеница с полей FAYZ-M круглый год перемалывается для внутреннего снабжения и пищевых нужд кластера.",
+          zh: "来自 FAYZ-M 田间的小麦全年进行磨制，满足国内供应和集群的食品需求。",
         },
       },
       {
         value: "50",
-        suffix: { en: "+", uz: "+", ru: "+" },
+        suffix: { en: "+", uz: "+", ru: "+", zh: "+" },
         title: {
           en: "Mill employees",
           uz: "Tegirmon xodimlari",
           ru: "Сотрудники мельницы",
+          zh: "磨坊员工",
         },
         description: {
           en: "Full-time teams operate milling, hygiene, and lab testing workflows with strict production discipline.",
           uz: "Doimiy jamoalar tortish, gigiyena va laboratoriya sinovi jarayonlarini qat'iy ishlab chiqarish intizomi bilan boshqaradi.",
           ru: "Постоянные команды ведут помол, гигиену и лабораторные проверки с жёсткой производственной дисциплиной.",
+          zh: "全职团队以严格的生产纪律运营磨制、卫生与实验室检测流程。",
         },
       },
     ],
@@ -270,30 +302,39 @@ const businessOverviews: Record<string, BusinessOverview> = {
       en: "Fuel is the power source of the production chain. Every process — from storage to distribution — is managed from a single control point, ensuring quality and accuracy.",
       uz: "Yoqilg'i — ishlab chiqarish zanjirining quvvat manbai. Saqlashdan tortib tarqatishgacha bo'lgan barcha jarayonlar yagona nazorat nuqtasidan boshqariladi, bu esa sifat va aniqlikni ta'minlaydi.",
       ru: "Топливо — источник энергии производственной цепочки. Все процессы — от хранения до распределения — управляются из единой точки контроля, что обеспечивает качество и точность.",
+      zh: "燃油是生产链条的动力之源。从储存到分发的每一个环节都由统一控制点管理，确保品质与精准。",
     },
     stats: [
       {
         value: "100",
-        suffix: { en: "k L", uz: "ming l", ru: "тыс. л" },
+        suffix: { en: "k L", uz: "ming l", ru: "тыс. л", zh: "千升" },
         title: {
           en: "Storage capacity",
           uz: "Saqlash quvvati",
           ru: "Ёмкость хранения",
+          zh: "储存容量",
         },
         description: {
           en: "Massive reserve capacity. Modern technology strictly controls both fuel quality and volume.",
           uz: "Ulkan zaxira quvvati. Zamonaviy texnologiyalar yordamida yoqilg'i sifati va miqdori qat'iy nazorat qilinadi.",
           ru: "Огромная резервная мощность. Современные технологии обеспечивают строгий контроль качества и объёма топлива.",
+          zh: "雄厚的储备能力。现代化技术严格管控燃油的品质与数量。",
         },
       },
       {
         value: "24",
-        suffix: { en: "/7", uz: "/7", ru: "/7" },
-        title: { en: "Service mode", uz: "Xizmat rejimi", ru: "Режим сервиса" },
+        suffix: { en: "/7", uz: "/7", ru: "/7", zh: "/7" },
+        title: {
+          en: "Service mode",
+          uz: "Xizmat rejimi",
+          ru: "Режим сервиса",
+          zh: "服务模式",
+        },
         description: {
           en: "Non-stop service. Our station serves both the company's machinery and the local community around the clock.",
           uz: "Uzluksiz xizmat rejimi. Bizning shoxobchamiz sutka davomida ham korxona texnikalariga, ham mahalliy aholiga xizmat ko'rsatadi.",
           ru: "Непрерывный режим работы. Наша станция круглосуточно обслуживает как технику предприятия, так и местное население.",
+          zh: "全天候不间断服务。我们的加油站全天 24 小时为公司机械及周边居民提供服务。",
         },
       },
     ],
@@ -301,36 +342,46 @@ const businessOverviews: Record<string, BusinessOverview> = {
       en: "Get quality fuel supply and a long-term reliable partnership with FAYZ-M. Get in touch and let's take the next step together!",
       uz: "FAYZ-M bilan sifatli yoqilg'i ta'minoti va uzoq muddatli ishonchli hamkorlikka ega bo'ling. Biz bilan bog'laning va yangi bosqichga birga qadam tashlaylik!",
       ru: "Получите качественное топливное снабжение и долгосрочное надёжное партнёрство с FAYZ-M. Свяжитесь с нами и сделаем следующий шаг вместе!",
+      zh: "携手 FAYZ-M 获得优质燃油供应与长期可靠的合作。立即联系我们，共同迈向新阶段！",
     },
   },
   farm: {
     quote: {
-      en: "Strong livestock operations start with pedigree breeds and controlled feed. Animal care, fodder production, and local food supply work as one system.",
-      uz: "Kuchli chorvachilik zotli nasl va nazoratdagi ozuqadan boshlanadi. Hayvon parvarishi, ozuqa yetishtirish va mahalliy oziq-ovqat ta'minoti bitta tizimda ishlaydi.",
-      ru: "Сильное животноводство начинается с племенных пород и контролируемых кормов. Уход за животными, производство кормов и местное снабжение работают как одна система.",
+      en: "Healthy livestock is the guarantee of quality products. We unify animal care, fodder production and finished product supply within a single technological system, ensuring high quality and control at every stage.",
+      uz: "Sog'lom chorva — sifatli mahsulot garovi. Bizda hayvonlarni parvarish qilish, ozuqa yetishtirish va tayyor mahsulot yetkazib berish yagona texnologik tizimda birlashgan. Bu har bir bosqichda yuqori sifat va nazoratni ta'minlaydi.",
+      ru: "Здоровое поголовье — залог качественной продукции. У нас уход за животными, производство кормов и поставка готовой продукции объединены в единой технологической системе. Это обеспечивает высокое качество и контроль на каждом этапе.",
+      zh: "健康的畜群是优质产品的保障。我们将动物饲养、饲料生产与成品供应整合在同一套技术体系中，确保每一道环节都保持高质量与可控性。",
     },
     stats: [
       {
         value: "1 300",
-        suffix: { en: "+", uz: "+", ru: "+" },
+        suffix: { en: "+", uz: "+", ru: "+", zh: "+" },
         title: {
           en: "Livestock headcount",
           uz: "Chorva bosh soni",
           ru: "Голов скота",
+          zh: "牲畜头数",
         },
         description: {
-          en: "Cattle, sheep, and horses from Europe support stable meat and dairy supply for the local market.",
-          uz: "Yevropadan keltirilgan qoramol, qo'y va otlar mahalliy bozor uchun barqaror go'sht va sut ta'minotini qo'llab-quvvatlaydi.",
-          ru: "Крупный рогатый скот, овцы и лошади из Европы поддерживают стабильные поставки мяса и молока для местного рынка.",
+          en: "Starting from 30 head of cattle, our farm has grown today into a large complex containing more than 1,300 select pedigree animals.",
+          uz: "30 ta qoramoldan boshlangan xo'jaligimiz bugungi kunda 1300 dan ortiq sara zotli hayvonlarni o'z ichiga olgan yirik majmuaga aylandi.",
+          ru: "Начав с 30 голов крупного рогатого скота, наше хозяйство сегодня превратилось в крупный комплекс, в котором содержится более 1 300 отборных племенных животных.",
+          zh: "我们的牧场从 30 头牛起步，如今已发展为拥有超过 1,300 头精选纯种动物的大型综合体。",
         },
       },
       {
         value: "2018",
-        title: { en: "Established", uz: "Tashkil etilgan", ru: "Основано" },
+        title: {
+          en: "Established",
+          uz: "Tashkil etilgan",
+          ru: "Основано",
+          zh: "成立年份",
+        },
         description: {
-          en: "The farm expanded from 30 cattle into a multi-species operation with its own fodder production cycle.",
-          uz: "Xo'jalik 30 ta qoramoldan o'z ozuqa yetishtirish aylanishiga ega ko'p turdagi chorvachilik tizimigacha kengaydi.",
-          ru: "Ферма выросла с 30 голов скота до многоотраслевого хозяйства с собственным циклом производства кормов.",
+          en: "In a short time, through an innovative approach, we have fully covered our cluster's demand for meat and dairy products.",
+          uz: "Qisqa vaqt ichida biz innovatsion yondashuv orqali klasterimizning go'sht va sut mahsulotlariga bo'lgan ehtiyojini to'liq qoplashga erishdik.",
+          ru: "За короткое время благодаря инновационному подходу мы полностью покрыли потребности нашего кластера в мясной и молочной продукции.",
+          zh: "在很短的时间内，我们凭借创新方式，完全满足了集群对肉类和乳制品的需求。",
         },
       },
     ],
@@ -340,34 +391,39 @@ const businessOverviews: Record<string, BusinessOverview> = {
       en: "We extract maximum value from every gram of cottonseed. Refined oil for food, meal and hulls for livestock — all unified into a single zero-waste production flow.",
       uz: "Biz chigitning har bir grammidan maksimal foyda chiqaramiz. Tozalangan yog' oziq-ovqat uchun, kunjara va qobiq esa chorvachilik uchun — barchasi yagona chiqindisiz ishlab chiqarish oqimida birlashgan.",
       ru: "Мы извлекаем максимальную пользу из каждого грамма хлопкового семени. Рафинированное масло — для пищевой промышленности, шрот и шелуха — для животноводства, всё объединено в единый безотходный производственный поток.",
+      zh: "我们从每一克棉籽中榨取最大价值。精炼油用于食品，饼粕与籽壳用于畜牧——一切整合在同一条零废弃生产流程中。",
     },
     stats: [
       {
         value: "7 300",
-        suffix: { en: "t", uz: "t", ru: "т" },
+        suffix: { en: "t", uz: "t", ru: "т", zh: "吨" },
         title: {
           en: "Annual oil output",
           uz: "Yillik yog' quvvati",
           ru: "Годовой выпуск масла",
+          zh: "年产油量",
         },
         description: {
           en: "Refined cottonseed oil is produced from FAYZ-M fields for domestic supply and future export potential.",
           uz: "Tozalangan paxta yog'i FAYZ-M dalalaridagi chigitdan ichki ta'minot va eksport salohiyati uchun ishlab chiqariladi.",
           ru: "Рафинированное хлопковое масло производится из семян с полей FAYZ-M для внутреннего снабжения и будущего экспортного потенциала.",
+          zh: "精炼棉籽油以 FAYZ-M 田间的棉籽为原料生产，供应国内市场并具备广阔的出口潜力。",
         },
       },
       {
         value: "0",
-        suffix: { en: "waste", uz: "chiqindi", ru: "отходов" },
+        suffix: { en: "waste", uz: "chiqindi", ru: "отходов", zh: "废弃" },
         title: {
           en: "100% efficiency",
           uz: "100% samaradorlik",
           ru: "100% эффективность",
+          zh: "100% 效率",
         },
         description: {
           en: "No waste remains from the production process — by-products are directed to the livestock farms inside the cluster.",
           uz: "Ishlab chiqarish jarayonida hech qanday chiqindi qolmaydi — qo'shimcha mahsulotlar klaster ichidagi chorvachilik xo'jaliklariga yo'naltiriladi.",
           ru: "В процессе производства не остаётся отходов — побочные продукты направляются на животноводческие хозяйства внутри кластера.",
+          zh: "生产过程中不产生任何废弃物——副产品全部转入集群内的畜牧场使用。",
         },
       },
     ],
@@ -590,7 +646,7 @@ function FeatureCards({
   locale,
   highlightIndex,
 }: Readonly<{
-  features: { en: string; uz: string; ru: string }[];
+  features: { en: string; uz: string; ru: string; zh: string }[];
   locale: Locale;
   highlightIndex: number;
 }>) {
@@ -635,7 +691,7 @@ function FeatureList({
   features,
   locale,
 }: Readonly<{
-  features: { en: string; uz: string; ru: string }[];
+  features: { en: string; uz: string; ru: string; zh: string }[];
   locale: Locale;
 }>) {
   return (

@@ -59,16 +59,34 @@ function RUFlag({ title, ...props }: FlagSvgProps) {
   );
 }
 
+function CNFlag({ title, ...props }: FlagSvgProps) {
+  return (
+    <svg viewBox="0 0 60 40" aria-hidden="true" {...props}>
+      {title ? <title>{title}</title> : null}
+      <rect width="60" height="40" fill="#EE1C25" />
+      <g fill="#FFFF00">
+        <polygon points="10,5 11.18,8.64 15,8.64 11.91,10.88 13.09,14.51 10,12.27 6.91,14.51 8.09,10.88 5,8.64 8.82,8.64" />
+        <polygon points="20,3 20.5,4.31 21.9,4.36 20.8,5.24 21.18,6.59 20,5.8 18.82,6.59 19.2,5.24 18.1,4.36 19.5,4.31" />
+        <polygon points="24,7 24.4,8.13 25.6,8.18 24.65,8.94 24.97,10.11 24,9.42 23.03,10.11 23.35,8.94 22.4,8.18 23.6,8.13" />
+        <polygon points="24,12 24.4,13.13 25.6,13.18 24.65,13.94 24.97,15.11 24,14.42 23.03,15.11 23.35,13.94 22.4,13.18 23.6,13.13" />
+        <polygon points="20,16 20.5,17.31 21.9,17.36 20.8,18.24 21.18,19.59 20,18.8 18.82,19.59 19.2,18.24 18.1,17.36 19.5,17.31" />
+      </g>
+    </svg>
+  );
+}
+
 const flagByLocale: Record<Locale, LocaleFlagComponent> = {
   en: GBFlag,
   uz: UZFlag,
   ru: RUFlag,
+  zh: CNFlag,
 };
 
 const titleByLocale: Record<Locale, string> = {
   en: "Great Britain flag",
   uz: "Uzbekistan flag",
   ru: "Russia flag",
+  zh: "China flag",
 };
 
 type LocaleFlagProps = Readonly<{

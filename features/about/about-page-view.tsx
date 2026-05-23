@@ -54,6 +54,18 @@ const galleryImages = {
     { src: "/images/y1.jpg", alt: "Производство пряжи FAYZ-M" },
     { src: "/images/y2.jpg", alt: "Прядильный комплекс FAYZ-M" },
   ],
+  zh: [
+    { src: "/images/about-hero.png", alt: "FAYZ-M 生产综合体" },
+    { src: "/images/g1.jpg", alt: "FAYZ-M 服装生产" },
+    { src: "/images/k1.jpg", alt: "FAYZ-M 纺织生产" },
+    { src: "/images/eco.jpg", alt: "FAYZ-M 绿色能源设施" },
+    { src: "/images/g2.jpg", alt: "FAYZ-M 服装车间" },
+    { src: "/images/g3.jpg", alt: "FAYZ-M 缝制生产线" },
+    { src: "/images/k2.jpg", alt: "FAYZ-M 针织车间" },
+    { src: "/images/k3.jpg", alt: "FAYZ-M 纺织设备" },
+    { src: "/images/y1.jpg", alt: "FAYZ-M 纱线生产" },
+    { src: "/images/y2.jpg", alt: "FAYZ-M 纺纱设施" },
+  ],
 } as const;
 
 type AboutPageViewProps = Readonly<{ locale: Locale }>;

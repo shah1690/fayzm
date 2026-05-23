@@ -9,12 +9,14 @@ const title = {
   en: "Privacy Policy | FAYZ-M",
   uz: "Maxfiylik siyosati | FAYZ-M",
   ru: "Политика конфиденциальности | FAYZ-M",
+  zh: "Privacy Policy | FAYZ-M",
 } as const;
 
 const description = {
   en: "Learn how FAYZ-M handles contact form data and business inquiry information.",
   uz: "FAYZ-M aloqa formasi va biznes murojaat ma'lumotlari bilan qanday ishlashini bilib oling.",
   ru: "Узнайте, как FAYZ-M обрабатывает данные контактных форм и деловых обращений.",
+  zh: "Learn how FAYZ-M handles contact form data and business inquiry information.",
 } as const;
 
 export default async function PrivacyPolicyPage({ params }: Props) {

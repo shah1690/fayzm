@@ -7,16 +7,23 @@ import type { Locale } from "@/shared/i18n/translations";
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 const t = {
-  tag: { en: "Global Reach", uz: "Jahon miqyosi", ru: "Мировой охват" },
+  tag: {
+    en: "Global Reach",
+    uz: "Jahon miqyosi",
+    ru: "Мировой охват",
+    zh: "Global Reach",
+  },
   heading: {
     en: "Made in Uzbekistan.\nWorn worldwide.",
     uz: "O'zbekistonda ishlab chiqarilgan.\nButun dunyoda kiyiladi.",
     ru: "Сделано в Узбекистане.\nНосят по всему миру.",
+    zh: "Made in Uzbekistan.\nWorn worldwide.",
   },
   sub: {
     en: "Our knitwear ships to partners across Europe, Central Asia, and the Middle East.",
     uz: "Trikotajimiz Yevropa, Markaziy Osiyo va Yaqin Sharqdagi hamkorlarimizga yetkaziladi.",
     ru: "Наш трикотаж поставляется партнёрам по всей Европе, Центральной Азии и Ближнему Востоку.",
+    zh: "Our knitwear ships to partners across Europe, Central Asia, and the Middle East.",
   },
 };
 
@@ -52,22 +59,33 @@ const ARCS = DESTINATIONS.map((d) => ({
 }));
 
 const worldLabels = {
-  origin: { en: "Origin", uz: "Manba", ru: "Источник" },
+  origin: { en: "Origin", uz: "Manba", ru: "Источник", zh: "Origin" },
   countries: {
-    Uzbekistan: { en: "Uzbekistan", uz: "O'zbekiston", ru: "Узбекистан" },
-    Russia: { en: "Russia", uz: "Rossiya", ru: "Россия" },
-    Belarus: { en: "Belarus", uz: "Belarus", ru: "Беларусь" },
-    Turkey: { en: "Turkey", uz: "Turkiya", ru: "Турция" },
-    Kazakhstan: { en: "Kazakhstan", uz: "Qozog'iston", ru: "Казахстан" },
-    UAE: { en: "UAE", uz: "BAA", ru: "ОАЭ" },
+    Uzbekistan: {
+      en: "Uzbekistan",
+      uz: "O'zbekiston",
+      ru: "Узбекистан",
+      zh: "Uzbekistan",
+    },
+    Russia: { en: "Russia", uz: "Rossiya", ru: "Россия", zh: "Russia" },
+    Belarus: { en: "Belarus", uz: "Belarus", ru: "Беларусь", zh: "Belarus" },
+    Turkey: { en: "Turkey", uz: "Turkiya", ru: "Турция", zh: "Turkey" },
+    Kazakhstan: {
+      en: "Kazakhstan",
+      uz: "Qozog'iston",
+      ru: "Казахстан",
+      zh: "Kazakhstan",
+    },
+    UAE: { en: "UAE", uz: "BAA", ru: "ОАЭ", zh: "UAE" },
     "United Arab Emirates": {
       en: "United Arab Emirates",
       uz: "Birlashgan Arab Amirliklari",
       ru: "Объединённые Арабские Эмираты",
+      zh: "United Arab Emirates",
     },
-    Germany: { en: "Germany", uz: "Germaniya", ru: "Германия" },
-    France: { en: "France", uz: "Fransiya", ru: "Франция" },
-    China: { en: "China", uz: "Xitoy", ru: "Китай" },
+    Germany: { en: "Germany", uz: "Germaniya", ru: "Германия", zh: "Germany" },
+    France: { en: "France", uz: "Fransiya", ru: "Франция", zh: "France" },
+    China: { en: "China", uz: "Xitoy", ru: "Китай", zh: "China" },
   },
 } as const;
 

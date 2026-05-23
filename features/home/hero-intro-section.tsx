@@ -7,21 +7,25 @@ const content = {
     en: "Multi-Sector Textile Cluster",
     uz: "Ko'p tarmoqli to'qimachilik klasteri",
     ru: "Многоотраслевой текстильный кластер",
+    zh: "多元化纺织产业集群",
   },
   heading: {
     en: "Quality Textiles.\nSustainable Future.",
     uz: "Sifatli To'qimachilik.\nBarqaror Kelajak.",
     ru: "Качественный Текстиль.\nУстойчивое Будущее.",
+    zh: "品质纺织。\n可持续未来。",
   },
   description: {
     en: "FAYZ-M — a producer of high-quality yarn, fabric, and garments. We guarantee our global partners consistent quality and sustainable cooperation.",
     uz: "FAYZ-M — yuqori sifatli ip, mato va kiyim-kechak ishlab chiqaruvchi. Biz global hamkorlarimizga doimiy sifat va barqaror hamkorlikni kafolatlaymiz.",
     ru: "FAYZ-M — производитель высококачественной пряжи, ткани и одежды. Мы гарантируем нашим глобальным партнёрам стабильное качество и устойчивое сотрудничество.",
+    zh: "FAYZ-M——优质纱线、面料和成衣的生产商。我们向全球合作伙伴承诺稳定的品质与可持续的合作。",
   },
   cta: {
     en: "Get in Touch →",
     uz: "Bog'lanish →",
     ru: "Связаться →",
+    zh: "联系我们 →",
   },
 } as const;
 
@@ -29,6 +33,7 @@ const headingSizeClass: Record<Locale, string> = {
   en: "text-4xl md:text-6xl lg:text-7xl",
   uz: "text-4xl md:text-6xl lg:text-7xl",
   ru: "text-3xl md:text-5xl lg:text-6xl",
+  zh: "text-4xl md:text-6xl lg:text-7xl",
 };
 
 type Props = Readonly<{ locale: Locale }>;

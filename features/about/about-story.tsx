@@ -12,11 +12,13 @@ const text = {
     en: "FAYZ-M production",
     uz: "FAYZ-M ishlab chiqarishi",
     ru: "Производство FAYZ-M",
+    zh: "FAYZ-M production",
   },
   facilityAlt: {
     en: "FAYZ-M facility",
     uz: "FAYZ-M majmuasi",
     ru: "Предприятие FAYZ-M",
+    zh: "FAYZ-M facility",
   },
 } as const;
 

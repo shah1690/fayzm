@@ -9,7 +9,7 @@ export type ProductData = {
   slug: string;
   gender: "women" | "men";
   name: string;
-  description: { en: string; uz: string; ru: string };
+  description: { en: string; uz: string; ru: string; zh: string };
   image: string;
   specs: ProductSpec;
   sizes: string[];
@@ -26,6 +26,7 @@ export const products: ProductData[] = [
       en: "Soft knitwear hoodie with a relaxed fit and brushed interior. Crafted from premium cotton blend for all-day comfort.",
       uz: "Yumshoq trikotajdan tikilgan erkin bichimli xudi. Kun bo'yi qulaylik uchun premium paxta aralashmasidan tayyorlangan.",
       ru: "Мягкое трикотажное худи свободного кроя с начёсом внутри. Из премиальной хлопковой смеси для комфорта на весь день.",
+      zh: "宽松版型柔软针织连帽衫，内里磨毛处理，采用优质棉混纺面料，全天舒适贴身。",
     },
     image: "/images/products/w-1474.jpg",
     specs: {
@@ -44,6 +45,7 @@ export const products: ProductData[] = [
       en: "Ribbed pullover with a clean finish. Lightweight yet warm — perfect layering piece for transitional weather.",
       uz: "Qovurg'ali pullover. Yengil ammo issiq — o'tish fasli uchun ideal.",
       ru: "Рибированный пуловер с аккуратной отделкой. Лёгкий, но тёплый — идеальный слой для переходной погоды.",
+      zh: "罗纹套头衫，细节简洁；轻盈而保暖，是换季叠穿的理想单品。",
     },
     image: "/images/products/w-1472.jpg",
     specs: {
@@ -62,6 +64,7 @@ export const products: ProductData[] = [
       en: "Oversized knit with dropped shoulders and a cozy feel. A wardrobe staple made to last season after season.",
       uz: "Keng yelkali naqshli trikotaj. Mavsum ortidan mavsum kiyish uchun mo'ljallangan.",
       ru: "Оверсайз-вязка с опущенными плечами и уютным ощущением. Базовая вещь гардероба, рассчитанная на многие сезоны.",
+      zh: "落肩超大版型针织衫，质感温暖舒适。经久耐穿的衣橱必备单品。",
     },
     image: "/images/products/w-1450.jpg",
     specs: {
@@ -80,6 +83,7 @@ export const products: ProductData[] = [
       en: "Slim turtleneck with a smooth knit surface. Elegant and versatile — from office to evening.",
       uz: "Silliq trikotaj yuzali yupqa vodolazka. Ofisdan kechki uchrashuvgacha mos keladigan nafis model.",
       ru: "Облегающая водолазка с гладкой вязаной поверхностью. Элегантная и универсальная — от офиса до вечера.",
+      zh: "修身高领针织衫，表面顺滑细腻。优雅百搭，从职场到晚间皆相宜。",
     },
     image: "/images/products/w-9149.jpg",
     specs: {
@@ -98,6 +102,7 @@ export const products: ProductData[] = [
       en: "Cropped cardigan with button closure and structured silhouette. Pairs seamlessly with high-waist styles.",
       uz: "Tugmali qisqa kardigan. Baland belli kiyimlar bilan yaxshi mos tushadi.",
       ru: "Укороченный кардиган с пуговицами и структурированным силуэтом. Идеально сочетается с завышенной талией.",
+      zh: "短款扣式开衫，廓形利落。与高腰单品轻松搭配。",
     },
     image: "/images/products/w-1495.jpg",
     specs: {
@@ -116,6 +121,7 @@ export const products: ProductData[] = [
       en: "V-neck sweater in a relaxed silhouette. Timeless design with a fine texture that flatters every body type.",
       uz: "V-bo'yin sviter. Mayin teksturali, har xil qomatga mos tushadigan klassik dizayn.",
       ru: "Свитер с V-образным вырезом в свободном силуэте. Вневременной дизайн с тонкой текстурой для любой фигуры.",
+      zh: "V 领宽松毛衣，质感细腻。经典设计，修饰各种身型。",
     },
     image: "/images/products/w-1456.jpg",
     specs: {
@@ -136,6 +142,7 @@ export const products: ProductData[] = [
       en: "Heavy zip-up hoodie with structured hood and reinforced cuffs. Built for durability and daily wear.",
       uz: "Og'ir fermuarli kofta. Chidamlilik va kundalik kiyim uchun yaratilgan.",
       ru: "Тяжёлое худи на молнии со структурированным капюшоном и усиленными манжетами. Создано для прочности и ежедневной носки.",
+      zh: "重磅拉链连帽衫，立体帽型搭配加固袖口。耐穿耐用，适合日常穿着。",
     },
     image: "/images/products/m-875.jpg",
     specs: {
@@ -154,6 +161,7 @@ export const products: ProductData[] = [
       en: "Zip-up hoodie with a stonewashed finish. High-quality cotton French terry with a soft interior — built for warmth and comfort during chilly days.",
       uz: "Stonewashed effektli fermuarli xudi. Yumshoq ichki qismi va sifatli French terry matosi sovuq kunlarda issiqlik va qulaylik beradi.",
       ru: "Худи на молнии со стираным эффектом. Высококачественный хлопковый French terry с мягкой подкладкой — создан для тепла и комфорта в прохладные дни.",
+      zh: "石洗效果拉链连帽衫。优质纯棉法式毛圈布搭配柔软内里，凉爽日子里保暖又舒适。",
     },
     image: "/images/products/m-874.jpg",
     specs: {
@@ -172,6 +180,7 @@ export const products: ProductData[] = [
       en: "Track jacket with contrast stripe detailing. A clean sport-meets-street silhouette with comfortable stretch.",
       uz: "Kontrast yo'l-yo'l bezatilgan sport kurtka. Qulay cho'ziluvchanligi bilan sport va ko'cha uslubi.",
       ru: "Спортивная куртка с контрастными полосками. Чистый силуэт на стыке спорта и стрита с комфортным стрейчем.",
+      zh: "撞色条纹运动夹克。运动与街头风兼具的简洁廓形，舒适弹性自如。",
     },
     image: "/images/products/m-876.jpg",
     specs: {
@@ -190,6 +199,7 @@ export const products: ProductData[] = [
       en: "Crew neck sweater in a medium weight knit. Versatile enough for layering or wearing solo — an everyday essential.",
       uz: "O'rta og'irlikdagi trikotajdan yasalgan yumaloq bo'yin sviter. Qatlamli yoki mustaqil kiyish uchun universal.",
       ru: "Свитер с круглым вырезом из трикотажа среднего веса. Достаточно универсален для слоёв или самостоятельной носки — ежедневный must-have.",
+      zh: "中等克重圆领毛衣。叠穿或单穿皆宜，日常百搭必备。",
     },
     image: "/images/products/m-008d.jpg",
     specs: {
@@ -208,6 +218,7 @@ export const products: ProductData[] = [
       en: "Bold pullover in a deep plum colorway. Ribbed hem and cuffs with a relaxed silhouette for an elevated casual look.",
       uz: "To'q binafsha rangli yorqin pullover. Qovurg'ali etak va bilaklar bilan erkin siluet.",
       ru: "Смелый пуловер в глубоком сливовом цвете. Рибированный низ и манжеты со свободным силуэтом для стильного кэжуал-образа.",
+      zh: "深梅色个性套头衫。罗纹下摆与袖口搭配宽松廓形，演绎进阶休闲风。",
     },
     image: "/images/products/m-001.jpg",
     specs: {
@@ -226,6 +237,7 @@ export const products: ProductData[] = [
       en: "Half-zip sweatshirt with brushed fleece interior. A performance-inspired silhouette that transitions from outdoor to everyday use.",
       uz: "Ichki qismi taralgan flisdan ishlangan yarim fermuarli svitshot. Faol dam olish va kundalik kiyish uchun qulay model.",
       ru: "Свитшот на полумолнии с начёсом из флиса. Силуэт, вдохновлённый перформансом, — от активного отдыха до повседневной носки.",
+      zh: "半拉链卫衣，内里磨毛抓绒。机能风廓形，户外日常皆可穿。",
     },
     image: "/images/products/m-627.jpg",
     specs: {
@@ -244,6 +256,7 @@ export const products: ProductData[] = [
       en: "Classic crewneck sweatshirt with a clean, minimal silhouette. Soft brushed interior for all-day comfort.",
       uz: "Klassik yumaloq bo'yin svitshot. Yumshoq ichki qismi bilan butun kun qulay.",
       ru: "Классический свитшот с круглым вырезом и минималистичным силуэтом. Мягкий начёс внутри для комфорта на весь день.",
+      zh: "经典圆领卫衣，廓形简约利落。内里柔软磨毛，全天舒适。",
     },
     image: "/images/products/m-661.jpg",
     specs: {
@@ -262,6 +275,7 @@ export const products: ProductData[] = [
       en: "Relaxed-fit pullover with a soft touch and clean finish. Everyday comfort with a polished look.",
       uz: "Yumshoq va silliq erkin kesimli pullover. Har kunlik qulay kiyim.",
       ru: "Пуловер свободного кроя с мягкой текстурой и аккуратной отделкой. Ежедневный комфорт с безупречным видом.",
+      zh: "宽松版型套头衫，手感柔软，细节利落。日常穿着舒适又得体。",
     },
     image: "/images/products/w-1497.jpg",
     specs: {

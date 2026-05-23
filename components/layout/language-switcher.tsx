@@ -10,6 +10,7 @@ const localeLabels: Record<Locale, string> = {
   en: "English",
   uz: "O'zbek",
   ru: "Русский",
+  zh: "中文",
 };
 
 type LanguageSwitcherProps = Readonly<{ current: Locale }>;

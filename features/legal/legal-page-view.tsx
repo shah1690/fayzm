@@ -11,11 +11,13 @@ const copy = {
       en: "Privacy Policy",
       uz: "Maxfiylik siyosati",
       ru: "Политика конфиденциальности",
+      zh: "Privacy Policy",
     },
     lead: {
       en: "FAYZ-M respects your privacy. We collect only the information needed to respond to inquiries, process cooperation requests, and improve communication quality.",
       uz: "FAYZ-M maxfiyligingizni hurmat qiladi. Biz faqat murojaatlarga javob berish, hamkorlik so'rovlarini ko'rib chiqish va aloqa sifatini yaxshilash uchun kerakli ma'lumotlarni yig'amiz.",
       ru: "FAYZ-M уважает вашу конфиденциальность. Мы собираем только данные, необходимые для ответа на обращения, обработки запросов на сотрудничество и улучшения коммуникации.",
+      zh: "FAYZ-M respects your privacy. We collect only the information needed to respond to inquiries, process cooperation requests, and improve communication quality.",
     },
     items: {
       en: [
@@ -33,6 +35,11 @@ const copy = {
         "Мы не продаём персональные данные третьим лицам.",
         "Вы можете запросить исправление или удаление данных, связавшись с нами.",
       ],
+      zh: [
+        "联系表单中的数据仅用于商业沟通。",
+        "我们不会将个人信息出售给任何第三方。",
+        "您可以通过联系我们申请更正或删除数据。",
+      ],
     },
   },
   terms: {
@@ -40,11 +47,13 @@ const copy = {
       en: "Terms",
       uz: "Foydalanish shartlari",
       ru: "Условия использования",
+      zh: "Terms",
     },
     lead: {
       en: "By using this website, you agree to use its content for lawful informational and business purposes related to FAYZ-M services and products.",
       uz: "Ushbu saytdan foydalanish orqali siz kontentdan FAYZ-M xizmatlari va mahsulotlari bo'yicha qonuniy axborot hamda biznes maqsadlarda foydalanishga rozilik bildirasiz.",
       ru: "Используя этот сайт, вы соглашаетесь применять его материалы в законных информационных и деловых целях, связанных с услугами и продукцией FAYZ-M.",
+      zh: "By using this website, you agree to use its content for lawful informational and business purposes related to FAYZ-M services and products.",
     },
     items: {
       en: [
@@ -61,6 +70,11 @@ const copy = {
         "Материалы сайта предоставлены для общего ознакомления.",
         "Наличие продукции и условия сотрудничества подтверждаются индивидуально.",
         "FAYZ-M может обновлять контент сайта без предварительного уведомления.",
+      ],
+      zh: [
+        "网站内容仅供一般参考。",
+        "产品供应情况与合作条件以单独确认为准。",
+        "FAYZ-M 有权在不另行通知的情况下更新网站内容。",
       ],
     },
   },

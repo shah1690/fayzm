@@ -17,11 +17,13 @@ const content = {
       en: "Quality at every stitch.",
       uz: "Har bir tikuvda sifat.",
       ru: "Качество в каждом стежке.",
+      zh: "Quality at every stitch.",
     },
     sub: {
       en: "Premium Textile Collections",
       uz: "Premium To'qimachilik Kolleksiyalari",
       ru: "Премиум Текстильные Коллекции",
+      zh: "Premium Textile Collections",
     },
   },
   bottomCard: {
@@ -29,11 +31,13 @@ const content = {
       en: "Made in Uzbekistan",
       uz: "O'zbekistonda ishlab chiqarilgan",
       ru: "Сделано в Узбекистане",
+      zh: "Made in Uzbekistan",
     },
     sub: {
       en: "700+ workers · 5+ export countries",
       uz: "700+ ishchi · 5+ eksport mamlakati",
       ru: "700+ рабочих · 5+ стран экспорта",
+      zh: "700+ workers · 5+ export countries",
     },
   },
   women: {
@@ -41,6 +45,7 @@ const content = {
       en: "Women",
       uz: "Ayollar",
       ru: "Женщины",
+      zh: "Women",
     },
     image: "/images/collection-women.jpg",
     objectPosition: "right center",
@@ -51,6 +56,7 @@ const content = {
       en: "Men",
       uz: "Erkaklar",
       ru: "Мужчины",
+      zh: "Men",
     },
     image: "/images/collection-men.jpg",
     objectPosition: "left center",
@@ -133,6 +139,7 @@ const pdfText = {
     en: "View Catalogue",
     uz: "Katalogni ko'rish",
     ru: "Посмотреть каталог",
+    zh: "View Catalogue",
   },
 } as const;
 
@@ -245,8 +252,13 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                 {[
                   {
                     key: "women",
-                    label: { en: "Women", uz: "Ayollar", ru: "Женщины" },
-                    sub: { en: "PDF", uz: "PDF", ru: "PDF" },
+                    label: {
+                      en: "Women",
+                      uz: "Ayollar",
+                      ru: "Женщины",
+                      zh: "Women",
+                    },
+                    sub: { en: "PDF", uz: "PDF", ru: "PDF", zh: "PDF" },
                     href: womenCatalogHref,
                     bg: "#e5d6c9",
                     textColor: "#003566",
@@ -257,8 +269,13 @@ export function CollectionsMegaMenu({ label, locale }: Props) {
                   },
                   {
                     key: "men",
-                    label: { en: "Men", uz: "Erkaklar", ru: "Мужчины" },
-                    sub: { en: "PDF", uz: "PDF", ru: "PDF" },
+                    label: {
+                      en: "Men",
+                      uz: "Erkaklar",
+                      ru: "Мужчины",
+                      zh: "Men",
+                    },
+                    sub: { en: "PDF", uz: "PDF", ru: "PDF", zh: "PDF" },
                     href: menCatalogHref,
                     bg: "#003566",
                     textColor: "#ffffff",

@@ -86,11 +86,26 @@ function ChevronDown({ open }: { open: boolean }) {
 }
 
 const text = {
-  openMenu: { en: "Open menu", uz: "Menyuni ochish", ru: "Открыть меню" },
-  closeMenu: { en: "Close menu", uz: "Menyuni yopish", ru: "Закрыть меню" },
-  contactUs: { en: "Contact Us", uz: "Aloqa", ru: "Контакты" },
-  women: { en: "Women", uz: "Ayollar", ru: "Женщины" },
-  men: { en: "Men", uz: "Erkaklar", ru: "Мужчины" },
+  openMenu: {
+    en: "Open menu",
+    uz: "Menyuni ochish",
+    ru: "Открыть меню",
+    zh: "Open menu",
+  },
+  closeMenu: {
+    en: "Close menu",
+    uz: "Menyuni yopish",
+    ru: "Закрыть меню",
+    zh: "Close menu",
+  },
+  contactUs: {
+    en: "Contact Us",
+    uz: "Aloqa",
+    ru: "Контакты",
+    zh: "Contact Us",
+  },
+  women: { en: "Women", uz: "Ayollar", ru: "Женщины", zh: "Women" },
+  men: { en: "Men", uz: "Erkaklar", ru: "Мужчины", zh: "Men" },
 } as const;
 
 type MobileMenuProps = Readonly<{ locale: Locale }>;

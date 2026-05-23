@@ -37,11 +37,13 @@ const sectionText = {
     en: "Our products are delivered to 7 countries:\nacross Europe & CIS",
     uz: "Mahsulotlarimiz dunyoning 7 mamlakatiga\nyetkazib berilmoqda: Yevropa va MDH bo'ylab",
     ru: "Наша продукция поставляется в 7 стран мира:\nпо Европе и СНГ",
+    zh: "我们的产品已远销 7 个国家：\n覆盖欧洲与独联体",
   },
   subtitle: {
     en: "From Andijan — premium knitwear and garments reach partners across multiple markets.",
     uz: "Andijondan — premium trikotaj va kiyimlar ko'plab bozorlardagi hamkorlarga yetkazib beriladi.",
     ru: "Из Андижана — премиум трикотаж и одежда поставляются партнёрам на нескольких рынках.",
+    zh: "从安集延出发——高端针织品与服装抵达多个市场的合作伙伴。",
   },
 } as const;
 

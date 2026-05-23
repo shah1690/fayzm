@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/shared/i18n/translations";
 
-const locales = ["en", "uz", "ru"] as const satisfies readonly Locale[];
+const locales = ["en", "uz", "ru", "zh"] as const satisfies readonly Locale[];
 const defaultLocale: Locale = "en";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://fayzm.uz";
 
@@ -9,6 +9,7 @@ const ogLocale: Record<Locale, string> = {
   en: "en_US",
   uz: "uz_UZ",
   ru: "ru_RU",
+  zh: "zh_CN",
 };
 
 function normalizePath(path: string) {

@@ -15,16 +15,19 @@ const text = {
     en: "FAYZ-M team",
     uz: "FAYZ-M jamoasi",
     ru: "Команда FAYZ-M",
+    zh: "FAYZ-M team",
   },
   address: {
     en: "Uzbekistan, Andijan,\nKhojaobod, Mustahkam 17",
     uz: "O'zbekiston, Andijon,\nXo'jaobod, Mustahkam 17",
     ru: "Узбекистан, Андижан,\nХоджаабад, Мустаҳкам 17",
+    zh: "Uzbekistan, Andijan,\nKhojaobod, Mustahkam 17",
   },
   mapTitle: {
     en: "FAYZ-M location",
     uz: "FAYZ-M manzili",
     ru: "Локация FAYZ-M",
+    zh: "FAYZ-M location",
   },
 } as const;
 

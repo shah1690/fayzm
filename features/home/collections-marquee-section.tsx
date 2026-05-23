@@ -10,26 +10,31 @@ const t = {
     en: "Knitwear Collections",
     uz: "Trikotaj Kolleksiyalar",
     ru: "Трикотажные Коллекции",
+    zh: "针织产品系列",
   },
   heading: {
     en: "Harmony of quality and style.",
     uz: "Sifat va uslub uyg'unligi.",
     ru: "Гармония качества и стиля.",
+    zh: "品质与风格的和谐。",
   },
   sub: {
     en: "Premium cotton knitwear crafted in Uzbekistan. We blend traditional heritage with modern technology to deliver high-quality garments to the global market.",
     uz: "O'zbekistonda mahorat bilan tayyorlangan premium paxta trikotaji. Biz an'anaviy meros va zamonaviy texnologiyalarni birlashtirib, jahon bozoriga yuqori sifatli kiyim-kechaklarni taqdim etamiz.",
     ru: "Премиум хлопковый трикотаж, созданный в Узбекистане. Мы сочетаем традиционное наследие и современные технологии, чтобы поставлять на мировой рынок высококачественную одежду.",
+    zh: "在乌兹别克斯坦精心打造的高端棉针织服装。我们将传统传承与现代技术相融合，为全球市场提供高品质成衣。",
   },
   women: {
     en: "Women's Collection",
     uz: "Ayollar kolleksiyasi",
     ru: "Женская коллекция",
+    zh: "女装系列",
   },
   men: {
     en: "Men's Collection",
     uz: "Erkaklar kolleksiyasi",
     ru: "Мужская коллекция",
+    zh: "男装系列",
   },
 };
 

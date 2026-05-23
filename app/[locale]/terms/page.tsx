@@ -9,12 +9,14 @@ const title = {
   en: "Terms | FAYZ-M",
   uz: "Foydalanish shartlari | FAYZ-M",
   ru: "Условия использования | FAYZ-M",
+  zh: "Terms | FAYZ-M",
 } as const;
 
 const description = {
   en: "Review general website terms for FAYZ-M content, product information, and cooperation inquiries.",
   uz: "FAYZ-M sayt kontenti, mahsulot ma'lumotlari va hamkorlik murojaatlari bo'yicha umumiy shartlar.",
   ru: "Общие условия использования сайта FAYZ-M, информации о продукции и запросов на сотрудничество.",
+  zh: "Review general website terms for FAYZ-M content, product information, and cooperation inquiries.",
 } as const;
 
 export default async function TermsPage({ params }: Props) {
