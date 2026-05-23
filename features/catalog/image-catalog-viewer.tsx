@@ -1,12 +1,29 @@
 "use client";
 
 import { useMemo } from "react";
+import type { Locale } from "@/shared/i18n/translations";
+
+const text = {
+  subtitle: {
+    en: "Fast catalog viewer · pages load on scroll",
+    uz: "Tezkor katalog ko'rgich · sahifalar skroll bilan yuklanadi",
+    ru: "Быстрый просмотр каталога · страницы подгружаются при прокрутке",
+    zh: "高速目录浏览 · 页面随滚动加载",
+  },
+  page: {
+    en: "page",
+    uz: "sahifa",
+    ru: "страница",
+    zh: "页",
+  },
+} as const;
 
 type Props = Readonly<{
   downloadUrl: string;
   imageBaseUrl: string;
   pageCount: number;
   title: string;
+  locale: Locale;
 }>;
 
 export function ImageCatalogViewer({
@@ -14,6 +31,7 @@ export function ImageCatalogViewer({
   imageBaseUrl,
   pageCount,
   title,
+  locale,
 }: Props) {
   const pages = useMemo(
     () => Array.from({ length: pageCount }, (_, index) => index + 1),
@@ -30,7 +48,7 @@ export function ImageCatalogViewer({
               {title}
             </h1>
             <p className="text-[#667085] text-xs md:text-sm">
-              Fast catalog viewer · pages load on scroll
+              {text.subtitle[locale]}
             </p>
           </div>
           <a
@@ -56,7 +74,7 @@ export function ImageCatalogViewer({
             >
               {/* biome-ignore lint/performance/noImgElement: catalog pages are pre-optimized static JPGs from media CDN */}
               <img
-                alt={`${title} page ${pageNumber}`}
+                alt={`${title} ${text.page[locale]} ${pageNumber}`}
                 className="block h-auto w-full bg-white"
                 decoding="async"
                 fetchPriority={pageNumber === 1 ? "high" : "auto"}

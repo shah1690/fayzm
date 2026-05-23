@@ -45,7 +45,34 @@ const sectionText = {
     ru: "Из Андижана — премиум трикотаж и одежда поставляются партнёрам на нескольких рынках.",
     zh: "从安集延出发——高端针织品与服装抵达多个市场的合作伙伴。",
   },
+  uzbekistanLabel: {
+    en: "UZBEKISTAN",
+    uz: "O'ZBEKISTON",
+    ru: "УЗБЕКИСТАН",
+    zh: "乌兹别克斯坦",
+  },
+  andijanLabel: {
+    en: "Andijan",
+    uz: "Andijon",
+    ru: "Андижан",
+    zh: "安集延",
+  },
 } as const;
+
+const destinationLabels: Record<string, Record<Locale, string>> = {
+  Russia: { en: "Russia", uz: "Rossiya", ru: "Россия", zh: "俄罗斯" },
+  Belarus: { en: "Belarus", uz: "Belarus", ru: "Беларусь", zh: "白俄罗斯" },
+  Turkey: { en: "Turkey", uz: "Turkiya", ru: "Турция", zh: "土耳其" },
+  Kazakhstan: {
+    en: "Kazakhstan",
+    uz: "Qozog'iston",
+    ru: "Казахстан",
+    zh: "哈萨克斯坦",
+  },
+  Poland: { en: "Poland", uz: "Polsha", ru: "Польша", zh: "波兰" },
+  Ukraine: { en: "Ukraine", uz: "Ukraina", ru: "Украина", zh: "乌克兰" },
+  Italy: { en: "Italy", uz: "Italiya", ru: "Италия", zh: "意大利" },
+};
 
 function ArcLines({ hovered }: { hovered: string | null }) {
   // biome-ignore lint/suspicious/noExplicitAny: react-simple-maps MapContext
@@ -220,7 +247,7 @@ export function WorldMapSection({ locale }: Props) {
                   userSelect: "none",
                 }}
               >
-                UZBEKISTAN
+                {sectionText.uzbekistanLabel[locale]}
               </text>
             </Marker>
 
@@ -244,7 +271,7 @@ export function WorldMapSection({ locale }: Props) {
                   userSelect: "none",
                 }}
               >
-                Andijan
+                {sectionText.andijanLabel[locale]}
               </text>
             </Marker>
 
@@ -277,7 +304,7 @@ export function WorldMapSection({ locale }: Props) {
                       userSelect: "none",
                     }}
                   >
-                    {d.name}
+                    {destinationLabels[d.name]?.[locale] ?? d.name}
                   </text>
                 </Marker>
               );

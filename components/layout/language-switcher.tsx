@@ -13,6 +13,13 @@ const localeLabels: Record<Locale, string> = {
   zh: "中文",
 };
 
+const ariaLabel: Record<Locale, string> = {
+  en: "Language",
+  uz: "Til",
+  ru: "Язык",
+  zh: "语言",
+};
+
 type LanguageSwitcherProps = Readonly<{ current: Locale }>;
 
 export function LanguageSwitcher({ current }: LanguageSwitcherProps) {
@@ -80,7 +87,7 @@ export function LanguageSwitcher({ current }: LanguageSwitcherProps) {
         <div
           className="absolute right-0 top-full z-50 mt-2 min-w-[calc(100%+3rem)] overflow-hidden rounded-xl border border-gray-100 bg-white py-1 shadow-lg sm:min-w-[220px]"
           role="listbox"
-          aria-label="Language"
+          aria-label={ariaLabel[current]}
         >
           {(Object.keys(localeLabels) as Locale[]).map((locale) => (
             <button

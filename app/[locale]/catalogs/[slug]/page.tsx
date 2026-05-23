@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ImageCatalogViewer } from "@/features/catalog/image-catalog-viewer";
+import type { Locale } from "@/shared/i18n/translations";
 
 type CatalogConfig = {
   downloadPath: string;
@@ -37,6 +38,7 @@ const catalogs: Record<string, CatalogConfig> = {
 
 type Props = Readonly<{
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 }>;
@@ -50,7 +52,7 @@ function encodeObjectPath(path: string) {
 }
 
 export default async function CatalogViewerPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const catalog = catalogs[slug];
 
   if (!catalog) {
@@ -67,6 +69,7 @@ export default async function CatalogViewerPage({ params }: Props) {
       imageBaseUrl={`${mediaBaseUrl}/${encodeObjectPath(catalog.imagePath)}`}
       pageCount={catalog.pageCount}
       title={catalog.title}
+      locale={locale as Locale}
     />
   );
 }
