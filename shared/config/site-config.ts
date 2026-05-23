@@ -70,78 +70,107 @@ export const siteConfig = {
       },
     ],
     legal: [
-      { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms", href: "/terms" },
+      { key: "privacy", href: "/privacy-policy" },
+      { key: "terms", href: "/terms" },
     ],
   },
 } as const;
 
+const navLabels: Record<string, Record<Locale, string>> = {
+  home: {
+    en: "Home",
+    uz: "Bosh sahifa",
+    ru: "Главная",
+    zh: "首页",
+  },
+  collections: {
+    en: "Collections",
+    uz: "Kolleksiyalar",
+    ru: "Коллекции",
+    zh: "产品系列",
+  },
+  businesses: {
+    en: "Businesses",
+    uz: "Faoliyat yo'nalishlari",
+    ru: "Направления бизнеса",
+    zh: "业务板块",
+  },
+  aboutUs: {
+    en: "About Us",
+    uz: "Biz haqimizda",
+    ru: "О нас",
+    zh: "关于我们",
+  },
+  contactUs: {
+    en: "Contact Us",
+    uz: "Aloqa",
+    ru: "Контакты",
+    zh: "联系我们",
+  },
+  knitting: {
+    en: "Knitting",
+    uz: "Trikotaj mato",
+    ru: "Трикотаж",
+    zh: "针织布料",
+  },
+  yarnProduction: {
+    en: "Yarn Production",
+    uz: "Ip ishlab chiqarish",
+    ru: "Производство пряжи",
+    zh: "纱线生产",
+  },
+  garmentProduction: {
+    en: "Garment Production",
+    uz: "Tikuvchilik",
+    ru: "Швейное производство",
+    zh: "服装制造",
+  },
+  petrol: {
+    en: "Petrol Station",
+    uz: "Yoqilg'i quyish shoxobchasi",
+    ru: "АЗС",
+    zh: "加油站",
+  },
+  flour: {
+    en: "Flour Production",
+    uz: "Un ishlab chiqarish",
+    ru: "Производство муки",
+    zh: "面粉生产",
+  },
+  farm: {
+    en: "Farm",
+    uz: "Chorvachilik",
+    ru: "Фермерское хозяйство",
+    zh: "畜牧业",
+  },
+  cottonseedOil: {
+    en: "Cottonseed Oil",
+    uz: "Paxta yog'i",
+    ru: "Хлопковое масло",
+    zh: "棉籽油",
+  },
+  faq: {
+    en: "FAQ",
+    uz: "FAQ",
+    ru: "FAQ",
+    zh: "常见问题",
+  },
+  privacy: {
+    en: "Privacy Policy",
+    uz: "Maxfiylik siyosati",
+    ru: "Политика конфиденциальности",
+    zh: "隐私政策",
+  },
+  terms: {
+    en: "Terms",
+    uz: "Foydalanish shartlari",
+    ru: "Условия использования",
+    zh: "使用条款",
+  },
+};
+
 export function getNavLabels(locale: Locale) {
-  return {
-    home:
-      locale === "en" ? "Home" : locale === "uz" ? "Bosh sahifa" : "Главная",
-    collections:
-      locale === "en"
-        ? "Collections"
-        : locale === "uz"
-          ? "Kolleksiyalar"
-          : "Коллекции",
-    businesses:
-      locale === "en"
-        ? "Businesses"
-        : locale === "uz"
-          ? "Faoliyat yo'nalishlari"
-          : "Направления бизнеса",
-    aboutUs:
-      locale === "en"
-        ? "About Us"
-        : locale === "uz"
-          ? "Biz haqimizda"
-          : "О нас",
-    contactUs:
-      locale === "en" ? "Contact Us" : locale === "uz" ? "Aloqa" : "Контакты",
-    knitting:
-      locale === "en"
-        ? "Knitting"
-        : locale === "uz"
-          ? "Trikotaj mato"
-          : "Трикотаж",
-    yarnProduction:
-      locale === "en"
-        ? "Yarn Production"
-        : locale === "uz"
-          ? "Ip ishlab chiqarish"
-          : "Производство пряжи",
-    garmentProduction:
-      locale === "en"
-        ? "Garment Production"
-        : locale === "uz"
-          ? "Tikuvchilik"
-          : "Швейное производство",
-    petrol:
-      locale === "en"
-        ? "Petrol Station"
-        : locale === "uz"
-          ? "Yoqilg'i quyish shoxobchasi"
-          : "АЗС",
-    flour:
-      locale === "en"
-        ? "Flour Production"
-        : locale === "uz"
-          ? "Un ishlab chiqarish"
-          : "Производство муки",
-    farm:
-      locale === "en"
-        ? "Farm"
-        : locale === "uz"
-          ? "Chorvachilik"
-          : "Фермерское хозяйство",
-    cottonseedOil:
-      locale === "en"
-        ? "Cottonseed Oil"
-        : locale === "uz"
-          ? "Paxta yog'i"
-          : "Хлопковое масло",
-    faq: "FAQ",
-  };
+  return Object.fromEntries(
+    Object.entries(navLabels).map(([key, values]) => [key, values[locale]]),
+  ) as Record<keyof typeof navLabels, string>;
 }
