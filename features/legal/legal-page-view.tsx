@@ -11,13 +11,13 @@ const copy = {
       en: "Privacy Policy",
       uz: "Maxfiylik siyosati",
       ru: "Политика конфиденциальности",
-      zh: "Privacy Policy",
+      zh: "隐私政策",
     },
     lead: {
       en: "FAYZ-M respects your privacy. We collect only the information needed to respond to inquiries, process cooperation requests, and improve communication quality.",
       uz: "FAYZ-M maxfiyligingizni hurmat qiladi. Biz faqat murojaatlarga javob berish, hamkorlik so'rovlarini ko'rib chiqish va aloqa sifatini yaxshilash uchun kerakli ma'lumotlarni yig'amiz.",
       ru: "FAYZ-M уважает вашу конфиденциальность. Мы собираем только данные, необходимые для ответа на обращения, обработки запросов на сотрудничество и улучшения коммуникации.",
-      zh: "FAYZ-M respects your privacy. We collect only the information needed to respond to inquiries, process cooperation requests, and improve communication quality.",
+      zh: "FAYZ-M 尊重您的隐私。我们仅收集回应咨询、处理合作申请以及提升沟通质量所必需的信息。",
     },
     items: {
       en: [
@@ -47,13 +47,13 @@ const copy = {
       en: "Terms",
       uz: "Foydalanish shartlari",
       ru: "Условия использования",
-      zh: "Terms",
+      zh: "使用条款",
     },
     lead: {
       en: "By using this website, you agree to use its content for lawful informational and business purposes related to FAYZ-M services and products.",
       uz: "Ushbu saytdan foydalanish orqali siz kontentdan FAYZ-M xizmatlari va mahsulotlari bo'yicha qonuniy axborot hamda biznes maqsadlarda foydalanishga rozilik bildirasiz.",
       ru: "Используя этот сайт, вы соглашаетесь применять его материалы в законных информационных и деловых целях, связанных с услугами и продукцией FAYZ-M.",
-      zh: "By using this website, you agree to use its content for lawful informational and business purposes related to FAYZ-M services and products.",
+      zh: "通过使用本网站，您同意仅将其内容用于与 FAYZ-M 服务及产品相关的合法信息查询与商业用途。",
     },
     items: {
       en: [

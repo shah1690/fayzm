@@ -86,7 +86,7 @@ const titleByLocale: Record<Locale, string> = {
   en: "Great Britain flag",
   uz: "Uzbekistan flag",
   ru: "Russia flag",
-  zh: "China flag",
+  zh: "中国国旗",
 };
 
 type LocaleFlagProps = Readonly<{

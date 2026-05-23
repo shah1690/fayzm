@@ -46,7 +46,7 @@ const text = {
     en: "Call us",
     uz: "Qo'ng'iroq qilish",
     ru: "Позвонить нам",
-    zh: "Call us",
+    zh: "致电我们",
   },
 } as const;
 

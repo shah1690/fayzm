@@ -7,7 +7,7 @@ import { ProductGallery } from "./product-gallery";
 type WomenPageViewProps = Readonly<{ locale: Locale }>;
 
 const text = {
-  products: { en: "products", uz: "mahsulot", ru: "товаров", zh: "products" },
+  products: { en: "products", uz: "mahsulot", ru: "товаров", zh: "款产品" },
 } as const;
 
 export function WomenPageView({ locale }: WomenPageViewProps) {

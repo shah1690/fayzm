@@ -10,19 +10,19 @@ const text = {
     en: "Interested in Partnership?",
     uz: "Hamkorlik qilishni xohlaysizmi?",
     ru: "Заинтересованы в партнёрстве?",
-    zh: "Interested in Partnership?",
+    zh: "有意展开合作？",
   },
   desc: {
     en: "Partner with FAYZ-M for consistent quality, reliable delivery, and long-term growth across every division.",
     uz: "FAYZ-M bilan hamkorlik qiling — doimiy sifat, ishonchli yetkazib berish va barcha yo'nalishlarda uzoq muddatli o'sish.",
     ru: "Сотрудничайте с FAYZ-M — стабильное качество, надёжные поставки и долгосрочный рост во всех направлениях.",
-    zh: "Partner with FAYZ-M for consistent quality, reliable delivery, and long-term growth across every division.",
+    zh: "与 FAYZ-M 合作，获得稳定品质、可靠交付以及覆盖各业务板块的长期增长。",
   },
   cta: {
     en: "Request a Consultation",
     uz: "Bog'lanish",
     ru: "Связаться",
-    zh: "Request a Consultation",
+    zh: "预约咨询",
   },
 };
 

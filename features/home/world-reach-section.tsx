@@ -11,19 +11,19 @@ const t = {
     en: "Global Reach",
     uz: "Jahon miqyosi",
     ru: "Мировой охват",
-    zh: "Global Reach",
+    zh: "全球覆盖",
   },
   heading: {
     en: "Made in Uzbekistan.\nWorn worldwide.",
     uz: "O'zbekistonda ishlab chiqarilgan.\nButun dunyoda kiyiladi.",
     ru: "Сделано в Узбекистане.\nНосят по всему миру.",
-    zh: "Made in Uzbekistan.\nWorn worldwide.",
+    zh: "乌兹别克斯坦制造，\n畅销全球。",
   },
   sub: {
     en: "Our knitwear ships to partners across Europe, Central Asia, and the Middle East.",
     uz: "Trikotajimiz Yevropa, Markaziy Osiyo va Yaqin Sharqdagi hamkorlarimizga yetkaziladi.",
     ru: "Наш трикотаж поставляется партнёрам по всей Европе, Центральной Азии и Ближнему Востоку.",
-    zh: "Our knitwear ships to partners across Europe, Central Asia, and the Middle East.",
+    zh: "我们的针织产品远销欧洲、中亚以及中东地区的合作伙伴。",
   },
 };
 
@@ -59,33 +59,33 @@ const ARCS = DESTINATIONS.map((d) => ({
 }));
 
 const worldLabels = {
-  origin: { en: "Origin", uz: "Manba", ru: "Источник", zh: "Origin" },
+  origin: { en: "Origin", uz: "Manba", ru: "Источник", zh: "起点" },
   countries: {
     Uzbekistan: {
       en: "Uzbekistan",
       uz: "O'zbekiston",
       ru: "Узбекистан",
-      zh: "Uzbekistan",
+      zh: "乌兹别克斯坦",
     },
-    Russia: { en: "Russia", uz: "Rossiya", ru: "Россия", zh: "Russia" },
-    Belarus: { en: "Belarus", uz: "Belarus", ru: "Беларусь", zh: "Belarus" },
-    Turkey: { en: "Turkey", uz: "Turkiya", ru: "Турция", zh: "Turkey" },
+    Russia: { en: "Russia", uz: "Rossiya", ru: "Россия", zh: "俄罗斯" },
+    Belarus: { en: "Belarus", uz: "Belarus", ru: "Беларусь", zh: "白俄罗斯" },
+    Turkey: { en: "Turkey", uz: "Turkiya", ru: "Турция", zh: "土耳其" },
     Kazakhstan: {
       en: "Kazakhstan",
       uz: "Qozog'iston",
       ru: "Казахстан",
-      zh: "Kazakhstan",
+      zh: "哈萨克斯坦",
     },
-    UAE: { en: "UAE", uz: "BAA", ru: "ОАЭ", zh: "UAE" },
+    UAE: { en: "UAE", uz: "BAA", ru: "ОАЭ", zh: "阿联酋" },
     "United Arab Emirates": {
       en: "United Arab Emirates",
       uz: "Birlashgan Arab Amirliklari",
       ru: "Объединённые Арабские Эмираты",
-      zh: "United Arab Emirates",
+      zh: "阿拉伯联合酋长国",
     },
-    Germany: { en: "Germany", uz: "Germaniya", ru: "Германия", zh: "Germany" },
-    France: { en: "France", uz: "Fransiya", ru: "Франция", zh: "France" },
-    China: { en: "China", uz: "Xitoy", ru: "Китай", zh: "China" },
+    Germany: { en: "Germany", uz: "Germaniya", ru: "Германия", zh: "德国" },
+    France: { en: "France", uz: "Fransiya", ru: "Франция", zh: "法国" },
+    China: { en: "China", uz: "Xitoy", ru: "Китай", zh: "中国" },
   },
 } as const;
 

@@ -95,7 +95,7 @@ const address = {
   en: "Uzbekistan, Andijan, Khojaobod, Mustahkam 17",
   uz: "O'zbekiston, Andijon, Xo'jaobod, Mustahkam 17",
   ru: "Узбекистан, Андижан, Ходжаабад, Мустаҳкам 17",
-  zh: "Uzbekistan, Andijan, Khojaobod, Mustahkam 17",
+  zh: "乌兹别克斯坦，安集延，霍贾阿巴德，Mustahkam 街 17 号",
 } as const;
 
 const headingClass =

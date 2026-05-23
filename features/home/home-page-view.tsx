@@ -25,7 +25,7 @@ const text = {
     en: "FAYZ-M team",
     uz: "FAYZ-M jamoasi",
     ru: "Команда FAYZ-M",
-    zh: "FAYZ-M team",
+    zh: "FAYZ-M 团队",
   },
 } as const;
 

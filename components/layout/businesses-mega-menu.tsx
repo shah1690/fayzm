@@ -45,19 +45,19 @@ const text = {
     en: "Business Divisions",
     uz: "Faoliyat yo'nalishlari",
     ru: "Направления бизнеса",
-    zh: "Business Divisions",
+    zh: "业务板块",
   },
   ctaHeading: {
     en: "Partner with FAYZ-M",
     uz: "FAYZ-M bilan hamkorlik qiling",
     ru: "Сотрудничайте с FAYZ-M",
-    zh: "Partner with FAYZ-M",
+    zh: "与 FAYZ-M 合作",
   },
   ctaButton: {
     en: "Contact Us →",
     uz: "Bog'lanish →",
     ru: "Связаться →",
-    zh: "Contact Us →",
+    zh: "联系我们 →",
   },
 } as const;
 

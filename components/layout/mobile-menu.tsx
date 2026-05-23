@@ -90,22 +90,22 @@ const text = {
     en: "Open menu",
     uz: "Menyuni ochish",
     ru: "Открыть меню",
-    zh: "Open menu",
+    zh: "打开菜单",
   },
   closeMenu: {
     en: "Close menu",
     uz: "Menyuni yopish",
     ru: "Закрыть меню",
-    zh: "Close menu",
+    zh: "关闭菜单",
   },
   contactUs: {
     en: "Contact Us",
     uz: "Aloqa",
     ru: "Контакты",
-    zh: "Contact Us",
+    zh: "联系我们",
   },
-  women: { en: "Women", uz: "Ayollar", ru: "Женщины", zh: "Women" },
-  men: { en: "Men", uz: "Erkaklar", ru: "Мужчины", zh: "Men" },
+  women: { en: "Women", uz: "Ayollar", ru: "Женщины", zh: "女装" },
+  men: { en: "Men", uz: "Erkaklar", ru: "Мужчины", zh: "男装" },
 } as const;
 
 type MobileMenuProps = Readonly<{ locale: Locale }>;
