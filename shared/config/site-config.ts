@@ -60,12 +60,12 @@ export const siteConfig = {
       },
       {
         label: "Instagram",
-        href: "https://www.instagram.com/fayztextile.uz/",
+        href: "https://www.instagram.com/fayzmtextile",
         icon: "instagram",
       },
       {
         label: "YouTube",
-        href: "https://www.youtube.com/@tpma_uz",
+        href: "https://youtube.com/@fayz-mtextile",
         icon: "youtube",
       },
     ],
