@@ -38,6 +38,58 @@ function buildTelegramMessage(payload: ContactSubmissionPayload) {
   return lines.join("\n");
 }
 
+const AMO_FORM_ID = process.env.AMOCRM_FORM_ID ?? "1680078";
+const AMO_FORM_HASH =
+  process.env.AMOCRM_FORM_HASH ?? "e49bc714257388f413c0b4ba99275e09";
+const AMO_QUEUE_URL = "https://forms.amocrm.ru/queue/add";
+const AMO_FIELD_PHONE = "fields[1510028_1][1384384]";
+const AMO_FIELD_EMAIL = "fields[1510030_1][1384396]";
+
+function buildAmoNote(payload: ContactSubmissionPayload): string {
+  return [
+    payload.service ? `Service: ${payload.service}` : null,
+    payload.product ? `Product: ${payload.product}` : null,
+    payload.message,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+// Submits the lead to the amoCRM web form's ingest endpoint server-side,
+// replicating the iframe widget's multipart POST so no amoCRM UI is shown.
+async function sendAmoCrmLead(payload: ContactSubmissionPayload) {
+  const form = new FormData();
+  form.append("form_id", AMO_FORM_ID);
+  form.append("hash", AMO_FORM_HASH);
+  form.append("fields[name_1]", payload.fullName);
+  form.append(AMO_FIELD_PHONE, payload.phone ?? "");
+  form.append(AMO_FIELD_EMAIL, payload.email);
+  form.append("fields[note_2]", buildAmoNote(payload));
+  form.append("user_origin", "");
+
+  const response = await fetch(AMO_QUEUE_URL, {
+    method: "POST",
+    body: form,
+    headers: {
+      Referer: `https://forms.amocrm.ru/forms/html/form_${AMO_FORM_ID}_${AMO_FORM_HASH}.html`,
+      Origin: "https://forms.amocrm.ru",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`amoCRM send failed: ${response.status}`);
+  }
+
+  const data = (await response.json().catch(() => null)) as {
+    error_code?: number;
+  } | null;
+
+  if (data && typeof data.error_code === "number" && data.error_code !== 0) {
+    throw new Error(`amoCRM rejected lead: error_code ${data.error_code}`);
+  }
+}
+
 async function sendTelegramMessage(message: string) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -114,25 +166,35 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  try {
-    await sendTelegramMessage(
-      buildTelegramMessage({
-        fullName,
-        email,
-        phone,
-        service,
-        message,
-        product,
-      }),
-    );
+  const submission: ContactSubmissionPayload = {
+    fullName,
+    email,
+    phone,
+    service,
+    message,
+    product,
+  };
 
-    return NextResponse.json({ ok: true });
-  } catch (error) {
-    console.error("Contact form submit failed", error);
+  // Send to both sinks concurrently. Telegram is the primary lead capture and
+  // must succeed; an amoCRM failure is logged but does not fail the request so
+  // a CRM hiccup never drops the notification.
+  const [telegramResult, amoResult] = await Promise.allSettled([
+    sendTelegramMessage(buildTelegramMessage(submission)),
+    sendAmoCrmLead(submission),
+  ]);
+
+  if (amoResult.status === "rejected") {
+    console.error("Contact form amoCRM submit failed", amoResult.reason);
+  }
+
+  if (telegramResult.status === "rejected") {
+    console.error("Contact form Telegram submit failed", telegramResult.reason);
 
     return NextResponse.json(
       { ok: false, message: "Could not submit form." },
       { status: 500 },
     );
   }
+
+  return NextResponse.json({ ok: true });
 }

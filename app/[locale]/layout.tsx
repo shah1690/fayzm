@@ -5,7 +5,6 @@ import { setRequestLocale } from "next-intl/server";
 import { manrope, onest } from "@/app/fonts";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { ReplainWidget } from "@/components/layout/replain-widget";
 import { messages } from "@/i18n/messages";
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/shared/i18n/translations";
@@ -86,7 +85,6 @@ export default async function LocaleLayout({
           <Navbar locale={locale as Locale} />
           {children}
           <Footer locale={locale as Locale} />
-          <ReplainWidget />
         </NextIntlClientProvider>
       </body>
     </html>
