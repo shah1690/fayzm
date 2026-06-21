@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
+import { LocaleFlag } from "@/components/layout/locale-flags";
 import { businesses } from "@/content/businesses";
 import { Link as LocaleLink } from "@/i18n/navigation";
 import { getNavLabels, siteConfig } from "@/shared/config/site-config";
@@ -107,6 +108,13 @@ const text = {
   women: { en: "Women", uz: "Ayollar", ru: "Женщины", zh: "女装" },
   men: { en: "Men", uz: "Erkaklar", ru: "Мужчины", zh: "男装" },
 } as const;
+
+const localeNames: Record<Locale, string> = {
+  uz: "O'zbek",
+  en: "English",
+  ru: "Русский",
+  zh: "中文",
+};
 
 type MobileMenuProps = Readonly<{ locale: Locale }>;
 
@@ -252,21 +260,22 @@ export function MobileMenu({ locale }: MobileMenuProps) {
             </ul>
 
             {/* Language switcher */}
-            <div className="mt-5 flex items-center gap-2">
+            <div className="mt-5 flex flex-wrap items-center gap-2">
               {(["uz", "en", "ru", "zh"] as Locale[]).map((lang) => (
                 <LocaleLink
                   key={lang}
                   href="/"
                   locale={lang}
                   onClick={close}
-                  className="rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all duration-200"
+                  className="flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-200"
                   style={
                     locale === lang
                       ? { background: "#003566", color: "white" }
                       : { background: "#F5F5F5", color: "#6b7280" }
                   }
                 >
-                  {lang}
+                  <LocaleFlag locale={lang} />
+                  {localeNames[lang]}
                 </LocaleLink>
               ))}
             </div>
