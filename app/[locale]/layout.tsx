@@ -49,9 +49,9 @@ export async function generateMetadata({
     },
     description: metadata.description,
     manifest: "/manifest.webmanifest",
-    icons: {
-      icon: "/favicon.ico",
-    },
+    // Icons come from the file-based convention: app/favicon.ico,
+    // app/icon.svg and app/apple-icon.png (generated from the navbar logo
+    // mark via scripts/generate-favicon.mjs).
     robots: {
       index: true,
       follow: true,
