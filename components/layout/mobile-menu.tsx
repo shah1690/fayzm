@@ -253,7 +253,7 @@ export function MobileMenu({ locale }: MobileMenuProps) {
 
             {/* Language switcher */}
             <div className="mt-5 flex items-center gap-2">
-              {(["uz", "en", "ru"] as Locale[]).map((lang) => (
+              {(["uz", "en", "ru", "zh"] as Locale[]).map((lang) => (
                 <LocaleLink
                   key={lang}
                   href="/"
