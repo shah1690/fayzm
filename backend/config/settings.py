@@ -63,8 +63,12 @@ if not DEBUG and ENABLE_HTTPS_REDIRECT:
     SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '31536000'))
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-    SECURE_SSL_REDIRECT = True
+    # Trust the reverse proxy's forwarded scheme (so is_secure() / secure cookies
+    # work). The proxy (Traefik) already redirects http -> https at the edge, so
+    # Django's own SSL redirect is OFF by default — enabling it behind a proxy
+    # that doesn't forward the proto header causes an infinite redirect loop.
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = env_bool('DJANGO_SSL_REDIRECT', False)
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 else:
