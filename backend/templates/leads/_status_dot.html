@@ -1,0 +1,8 @@
+{% load i18n %}
+{% if status == "sent" %}
+    <span style="color:#16a34a;font-size:12px;font-weight:600">● {% trans "Yuborilgan" %}</span>
+{% elif status == "failed" %}
+    <span style="color:#dc2626;font-size:12px;font-weight:600">● {% trans "Xato" %}</span>
+{% else %}
+    <span style="color:#9ca3af;font-size:12px">● {% trans "—" %}</span>
+{% endif %}

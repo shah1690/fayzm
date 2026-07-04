@@ -12,7 +12,7 @@
 <div class="flex flex-col gap-8">
 
     {# ----- KPI cards ----- #}
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {% for kpi in kpis %}
             {% component "unfold/components/card.html" with icon=kpi.icon %}
                 {% component "unfold/components/text.html" with class="text-base-500 dark:text-base-400 uppercase text-xs tracking-wide" %}{{ kpi.title }}{% endcomponent %}
@@ -22,60 +22,119 @@
         {% endfor %}
     </div>
 
-    {# ----- 7-day activity chart ----- #}
-    {% component "unfold/components/card.html" with title=_("Oxirgi 7 kun faoliyati") %}
-        {% component "unfold/components/chart/bar.html" with data=chart_data height="120" %}{% endcomponent %}
+    {# ----- Leads: last 14 days ----- #}
+    {% component "unfold/components/card.html" with title=_("Zayavkalar — oxirgi 14 kun") %}
+        {% component "unfold/components/chart/bar.html" with data=leads_chart height="140" %}{% endcomponent %}
     {% endcomponent %}
 
-    {# ----- Two-column recent activity ----- #}
+    {# ----- Delivery status + product split ----- #}
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 
-        {% component "unfold/components/card.html" with title=_("Yangi foydalanuvchilar") %}
-            <table class="w-full text-sm">
-                <thead>
-                    <tr class="border-b border-base-200 text-left text-base-500 dark:border-base-800 dark:text-base-400">
-                        <th class="py-2 font-medium">{% trans "Telefon" %}</th>
-                        <th class="py-2 font-medium">{% trans "Ism" %}</th>
-                        <th class="py-2 font-medium text-right">{% trans "Sana" %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for u in recent_users %}
-                        <tr class="border-b border-base-100 last:border-0 dark:border-base-900">
-                            <td class="py-2 font-medium text-font-important-light dark:text-font-important-dark">{{ u.phone }}</td>
-                            <td class="py-2 text-base-600 dark:text-base-300">{{ u.full_name|default:"—" }}</td>
-                            <td class="py-2 text-right text-base-500 dark:text-base-400">{{ u.created_at|date:"d.m.Y H:i" }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        {% component "unfold/components/card.html" with title=_("Yetkazib berish (delivery)") %}
+            <div class="flex flex-col gap-6">
+                {% for d in delivery %}
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="font-medium text-font-important-light dark:text-font-important-dark">{{ d.label }}</span>
+                            <span class="text-base-500 dark:text-base-400">{{ d.pct }}% · {{ d.total }} ta</span>
+                        </div>
+                        <div class="h-2.5 w-full overflow-hidden rounded-full bg-base-100 dark:bg-base-800">
+                            <div class="h-full rounded-full" style="width: {{ d.pct }}%; background: #003566;"></div>
+                        </div>
+                        <div class="flex gap-4 text-xs">
+                            <span style="color:#16a34a">● {% trans "Yuborilgan" %}: {{ d.sent }}</span>
+                            <span style="color:#dc2626">● {% trans "Xato" %}: {{ d.failed }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         {% endcomponent %}
 
-        {% component "unfold/components/card.html" with title=_("Oxirgi bildirishnomalar") %}
+        {% component "unfold/components/card.html" with title=_("Mahsulotlar taqsimoti") %}
+            <div class="flex flex-col gap-5">
+                <div class="flex items-end gap-6">
+                    <div>
+                        <div class="text-3xl font-semibold text-font-important-light dark:text-font-important-dark">{{ products_split.women }}</div>
+                        <div class="text-xs uppercase tracking-wide text-base-500 dark:text-base-400">{% trans "Ayollar" %}</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-semibold text-font-important-light dark:text-font-important-dark">{{ products_split.men }}</div>
+                        <div class="text-xs uppercase tracking-wide text-base-500 dark:text-base-400">{% trans "Erkaklar" %}</div>
+                    </div>
+                </div>
+                <div class="flex h-3 w-full overflow-hidden rounded-full bg-base-100 dark:bg-base-800">
+                    <div class="h-full" style="width: {{ products_split.women_pct }}%; background:#003566;"></div>
+                    <div class="h-full" style="width: {{ products_split.men_pct }}%; background:#4d80a9;"></div>
+                </div>
+                <div class="flex gap-4 text-xs text-base-500 dark:text-base-400">
+                    <span><span style="color:#003566">●</span> {% trans "Ayollar" %} {{ products_split.women_pct }}%</span>
+                    <span><span style="color:#4d80a9">●</span> {% trans "Erkaklar" %} {{ products_split.men_pct }}%</span>
+                </div>
+            </div>
+        {% endcomponent %}
+    </div>
+
+    {# ----- Top services + content counts ----- #}
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+
+        {% component "unfold/components/card.html" with title=_("Ko'p so'ralgan xizmatlar") %}
+            {% if top_services %}
+                <table class="w-full text-sm">
+                    <tbody>
+                        {% for s in top_services %}
+                            <tr class="border-b border-base-100 last:border-0 dark:border-base-900">
+                                <td class="py-2 text-font-important-light dark:text-font-important-dark">{{ s.service }}</td>
+                                <td class="py-2 text-right font-medium text-base-500 dark:text-base-400">{{ s.n }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="text-sm text-base-500 dark:text-base-400">{% trans "Hozircha ma'lumot yo'q." %}</p>
+            {% endif %}
+        {% endcomponent %}
+
+        {% component "unfold/components/card.html" with title=_("Kontent hajmi") %}
+            <div class="grid grid-cols-3 gap-4">
+                {% for c in content_counts %}
+                    <div class="flex flex-col items-center gap-1 rounded-2xl bg-base-50 p-4 dark:bg-base-800">
+                        <span class="material-symbols-outlined text-base-400" style="font-size:22px">{{ c.icon }}</span>
+                        <span class="text-2xl font-semibold text-font-important-light dark:text-font-important-dark">{{ c.value }}</span>
+                        <span class="text-[11px] uppercase tracking-wide text-base-500 dark:text-base-400">{{ c.label }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endcomponent %}
+    </div>
+
+    {# ----- Recent leads ----- #}
+    {% component "unfold/components/card.html" with title=_("So'nggi zayavkalar") %}
+        {% if recent_leads %}
             <table class="w-full text-sm">
                 <thead>
                     <tr class="border-b border-base-200 text-left text-base-500 dark:border-base-800 dark:text-base-400">
-                        <th class="py-2 font-medium">{% trans "Sarlavha" %}</th>
-                        <th class="py-2 font-medium">{% trans "Foydalanuvchi" %}</th>
-                        <th class="py-2 font-medium text-right">{% trans "Vaqt" %}</th>
+                        <th class="py-2 font-medium">{% trans "Sana" %}</th>
+                        <th class="py-2 font-medium">{% trans "F.I.O" %}</th>
+                        <th class="py-2 font-medium">{% trans "Telefon" %}</th>
+                        <th class="py-2 font-medium">Telegram</th>
+                        <th class="py-2 font-medium">amoCRM</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for n in recent_notifications %}
+                    {% for l in recent_leads %}
                         <tr class="border-b border-base-100 last:border-0 dark:border-base-900">
-                            <td class="py-2 font-medium text-font-important-light dark:text-font-important-dark">
-                                {{ n.title }}
-                                {% if not n.is_read %}
-                                    <span class="ml-2 inline-block w-2 h-2 rounded-full bg-primary-500 align-middle"></span>
-                                {% endif %}
-                            </td>
-                            <td class="py-2 text-base-600 dark:text-base-300">{{ n.user.phone|default:"—" }}</td>
-                            <td class="py-2 text-right text-base-500 dark:text-base-400">{{ n.created_at|date:"d.m.Y H:i" }}</td>
+                            <td class="py-2 text-base-500 dark:text-base-400">{{ l.created_at|date:"d.m.Y H:i" }}</td>
+                            <td class="py-2 font-medium text-font-important-light dark:text-font-important-dark">{{ l.full_name }}</td>
+                            <td class="py-2 text-base-600 dark:text-base-300">{{ l.phone|default:"—" }}</td>
+                            <td class="py-2">{% include "leads/_status_dot.html" with status=l.telegram_status %}</td>
+                            <td class="py-2">{% include "leads/_status_dot.html" with status=l.amocrm_status %}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        {% endcomponent %}
-    </div>
+        {% else %}
+            <p class="text-sm text-base-500 dark:text-base-400">{% trans "Hozircha zayavkalar yo'q." %}</p>
+        {% endif %}
+    {% endcomponent %}
 </div>
 {% endblock %}
