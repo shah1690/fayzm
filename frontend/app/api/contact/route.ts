@@ -146,25 +146,52 @@ type TelegramUpdate = {
   channel_post?: { chat?: TelegramChat };
 };
 
-async function resolveTelegramChatId(botToken: string): Promise<string> {
-  const override = process.env.TELEGRAM_CHAT_ID?.trim();
-  if (override) return override;
-  if (cachedTelegramChatId) return cachedTelegramChatId;
+async function loadStoredChatId(): Promise<string | null> {
+  try {
+    const res = await fetch(`${backendBase()}/api/v1/telegram/chat/`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { chatId?: string | null };
+    return data.chatId ?? null;
+  } catch {
+    return null;
+  }
+}
+
+async function storeChatId(chatId: string): Promise<void> {
+  try {
+    await fetch(`${backendBase()}/api/v1/telegram/chat/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chatId }),
+      cache: "no-store",
+    });
+  } catch {
+    /* best effort */
+  }
+}
+
+async function detectChatId(botToken: string): Promise<string | null> {
+  // Clear any webhook so getUpdates works (a webhook makes getUpdates 409).
+  await fetch(`https://api.telegram.org/bot${botToken}/deleteWebhook`, {
+    cache: "no-store",
+  }).catch(() => {});
 
   const res = await fetch(
     `https://api.telegram.org/bot${botToken}/getUpdates`,
     { cache: "no-store" },
   );
-  if (!res.ok) {
-    throw new Error(`Telegram getUpdates failed: ${res.status}`);
-  }
+  if (!res.ok) return null;
   const data = (await res.json()) as { ok: boolean; result?: TelegramUpdate[] };
   let groupId: string | null = null;
   let anyId: string | null = null;
   for (const update of data.result ?? []) {
+    // my_chat_member fires when the bot is added/promoted — it reaches the bot
+    // even with privacy mode on, so it's the most reliable detection signal.
     const chat =
-      update.message?.chat ??
       update.my_chat_member?.chat ??
+      update.message?.chat ??
       update.channel_post?.chat;
     if (!chat) continue;
     anyId = String(chat.id);
@@ -172,14 +199,30 @@ async function resolveTelegramChatId(botToken: string): Promise<string> {
       groupId = String(chat.id);
     }
   }
-  const id = groupId ?? anyId;
-  if (!id) {
+  return groupId ?? anyId;
+}
+
+async function resolveTelegramChatId(botToken: string): Promise<string> {
+  const override = process.env.TELEGRAM_CHAT_ID?.trim();
+  if (override) return override;
+  if (cachedTelegramChatId) return cachedTelegramChatId;
+
+  // Durable value stored by a previous detection (survives redeploys).
+  const stored = await loadStoredChatId();
+  if (stored) {
+    cachedTelegramChatId = stored;
+    return stored;
+  }
+
+  const detected = await detectChatId(botToken);
+  if (!detected) {
     throw new Error(
-      "Telegram chat not found — add the bot to your group and send one message there.",
+      "Telegram chat not found — add the bot to the group (send/@mention once), then submit again.",
     );
   }
-  cachedTelegramChatId = id;
-  return id;
+  cachedTelegramChatId = detected;
+  await storeChatId(detected);
+  return detected;
 }
 
 async function sendTelegramMessage(message: string) {

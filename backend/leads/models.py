@@ -40,3 +40,28 @@ class Lead(models.Model):
 
     def __str__(self) -> str:
         return f"{self.full_name} · {self.phone or self.email}"
+
+
+class TelegramSettings(models.Model):
+    """Durably remembers the Telegram group chat id auto-detected by the
+    frontend, so it survives redeploys (no TELEGRAM_CHAT_ID env needed)."""
+
+    id = models.PositiveSmallIntegerField(primary_key=True, default=1)
+    chat_id = models.CharField(_("Chat ID"), max_length=64, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("Telegram sozlamasi")
+        verbose_name_plural = _("Telegram sozlamasi")
+
+    def save(self, *args, **kwargs):
+        self.id = 1
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def load(cls):
+        obj, _created = cls.objects.get_or_create(id=1)
+        return obj
+
+    def __str__(self) -> str:
+        return self.chat_id or "—"

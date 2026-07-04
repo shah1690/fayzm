@@ -3,7 +3,7 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin
 
-from .models import DeliveryStatus, Lead
+from .models import DeliveryStatus, Lead, TelegramSettings
 
 _STATUS_COLOR = {
     DeliveryStatus.SENT: ("#065f46", "#d1fae5"),
@@ -47,4 +47,15 @@ class LeadAdmin(ModelAdmin):
         return _badge(obj.amocrm_status, obj.get_amocrm_status_display(), obj.amocrm_error)
 
     def has_add_permission(self, request):
+        return False
+
+
+@admin.register(TelegramSettings)
+class TelegramSettingsAdmin(ModelAdmin):
+    list_display = ("chat_id", "updated_at")
+
+    def has_add_permission(self, request):
+        return not TelegramSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
         return False
