@@ -308,7 +308,14 @@ if USE_MINIO:
                 'querystring_auth': False,
                 'url_protocol': f'{_minio_scheme}:',
                 'custom_domain': MINIO_CUSTOM_DOMAIN,
-                'client_config': Config(signature_version='s3v4', s3={'addressing_style': 'path'}),
+                # Fail fast instead of hanging the admin/API if MinIO is slow.
+                'client_config': Config(
+                    signature_version='s3v4',
+                    s3={'addressing_style': 'path'},
+                    connect_timeout=3,
+                    read_timeout=5,
+                    retries={'max_attempts': 1},
+                ),
             },
         },
         'staticfiles': {
