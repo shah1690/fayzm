@@ -4,6 +4,9 @@ set -e
 echo "==> Running migrations..."
 python manage.py migrate --noinput
 
+echo "==> Seeding CMS content (first deploy only)..."
+python manage.py seed_cms --if-empty || true
+
 echo "==> Collecting static files..."
 python manage.py collectstatic --noinput
 

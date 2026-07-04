@@ -44,9 +44,18 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--flush", action="store_true", help="Delete existing CMS rows first")
+        parser.add_argument(
+            "--if-empty",
+            action="store_true",
+            help="Skip seeding if content already exists (safe for every deploy)",
+        )
 
     @transaction.atomic
     def handle(self, *args, **options):
+        if options["if_empty"] and Business.objects.exists():
+            self.stdout.write("CMS already has content — skipping seed.")
+            return
+
         if options["flush"]:
             for model in (Business, Product, Document, Partner, Stat, FaqItem, PageMeta):
                 model.objects.all().delete()
