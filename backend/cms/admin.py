@@ -55,6 +55,24 @@ def _en(value) -> str:
     return str(value or "")
 
 
+def _frontend_img(path, alt, *, height=36, max_width=130, contain=True):
+    """Render an <img> for a frontend public asset (logo/product image)."""
+    if not path:
+        return "—"
+    src = path if path.startswith("http") else f"{settings.FRONTEND_URL}/{path.lstrip('/')}"
+    fit = "contain" if contain else "cover"
+    return format_html(
+        '<img src="{}" alt="{}" loading="lazy" '
+        'style="height:{}px;max-width:{}px;object-fit:{};'
+        'background:#fff;border-radius:6px;padding:3px 6px" />',
+        src,
+        alt,
+        height,
+        max_width,
+        fit,
+    )
+
+
 class RowActionsMixin:
     """Adds per-row edit + delete icon links to the changelist, plus compact
     styling for the inline-editable `order` inputs."""
@@ -109,11 +127,15 @@ class BusinessAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(RowActionsMixin, ModelAdmin):
-    list_display = ("name", "gender", "slug", "order", "row_actions")
+    list_display = ("image_preview", "name", "gender", "slug", "order", "row_actions")
     list_editable = ("order",)
     list_filter = ("gender",)
     search_fields = ("name", "slug", "product_id")
     ordering = ("gender", "order")
+
+    @admin.display(description=_("Rasm"))
+    def image_preview(self, obj):
+        return _frontend_img(obj.image, obj.name, height=48, max_width=48, contain=False)
 
 
 @admin.register(Document)
@@ -131,20 +153,7 @@ class PartnerAdmin(RowActionsMixin, ModelAdmin):
 
     @admin.display(description=_("Logo"))
     def logo_preview(self, obj):
-        if not obj.logo:
-            return "—"
-        src = (
-            obj.logo
-            if obj.logo.startswith("http")
-            else f"{settings.FRONTEND_URL}/{obj.logo.lstrip('/')}"
-        )
-        return format_html(
-            '<img src="{}" alt="{}" loading="lazy" '
-            'style="height:36px;max-width:130px;object-fit:contain;'
-            'background:#fff;border-radius:6px;padding:3px 6px" />',
-            src,
-            obj.name,
-        )
+        return _frontend_img(obj.logo, obj.name)
 
 
 @admin.register(Stat)
