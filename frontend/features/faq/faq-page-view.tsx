@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Accordion } from "@/components/ui/accordion";
-import { faqContent } from "@/content/faq";
 import type { Locale } from "@/shared/i18n/translations";
+import { getFaqContent } from "@/shared/lib/cms";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 type FaqPageViewProps = Readonly<{ locale: Locale }>;
 
-export function FaqPageView({ locale }: FaqPageViewProps) {
-  const t = faqContent[locale];
+export async function FaqPageView({ locale }: FaqPageViewProps) {
+  const t = (await getFaqContent())[locale];
 
   return (
     <main className="min-h-screen bg-white px-5 py-16 md:px-10 md:py-24">

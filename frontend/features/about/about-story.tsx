@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { aboutContent } from "@/content/about";
 import type { Locale } from "@/shared/i18n/translations";
+import { getAboutContent } from "@/shared/lib/cms";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -22,7 +22,8 @@ const text = {
   },
 } as const;
 
-export function AboutStory({ locale }: Props) {
+export async function AboutStory({ locale }: Props) {
+  const aboutContent = await getAboutContent();
   const s1 = aboutContent.section1;
   const s2 = aboutContent.section2;
 

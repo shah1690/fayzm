@@ -3,13 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useId, useMemo, useRef, useState } from "react";
-import { businesses, getMegaMenuFeaturedBusiness } from "@/content/businesses";
+import type { BusinessData } from "@/content/businesses";
 import { usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/shared/i18n/translations";
+import { pickBusinessForLocale } from "@/shared/lib/business-pick";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
-type Props = Readonly<{ label: string; locale: Locale }>;
+type Props = Readonly<{
+  label: string;
+  locale: Locale;
+  businesses: BusinessData[];
+}>;
 
 function ChevronDown() {
   return (
@@ -61,7 +66,7 @@ const text = {
   },
 } as const;
 
-export function BusinessesMegaMenu({ label, locale }: Props) {
+export function BusinessesMegaMenu({ label, locale, businesses }: Props) {
   const [open, setOpen] = useState(false);
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -71,16 +76,19 @@ export function BusinessesMegaMenu({ label, locale }: Props) {
     () =>
       businesses.find((b) => pathname.startsWith(`/businesses/${b.slug}`)) ??
       null,
-    [pathname],
+    [businesses, pathname],
   );
   const isActive = activeBusiness !== null;
-  const featured = useMemo(() => getMegaMenuFeaturedBusiness(locale), [locale]);
+  const featured = useMemo(
+    () => pickBusinessForLocale(businesses, locale, 3),
+    [businesses, locale],
+  );
   const previewBusiness = useMemo(
     () =>
       businesses.find((b) => b.slug === hoveredSlug) ??
       activeBusiness ??
       featured,
-    [activeBusiness, featured, hoveredSlug],
+    [activeBusiness, businesses, featured, hoveredSlug],
   );
 
   const handleMouseEnter = () => {

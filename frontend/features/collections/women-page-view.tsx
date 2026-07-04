@@ -1,6 +1,5 @@
-import { pageMetadata } from "@/content/page-metadata";
-import { getProductsByGender } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { getPageMetadata, getProductsByGender } from "@/shared/lib/cms";
 import { localizeHref } from "@/shared/lib/localize-href";
 import { ProductGallery } from "./product-gallery";
 
@@ -10,8 +9,9 @@ const text = {
   products: { en: "products", uz: "mahsulot", ru: "товаров", zh: "款产品" },
 } as const;
 
-export function WomenPageView({ locale }: WomenPageViewProps) {
-  const products = getProductsByGender("women").map((p) => ({
+export async function WomenPageView({ locale }: WomenPageViewProps) {
+  const pageMetadata = await getPageMetadata();
+  const products = (await getProductsByGender("women")).map((p) => ({
     id: p.id,
     name: p.name,
     image: p.image,

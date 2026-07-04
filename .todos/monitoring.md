@@ -2,24 +2,24 @@
 
 > Auto-generated from the `.todos` board — do not edit by hand.
 
-**Total: 9**  ·  🚧 1 in progress  ·  📋 5 todo  ·  ✅ 3 done
+**Total: 5**  ·  🚧 0 in progress  ·  📋 1 todo  ·  ✅ 4 done
 
 ## By Status
 
 | Status | Count |
 |:--|--:|
-| 🚧 In Progress | 1 |
-| 📋 Todo | 5 |
-| ✅ Done | 3 |
-| **Total** | **9** |
+| 🚧 In Progress | 0 |
+| 📋 Todo | 1 |
+| ✅ Done | 4 |
+| **Total** | **5** |
 
 ## Open Tasks by Priority
 
 | Priority | Count |
 |:--|--:|
-| 🔴 Urgent | 4 |
-| 🟠 High | 1 |
-| 🟡 Medium | 1 |
+| 🔴 Urgent | 1 |
+| 🟠 High | 0 |
+| 🟡 Medium | 0 |
 | 🟢 Low | 0 |
 
 ## In Progress by ADLC Stage
@@ -28,7 +28,7 @@
 |:--|--:|
 | 📝 spec | 0 |
 | 📐 plan | 0 |
-| 🔨 generate | 1 |
+| 🔨 generate | 0 |
 | 🧪 verify | 0 |
 | 🔍 review | 0 |
 | 🚀 ship | 0 |

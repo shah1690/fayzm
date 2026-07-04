@@ -1,7 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { ContactForm } from "@/features/contact/contact-form";
 import { CtaBanner } from "@/features/cta/cta-banner";
 import { FaqSection } from "@/features/faq/faq-section";
@@ -29,8 +27,8 @@ const text = {
   },
 } as const;
 
-export function HomePageView({ locale }: HomePageViewProps) {
-  const t = useTranslations("HomePage");
+export async function HomePageView({ locale }: HomePageViewProps) {
+  const t = await getTranslations({ locale, namespace: "HomePage" });
 
   return (
     <main>

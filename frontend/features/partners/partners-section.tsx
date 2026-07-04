@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { partners } from "@/content/partners";
 import type { Locale } from "@/shared/i18n/translations";
 import { translations } from "@/shared/i18n/translations";
+import { getPartners } from "@/shared/lib/cms";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 
 type PartnersSectionProps = Readonly<{ locale: Locale }>;
 
-export function PartnersSection({ locale }: PartnersSectionProps) {
+export async function PartnersSection({ locale }: PartnersSectionProps) {
   const t = translations.partners;
+  const partners = await getPartners();
   const doubled = [0, 1].flatMap((copyIndex) =>
     partners.map((partner) => ({
       ...partner,

@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Accordion } from "@/components/ui/accordion";
-import { faqContent } from "@/content/faq";
 import type { Locale } from "@/shared/i18n/translations";
+import { getFaqContent } from "@/shared/lib/cms";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 type FaqSectionProps = Readonly<{ locale: Locale }>;
 
-export function FaqSection({ locale }: FaqSectionProps) {
-  const t = faqContent[locale];
+export async function FaqSection({ locale }: FaqSectionProps) {
+  const t = (await getFaqContent())[locale];
 
   return (
     <section id="faq" className="bg-white px-5 py-16 md:px-10 md:py-24">

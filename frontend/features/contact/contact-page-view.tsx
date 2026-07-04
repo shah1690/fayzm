@@ -1,7 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { ContactForm } from "@/features/contact/contact-form";
 import { FaqSection } from "@/features/faq/faq-section";
 import { siteConfig } from "@/shared/config/site-config";
@@ -31,8 +29,8 @@ const text = {
   },
 } as const;
 
-export function ContactPageView({ locale }: ContactPageViewProps) {
-  const t = useTranslations("Contact");
+export async function ContactPageView({ locale }: ContactPageViewProps) {
+  const t = await getTranslations({ locale, namespace: "Contact" });
 
   return (
     <main>

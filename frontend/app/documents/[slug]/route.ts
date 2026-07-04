@@ -1,4 +1,4 @@
-import { resolveDocumentBySlug } from "@/content/documents";
+import { resolveDocumentBySlug } from "@/shared/lib/cms";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -26,7 +26,7 @@ function buildMediaUrl(objectName: string) {
 
 async function redirectToMedia(context: DocumentRouteContext) {
   const { slug } = await context.params;
-  const document = resolveDocumentBySlug(slug);
+  const document = await resolveDocumentBySlug(slug);
 
   if (!document) {
     return new Response("Document was not found.", {

@@ -8,6 +8,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { messages } from "@/i18n/messages";
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/shared/i18n/translations";
+import { getBusinesses } from "@/shared/lib/cms";
 import "../globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://fayzm.uz";
@@ -78,11 +79,13 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
+  const businesses = await getBusinesses();
+
   return (
     <html lang={locale} className={`${manrope.variable} ${onest.variable}`}>
       <body className="bg-white font-secondary">
         <NextIntlClientProvider>
-          <Navbar locale={locale as Locale} />
+          <Navbar locale={locale as Locale} businesses={businesses} />
           {children}
           <Footer locale={locale as Locale} />
         </NextIntlClientProvider>

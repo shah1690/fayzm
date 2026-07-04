@@ -29,9 +29,10 @@ await mkdir(outDir, { recursive: true });
 for (const [name, [file, exportName]] of Object.entries(modules)) {
   const mod = await import(join(contentDir, file));
   const data = mod[exportName];
-  if (data === undefined) throw new Error(`Missing export ${exportName} in ${file}`);
+  if (data === undefined)
+    throw new Error(`Missing export ${exportName} in ${file}`);
   const target = join(outDir, `${name}.json`);
-  await writeFile(target, JSON.stringify(data, null, 2) + "\n", "utf8");
+  await writeFile(target, `${JSON.stringify(data, null, 2)}\n`, "utf8");
   console.log(`wrote ${target}`);
 }
 

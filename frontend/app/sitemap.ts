@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
-import { businesses } from "@/content/businesses";
-import { getProductsByGender } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { getBusinesses, getProductsByGender } from "@/shared/lib/cms";
 import { absoluteLocalizedUrl } from "@/shared/lib/seo";
 
 const locales = ["en", "uz", "ru"] as const satisfies readonly Locale[];
@@ -18,14 +17,19 @@ const staticPaths = [
   "/terms",
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [businesses, menProducts, womenProducts] = await Promise.all([
+    getBusinesses(),
+    getProductsByGender("men"),
+    getProductsByGender("women"),
+  ]);
   const businessPaths = businesses.map(
     (business) => `/businesses/${business.slug}`,
   );
-  const menProductPaths = getProductsByGender("men").map(
+  const menProductPaths = menProducts.map(
     (product) => `/collections/men/${product.slug}`,
   );
-  const womenProductPaths = getProductsByGender("women").map(
+  const womenProductPaths = womenProducts.map(
     (product) => `/collections/women/${product.slug}`,
   );
   const paths = [

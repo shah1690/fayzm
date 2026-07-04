@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { LocaleFlag } from "@/components/layout/locale-flags";
-import { businesses } from "@/content/businesses";
+import type { BusinessData } from "@/content/businesses";
 import { Link as LocaleLink } from "@/i18n/navigation";
 import { getNavLabels, siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
@@ -116,9 +116,9 @@ const localeNames: Record<Locale, string> = {
   zh: "中文",
 };
 
-type MobileMenuProps = Readonly<{ locale: Locale }>;
+type MobileMenuProps = Readonly<{ locale: Locale; businesses: BusinessData[] }>;
 
-export function MobileMenu({ locale }: MobileMenuProps) {
+export function MobileMenu({ locale, businesses }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);

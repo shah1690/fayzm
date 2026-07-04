@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getBusinessBySlug } from "@/content/businesses";
 import type { Locale } from "@/shared/i18n/translations";
+import { getBusinessBySlug } from "@/shared/lib/cms";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -712,8 +712,11 @@ function FeatureList({
   );
 }
 
-export function BusinessPageView({ slug, locale }: BusinessPageViewProps) {
-  const business = getBusinessBySlug(slug);
+export async function BusinessPageView({
+  slug,
+  locale,
+}: BusinessPageViewProps) {
+  const business = await getBusinessBySlug(slug);
 
   if (!business) {
     throw new Error(`Unknown business slug: ${slug}`);

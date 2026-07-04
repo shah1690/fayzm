@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBusinessBySlug } from "@/content/businesses";
 import { BusinessPageView } from "@/features/businesses/business-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { getBusinessBySlug } from "@/shared/lib/cms";
 import { buildPageMetadata } from "@/shared/lib/seo";
 
 type LocalizedBusinessPageProps = Readonly<{
@@ -16,7 +16,7 @@ export default async function LocalizedBusinessPage({
   params,
 }: LocalizedBusinessPageProps) {
   const { locale, slug } = await params;
-  const business = getBusinessBySlug(slug);
+  const business = await getBusinessBySlug(slug);
 
   if (!business) {
     notFound();
@@ -29,7 +29,7 @@ export async function generateMetadata({
   params,
 }: LocalizedBusinessPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const business = getBusinessBySlug(slug);
+  const business = await getBusinessBySlug(slug);
 
   if (!business) {
     return {

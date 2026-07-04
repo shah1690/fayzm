@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProduct, getProductsByGender } from "@/content/products";
 import { ProductPageView } from "@/features/collections/product-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { getProduct, getProductsByGender } from "@/shared/lib/cms";
 import { buildPageMetadata } from "@/shared/lib/seo";
 
 type Props = Readonly<{ params: Promise<{ locale: string; slug: string }> }>;
 
 export default async function WomenProductPage({ params }: Props) {
   const { locale, slug } = await params;
-  const product = getProduct("women", slug);
+  const product = await getProduct("women", slug);
 
   if (!product) notFound();
 
@@ -18,7 +18,7 @@ export default async function WomenProductPage({ params }: Props) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const product = getProduct("women", slug);
+  const product = await getProduct("women", slug);
 
   if (!product) return { title: "FAYZ-M" };
 
@@ -31,6 +31,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-export function generateStaticParams() {
-  return getProductsByGender("women").map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getProductsByGender("women")).map((p) => ({ slug: p.slug }));
 }

@@ -1,6 +1,6 @@
-import { stats } from "@/content/stats";
 import { AnimatedStatValue } from "@/features/stats/animated-stat-value";
 import type { Locale } from "@/shared/i18n/translations";
+import { getStats } from "@/shared/lib/cms";
 
 function TshirtIcon() {
   return (
@@ -123,7 +123,8 @@ const icons = {
 
 type StatsSectionProps = Readonly<{ locale: Locale }>;
 
-export function StatsSection({ locale }: StatsSectionProps) {
+export async function StatsSection({ locale }: StatsSectionProps) {
+  const stats = await getStats();
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/content/page-metadata";
 import { AboutPageView } from "@/features/about/about-page-view";
 import type { Locale } from "@/shared/i18n/translations";
+import { getPageMetadata } from "@/shared/lib/cms";
 import { buildPageMetadata } from "@/shared/lib/seo";
 
 type LocalizedAboutPageProps = Readonly<{
@@ -22,6 +22,7 @@ export async function generateMetadata({
   params,
 }: LocalizedAboutPageProps): Promise<Metadata> {
   const { locale } = await params;
+  const pageMetadata = await getPageMetadata();
 
   return buildPageMetadata({
     locale: locale as Locale,

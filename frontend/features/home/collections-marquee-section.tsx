@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getProductsByGender } from "@/content/products";
 import type { Locale } from "@/shared/i18n/translations";
+import { getProductsByGender } from "@/shared/lib/cms";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -66,8 +66,11 @@ const IMG_W = 230;
 const IMG_H = 300;
 const GAP = 12;
 
-export function CollectionsMarqueeSection({ locale }: Props) {
-  const all = [...getProductsByGender("women"), ...getProductsByGender("men")];
+export async function CollectionsMarqueeSection({ locale }: Props) {
+  const all = [
+    ...(await getProductsByGender("women")),
+    ...(await getProductsByGender("men")),
+  ];
 
   // Fisher-Yates shuffle with per-column LCG seed
   const shuffle = (arr: typeof all, seed: number) => {

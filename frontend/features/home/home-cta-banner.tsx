@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getHomeCtaBusiness } from "@/content/businesses";
 import type { Locale } from "@/shared/i18n/translations";
+import { getHomeCtaBusiness } from "@/shared/lib/cms";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -28,8 +28,8 @@ const text = {
 
 type Props = Readonly<{ locale: Locale }>;
 
-export function HomeCTABanner({ locale }: Props) {
-  const business = getHomeCtaBusiness(locale);
+export async function HomeCTABanner({ locale }: Props) {
+  const business = await getHomeCtaBusiness(locale);
 
   return (
     <section className="px-5 py-10 md:px-10 md:py-16">
