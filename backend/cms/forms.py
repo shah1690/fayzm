@@ -6,10 +6,13 @@ into a labelled input (one per locale for localized text) and reassembles the
 JSON on save. The stored shape — and therefore the API/frontend — is unchanged.
 """
 
+import os
 from copy import deepcopy
 
 from django import forms
+from django.conf import settings
 from django.core.files.storage import default_storage
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from unfold.widgets import (
     UnfoldAdminFileFieldWidget,
@@ -17,7 +20,52 @@ from unfold.widgets import (
     UnfoldAdminTextInputWidget,
 )
 
-from .models import AboutPage, Document
+from .models import AboutPage, Document, Partner
+
+
+def _storage_key_from_url(url):
+    """Extract the object key from a MinIO public URL, else None."""
+    bucket = getattr(settings, "MINIO_BUCKET_NAME", None)
+    marker = f"/{bucket}/" if bucket else None
+    if url and marker and marker in url:
+        return url.split(marker, 1)[1]
+    return None
+
+
+class PartnerForm(forms.ModelForm):
+    """Partner form with a logo upload that writes to MinIO and replaces the
+    previous logo."""
+
+    upload = forms.ImageField(
+        required=False,
+        label=_("Logo yuklash"),
+        help_text=_("Yangi rasm yuklansa, eski logo almashtiriladi."),
+        widget=UnfoldAdminFileFieldWidget,
+    )
+
+    class Meta:
+        model = Partner
+        fields = "__all__"
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        upload = self.cleaned_data.get("upload")
+        if upload:
+            ext = (os.path.splitext(upload.name)[1] or ".png").lower()
+            base = slugify(instance.name) or "partner"
+            key = f"partners/{base}{ext}"
+            # Drop the previous MinIO object (if the old logo was one).
+            old_key = _storage_key_from_url(instance.logo)
+            if old_key and old_key != key and default_storage.exists(old_key):
+                default_storage.delete(old_key)
+            if default_storage.exists(key):
+                default_storage.delete(key)
+            default_storage.save(key, upload)
+            instance.logo = default_storage.url(key)
+        if commit:
+            instance.save()
+            self.save_m2m()
+        return instance
 
 
 class DocumentForm(forms.ModelForm):

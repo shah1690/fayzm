@@ -9,7 +9,14 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin
 
-from .forms import ABOUT_SCHEMA, LOCALES, AboutPageForm, DocumentForm, field_name
+from .forms import (
+    ABOUT_SCHEMA,
+    LOCALES,
+    AboutPageForm,
+    DocumentForm,
+    PartnerForm,
+    field_name,
+)
 from .models import (
     AboutPage,
     Business,
@@ -181,9 +188,12 @@ class DocumentAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(Partner)
 class PartnerAdmin(RowActionsMixin, ModelAdmin):
+    form = PartnerForm
     list_display = ("logo_preview", "name", "logo", "order", "row_actions")
     list_editable = ("order",)
     search_fields = ("name",)
+    readonly_fields = ("logo_preview",)
+    fields = ("name", "logo", "order", "logo_preview", "upload")
 
     @admin.display(description=_("Logo"))
     def logo_preview(self, obj):
