@@ -258,27 +258,27 @@ def _upload_replace_image(instance, image_field, key_prefix, base_name, upload):
     setattr(instance, image_field, default_storage.url(key))
 
 
-def make_localized_form(
-    model_cls, *, short=(), long=(), lists=(), image_field=None, image_key=None
-):
+def make_localized_form(model_cls, *, short=(), long=(), lists=(), images=()):
     """Build a ModelForm that exposes each localized JSON field as one input
     per locale (en/uz/ru/zh) instead of a raw JSON textarea. `lists` are
     list-of-localized fields (e.g. Business.features): one textarea per locale,
-    one item per line. `image_field` adds an image upload that writes to MinIO
-    (under `image_key/`) and replaces the previous image. Plain model fields
-    render normally.
+    one item per line. `images` is a sequence of (model_field, key_prefix): each
+    adds an upload that writes to MinIO and replaces that image. Plain model
+    fields render normally.
     """
     localized = {name: "short" for name in short}
     localized.update({name: "long" for name in long})
     list_fields = tuple(lists)
+    images = tuple(images)
     excluded = tuple(localized) + list_fields
 
     declared = {}
-    if image_field:
-        declared["upload"] = forms.ImageField(
+    for field, _key in images:
+        label = _label_for(model_cls, field)
+        declared[f"upload__{field}"] = forms.ImageField(
             required=False,
-            label=_("Rasm yuklash"),
-            help_text=_("Yangi rasm yuklansa, eskisi almashtiriladi."),
+            label=_("%(f)s — yuklash") % {"f": label},
+            help_text=_("Yangi rasm eskisini almashtiradi."),
             widget=UnfoldAdminFileFieldWidget,
         )
     for name, kind in localized.items():
@@ -344,15 +344,16 @@ def make_localized_form(
                 if any(row.values()):
                     rows.append(row)
             setattr(inst, name, rows)
-        upload = self.cleaned_data.get("upload") if image_field else None
-        if upload:
-            base_name = (
-                getattr(inst, "product_id", None)
-                or getattr(inst, "slug", None)
-                or getattr(inst, "name", None)
-                or "item"
-            )
-            _upload_replace_image(inst, image_field, image_key or "uploads", base_name, upload)
+        rid = (
+            getattr(inst, "product_id", None)
+            or getattr(inst, "slug", None)
+            or getattr(inst, "name", None)
+            or "item"
+        )
+        for field, key in images:
+            upload = self.cleaned_data.get(f"upload__{field}")
+            if upload:
+                _upload_replace_image(inst, field, key, f"{rid}-{field}", upload)
         if commit:
             inst.save()
             self.save_m2m()
@@ -367,9 +368,15 @@ BusinessForm = make_localized_form(
     short=("label", "card_heading", "strategy_heading"),
     long=("heading", "description", "card_text", "body_text", "strategy_desc"),
     lists=("features",),
+    images=(
+        ("image1", "businesses"),
+        ("image2", "businesses"),
+        ("image3", "businesses"),
+        ("cta_image", "businesses"),
+    ),
 )
 ProductForm = make_localized_form(
-    Product, long=("description",), image_field="image", image_key="products"
+    Product, long=("description",), images=(("image", "products"),)
 )
 StatForm = make_localized_form(Stat, short=("label",))
 FaqItemForm = make_localized_form(FaqItem, short=("question",), long=("answer",))

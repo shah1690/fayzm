@@ -135,10 +135,27 @@ class BusinessAdmin(RowActionsMixin, ModelAdmin):
     list_editable = ("order",)
     search_fields = ("slug",)
     ordering = ("order", "slug")
+    readonly_fields = ("image1_preview", "image2_preview", "image3_preview", "cta_image_preview")
 
     @admin.display(description="Label (en)")
     def label_en(self, obj):
         return _en(obj.label)
+
+    @admin.display(description=_("1-rasm"))
+    def image1_preview(self, obj):
+        return _frontend_img(obj.image1, "image1", height=80, max_width=120)
+
+    @admin.display(description=_("2-rasm"))
+    def image2_preview(self, obj):
+        return _frontend_img(obj.image2, "image2", height=80, max_width=120)
+
+    @admin.display(description=_("3-rasm"))
+    def image3_preview(self, obj):
+        return _frontend_img(obj.image3, "image3", height=80, max_width=120)
+
+    @admin.display(description=_("CTA rasm"))
+    def cta_image_preview(self, obj):
+        return _frontend_img(obj.cta_image, "cta", height=80, max_width=120)
 
 
 @admin.register(Product)
