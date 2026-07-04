@@ -29,6 +29,7 @@ from .models import (
     HomeCollections,
     HomeContact,
     HomeCta,
+    HomeCtaBanner,
     HomeHero,
     HomeIntro,
     HomeWorldMap,
@@ -407,6 +408,9 @@ HomeCollectionsForm = make_localized_form(
     long=("heading", "subtitle"),
 )
 HomeCtaForm = make_localized_form(HomeCta, short=("cta",), long=("heading", "description"))
+HomeCtaBannerForm = make_localized_form(
+    HomeCtaBanner, short=("label", "cta"), long=("heading", "description")
+)
 HomeWorldMapForm = make_localized_form(HomeWorldMap, long=("heading", "subtitle"))
 HomeContactForm = make_localized_form(
     HomeContact,

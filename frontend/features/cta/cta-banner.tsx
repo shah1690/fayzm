@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ctaContent } from "@/content/stats";
 import type { Locale } from "@/shared/i18n/translations";
+import { loc, type SectionContent } from "@/shared/lib/home-content";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 const avatarSwatches = [
@@ -77,9 +78,9 @@ function MiniChart() {
   );
 }
 
-type CtaBannerProps = Readonly<{ locale: Locale }>;
+type CtaBannerProps = Readonly<{ locale: Locale; cms?: SectionContent }>;
 
-export function CtaBanner({ locale }: CtaBannerProps) {
+export function CtaBanner({ locale, cms }: CtaBannerProps) {
   const t = ctaContent;
 
   return (
@@ -104,21 +105,21 @@ export function CtaBanner({ locale }: CtaBannerProps) {
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#E5D6C9]" />
                   <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/50">
-                    {t.label[locale]}
+                    {loc(cms?.label, t.label[locale], locale)}
                   </span>
                 </div>
                 <h2 className="whitespace-pre-line text-3xl font-bold leading-[1.1] text-white md:text-5xl">
-                  {t.heading[locale]}
+                  {loc(cms?.heading, t.heading[locale], locale)}
                 </h2>
                 <p className="max-w-md text-sm leading-relaxed text-white/60 md:text-base">
-                  {t.description[locale]}
+                  {loc(cms?.description, t.description[locale], locale)}
                 </p>
               </div>
               <Link
                 href={localizeHref(locale, "/contact")}
                 className="group inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white"
               >
-                {t.cta[locale]}
+                {loc(cms?.cta, t.cta[locale], locale)}
               </Link>
             </div>
 

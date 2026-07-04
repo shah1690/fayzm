@@ -16,6 +16,7 @@ from .models import (
     HomeCollections,
     HomeContact,
     HomeCta,
+    HomeCtaBanner,
     HomeHero,
     HomeIntro,
     HomeWorldMap,
@@ -111,6 +112,7 @@ class HomeView(APIView):
         "intro": HomeIntro,
         "collections": HomeCollections,
         "cta": HomeCta,
+        "partnerCta": HomeCtaBanner,
         "worldMap": HomeWorldMap,
         "contact": HomeContact,
     }

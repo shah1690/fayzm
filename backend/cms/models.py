@@ -295,6 +295,20 @@ class HomeWorldMap(Singleton):
         return "Home world map"
 
 
+class HomeCtaBanner(Singleton):
+    label = LocalizedField()
+    heading = LocalizedField()
+    description = LocalizedField()
+    cta = LocalizedField()
+
+    class Meta:
+        verbose_name = _("Bosh sahifa — CTA banner")
+        verbose_name_plural = _("Bosh sahifa — CTA banner")
+
+    def __str__(self) -> str:
+        return "Home CTA banner"
+
+
 class HomeContact(Singleton):
     label = LocalizedField()
     heading = LocalizedField()

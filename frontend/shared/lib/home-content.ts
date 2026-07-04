@@ -12,6 +12,7 @@ export type HomeContent = {
   intro: SectionContent;
   collections: SectionContent;
   cta: SectionContent;
+  partnerCta: SectionContent;
   worldMap: SectionContent;
   contact: SectionContent;
 };
@@ -21,6 +22,7 @@ export const EMPTY_HOME_CONTENT: HomeContent = {
   intro: {},
   collections: {},
   cta: {},
+  partnerCta: {},
   worldMap: {},
   contact: {},
 };

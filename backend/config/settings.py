@@ -374,6 +374,7 @@ UNFOLD = {
                     {'title': _('Intro'), 'icon': 'subject', 'link': '/admin/cms/homeintro/'},
                     {'title': _('Kolleksiyalar'), 'icon': 'checkroom', 'link': '/admin/cms/homecollections/'},
                     {'title': _('Hamkorlik CTA'), 'icon': 'campaign', 'link': '/admin/cms/homecta/'},
+                    {'title': _('CTA banner'), 'icon': 'ads_click', 'link': '/admin/cms/homectabanner/'},
                     {'title': _('Xarita'), 'icon': 'public', 'link': '/admin/cms/homeworldmap/'},
                     {'title': _('Kontakt'), 'icon': 'contact_mail', 'link': '/admin/cms/homecontact/'},
                 ],

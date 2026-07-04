@@ -113,7 +113,7 @@ export async function HomePageView({ locale }: HomePageViewProps) {
           </div>
         </div>
       </section>
-      <CtaBanner locale={locale} />
+      <CtaBanner locale={locale} cms={home.partnerCta} />
       <FaqSection locale={locale} />
     </main>
   );

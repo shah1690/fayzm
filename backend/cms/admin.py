@@ -19,6 +19,7 @@ from .forms import (
     FaqSettingsForm,
     HomeCollectionsForm,
     HomeContactForm,
+    HomeCtaBannerForm,
     HomeCtaForm,
     HomeHeroForm,
     HomeIntroForm,
@@ -38,6 +39,7 @@ from .models import (
     HomeCollections,
     HomeContact,
     HomeCta,
+    HomeCtaBanner,
     HomeHero,
     HomeIntro,
     HomeWorldMap,
@@ -308,6 +310,11 @@ class HomeCollectionsAdmin(SingletonAdmin):
 @admin.register(HomeCta)
 class HomeCtaAdmin(SingletonAdmin):
     form = HomeCtaForm
+
+
+@admin.register(HomeCtaBanner)
+class HomeCtaBannerAdmin(SingletonAdmin):
+    form = HomeCtaBannerForm
 
 
 @admin.register(HomeWorldMap)
