@@ -1,6 +1,13 @@
-# Fayzm — single stack. Local dev: run `docker compose up -d db minio minio-init`
-# and the apps on the host (pnpm dev). Production: `docker compose up -d --build`
-# runs everything; Traefik (joined to the `proxy` network) routes the domains.
+# Fayzm — single stack.
+# Local dev: `docker compose up -d db redis minio minio-init` and run the apps
+#   on the host (pnpm dev).
+# Production (Coolify): deploys every service. Routing is managed by Coolify —
+#   set each service's domain in the Coolify UI:
+#     backend  -> https://back.fayzm.uz
+#     frontend -> https://fayzm.uz
+#     minio    -> https://media.fayzm.uz   (API, port 9000)
+#     minio    -> https://minioinit.fayzm.uz (console, port 9001)
+#   Do NOT add manual Traefik labels here — Coolify generates them.
 
 services:
   db:
@@ -15,8 +22,6 @@ services:
       - "${DB_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - internal
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 10s
@@ -30,8 +35,6 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
       - redis_data:/data
-    networks:
-      - internal
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -53,29 +56,11 @@ services:
       - "${MINIO_CONSOLE_PORT:-9001}:9001"
     volumes:
       - minio_data:/data
-    networks:
-      - internal
-      - proxy
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost:9000/minio/health/ready"]
       interval: 10s
       timeout: 5s
       retries: 20
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=proxy
-      - traefik.http.routers.fayzm-media.rule=Host(`media.fayzm.uz`)
-      - traefik.http.routers.fayzm-media.entrypoints=https
-      - traefik.http.routers.fayzm-media.tls.certresolver=letsencrypt
-      - traefik.http.routers.fayzm-media.service=fayzm-media
-      - traefik.http.routers.fayzm-media.middlewares=fayzm-media-prefix
-      - traefik.http.middlewares.fayzm-media-prefix.addprefix.prefix=/${MINIO_BUCKET_NAME:-fayzm-media}
-      - traefik.http.services.fayzm-media.loadbalancer.server.port=9000
-      - traefik.http.routers.fayzm-minio-console.rule=Host(`minioinit.fayzm.uz`)
-      - traefik.http.routers.fayzm-minio-console.entrypoints=https
-      - traefik.http.routers.fayzm-minio-console.tls.certresolver=letsencrypt
-      - traefik.http.routers.fayzm-minio-console.service=fayzm-minio-console
-      - traefik.http.services.fayzm-minio-console.loadbalancer.server.port=9001
 
   minio-init:
     image: minio/mc:latest
@@ -86,8 +71,6 @@ services:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin-change-me}
       MINIO_BUCKET_NAME: ${MINIO_BUCKET_NAME:-fayzm-media}
-    networks:
-      - internal
     entrypoint: >
       sh -c "
         mc alias set minio http://minio:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD &&
@@ -142,16 +125,6 @@ services:
         condition: service_completed_successfully
     volumes:
       - static_files:/app/staticfiles
-    networks:
-      - internal
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=proxy
-      - traefik.http.routers.fayzm-backend.rule=Host(`back.fayzm.uz`)
-      - traefik.http.routers.fayzm-backend.entrypoints=https
-      - traefik.http.routers.fayzm-backend.tls.certresolver=letsencrypt
-      - traefik.http.services.fayzm-backend.loadbalancer.server.port=8000
 
   frontend:
     build:
@@ -172,23 +145,6 @@ services:
     depends_on:
       backend:
         condition: service_started
-    networks:
-      - internal
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=proxy
-      - traefik.http.routers.fayzm-frontend.rule=Host(`fayzm.uz`)
-      - traefik.http.routers.fayzm-frontend.entrypoints=https
-      - traefik.http.routers.fayzm-frontend.tls.certresolver=letsencrypt
-      - traefik.http.services.fayzm-frontend.loadbalancer.server.port=3000
-
-networks:
-  internal:
-  # Shared with the reverse proxy. Traefik must join this network (in prod set
-  # it to `external: true` and `docker network create fayzm_proxy` once, or run
-  # Traefik in this compose file).
-  proxy:
 
 volumes:
   postgres_data:
