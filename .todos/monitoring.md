@@ -2,16 +2,16 @@
 
 > Auto-generated from the `.todos` board — do not edit by hand.
 
-**Total: 6**  ·  🚧 1 in progress  ·  📋 0 todo  ·  ✅ 5 done
+**Total: 15**  ·  🚧 0 in progress  ·  📋 1 todo  ·  ✅ 14 done
 
 ## By Status
 
 | Status | Count |
 |:--|--:|
-| 🚧 In Progress | 1 |
-| 📋 Todo | 0 |
-| ✅ Done | 5 |
-| **Total** | **6** |
+| 🚧 In Progress | 0 |
+| 📋 Todo | 1 |
+| ✅ Done | 14 |
+| **Total** | **15** |
 
 ## Open Tasks by Priority
 
@@ -28,7 +28,7 @@
 |:--|--:|
 | 📝 spec | 0 |
 | 📐 plan | 0 |
-| 🔨 generate | 1 |
+| 🔨 generate | 0 |
 | 🧪 verify | 0 |
 | 🔍 review | 0 |
 | 🚀 ship | 0 |
