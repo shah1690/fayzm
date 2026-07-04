@@ -134,13 +134,60 @@ async function persistLead(
   }
 }
 
-async function sendTelegramMessage(message: string) {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+// Resolved once per server process, then reused. Only TELEGRAM_BOT_TOKEN is
+// required in the env; the chat id is auto-detected from the group the bot was
+// added to (via getUpdates). TELEGRAM_CHAT_ID, if set, overrides detection.
+let cachedTelegramChatId: string | null = null;
 
-  if (!botToken || !chatId) {
-    throw new Error("Telegram environment variables are not configured.");
+type TelegramChat = { id: number; type: string };
+type TelegramUpdate = {
+  message?: { chat?: TelegramChat };
+  my_chat_member?: { chat?: TelegramChat };
+  channel_post?: { chat?: TelegramChat };
+};
+
+async function resolveTelegramChatId(botToken: string): Promise<string> {
+  const override = process.env.TELEGRAM_CHAT_ID?.trim();
+  if (override) return override;
+  if (cachedTelegramChatId) return cachedTelegramChatId;
+
+  const res = await fetch(
+    `https://api.telegram.org/bot${botToken}/getUpdates`,
+    { cache: "no-store" },
+  );
+  if (!res.ok) {
+    throw new Error(`Telegram getUpdates failed: ${res.status}`);
   }
+  const data = (await res.json()) as { ok: boolean; result?: TelegramUpdate[] };
+  let groupId: string | null = null;
+  let anyId: string | null = null;
+  for (const update of data.result ?? []) {
+    const chat =
+      update.message?.chat ??
+      update.my_chat_member?.chat ??
+      update.channel_post?.chat;
+    if (!chat) continue;
+    anyId = String(chat.id);
+    if (chat.type === "group" || chat.type === "supergroup") {
+      groupId = String(chat.id);
+    }
+  }
+  const id = groupId ?? anyId;
+  if (!id) {
+    throw new Error(
+      "Telegram chat not found — add the bot to your group and send one message there.",
+    );
+  }
+  cachedTelegramChatId = id;
+  return id;
+}
+
+async function sendTelegramMessage(message: string) {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN?.trim();
+  if (!botToken) {
+    throw new Error("TELEGRAM_BOT_TOKEN is not configured.");
+  }
+  const chatId = await resolveTelegramChatId(botToken);
 
   const response = await fetch(
     `https://api.telegram.org/bot${botToken}/sendMessage`,
@@ -160,6 +207,9 @@ async function sendTelegramMessage(message: string) {
   );
 
   if (!response.ok) {
+    // A stale cached chat id (bot removed/re-added) — drop it so the next
+    // attempt re-detects.
+    cachedTelegramChatId = null;
     const errorText = await response.text();
     throw new Error(`Telegram send failed: ${errorText}`);
   }

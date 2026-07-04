@@ -7,7 +7,7 @@ host; only **PostgreSQL + MinIO** run in Docker.
 fayzm/
 ├── frontend/            # Next.js 16 app (pnpm, next-intl, Tailwind 4)
 ├── backend/             # Django 6 API (DRF, Channels, Unfold admin, MinIO)
-├── docker-compose.yaml  # infra only: postgres + minio
+├── docker-compose.yaml  # single stack: db + redis + minio + backend + frontend
 ├── scripts/             # kill-ports / setup / dev-backend helpers
 └── .env.example         # shared env — copy to .env
 ```
