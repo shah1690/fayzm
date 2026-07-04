@@ -294,7 +294,12 @@ export async function POST(request: NextRequest) {
   // report failure to the visitor if BOTH sinks rejected.
   if (!telegramOk && !amoOk) {
     return NextResponse.json(
-      { ok: false, message: "Could not submit form." },
+      {
+        ok: false,
+        message: "Could not submit form.",
+        telegramError: deliveryError(telegramResult),
+        amocrmError: deliveryError(amoResult),
+      },
       { status: 500 },
     );
   }
