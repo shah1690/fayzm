@@ -97,7 +97,8 @@ class Product(TimeStamped):
 class Document(TimeStamped):
     """A downloadable PDF stored in MinIO (matches DocumentDefinition)."""
 
-    slug = models.SlugField(max_length=128, unique=True)
+    # Not a SlugField: values are filename-like and contain dots (e.g. "eng-man.pdf").
+    slug = models.CharField(max_length=128, unique=True)
     object_name = models.CharField(
         max_length=255, help_text=_("Object key in the media bucket, e.g. 'documents/eng man.pdf'")
     )

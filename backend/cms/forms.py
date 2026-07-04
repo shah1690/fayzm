@@ -9,10 +9,44 @@ JSON on save. The stored shape — and therefore the API/frontend — is unchang
 from copy import deepcopy
 
 from django import forms
+from django.core.files.storage import default_storage
 from django.utils.translation import gettext_lazy as _
-from unfold.widgets import UnfoldAdminTextareaWidget, UnfoldAdminTextInputWidget
+from unfold.widgets import (
+    UnfoldAdminFileFieldWidget,
+    UnfoldAdminTextareaWidget,
+    UnfoldAdminTextInputWidget,
+)
 
-from .models import AboutPage
+from .models import AboutPage, Document
+
+
+class DocumentForm(forms.ModelForm):
+    """Document form with a file upload that writes to MinIO at object_name,
+    replacing any existing file."""
+
+    upload = forms.FileField(
+        required=False,
+        label=_("Fayl yuklash"),
+        help_text=_("Yangi fayl yuklansa, eskisi almashtiriladi."),
+        widget=UnfoldAdminFileFieldWidget,
+    )
+
+    class Meta:
+        model = Document
+        fields = "__all__"
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        upload = self.cleaned_data.get("upload")
+        if upload:
+            name = instance.object_name
+            if default_storage.exists(name):
+                default_storage.delete(name)
+            default_storage.save(name, upload)
+        if commit:
+            instance.save()
+            self.save_m2m()
+        return instance
 
 LOCALES = ("en", "uz", "ru", "zh")
 LOCALE_LABEL = {"en": "🇬🇧 EN", "uz": "🇺🇿 UZ", "ru": "🇷🇺 RU", "zh": "🇨🇳 ZH"}

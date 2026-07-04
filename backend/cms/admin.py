@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin
 
-from .forms import ABOUT_SCHEMA, LOCALES, AboutPageForm, field_name
+from .forms import ABOUT_SCHEMA, LOCALES, AboutPageForm, DocumentForm, field_name
 from .models import (
     AboutPage,
     Business,
@@ -142,11 +142,17 @@ class ProductAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(Document)
 class DocumentAdmin(RowActionsMixin, ModelAdmin):
+    form = DocumentForm
     list_display = (
         "slug", "object_name", "download_file_name", "size_mb", "order", "row_actions"
     )
     list_editable = ("order",)
     search_fields = ("slug", "object_name")
+    readonly_fields = ("current_file",)
+    fields = (
+        "slug", "object_name", "download_file_name", "order",
+        "current_file", "upload",
+    )
 
     @admin.display(description=_("Hajmi"))
     def size_mb(self, obj):
@@ -155,6 +161,22 @@ class DocumentAdmin(RowActionsMixin, ModelAdmin):
         except Exception:
             return "—"
         return f"{size / 1048576:.2f} MB"
+
+    @admin.display(description=_("Joriy fayl"))
+    def current_file(self, obj):
+        if not obj or not obj.pk or not obj.object_name:
+            return "—"
+        try:
+            size = default_storage.size(obj.object_name)
+            url = default_storage.url(obj.object_name)
+        except Exception:
+            return _("Fayl hali yuklanmagan")
+        return format_html(
+            '<a href="{}" target="_blank" rel="noopener">{}</a> · {:.2f} MB',
+            url,
+            obj.object_name,
+            size / 1048576,
+        )
 
 
 @admin.register(Partner)
