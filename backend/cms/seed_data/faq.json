@@ -1,0 +1,134 @@
+{
+  "en": {
+    "title": "Frequently\nAsked Questions",
+    "subtitle": "Here are answers to common questions about us.",
+    "stillHaveQuestions": "Still have questions?",
+    "stillHaveDesc": "Can't find the answer you're looking for? Please chat to our friendly team!",
+    "scheduleCall": "Schedule a Call",
+    "items": [
+      {
+        "question": "What is the minimum order quantity?",
+        "answer": "The minimum order quantity is 3,000 pieces per color and model. Smaller volumes are available at higher per-unit costs."
+      },
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "The company requires a 30% upfront payment to start production. Once goods are complete, customers pay the remaining 70% before collection."
+      },
+      {
+        "question": "Would you be able to produce products under our brand name?",
+        "answer": "Yes, certainly, we can manufacture products under your brand."
+      },
+      {
+        "question": "How long does production take after payment?",
+        "answer": "Typical production requires 2 to 2.5 months following payment, though expedited timelines are negotiable on a case-by-case basis."
+      },
+      {
+        "question": "Who will be our point of contact during the order and production process?",
+        "answer": "A custom sample is prepared and approved initially. Subsequently, a dedicated sales manager provides daily communication and support throughout production."
+      },
+      {
+        "question": "Can you create a custom design for us?",
+        "answer": "Absolutely. If you need a personalized design, we can develop one for you. Exclusive brand agreements are available to protect custom designs."
+      }
+    ]
+  },
+  "uz": {
+    "title": "Ko'p so'raladigan\nsavollar",
+    "subtitle": "Hamkorlar ko'p so'raydigan savollarga qisqa javoblar.",
+    "stillHaveQuestions": "Savollar qoldimi?",
+    "stillHaveDesc": "Kerakli javobni topmadingizmi? Jamoamiz bilan bog'laning.",
+    "scheduleCall": "Qo'ng'iroq rejalashtirish",
+    "items": [
+      {
+        "question": "Minimal buyurtma miqdori qancha?",
+        "answer": "Minimal buyurtma miqdori — har bir rang va model uchun 3 000 dona. Kichikroq hajmlar ham mumkin, lekin birlik narxi yuqoriroq bo'ladi."
+      },
+      {
+        "question": "Qanday to'lov usullarini qabul qilasiz?",
+        "answer": "Ishlab chiqarishni boshlash uchun 30% avans to'lovi qilinadi. Buyurtma tayyor bo'lgach, qolgan 70% mahsulotni olishdan oldin to'lanadi."
+      },
+      {
+        "question": "Bizning brend nomi ostida mahsulot ishlab chiqara olasizmi?",
+        "answer": "Ha, mahsulotlarni sizning brendingiz ostida ishlab chiqaramiz."
+      },
+      {
+        "question": "To'lovdan keyin ishlab chiqarish qancha vaqt oladi?",
+        "answer": "Odatda ishlab chiqarish to'lovdan keyin 2 dan 2,5 oyga qadar davom etadi, lekin muddatlar alohida kelishilishi mumkin."
+      },
+      {
+        "question": "Buyurtma va ishlab chiqarish jarayonida bizning aloqa nuqtamiz kim bo'ladi?",
+        "answer": "Avval namuna tayyorlanadi va tasdiqlanadi. Keyin shaxsiy savdo menejeri buyurtma jarayonini kuzatib boradi."
+      },
+      {
+        "question": "Bizga maxsus dizayn yaratib bera olasizmi?",
+        "answer": "Ha. Kerak bo'lsa, siz uchun maxsus dizayn ishlab chiqamiz. Eksklyuziv dizaynlar bo'yicha alohida kelishuv ham mumkin."
+      }
+    ]
+  },
+  "ru": {
+    "title": "Часто Задаваемые\nВопросы",
+    "subtitle": "Ответы на часто задаваемые вопросы о нас.",
+    "stillHaveQuestions": "Остались вопросы?",
+    "stillHaveDesc": "Не можете найти ответ? Пожалуйста, свяжитесь с нашей командой!",
+    "scheduleCall": "Запланировать звонок",
+    "items": [
+      {
+        "question": "Каков минимальный объём заказа?",
+        "answer": "Минимальный объём заказа составляет 3 000 штук на цвет и модель. Меньшие объёмы доступны по более высокой цене за единицу."
+      },
+      {
+        "question": "Какие способы оплаты вы принимаете?",
+        "answer": "Компания требует 30% предоплаты для начала производства. После завершения заказа клиент оплачивает оставшиеся 70% перед получением товара."
+      },
+      {
+        "question": "Вы можете производить продукцию под нашим брендом?",
+        "answer": "Да, конечно, мы можем производить продукцию под вашим брендом."
+      },
+      {
+        "question": "Сколько времени занимает производство после оплаты?",
+        "answer": "Стандартное производство занимает 2–2,5 месяца после оплаты. Ускоренные сроки могут быть согласованы в индивидуальном порядке."
+      },
+      {
+        "question": "Кто будет нашим контактным лицом в процессе заказа?",
+        "answer": "Сначала готовится и согласовывается образец. Затем назначается персональный менеджер по продажам, который обеспечивает ежедневную коммуникацию."
+      },
+      {
+        "question": "Вы можете создать для нас индивидуальный дизайн?",
+        "answer": "Абсолютно. При необходимости мы разработаем дизайн специально для вас. Также доступны эксклюзивные соглашения для защиты авторских разработок."
+      }
+    ]
+  },
+  "zh": {
+    "title": "常见问题",
+    "subtitle": "以下是关于我们的常见问题解答。",
+    "stillHaveQuestions": "还有疑问？",
+    "stillHaveDesc": "没有找到您想要的答案？欢迎与我们友好的团队取得联系！",
+    "scheduleCall": "预约通话",
+    "items": [
+      {
+        "question": "起订量是多少？",
+        "answer": "最低订货量为每款每色 3,000 件。小批量订单也可接受，但单价会相应提高。"
+      },
+      {
+        "question": "你们接受哪些付款方式？",
+        "answer": "公司在开始生产前需要 30% 的预付款。订单完工后，客户在提货前支付剩余 70%。"
+      },
+      {
+        "question": "你们能为我们以自有品牌生产产品吗？",
+        "answer": "可以，我们完全可以为您的品牌进行贴牌生产。"
+      },
+      {
+        "question": "付款后生产需要多长时间？",
+        "answer": "通常生产周期为付款后 2 至 2.5 个月，紧急订单可单独协商加急安排。"
+      },
+      {
+        "question": "在订单与生产过程中，谁会与我们对接？",
+        "answer": "首先会准备并确认样品，随后由专属销售经理在整个生产周期提供日常沟通与支持。"
+      },
+      {
+        "question": "你们能为我们定制专属设计吗？",
+        "answer": "当然可以。如果您需要个性化设计，我们可以为您专门开发，并可签订独家品牌协议以保护您的设计权益。"
+      }
+    ]
+  }
+}

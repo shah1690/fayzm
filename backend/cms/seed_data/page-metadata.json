@@ -1,0 +1,142 @@
+{
+  "about": {
+    "heading": {
+      "en": "About Us",
+      "uz": "Biz haqimizda",
+      "ru": "О нас",
+      "zh": "关于我们"
+    },
+    "title": {
+      "en": "About Us | FAYZ-M",
+      "uz": "Biz haqimizda | FAYZ-M",
+      "ru": "О нас | FAYZ-M",
+      "zh": "关于我们 | FAYZ-M"
+    },
+    "description": {
+      "en": "Learn about FAYZ-M, a vertically integrated textile cluster in Uzbekistan with production, green energy, and export capabilities.",
+      "uz": "FAYZ-M — O'zbekistondagi vertikal integratsiyalashgan tekstil klasteri: ishlab chiqarish, yashil energiya va eksport imkoniyatlari.",
+      "ru": "Узнайте о FAYZ-M — вертикально интегрированном текстильном кластере Узбекистана с производством, зелёной энергией и экспортом.",
+      "zh": "了解 FAYZ-M——位于乌兹别克斯坦的垂直一体化纺织产业集群，涵盖生产、绿色能源及出口能力。"
+    }
+  },
+  "businesses": {
+    "heading": {
+      "en": "Businesses",
+      "uz": "Faoliyat yo'nalishlari",
+      "ru": "Направления бизнеса",
+      "zh": "业务方向"
+    },
+    "title": {
+      "en": "Businesses | FAYZ-M",
+      "uz": "Faoliyat yo'nalishlari | FAYZ-M",
+      "ru": "Направления бизнеса | FAYZ-M",
+      "zh": "业务方向 | FAYZ-M"
+    },
+    "description": {
+      "en": "Explore FAYZ-M business divisions: knitting, yarn, garments, flour, cottonseed oil, petrol station, and livestock farming.",
+      "uz": "FAYZ-M faoliyat yo'nalishlari: trikotaj mato, ip, tikuvchilik, un, paxta yog'i, yoqilg'i shoxobchasi va chorvachilik.",
+      "ru": "Направления FAYZ-M: трикотаж, пряжа, швейное производство, мука, хлопковое масло, АЗС и животноводство.",
+      "zh": "了解 FAYZ-M 的业务板块：针织、纱线、服装、面粉、棉籽油、加油站及畜牧业。"
+    }
+  },
+  "collections": {
+    "heading": {
+      "en": "Collections",
+      "uz": "Kolleksiyalar",
+      "ru": "Коллекции",
+      "zh": "产品系列"
+    },
+    "title": {
+      "en": "Collections | FAYZ-M",
+      "uz": "Kolleksiyalar | FAYZ-M",
+      "ru": "Коллекции | FAYZ-M",
+      "zh": "产品系列 | FAYZ-M"
+    },
+    "description": {
+      "en": "Discover FAYZ-M knitwear and garment collections for men and women, produced in Uzbekistan for global markets.",
+      "uz": "FAYZ-M erkaklar va ayollar trikotaj hamda kiyim kolleksiyalari: O'zbekistonda ishlab chiqariladi va eksport qilinadi.",
+      "ru": "Коллекции трикотажа и одежды FAYZ-M для мужчин и женщин, произведённые в Узбекистане для мировых рынков.",
+      "zh": "探索 FAYZ-M 男女款针织与服装系列——在乌兹别克斯坦生产，面向全球市场。"
+    }
+  },
+  "collectionsMen": {
+    "heading": {
+      "en": "Men",
+      "uz": "Erkaklar kolleksiyasi",
+      "ru": "Мужская коллекция",
+      "zh": "男装系列"
+    },
+    "title": {
+      "en": "Men Collection | FAYZ-M",
+      "uz": "Erkaklar kolleksiyasi | FAYZ-M",
+      "ru": "Мужская коллекция | FAYZ-M",
+      "zh": "男装系列 | FAYZ-M"
+    },
+    "description": {
+      "en": "Browse FAYZ-M men's knitwear and garment models made with reliable fabrics and export-ready production quality.",
+      "uz": "FAYZ-M erkaklar kolleksiyasi: sifatli matolar va eksportga tayyor ishlab chiqarish asosidagi trikotaj kiyimlar.",
+      "ru": "Мужская коллекция FAYZ-M: трикотаж и одежда из качественных материалов с экспортным уровнем производства.",
+      "zh": "浏览 FAYZ-M 男装针织与服装款式——采用优质面料，达到出口级生产品质。"
+    }
+  },
+  "collectionsWomen": {
+    "heading": {
+      "en": "Women",
+      "uz": "Ayollar kolleksiyasi",
+      "ru": "Женская коллекция",
+      "zh": "女装系列"
+    },
+    "title": {
+      "en": "Women Collection | FAYZ-M",
+      "uz": "Ayollar kolleksiyasi | FAYZ-M",
+      "ru": "Женская коллекция | FAYZ-M",
+      "zh": "女装系列 | FAYZ-M"
+    },
+    "description": {
+      "en": "Browse FAYZ-M women's knitwear and garment models designed for comfort, quality, and international orders.",
+      "uz": "FAYZ-M ayollar kolleksiyasi: qulaylik, sifat va xalqaro buyurtmalar uchun ishlab chiqarilgan trikotaj kiyimlar.",
+      "ru": "Женская коллекция FAYZ-M: удобный и качественный трикотаж для международных заказов.",
+      "zh": "浏览 FAYZ-M 女装针织与服装款式——兼顾舒适、品质，专为国际订单打造。"
+    }
+  },
+  "contact": {
+    "heading": {
+      "en": "Contact",
+      "uz": "Aloqa",
+      "ru": "Контакты",
+      "zh": "联系方式"
+    },
+    "title": {
+      "en": "Contact | FAYZ-M",
+      "uz": "Aloqa | FAYZ-M",
+      "ru": "Контакты | FAYZ-M",
+      "zh": "联系方式 | FAYZ-M"
+    },
+    "description": {
+      "en": "Contact FAYZ-M for production inquiries, export orders, partnerships, and business cooperation.",
+      "uz": "Ishlab chiqarish, eksport buyurtmalari, hamkorlik va biznes aloqalar uchun FAYZ-M bilan bog'laning.",
+      "ru": "Свяжитесь с FAYZ-M по вопросам производства, экспортных заказов, партнёрства и сотрудничества.",
+      "zh": "如需了解生产、出口订单、合作与业务洽谈，欢迎联系 FAYZ-M。"
+    }
+  },
+  "faq": {
+    "heading": {
+      "en": "FAQ",
+      "uz": "Ko'p so'raladigan savollar",
+      "ru": "FAQ",
+      "zh": "常见问题"
+    },
+    "title": {
+      "en": "FAQ | FAYZ-M",
+      "uz": "Ko'p so'raladigan savollar | FAYZ-M",
+      "ru": "FAQ | FAYZ-M",
+      "zh": "常见问题 | FAYZ-M"
+    },
+    "description": {
+      "en": "Answers to common questions about FAYZ-M orders, private label production, samples, design, and cooperation terms.",
+      "uz": "FAYZ-M buyurtmalari, private label ishlab chiqarish, namunalar, dizayn va hamkorlik shartlari bo'yicha javoblar.",
+      "ru": "Ответы на вопросы о заказах FAYZ-M, private label производстве, образцах, дизайне и условиях сотрудничества.",
+      "zh": "解答关于 FAYZ-M 订单、自有品牌生产、样品、设计及合作条款的常见疑问。"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "target": 10,
+    "unit": "mln",
+    "showPlus": false,
+    "icon": "tshirt",
+    "label": {
+      "en": "Products",
+      "uz": "Mahsulotlar",
+      "ru": "Продуктов",
+      "zh": "产品数量"
+    }
+  },
+  {
+    "target": 1800,
+    "unit": "",
+    "showPlus": true,
+    "icon": "briefcase",
+    "label": {
+      "en": "Jobs",
+      "uz": "Ish o'rinlari",
+      "ru": "Рабочих мест",
+      "zh": "工作岗位"
+    }
+  },
+  {
+    "target": 20,
+    "unit": "",
+    "showPlus": true,
+    "icon": "handshake",
+    "label": {
+      "en": "Partners",
+      "uz": "Hamkorlar",
+      "ru": "Партнёров",
+      "zh": "合作伙伴"
+    }
+  },
+  {
+    "target": 2000,
+    "unit": "kW",
+    "showPlus": true,
+    "icon": "bolt",
+    "label": {
+      "en": "Green Energy",
+      "uz": "Yashil energiya",
+      "ru": "Зелёная энергия",
+      "zh": "绿色能源"
+    }
+  }
+]

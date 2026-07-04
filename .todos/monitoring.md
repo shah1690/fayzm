@@ -2,7 +2,7 @@
 
 > Auto-generated from the `.todos` board — do not edit by hand.
 
-**Total: 8**  ·  🚧 1 in progress  ·  📋 5 todo  ·  ✅ 2 done
+**Total: 9**  ·  🚧 1 in progress  ·  📋 5 todo  ·  ✅ 3 done
 
 ## By Status
 
@@ -10,15 +10,15 @@
 |:--|--:|
 | 🚧 In Progress | 1 |
 | 📋 Todo | 5 |
-| ✅ Done | 2 |
-| **Total** | **8** |
+| ✅ Done | 3 |
+| **Total** | **9** |
 
 ## Open Tasks by Priority
 
 | Priority | Count |
 |:--|--:|
-| 🔴 Urgent | 3 |
-| 🟠 High | 2 |
+| 🔴 Urgent | 4 |
+| 🟠 High | 1 |
 | 🟡 Medium | 1 |
 | 🟢 Low | 0 |
 

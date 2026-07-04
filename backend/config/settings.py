@@ -84,6 +84,7 @@ INSTALLED_APPS = [
 
     'core',
     'messaging',
+    'cms',
 ]
 
 MIDDLEWARE = [
