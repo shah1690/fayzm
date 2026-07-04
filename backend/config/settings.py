@@ -13,6 +13,7 @@ from datetime import timedelta
 import os
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
+from django.templatetags.static import static
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
@@ -175,6 +176,7 @@ LOGGING = {
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -311,12 +313,37 @@ FIREBASE_CREDENTIALS_BASE64 = os.environ.get('FIREBASE_CREDENTIALS_BASE64', '')
 FCM_SERVER_KEY = os.environ.get('FCM_SERVER_KEY', '')
 
 UNFOLD = {
-    'SITE_TITLE': _('Unfold Boilerplate Admin'),
-    'SITE_HEADER': _('Unfold Boilerplate'),
-    'SITE_SYMBOL': 'dashboard',
+    'SITE_TITLE': _('FAYZ-M Admin'),
+    'SITE_HEADER': _('FAYZ-M'),
+    'SITE_SUBHEADER': _('Content management'),
+    'SITE_SYMBOL': 'apparel',
+    'SITE_LOGO': {
+        'light': lambda request: static('img/logo-light.svg'),
+        'dark': lambda request: static('img/logo-dark.svg'),
+    },
+    'SITE_ICON': {
+        'light': lambda request: static('img/icon.svg'),
+        'dark': lambda request: static('img/icon.svg'),
+    },
     'SHOW_HISTORY': True,
     'SHOW_VIEW_ON_SITE': False,
     'DASHBOARD_CALLBACK': 'core.dashboard.dashboard_callback',
+    # FAYZ-M brand navy (#003566) as the admin primary color.
+    'COLORS': {
+        'primary': {
+            '50': '230 237 243',
+            '100': '192 210 225',
+            '200': '150 180 205',
+            '300': '108 150 184',
+            '400': '77 128 169',
+            '500': '46 106 155',
+            '600': '26 86 136',
+            '700': '0 53 102',
+            '800': '0 42 82',
+            '900': '0 31 61',
+            '950': '0 20 40',
+        },
+    },
     'SIDEBAR': {
         'show_search': True,
         'show_all_applications': False,
@@ -326,6 +353,20 @@ UNFOLD = {
                 'separator': False,
                 'items': [
                     {'title': _('Dashboard'), 'icon': 'dashboard', 'link': '/admin/'},
+                ],
+            },
+            {
+                'title': _('Kontent (CMS)'),
+                'separator': True,
+                'items': [
+                    {'title': _('Biznes yo\'nalishlari'), 'icon': 'factory', 'link': '/admin/cms/business/'},
+                    {'title': _('Mahsulotlar'), 'icon': 'apparel', 'link': '/admin/cms/product/'},
+                    {'title': _('Hamkorlar'), 'icon': 'handshake', 'link': '/admin/cms/partner/'},
+                    {'title': _('Statistika'), 'icon': 'insights', 'link': '/admin/cms/stat/'},
+                    {'title': _('FAQ'), 'icon': 'quiz', 'link': '/admin/cms/faqitem/'},
+                    {'title': _('Hujjatlar'), 'icon': 'picture_as_pdf', 'link': '/admin/cms/document/'},
+                    {'title': _('Sahifa meta'), 'icon': 'web', 'link': '/admin/cms/pagemeta/'},
+                    {'title': _('About sahifa'), 'icon': 'info', 'link': '/admin/cms/aboutpage/'},
                 ],
             },
             {
