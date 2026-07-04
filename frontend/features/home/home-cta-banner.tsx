@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/shared/i18n/translations";
 import { getHomeCtaBusiness } from "@/shared/lib/cms";
+import { loc, type SectionContent } from "@/shared/lib/home-content";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -26,9 +27,9 @@ const text = {
   },
 };
 
-type Props = Readonly<{ locale: Locale }>;
+type Props = Readonly<{ locale: Locale; cms?: SectionContent }>;
 
-export async function HomeCTABanner({ locale }: Props) {
+export async function HomeCTABanner({ locale, cms }: Props) {
   const business = await getHomeCtaBusiness(locale);
 
   return (
@@ -77,18 +78,18 @@ export async function HomeCTABanner({ locale }: Props) {
             </div>
 
             <h2 className="max-w-xl text-3xl font-bold leading-[1.1] text-white md:text-5xl">
-              {text.heading[locale]}
+              {loc(cms?.heading, text.heading[locale], locale)}
             </h2>
 
             <p className="max-w-md text-sm leading-relaxed text-white/70 md:text-base">
-              {text.desc[locale]}
+              {loc(cms?.description, text.desc[locale], locale)}
             </p>
 
             <Link
               href={localizeHref(locale, "/contact")}
               className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white"
             >
-              {text.cta[locale]}
+              {loc(cms?.cta, text.cta[locale], locale)}
               <span
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
                 aria-hidden="true"

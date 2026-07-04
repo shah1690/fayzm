@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Locale } from "@/shared/i18n/translations";
+import { loc, type SectionContent } from "@/shared/lib/home-content";
 import { localizeHref } from "@/shared/lib/localize-href";
 
 const content = {
@@ -36,9 +37,9 @@ const headingSizeClass: Record<Locale, string> = {
   zh: "text-4xl md:text-6xl lg:text-7xl",
 };
 
-type Props = Readonly<{ locale: Locale }>;
+type Props = Readonly<{ locale: Locale; cms?: SectionContent }>;
 
-export function HeroIntroSection({ locale }: Props) {
+export function HeroIntroSection({ locale, cms }: Props) {
   return (
     <section className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
@@ -47,24 +48,24 @@ export function HeroIntroSection({ locale }: Props) {
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[#003566]" />
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
-                {content.eyebrow[locale]}
+                {loc(cms?.eyebrow, content.eyebrow[locale], locale)}
               </span>
             </div>
             <h1
               className={`whitespace-pre-line font-bold leading-[1.05] text-[#070A0F] ${headingSizeClass[locale]}`}
             >
-              {content.heading[locale]}
+              {loc(cms?.heading, content.heading[locale], locale)}
             </h1>
           </div>
           <div className="flex flex-col gap-6 md:col-span-5">
             <p className="text-base leading-relaxed text-gray-500 md:text-lg">
-              {content.description[locale]}
+              {loc(cms?.description, content.description[locale], locale)}
             </p>
             <Link
               href={localizeHref(locale, "/contact")}
               className="inline-flex w-fit items-center gap-2 rounded-full bg-[#070A0F] px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-[#003566]"
             >
-              {content.cta[locale]}
+              {loc(cms?.cta, content.cta[locale], locale)}
             </Link>
           </div>
         </div>

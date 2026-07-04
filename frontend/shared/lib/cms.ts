@@ -26,6 +26,10 @@ import {
 import { type Stat, stats as staticStats } from "@/content/stats";
 import type { Locale } from "@/shared/i18n/translations";
 import { pickBusinessForLocale } from "@/shared/lib/business-pick";
+import {
+  EMPTY_HOME_CONTENT,
+  type HomeContent,
+} from "@/shared/lib/home-content";
 
 const LOCALES: Locale[] = ["en", "uz", "ru", "zh"];
 const REVALIDATE_SECONDS = 60;
@@ -178,6 +182,12 @@ export async function getPageMetadata(): Promise<typeof staticPageMetadata> {
     };
   }
   return result as typeof staticPageMetadata;
+}
+
+// ─── Home page sections ──────────────────────────────────────────────────
+export async function getHomeContent(): Promise<HomeContent> {
+  const data = await cmsFetch<Partial<HomeContent>>("home/", {});
+  return { ...EMPTY_HOME_CONTENT, ...data };
 }
 
 // ─── Documents ───────────────────────────────────────────────────────────

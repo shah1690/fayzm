@@ -14,6 +14,8 @@ import { PartnersSection } from "@/features/partners/partners-section";
 import { StatsSection } from "@/features/stats/stats-section";
 import { siteConfig } from "@/shared/config/site-config";
 import type { Locale } from "@/shared/i18n/translations";
+import { getHomeContent } from "@/shared/lib/cms";
+import { loc } from "@/shared/lib/home-content";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 
 type HomePageViewProps = Readonly<{ locale: Locale }>;
@@ -29,17 +31,19 @@ const text = {
 
 export async function HomePageView({ locale }: HomePageViewProps) {
   const t = await getTranslations({ locale, namespace: "HomePage" });
+  const home = await getHomeContent();
+  const c = home.contact;
 
   return (
     <main>
-      <HeroSection locale={locale} />
-      <HeroIntroSection locale={locale} />
+      <HeroSection locale={locale} cms={home.hero} />
+      <HeroIntroSection locale={locale} cms={home.intro} />
       <StatsSection locale={locale} />
-      <CollectionsMarqueeSection locale={locale} />
+      <CollectionsMarqueeSection locale={locale} cms={home.collections} />
       <BusinessesSection locale={locale} />
       <BrandVideoSection />
-      <HomeCTABanner locale={locale} />
-      <WorldMapSection locale={locale} />
+      <HomeCTABanner locale={locale} cms={home.cta} />
+      <WorldMapSection locale={locale} cms={home.worldMap} />
       <PartnersSection locale={locale} />
       <section className="bg-white px-5 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1440px]">
@@ -48,16 +52,16 @@ export async function HomePageView({ locale }: HomePageViewProps) {
               <div className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#003566]" />
                 <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-gray-400">
-                  {t("contactLabel")}
+                  {loc(c.label, t("contactLabel"), locale)}
                 </span>
               </div>
               <h2 className="text-3xl font-bold leading-[1.1] text-[#070A0F] md:text-5xl">
-                {t("contactHeading")}
+                {loc(c.heading, t("contactHeading"), locale)}
               </h2>
             </div>
             <div className="md:col-span-5">
               <p className="text-sm leading-relaxed text-gray-500 md:text-base">
-                {t("contactDescription")}
+                {loc(c.description, t("contactDescription"), locale)}
               </p>
             </div>
           </div>
@@ -92,16 +96,16 @@ export async function HomePageView({ locale }: HomePageViewProps) {
               />
               <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-4 p-8 md:p-10">
                 <h3 className="max-w-sm text-2xl font-bold leading-tight text-white md:text-3xl">
-                  {t("preferTalk")}
+                  {loc(c.preferTalk, t("preferTalk"), locale)}
                 </h3>
                 <p className="max-w-sm text-sm leading-relaxed text-white/70">
-                  {t("instantSupport")}
+                  {loc(c.instantSupport, t("instantSupport"), locale)}
                 </p>
                 <a
                   href={siteConfig.footer.phones[0].href}
                   className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white"
                 >
-                  {t("callUsNow")}
+                  {loc(c.callUs, t("callUsNow"), locale)}
                 </a>
               </div>
             </div>

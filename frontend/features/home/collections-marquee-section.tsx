@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/shared/i18n/translations";
 import { getProductsByGender } from "@/shared/lib/cms";
+import { loc, type SectionContent } from "@/shared/lib/home-content";
 import { shimmerImageProps } from "@/shared/lib/image-placeholder";
 import { localizeHref } from "@/shared/lib/localize-href";
 
@@ -59,14 +60,14 @@ function ArrowRight() {
   );
 }
 
-type Props = Readonly<{ locale: Locale }>;
+type Props = Readonly<{ locale: Locale; cms?: SectionContent }>;
 
 const NUM_COLS = 12;
 const IMG_W = 230;
 const IMG_H = 300;
 const GAP = 12;
 
-export async function CollectionsMarqueeSection({ locale }: Props) {
+export async function CollectionsMarqueeSection({ locale, cms }: Props) {
   const all = [
     ...(await getProductsByGender("women")),
     ...(await getProductsByGender("men")),
@@ -172,21 +173,21 @@ export async function CollectionsMarqueeSection({ locale }: Props) {
           <div className="mb-4 flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-[#E5D6C9]" />
             <span className="text-xs font-semibold uppercase tracking-widest text-[#E5D6C9]">
-              {t.eyebrow[locale]}
+              {loc(cms?.eyebrow, t.eyebrow[locale], locale)}
             </span>
           </div>
           <h2 className="mb-4 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl">
-            {t.heading[locale]}
+            {loc(cms?.heading, t.heading[locale], locale)}
           </h2>
           <p className="mb-8 max-w-lg text-sm leading-relaxed text-white/70 md:text-base">
-            {t.sub[locale]}
+            {loc(cms?.subtitle, t.sub[locale], locale)}
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href={localizeHref(locale, "/collections/women")}
               className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#070A0F] transition-all duration-200 hover:bg-[#003566] hover:text-white sm:w-auto"
             >
-              {t.women[locale]}
+              {loc(cms?.womenLabel, t.women[locale], locale)}
               <span className="transition-transform duration-200 group-hover:translate-x-1">
                 <ArrowRight />
               </span>
@@ -195,7 +196,7 @@ export async function CollectionsMarqueeSection({ locale }: Props) {
               href={localizeHref(locale, "/collections/men")}
               className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:border-white/60 hover:bg-white/10 sm:w-auto"
             >
-              {t.men[locale]}
+              {loc(cms?.menLabel, t.men[locale], locale)}
               <span className="transition-transform duration-200 group-hover:translate-x-1">
                 <ArrowRight />
               </span>

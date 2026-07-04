@@ -9,6 +9,7 @@ import {
   Marker,
 } from "react-simple-maps";
 import type { Locale } from "@/shared/i18n/translations";
+import { loc, type SectionContent } from "@/shared/lib/home-content";
 
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -120,9 +121,9 @@ function ArcLines({ hovered }: { hovered: string | null }) {
   );
 }
 
-type Props = Readonly<{ locale: Locale }>;
+type Props = Readonly<{ locale: Locale; cms?: SectionContent }>;
 
-export function WorldMapSection({ locale }: Props) {
+export function WorldMapSection({ locale, cms }: Props) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
@@ -130,10 +131,10 @@ export function WorldMapSection({ locale }: Props) {
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between md:gap-12">
           <h2 className="whitespace-pre-line text-3xl font-bold leading-[1.1] text-[#070A0F] md:text-4xl lg:text-5xl">
-            {sectionText.heading[locale]}
+            {loc(cms?.heading, sectionText.heading[locale], locale)}
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-gray-500 md:text-base">
-            {sectionText.subtitle[locale]}
+            {loc(cms?.subtitle, sectionText.subtitle[locale], locale)}
           </p>
         </div>
 
