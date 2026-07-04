@@ -1,0 +1,19 @@
+/* Compact the inline-editable `order` number inputs in CMS changelists —
+   Unfold renders them full-width by default. */
+.change-list #result_list input[name$="-order"],
+#result_list input[name$="-order"],
+input[name$="-order"] {
+  width: 4rem !important;
+  min-width: 4rem !important;
+  max-width: 4rem !important;
+  text-align: center;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+/* Keep the Order column itself narrow. */
+#result_list th.column-order,
+#result_list td.field-order {
+  width: 1%;
+  white-space: nowrap;
+}

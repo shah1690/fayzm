@@ -55,7 +55,11 @@ def _en(value) -> str:
 
 
 class RowActionsMixin:
-    """Adds per-row edit + delete icon links to the changelist."""
+    """Adds per-row edit + delete icon links to the changelist, plus compact
+    styling for the inline-editable `order` inputs."""
+
+    class Media:
+        css = {"all": ("admin/css/cms_admin.css",)}
 
     @admin.display(description=_("Amallar"))
     def row_actions(self, obj):
