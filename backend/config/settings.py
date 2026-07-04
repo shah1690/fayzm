@@ -369,33 +369,6 @@ UNFOLD = {
                     {'title': _('About sahifa'), 'icon': 'info', 'link': '/admin/cms/aboutpage/'},
                 ],
             },
-            {
-                'title': _('Foydalanuvchilar'),
-                'separator': True,
-                'items': [
-                    {'title': _('Foydalanuvchilar'), 'icon': 'people', 'link': '/admin/core/user/'},
-                    {'title': _('OTP kodlar'), 'icon': 'pin', 'link': '/admin/core/otpverification/'},
-                    {'title': _('Qurilma tokenlari'), 'icon': 'devices', 'link': '/admin/core/devicetoken/'},
-
-                ],
-            },
-            {
-                'title': _('Bildirishnomalar'),
-                'separator': True,
-                'items': [
-                    {'title': _('Bildirishnomalar'), 'icon': 'notifications', 'link': '/admin/core/notification/'},
-                    {'title': _('Bildirishnoma sozlamalari'), 'icon': 'tune', 'link': '/admin/core/notificationsettings/'},
-
-                ],
-            },
-            {
-                'title': _('Sozlamalar'),
-                'separator': True,
-                'items': [
-                    {'title': _('App Config'), 'icon': 'settings', 'link': '/admin/core/appconfig/'},
-
-                ],
-            },
         ],
     },
 }
