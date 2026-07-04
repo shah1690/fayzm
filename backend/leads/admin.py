@@ -12,12 +12,14 @@ _STATUS_COLOR = {
 }
 
 
-def _badge(status, label):
+def _badge(status, label, error=""):
     fg, bg = _STATUS_COLOR.get(status, ("#374151", "#e5e7eb"))
     return format_html(
-        '<span style="display:inline-block;padding:2px 10px;border-radius:999px;'
-        'font-size:12px;font-weight:600;color:{};background:{}">{}</span>',
-        fg, bg, label,
+        '<span title="{}" style="display:inline-block;padding:2px 10px;'
+        'border-radius:999px;font-size:12px;font-weight:600;color:{};'
+        'background:{};cursor:{}">{}</span>',
+        error or label,
+        fg, bg, "help" if error else "default", label,
     )
 
 
@@ -38,11 +40,11 @@ class LeadAdmin(ModelAdmin):
 
     @admin.display(description=_("Telegram"), ordering="telegram_status")
     def telegram_badge(self, obj):
-        return _badge(obj.telegram_status, obj.get_telegram_status_display())
+        return _badge(obj.telegram_status, obj.get_telegram_status_display(), obj.telegram_error)
 
     @admin.display(description=_("amoCRM"), ordering="amocrm_status")
     def amocrm_badge(self, obj):
-        return _badge(obj.amocrm_status, obj.get_amocrm_status_display())
+        return _badge(obj.amocrm_status, obj.get_amocrm_status_display(), obj.amocrm_error)
 
     def has_add_permission(self, request):
         return False
