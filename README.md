@@ -51,3 +51,31 @@ pnpm dev:frontend     # Next.js only (:3000)
 ```bash
 pnpm --dir frontend run check   # lint + type-check + test
 ```
+
+## Production
+
+Domains (TLS terminated by the reverse proxy; Django trusts `X-Forwarded-Proto`):
+
+| Domain                      | Serves                                   |
+| --------------------------- | ---------------------------------------- |
+| `https://fayzm.uz`          | frontend (Next.js)                       |
+| `https://back.fayzm.uz`     | backend — Django API + `/admin/`         |
+| `https://media.fayzm.uz`    | MinIO media, **bucket at root** (public) |
+| `https://minioinit.fayzm.uz`| MinIO console UI (port 9001)             |
+
+```bash
+cp .env.production.example .env   # fill secrets on the server
+```
+
+Key points, all env-driven (see `.env.production.example`):
+
+- `ALLOWED_HOSTS=back.fayzm.uz`, `CORS_ALLOWED_ORIGINS=https://fayzm.uz`,
+  `CSRF_TRUSTED_ORIGINS=https://back.fayzm.uz,https://fayzm.uz`.
+- `NEXT_PUBLIC_API_URL=https://back.fayzm.uz`, `MEDIA_PUBLIC_URL=https://media.fayzm.uz`.
+- MinIO: `MINIO_CUSTOM_DOMAIN=media.fayzm.uz` makes public URLs
+  `https://media.fayzm.uz/<key>` (map that domain to the MinIO bucket root);
+  the backend uploads over the internal `MINIO_INTERNAL_ENDPOINT=minio:9000`.
+- `DEBUG=False` + `ENABLE_HTTPS_REDIRECT=True`.
+
+Reverse-proxy routing: `back.` → backend:8000, `media.` → minio:9000 (bucket
+root), `minioinit.` → minio:9001, `fayzm.uz` → frontend:3000.

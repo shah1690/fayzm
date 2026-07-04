@@ -44,9 +44,14 @@ from .models import (
 
 def _storage_key_from_url(url):
     """Extract the object key from a MinIO public URL, else None."""
+    if not url:
+        return None
+    media_url = getattr(settings, "MEDIA_URL", "") or ""
+    if media_url and url.startswith(media_url):
+        return url[len(media_url):]
     bucket = getattr(settings, "MINIO_BUCKET_NAME", None)
     marker = f"/{bucket}/" if bucket else None
-    if url and marker and marker in url:
+    if marker and marker in url:
         return url.split(marker, 1)[1]
     return None
 

@@ -288,6 +288,13 @@ if USE_MINIO:
     _minio_scheme = 'https' if MINIO_USE_HTTPS else 'http'
     _minio_internal_scheme = 'https' if MINIO_INTERNAL_USE_HTTPS else 'http'
 
+    # Public media host. In prod a dedicated domain (media.fayzm.uz) maps to the
+    # bucket root, so set MINIO_CUSTOM_DOMAIN=media.fayzm.uz -> URLs are
+    # https://media.fayzm.uz/<key>. Locally it defaults to endpoint/bucket.
+    MINIO_CUSTOM_DOMAIN = _normalize_endpoint(
+        os.environ.get('MINIO_CUSTOM_DOMAIN', f'{MINIO_ENDPOINT}/{MINIO_BUCKET_NAME}')
+    )
+
     STORAGES = {
         'default': {
             'BACKEND': 'storages.backends.s3.S3Storage',
@@ -301,7 +308,7 @@ if USE_MINIO:
                 'default_acl': None,
                 'querystring_auth': False,
                 'url_protocol': f'{_minio_scheme}:',
-                'custom_domain': f'{MINIO_ENDPOINT}/{MINIO_BUCKET_NAME}',
+                'custom_domain': MINIO_CUSTOM_DOMAIN,
                 'client_config': Config(signature_version='s3v4', s3={'addressing_style': 'path'}),
             },
         },
@@ -309,7 +316,7 @@ if USE_MINIO:
             'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
         },
     }
-    MEDIA_URL = f'{_minio_scheme}://{MINIO_ENDPOINT}/{MINIO_BUCKET_NAME}/'
+    MEDIA_URL = f'{_minio_scheme}://{MINIO_CUSTOM_DOMAIN}/'
 
 FIREBASE_CREDENTIALS_PATH = os.environ.get('FIREBASE_CREDENTIALS_PATH', '')
 FIREBASE_CREDENTIALS_JSON = os.environ.get('FIREBASE_CREDENTIALS_JSON', '')
