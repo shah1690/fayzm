@@ -1,42 +1,54 @@
-# dependencies
-/node_modules
-/.pnp
+# ============================================================================
+# Fayzm monorepo — root ignore (covers frontend/ and backend/).
+# ============================================================================
+
+# --- env files -------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- misc ------------------------------------------------------------------
+.DS_Store
+*.pem
+codedb.snapshot
+graphify-out/
+.claude
+.vercel
+
+# --- logs ------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ============================================================================
+# Frontend (Next.js / pnpm)
+# ============================================================================
+node_modules/
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# testing
-/coverage
-
-# misc
-.DS_Store
-codedb.snapshot
-*.pem
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files
-.env*
-!.env.example
-
-# deployment
-.vercel
-
-# typescript
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/coverage/
 *.tsbuildinfo
-next-env.d.ts
-.claude
+frontend/next-env.d.ts
+
+# ============================================================================
+# Backend (Django / Python)
+# ============================================================================
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+backend/.venv/
+backend/staticfiles/
+backend/media/
+backend/db.sqlite3
+backend/firebase-credentials.json

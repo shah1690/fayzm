@@ -1,0 +1,86 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      MEDIA_PUBLIC_URL: ${MEDIA_PUBLIC_URL:-https://media.fayzm.uz}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+    expose:
+      - "3000"
+
+  media:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.media-gzip.compress=true
+      - traefik.http.middlewares.media-redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.routers.media-http.entryPoints=http
+      - traefik.http.routers.media-http.middlewares=media-redirect-to-https
+      - traefik.http.routers.media-http.rule=Host(`media.fayzm.uz`) && PathPrefix(`/`)
+      - traefik.http.routers.media-https.entryPoints=https
+      - traefik.http.routers.media-https.middlewares=media-gzip
+      - traefik.http.routers.media-https.rule=Host(`media.fayzm.uz`) && PathPrefix(`/`)
+      - traefik.http.routers.media-https.tls=true
+      - traefik.http.routers.media-https.tls.certresolver=letsencrypt
+      - traefik.http.services.media.loadbalancer.server.port=80
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cat > /etc/nginx/conf.d/default.conf <<'EOF'
+        server {
+          listen 80;
+          server_name _;
+          root /usr/share/nginx/html;
+
+          sendfile on;
+          tcp_nopush on;
+          tcp_nodelay on;
+          keepalive_timeout 65;
+          gzip off;
+          etag on;
+          if_modified_since exact;
+
+          types {
+            application/pdf pdf;
+            image/jpeg jpg jpeg;
+          }
+          default_type application/octet-stream;
+
+          add_header Accept-Ranges bytes always;
+          add_header Cache-Control "public, max-age=31536000, immutable" always;
+          add_header X-Content-Type-Options nosniff always;
+          add_header Access-Control-Allow-Origin "https://fayzm.uz" always;
+          add_header Access-Control-Allow-Methods "GET, HEAD, OPTIONS" always;
+          add_header Access-Control-Allow-Headers "Range, If-Range, Content-Type" always;
+          add_header Access-Control-Expose-Headers "Accept-Ranges, Content-Length, Content-Range" always;
+
+          if ($$request_method = OPTIONS) {
+            return 204;
+          }
+
+          location = / {
+            add_header Content-Type text/plain;
+            return 200 "Fayzm media storage\n";
+          }
+
+          location / {
+            try_files $$uri =404;
+          }
+        }
+        EOF
+        nginx -g 'daemon off;'
+    volumes:
+      - media_data:/usr/share/nginx/html:ro
+    expose:
+      - "80"
+
+volumes:
+  media_data:
