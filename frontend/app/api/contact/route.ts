@@ -38,9 +38,12 @@ function buildTelegramMessage(payload: ContactSubmissionPayload) {
   return lines.join("\n");
 }
 
-const AMO_FORM_ID = process.env.AMOCRM_FORM_ID ?? "1680078";
+// Trim + fall back on empty so a blank or whitespace-padded env value (a common
+// copy-paste artifact) can't produce amoCRM's "invalid_form" 400. These verified
+// defaults return HTTP 200 from forms.amocrm.ru/queue/add.
+const AMO_FORM_ID = process.env.AMOCRM_FORM_ID?.trim() || "1680078";
 const AMO_FORM_HASH =
-  process.env.AMOCRM_FORM_HASH ?? "e49bc714257388f413c0b4ba99275e09";
+  process.env.AMOCRM_FORM_HASH?.trim() || "e49bc714257388f413c0b4ba99275e09";
 const AMO_QUEUE_URL = "https://forms.amocrm.ru/queue/add";
 const AMO_FIELD_PHONE = "fields[1510028_1][1384384]";
 const AMO_FIELD_EMAIL = "fields[1510030_1][1384396]";

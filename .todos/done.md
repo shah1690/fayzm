@@ -16,3 +16,4 @@
 - [x] 🟡 🚀 Remove OTP entirely (models, views, serializers, urls, admin, throttle, settings). Committed dc41c51. Verified: check clean, endpoints 200/404.
 - [x] 🟡 🚀 Prod config: single docker-compose.yaml (full stack + Traefik for 4 domains), removed extra compose files; .env.production.example comment-free, only needed vars; MinIO user/redirect + MEDIA_PUBLIC_URL. Committed b71f0dd.
 - [x] 🟡 🚀 Telegram chat_id auto-detect via getUpdates (cached); only TELEGRAM_BOT_TOKEN in env. Committed b71f0dd.
+- [x] 🔴 🚀 Fix contact form 500 — persist-first, amoCRM body surfaced (b2dda1e)
