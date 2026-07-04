@@ -13,8 +13,14 @@ from .forms import (
     ABOUT_SCHEMA,
     LOCALES,
     AboutPageForm,
+    BusinessForm,
     DocumentForm,
+    FaqItemForm,
+    FaqSettingsForm,
+    PageMetaForm,
     PartnerForm,
+    ProductForm,
+    StatForm,
     field_name,
 )
 from .models import (
@@ -124,6 +130,7 @@ class SingletonAdmin(ModelAdmin):
 
 @admin.register(Business)
 class BusinessAdmin(RowActionsMixin, ModelAdmin):
+    form = BusinessForm
     list_display = ("slug", "label_en", "order", "row_actions")
     list_editable = ("order",)
     search_fields = ("slug",)
@@ -136,6 +143,7 @@ class BusinessAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(RowActionsMixin, ModelAdmin):
+    form = ProductForm
     list_display = ("image_preview", "name", "gender", "slug", "order", "row_actions")
     list_editable = ("order",)
     list_filter = ("gender",)
@@ -202,6 +210,7 @@ class PartnerAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(Stat)
 class StatAdmin(RowActionsMixin, ModelAdmin):
+    form = StatForm
     list_display = ("label_en", "target", "unit", "show_plus", "icon", "order", "row_actions")
     list_editable = ("order",)
     ordering = ("order",)
@@ -213,6 +222,7 @@ class StatAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(FaqItem)
 class FaqItemAdmin(RowActionsMixin, ModelAdmin):
+    form = FaqItemForm
     list_display = ("question_en", "order", "row_actions")
     list_editable = ("order",)
     ordering = ("order",)
@@ -224,6 +234,7 @@ class FaqItemAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(PageMeta)
 class PageMetaAdmin(RowActionsMixin, ModelAdmin):
+    form = PageMetaForm
     list_display = ("page", "heading_en", "row_actions")
     search_fields = ("page",)
 
@@ -234,7 +245,7 @@ class PageMetaAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(FaqSettings)
 class FaqSettingsAdmin(SingletonAdmin):
-    pass
+    form = FaqSettingsForm
 
 
 def _about_fields(predicate):

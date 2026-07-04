@@ -20,7 +20,19 @@ from unfold.widgets import (
     UnfoldAdminTextInputWidget,
 )
 
-from .models import AboutPage, Document, Partner
+from .models import (
+    AboutPage,
+    Business,
+    Document,
+    FaqItem,
+    FaqSettings,
+    PageMeta,
+    Partner,
+    Product,
+    Stat,
+)
+
+
 
 
 def _storage_key_from_url(url):
@@ -222,3 +234,113 @@ class AboutPageForm(forms.ModelForm):
                 )
         self.instance.content = content
         return super().save(commit=commit)
+
+
+def _label_for(model_cls, name):
+    try:
+        return str(model_cls._meta.get_field(name).verbose_name).strip()
+    except Exception:
+        return name.replace("_", " ")
+
+
+def make_localized_form(model_cls, *, short=(), long=(), lists=()):
+    """Build a ModelForm that exposes each localized JSON field as one input
+    per locale (en/uz/ru/zh) instead of a raw JSON textarea. `lists` are
+    list-of-localized fields (e.g. Business.features): one textarea per locale,
+    one item per line. Plain model fields render normally.
+    """
+    localized = {name: "short" for name in short}
+    localized.update({name: "long" for name in long})
+    list_fields = tuple(lists)
+    excluded = tuple(localized) + list_fields
+
+    declared = {}
+    for name, kind in localized.items():
+        base = _label_for(model_cls, name)
+        for loc in LOCALES:
+            widget = (
+                UnfoldAdminTextareaWidget(attrs={"rows": 2})
+                if kind == "long"
+                else UnfoldAdminTextInputWidget()
+            )
+            declared[field_name((name,), loc)] = forms.CharField(
+                label=f"{base} · {LOCALE_LABEL[loc]}", required=False, widget=widget
+            )
+    for name in list_fields:
+        base = _label_for(model_cls, name)
+        for loc in LOCALES:
+            declared[field_name((name,), loc)] = forms.CharField(
+                label=f"{base} · {LOCALE_LABEL[loc]}",
+                required=False,
+                help_text=_("Har qatorda bitta element."),
+                widget=UnfoldAdminTextareaWidget(attrs={"rows": 4}),
+            )
+
+    class _Meta:
+        model = model_cls
+        exclude = excluded
+
+    def __init__(self, *args, **kwargs):
+        forms.ModelForm.__init__(self, *args, **kwargs)
+        inst = self.instance
+        for name in localized:
+            val = getattr(inst, name, None)
+            val = val if isinstance(val, dict) else {}
+            for loc in LOCALES:
+                self.initial[field_name((name,), loc)] = val.get(loc, "")
+        for name in list_fields:
+            items = getattr(inst, name, None) or []
+            for loc in LOCALES:
+                self.initial[field_name((name,), loc)] = "\n".join(
+                    str((it or {}).get(loc, "")) for it in items if isinstance(it, dict)
+                )
+
+    def save(self, commit=True):
+        inst = forms.ModelForm.save(self, commit=False)
+        for name in localized:
+            setattr(
+                inst,
+                name,
+                {loc: self.cleaned_data.get(field_name((name,), loc), "") for loc in LOCALES},
+            )
+        for name in list_fields:
+            per = {
+                loc: self.cleaned_data.get(field_name((name,), loc), "").split("\n")
+                for loc in LOCALES
+            }
+            count = max((len(v) for v in per.values()), default=0)
+            rows = []
+            for i in range(count):
+                row = {
+                    loc: (per[loc][i].strip() if i < len(per[loc]) else "")
+                    for loc in LOCALES
+                }
+                if any(row.values()):
+                    rows.append(row)
+            setattr(inst, name, rows)
+        if commit:
+            inst.save()
+            self.save_m2m()
+        return inst
+
+    attrs = {"Meta": _Meta, "__init__": __init__, "save": save, **declared}
+    return type(f"{model_cls.__name__}LocalizedForm", (forms.ModelForm,), attrs)
+
+
+BusinessForm = make_localized_form(
+    Business,
+    short=("label", "card_heading", "strategy_heading"),
+    long=("heading", "description", "card_text", "body_text", "strategy_desc"),
+    lists=("features",),
+)
+ProductForm = make_localized_form(Product, long=("description",))
+StatForm = make_localized_form(Stat, short=("label",))
+FaqItemForm = make_localized_form(FaqItem, short=("question",), long=("answer",))
+FaqSettingsForm = make_localized_form(
+    FaqSettings,
+    short=("still_have_questions", "schedule_call"),
+    long=("title", "subtitle", "still_have_desc"),
+)
+PageMetaForm = make_localized_form(
+    PageMeta, short=("heading", "title"), long=("description",)
+)
