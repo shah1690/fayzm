@@ -149,10 +149,11 @@ class ProductAdmin(RowActionsMixin, ModelAdmin):
     list_filter = ("gender",)
     search_fields = ("name", "slug", "product_id")
     ordering = ("gender", "order")
+    readonly_fields = ("image_preview",)
 
     @admin.display(description=_("Rasm"))
     def image_preview(self, obj):
-        return _frontend_img(obj.image, obj.name, height=48, max_width=48, contain=False)
+        return _frontend_img(obj.image, obj.name, height=90, max_width=90, contain=False)
 
 
 @admin.register(Document)
