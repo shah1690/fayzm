@@ -14,6 +14,7 @@ urlpatterns = [
     path('api/v1/', include('core.urls')),
     path('api/v1/', include('messaging.urls')),
     path('api/v1/cms/', include('cms.urls')),
+    path('api/v1/', include('leads.urls')),
     path('api/', include('core.urls')),
     path('api/', include('messaging.urls')),
     path('', TemplateView.as_view(template_name='landing.html'), name='landing'),

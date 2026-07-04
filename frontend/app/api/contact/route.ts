@@ -90,6 +90,50 @@ async function sendAmoCrmLead(payload: ContactSubmissionPayload) {
   }
 }
 
+function backendBase(): string {
+  return (
+    process.env.BACKEND_INTERNAL_URL ??
+    process.env.NEXT_PUBLIC_API_URL ??
+    "http://localhost:8000"
+  ).replace(/\/$/, "");
+}
+
+type Delivery = PromiseSettledResult<unknown>;
+const deliveryStatus = (r: Delivery) =>
+  r.status === "fulfilled" ? "sent" : "failed";
+const deliveryError = (r: Delivery) =>
+  r.status === "rejected" ? String(r.reason ?? "").slice(0, 2000) : "";
+
+// Record the lead (and each channel's delivery status) in the Django backend
+// so it shows up in the admin. Best-effort: never fails the user's request.
+async function persistLead(
+  payload: ContactSubmissionPayload,
+  telegram: Delivery,
+  amo: Delivery,
+) {
+  try {
+    await fetch(`${backendBase()}/api/v1/leads/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        full_name: payload.fullName,
+        email: payload.email,
+        phone: payload.phone ?? "",
+        service: payload.service ?? "",
+        product: payload.product ?? "",
+        message: payload.message,
+        telegram_status: deliveryStatus(telegram),
+        telegram_error: deliveryError(telegram),
+        amocrm_status: deliveryStatus(amo),
+        amocrm_error: deliveryError(amo),
+      }),
+      cache: "no-store",
+    });
+  } catch (error) {
+    console.error("Lead persist to backend failed", error);
+  }
+}
+
 async function sendTelegramMessage(message: string) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -186,6 +230,9 @@ export async function POST(request: NextRequest) {
   if (amoResult.status === "rejected") {
     console.error("Contact form amoCRM submit failed", amoResult.reason);
   }
+
+  // Store the lead + delivery statuses (also records Telegram failures).
+  await persistLead(submission, telegramResult, amoResult);
 
   if (telegramResult.status === "rejected") {
     console.error("Contact form Telegram submit failed", telegramResult.reason);

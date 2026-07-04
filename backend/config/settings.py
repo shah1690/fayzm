@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'core',
     'messaging',
     'cms',
+    'leads',
 ]
 
 MIDDLEWARE = [
@@ -356,6 +357,13 @@ UNFOLD = {
                 'separator': False,
                 'items': [
                     {'title': _('Dashboard'), 'icon': 'dashboard', 'link': '/admin/'},
+                ],
+            },
+            {
+                'title': _('Zayavkalar'),
+                'separator': True,
+                'items': [
+                    {'title': _('Zayavkalar'), 'icon': 'inbox', 'link': '/admin/leads/lead/'},
                 ],
             },
             {
