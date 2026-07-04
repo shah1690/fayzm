@@ -83,37 +83,49 @@ def _set(content, path, value):
         cur[last] = value
 
 
+def _build_declared_fields():
+    """Every About leaf as a form field. The schema is static, so declare these
+    at class level (admin's modelform_factory needs to know them by name)."""
+    fields = {}
+    for path, kind, label in ABOUT_SCHEMA:
+        if kind == "text":
+            fields[field_name(path)] = forms.CharField(
+                label=label, required=False, widget=UnfoldAdminTextInputWidget()
+            )
+        else:
+            for loc in LOCALES:
+                widget = (
+                    UnfoldAdminTextareaWidget(attrs={"rows": 3})
+                    if kind == "longloc"
+                    else UnfoldAdminTextInputWidget()
+                )
+                fields[field_name(path, loc)] = forms.CharField(
+                    label=f"{label} · {LOCALE_LABEL[loc]}",
+                    required=False,
+                    widget=widget,
+                )
+    return fields
+
+
 class AboutPageForm(forms.ModelForm):
     class Meta:
         model = AboutPage
-        fields = ()  # `content` is edited through the dynamic fields below
+        fields = ()  # `content` is edited through the declared fields below
+
+    # Declare all leaf fields at class level so the admin can reference them.
+    locals().update(_build_declared_fields())
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         content = self.instance.content or {}
-        for path, kind, label in ABOUT_SCHEMA:
+        for path, kind, _label in ABOUT_SCHEMA:
             value = _get(content, path)
             if kind == "text":
-                self.fields[field_name(path)] = forms.CharField(
-                    label=label,
-                    required=False,
-                    initial=value or "",
-                    widget=UnfoldAdminTextInputWidget(),
-                )
+                self.initial[field_name(path)] = value or ""
             else:
                 value = value if isinstance(value, dict) else {}
                 for loc in LOCALES:
-                    widget = (
-                        UnfoldAdminTextareaWidget(attrs={"rows": 3})
-                        if kind == "longloc"
-                        else UnfoldAdminTextInputWidget()
-                    )
-                    self.fields[field_name(path, loc)] = forms.CharField(
-                        label=f"{label} · {LOCALE_LABEL[loc]}",
-                        required=False,
-                        initial=value.get(loc, ""),
-                        widget=widget,
-                    )
+                    self.initial[field_name(path, loc)] = value.get(loc, "")
 
     def save(self, commit=True):
         content = deepcopy(self.instance.content) if self.instance.content else {}
