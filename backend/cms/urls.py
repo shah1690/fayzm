@@ -13,4 +13,5 @@ urlpatterns = [
     path("page-metadata/", views.PageMetaList.as_view(), name="page-metadata"),
     path("faq/", views.FaqView.as_view(), name="faq"),
     path("about/", views.AboutView.as_view(), name="about"),
+    path("home/", views.HomeView.as_view(), name="home"),
 ]

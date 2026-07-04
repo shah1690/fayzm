@@ -5,12 +5,20 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from django.forms.models import model_to_dict
+
 from .models import (
     AboutPage,
     Business,
     Document,
     FaqItem,
     FaqSettings,
+    HomeCollections,
+    HomeContact,
+    HomeCta,
+    HomeHero,
+    HomeIntro,
+    HomeWorldMap,
     PageMeta,
     Partner,
     Product,
@@ -90,3 +98,36 @@ class AboutView(APIView):
 
     def get(self, request):
         return Response(AboutPageSerializer(AboutPage.load()).data)
+
+
+class HomeView(APIView):
+    """All home-page section content as one payload (localized dicts; empty
+    fields are omitted so the frontend falls back to its built-in copy)."""
+
+    permission_classes = [AllowAny]
+
+    _SECTIONS = {
+        "hero": HomeHero,
+        "intro": HomeIntro,
+        "collections": HomeCollections,
+        "cta": HomeCta,
+        "worldMap": HomeWorldMap,
+        "contact": HomeContact,
+    }
+
+    def get(self, request):
+        payload = {}
+        for key, model in self._SECTIONS.items():
+            obj = model.load()
+            data = model_to_dict(obj, exclude=["id"])
+            # camelCase keys, drop empty localized fields
+            section = {}
+            for field, value in data.items():
+                if isinstance(value, dict) and any(v for v in value.values()):
+                    camel = "".join(
+                        p.capitalize() if i else p
+                        for i, p in enumerate(field.split("_"))
+                    )
+                    section[camel] = value
+            payload[key] = section
+        return Response(payload)

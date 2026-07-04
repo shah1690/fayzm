@@ -26,6 +26,12 @@ from .models import (
     Document,
     FaqItem,
     FaqSettings,
+    HomeCollections,
+    HomeContact,
+    HomeCta,
+    HomeHero,
+    HomeIntro,
+    HomeWorldMap,
     PageMeta,
     Partner,
     Product,
@@ -387,4 +393,23 @@ FaqSettingsForm = make_localized_form(
 )
 PageMetaForm = make_localized_form(
     PageMeta, short=("heading", "title"), long=("description",)
+)
+
+HomeHeroForm = make_localized_form(
+    HomeHero, short=("scroll_label",), long=("title", "subtitle")
+)
+HomeIntroForm = make_localized_form(
+    HomeIntro, short=("eyebrow", "cta"), long=("heading", "description")
+)
+HomeCollectionsForm = make_localized_form(
+    HomeCollections,
+    short=("eyebrow", "women_label", "men_label"),
+    long=("heading", "subtitle"),
+)
+HomeCtaForm = make_localized_form(HomeCta, short=("cta",), long=("heading", "description"))
+HomeWorldMapForm = make_localized_form(HomeWorldMap, long=("heading", "subtitle"))
+HomeContactForm = make_localized_form(
+    HomeContact,
+    short=("label", "call_us"),
+    long=("heading", "description", "prefer_talk", "instant_support"),
 )

@@ -17,6 +17,12 @@ from .forms import (
     DocumentForm,
     FaqItemForm,
     FaqSettingsForm,
+    HomeCollectionsForm,
+    HomeContactForm,
+    HomeCtaForm,
+    HomeHeroForm,
+    HomeIntroForm,
+    HomeWorldMapForm,
     PageMetaForm,
     PartnerForm,
     ProductForm,
@@ -29,6 +35,12 @@ from .models import (
     Document,
     FaqItem,
     FaqSettings,
+    HomeCollections,
+    HomeContact,
+    HomeCta,
+    HomeHero,
+    HomeIntro,
+    HomeWorldMap,
     PageMeta,
     Partner,
     Product,
@@ -276,6 +288,36 @@ def _about_fields(predicate):
         else:
             names.extend(field_name(path, loc) for loc in LOCALES)
     return tuple(names)
+
+
+@admin.register(HomeHero)
+class HomeHeroAdmin(SingletonAdmin):
+    form = HomeHeroForm
+
+
+@admin.register(HomeIntro)
+class HomeIntroAdmin(SingletonAdmin):
+    form = HomeIntroForm
+
+
+@admin.register(HomeCollections)
+class HomeCollectionsAdmin(SingletonAdmin):
+    form = HomeCollectionsForm
+
+
+@admin.register(HomeCta)
+class HomeCtaAdmin(SingletonAdmin):
+    form = HomeCtaForm
+
+
+@admin.register(HomeWorldMap)
+class HomeWorldMapAdmin(SingletonAdmin):
+    form = HomeWorldMapForm
+
+
+@admin.register(HomeContact)
+class HomeContactAdmin(SingletonAdmin):
+    form = HomeContactForm
 
 
 @admin.register(AboutPage)

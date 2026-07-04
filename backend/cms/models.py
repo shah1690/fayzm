@@ -220,3 +220,92 @@ class AboutPage(Singleton):
 
     def __str__(self) -> str:
         return "About page"
+
+
+# ── Home page sections ─────────────────────────────────────────────────────
+# Each is a singleton so it gets its own admin menu. Fields are blank by
+# default; the frontend falls back to its built-in copy when a field is empty,
+# so the live site is unchanged until an editor fills something in.
+
+
+class HomeHero(Singleton):
+    title = LocalizedField()
+    subtitle = LocalizedField()
+    scroll_label = LocalizedField()
+
+    class Meta:
+        verbose_name = _("Bosh sahifa — Hero")
+        verbose_name_plural = _("Bosh sahifa — Hero")
+
+    def __str__(self) -> str:
+        return "Home hero"
+
+
+class HomeIntro(Singleton):
+    eyebrow = LocalizedField()
+    heading = LocalizedField()
+    description = LocalizedField()
+    cta = LocalizedField()
+
+    class Meta:
+        verbose_name = _("Bosh sahifa — Intro")
+        verbose_name_plural = _("Bosh sahifa — Intro")
+
+    def __str__(self) -> str:
+        return "Home intro"
+
+
+class HomeCollections(Singleton):
+    eyebrow = LocalizedField()
+    heading = LocalizedField()
+    subtitle = LocalizedField()
+    women_label = LocalizedField()
+    men_label = LocalizedField()
+
+    class Meta:
+        verbose_name = _("Bosh sahifa — Kolleksiyalar")
+        verbose_name_plural = _("Bosh sahifa — Kolleksiyalar")
+
+    def __str__(self) -> str:
+        return "Home collections"
+
+
+class HomeCta(Singleton):
+    heading = LocalizedField()
+    description = LocalizedField()
+    cta = LocalizedField()
+
+    class Meta:
+        verbose_name = _("Bosh sahifa — Hamkorlik CTA")
+        verbose_name_plural = _("Bosh sahifa — Hamkorlik CTA")
+
+    def __str__(self) -> str:
+        return "Home CTA"
+
+
+class HomeWorldMap(Singleton):
+    heading = LocalizedField()
+    subtitle = LocalizedField()
+
+    class Meta:
+        verbose_name = _("Bosh sahifa — Xarita")
+        verbose_name_plural = _("Bosh sahifa — Xarita")
+
+    def __str__(self) -> str:
+        return "Home world map"
+
+
+class HomeContact(Singleton):
+    label = LocalizedField()
+    heading = LocalizedField()
+    description = LocalizedField()
+    prefer_talk = LocalizedField()
+    instant_support = LocalizedField()
+    call_us = LocalizedField()
+
+    class Meta:
+        verbose_name = _("Bosh sahifa — Kontakt")
+        verbose_name_plural = _("Bosh sahifa — Kontakt")
+
+    def __str__(self) -> str:
+        return "Home contact"
