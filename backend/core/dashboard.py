@@ -140,5 +140,7 @@ def dashboard_callback(request, context):
         "content_counts": content_counts,
         "recent_leads": list(leads[:6]),
         "has_leads": leads_total > 0,
+        "has_delivery": (tg_sent + tg_failed + amo_sent + amo_failed) > 0,
+        "has_products": (men + women) > 0,
     })
     return context

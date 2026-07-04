@@ -227,16 +227,22 @@ export async function POST(request: NextRequest) {
     sendAmoCrmLead(submission),
   ]);
 
-  if (amoResult.status === "rejected") {
+  const telegramOk = telegramResult.status === "fulfilled";
+  const amoOk = amoResult.status === "fulfilled";
+
+  if (!amoOk) {
     console.error("Contact form amoCRM submit failed", amoResult.reason);
   }
+  if (!telegramOk) {
+    console.error("Contact form Telegram submit failed", telegramResult.reason);
+  }
 
-  // Store the lead + delivery statuses (also records Telegram failures).
+  // Store the lead + delivery statuses (also records failures).
   await persistLead(submission, telegramResult, amoResult);
 
-  if (telegramResult.status === "rejected") {
-    console.error("Contact form Telegram submit failed", telegramResult.reason);
-
+  // The lead is captured as long as at least one channel accepted it. Only
+  // report failure to the visitor if BOTH sinks rejected.
+  if (!telegramOk && !amoOk) {
     return NextResponse.json(
       { ok: false, message: "Could not submit form." },
       { status: 500 },

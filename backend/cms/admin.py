@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.contrib import admin
 from django.core.files.storage import default_storage
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
@@ -133,13 +134,21 @@ class RowActionsMixin:
 
 
 class SingletonAdmin(ModelAdmin):
-    """Hide add/delete for single-row config models."""
+    """Single-row config model: no add/delete, and the menu opens the edit form
+    directly (skips the empty changelist)."""
 
     def has_add_permission(self, request):
-        return not self.model.objects.exists()
+        return False
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def changelist_view(self, request, extra_context=None):
+        obj = self.model.load()
+        meta = self.model._meta
+        return redirect(
+            reverse(f"admin:{meta.app_label}_{meta.model_name}_change", args=[obj.pk])
+        )
 
 
 @admin.register(Business)

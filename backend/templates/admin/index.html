@@ -24,13 +24,26 @@
 
     {# ----- Leads: last 14 days ----- #}
     {% component "unfold/components/card.html" with title=_("Zayavkalar — oxirgi 14 kun") %}
-        {% component "unfold/components/chart/bar.html" with data=leads_chart height="140" %}{% endcomponent %}
+        {% if has_leads %}
+            {% component "unfold/components/chart/bar.html" with data=leads_chart height="140" %}{% endcomponent %}
+        {% else %}
+            <div class="flex flex-col items-center justify-center gap-2 py-12 text-center">
+                <span class="material-symbols-outlined text-base-300 dark:text-base-600" style="font-size:40px">bar_chart</span>
+                <p class="text-sm text-base-500 dark:text-base-400">{% trans "Hozircha zayavkalar yo'q — grafik birinchi so'rov kelganda to'ladi." %}</p>
+            </div>
+        {% endif %}
     {% endcomponent %}
 
     {# ----- Delivery status + product split ----- #}
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 
         {% component "unfold/components/card.html" with title=_("Yetkazib berish (delivery)") %}
+            {% if not has_delivery %}
+                <div class="flex flex-col items-center justify-center gap-2 py-8 text-center">
+                    <span class="material-symbols-outlined text-base-300 dark:text-base-600" style="font-size:34px">send</span>
+                    <p class="text-sm text-base-500 dark:text-base-400">{% trans "Ma'lumot yo'q." %}</p>
+                </div>
+            {% else %}
             <div class="flex flex-col gap-6">
                 {% for d in delivery %}
                     <div class="flex flex-col gap-2">
@@ -48,9 +61,16 @@
                     </div>
                 {% endfor %}
             </div>
+            {% endif %}
         {% endcomponent %}
 
         {% component "unfold/components/card.html" with title=_("Mahsulotlar taqsimoti") %}
+            {% if not has_products %}
+                <div class="flex flex-col items-center justify-center gap-2 py-8 text-center">
+                    <span class="material-symbols-outlined text-base-300 dark:text-base-600" style="font-size:34px">checkroom</span>
+                    <p class="text-sm text-base-500 dark:text-base-400">{% trans "Ma'lumot yo'q." %}</p>
+                </div>
+            {% else %}
             <div class="flex flex-col gap-5">
                 <div class="flex items-end gap-6">
                     <div>
@@ -71,6 +91,7 @@
                     <span><span style="color:#4d80a9">●</span> {% trans "Erkaklar" %} {{ products_split.men_pct }}%</span>
                 </div>
             </div>
+            {% endif %}
         {% endcomponent %}
     </div>
 
@@ -97,8 +118,10 @@
         {% component "unfold/components/card.html" with title=_("Kontent hajmi") %}
             <div class="grid grid-cols-3 gap-4">
                 {% for c in content_counts %}
-                    <div class="flex flex-col items-center gap-1 rounded-2xl bg-base-50 p-4 dark:bg-base-800">
-                        <span class="material-symbols-outlined text-base-400" style="font-size:22px">{{ c.icon }}</span>
+                    <div class="flex flex-col items-center gap-2 rounded-2xl bg-base-50 p-4 dark:bg-base-800">
+                        <span class="flex h-9 w-9 items-center justify-center rounded-full text-white" style="background:#003566">
+                            <span class="material-symbols-outlined" style="font-size:20px">{{ c.icon }}</span>
+                        </span>
                         <span class="text-2xl font-semibold text-font-important-light dark:text-font-important-dark">{{ c.value }}</span>
                         <span class="text-[11px] uppercase tracking-wide text-base-500 dark:text-base-400">{{ c.label }}</span>
                     </div>
