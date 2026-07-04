@@ -8,6 +8,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin
 
+from .forms import ABOUT_SCHEMA, LOCALES, AboutPageForm, field_name
 from .models import (
     AboutPage,
     Business,
@@ -193,6 +194,41 @@ class FaqSettingsAdmin(SingletonAdmin):
     pass
 
 
+def _about_fields(predicate):
+    names = []
+    for path, kind, _label in ABOUT_SCHEMA:
+        if not predicate(path):
+            continue
+        if kind == "text":
+            names.append(field_name(path))
+        else:
+            names.extend(field_name(path, loc) for loc in LOCALES)
+    return tuple(names)
+
+
 @admin.register(AboutPage)
 class AboutPageAdmin(SingletonAdmin):
-    pass
+    form = AboutPageForm
+
+    fieldsets = (
+        (_("1-bo'lim — Kompaniya tarixi"), {
+            "fields": _about_fields(
+                lambda p: p[0] == "section1" and "pillars" not in p
+            ),
+        }),
+        (_("1-bo'lim — Ustunlar"), {
+            "fields": _about_fields(
+                lambda p: p[0] == "section1" and "pillars" in p
+            ),
+        }),
+        (_("2-bo'lim — Yashil energiya"), {
+            "fields": _about_fields(
+                lambda p: p[0] == "section2" and "card" not in p
+            ),
+        }),
+        (_("2-bo'lim — Karta"), {
+            "fields": _about_fields(
+                lambda p: p[0] == "section2" and "card" in p
+            ),
+        }),
+    )
