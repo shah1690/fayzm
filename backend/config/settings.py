@@ -201,7 +201,6 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'anon': os.environ.get('DRF_THROTTLE_ANON', '100/hour'),
         'user': os.environ.get('DRF_THROTTLE_USER', '1000/hour'),
-        'otp': os.environ.get('DRF_THROTTLE_OTP', '5/minute'),
     },
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
@@ -247,14 +246,6 @@ else:
     CHANNEL_LAYERS = {
         'default': {'BACKEND': 'channels.layers.InMemoryChannelLayer'}
     }
-
-OTP_LENGTH = int(os.environ.get('OTP_LENGTH', '5'))
-OTP_DEFAULT_CODE = os.environ.get('OTP_DEFAULT_CODE', '11111')
-OTP_EXPIRY_SECONDS = int(os.environ.get('OTP_EXPIRY_SECONDS', '120'))
-OTP_RESEND_COOLDOWN_SECONDS = int(os.environ.get('OTP_RESEND_COOLDOWN_SECONDS', '60'))
-OTP_MAX_DAILY_PER_PHONE = int(os.environ.get('OTP_MAX_DAILY_PER_PHONE', '9999' if DEBUG else '5'))
-OTP_MAX_VERIFY_ATTEMPTS = int(os.environ.get('OTP_MAX_VERIFY_ATTEMPTS', '3'))
-SMS_BACKEND = os.environ.get('SMS_BACKEND', 'console')
 
 BACKEND_URL = os.environ.get('BACKEND_URL', 'http://localhost:8000').rstrip('/')
 # Public origin of the Next.js frontend — used to preview static assets
@@ -317,11 +308,6 @@ if USE_MINIO:
         },
     }
     MEDIA_URL = f'{_minio_scheme}://{MINIO_CUSTOM_DOMAIN}/'
-
-FIREBASE_CREDENTIALS_PATH = os.environ.get('FIREBASE_CREDENTIALS_PATH', '')
-FIREBASE_CREDENTIALS_JSON = os.environ.get('FIREBASE_CREDENTIALS_JSON', '')
-FIREBASE_CREDENTIALS_BASE64 = os.environ.get('FIREBASE_CREDENTIALS_BASE64', '')
-FCM_SERVER_KEY = os.environ.get('FCM_SERVER_KEY', '')
 
 UNFOLD = {
     'SITE_TITLE': _('FAYZ-M Admin'),

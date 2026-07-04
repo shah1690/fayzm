@@ -22,6 +22,3 @@ whitenoise>=6.12.0,<7.0
 # Admin
 # Unfold must be installed before using config/settings.py
 django-unfold>=0.93.0,<1.0
-
-# Push optional
-firebase-admin>=7.4.0,<8.0
