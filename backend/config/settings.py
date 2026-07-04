@@ -41,9 +41,17 @@ if not SECRET_KEY:
 ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', 'localhost,127.0.0.1,10.0.2.2,0.0.0.0')
 if not DEBUG and ('*' in ALLOWED_HOSTS or not ALLOWED_HOSTS):
     raise ImproperlyConfigured('Production ALLOWED_HOSTS must be explicit and must not include *')
+# Always allow internal service-to-service calls (frontend -> http://backend:8000)
+# and the container healthcheck / loopback.
+for _internal_host in ('backend', 'localhost', '127.0.0.1'):
+    if _internal_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(_internal_host)
 
 ENABLE_HTTPS_REDIRECT = env_bool('ENABLE_HTTPS_REDIRECT', False)
-SECURE_REDIRECT_EXEMPT = [r'^api/health/$']
+# Exempt the API from Django's HTTPS redirect: it's called server-to-server over
+# the internal network (http://backend:8000); the reverse proxy enforces HTTPS
+# at the edge for browsers.
+SECURE_REDIRECT_EXEMPT = [r'^api/']
 SECURE_REFERRER_POLICY = 'same-origin'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 SECURE_CONTENT_TYPE_NOSNIFF = True
