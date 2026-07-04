@@ -78,7 +78,8 @@ async function sendAmoCrmLead(payload: ContactSubmissionPayload) {
   });
 
   if (!response.ok) {
-    throw new Error(`amoCRM send failed: ${response.status}`);
+    const body = (await response.text().catch(() => "")).slice(0, 500);
+    throw new Error(`amoCRM send failed: ${response.status} ${body}`.trim());
   }
 
   const data = (await response.json().catch(() => null)) as {
@@ -110,9 +111,9 @@ async function persistLead(
   payload: ContactSubmissionPayload,
   telegram: Delivery,
   amo: Delivery,
-) {
+): Promise<boolean> {
   try {
-    await fetch(`${backendBase()}/api/v1/leads/`, {
+    const res = await fetch(`${backendBase()}/api/v1/leads/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -129,8 +130,10 @@ async function persistLead(
       }),
       cache: "no-store",
     });
+    return res.ok;
   } catch (error) {
     console.error("Lead persist to backend failed", error);
+    return false;
   }
 }
 
@@ -330,12 +333,15 @@ export async function POST(request: NextRequest) {
     console.error("Contact form Telegram submit failed", telegramResult.reason);
   }
 
-  // Store the lead + delivery statuses (also records failures).
-  await persistLead(submission, telegramResult, amoResult);
+  // Store the lead + delivery statuses (also records failures). This is the
+  // durable capture — the lead lands in the Django admin even when both
+  // external channels are down.
+  const persisted = await persistLead(submission, telegramResult, amoResult);
 
-  // The lead is captured as long as at least one channel accepted it. Only
-  // report failure to the visitor if BOTH sinks rejected.
-  if (!telegramOk && !amoOk) {
+  // The lead is captured if ANY sink accepted it: a delivery channel OR the
+  // backend store. Only report failure to the visitor if the lead was truly
+  // lost everywhere.
+  if (!telegramOk && !amoOk && !persisted) {
     return NextResponse.json(
       {
         ok: false,
