@@ -256,6 +256,9 @@ OTP_MAX_VERIFY_ATTEMPTS = int(os.environ.get('OTP_MAX_VERIFY_ATTEMPTS', '3'))
 SMS_BACKEND = os.environ.get('SMS_BACKEND', 'console')
 
 BACKEND_URL = os.environ.get('BACKEND_URL', 'http://localhost:8000').rstrip('/')
+# Public origin of the Next.js frontend — used to preview static assets
+# (partner logos, etc.) that live in the frontend's public/ folder.
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000').rstrip('/')
 USE_MINIO = env_bool('USE_MINIO', False)
 FORCE_MINIO_IN_DEBUG = env_bool('FORCE_MINIO_IN_DEBUG', False)
 if DEBUG and USE_MINIO and not FORCE_MINIO_IN_DEBUG:

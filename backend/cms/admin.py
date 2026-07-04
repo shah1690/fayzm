@@ -1,5 +1,6 @@
 """Unfold admin for all CMS content."""
 
+from django.conf import settings
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
@@ -124,9 +125,26 @@ class DocumentAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(Partner)
 class PartnerAdmin(RowActionsMixin, ModelAdmin):
-    list_display = ("name", "logo", "order", "row_actions")
+    list_display = ("logo_preview", "name", "logo", "order", "row_actions")
     list_editable = ("order",)
     search_fields = ("name",)
+
+    @admin.display(description=_("Logo"))
+    def logo_preview(self, obj):
+        if not obj.logo:
+            return "—"
+        src = (
+            obj.logo
+            if obj.logo.startswith("http")
+            else f"{settings.FRONTEND_URL}/{obj.logo.lstrip('/')}"
+        )
+        return format_html(
+            '<img src="{}" alt="{}" loading="lazy" '
+            'style="height:36px;max-width:130px;object-fit:contain;'
+            'background:#fff;border-radius:6px;padding:3px 6px" />',
+            src,
+            obj.name,
+        )
 
 
 @admin.register(Stat)
