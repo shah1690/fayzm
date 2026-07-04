@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.contrib import admin
+from django.core.files.storage import default_storage
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
@@ -141,9 +142,19 @@ class ProductAdmin(RowActionsMixin, ModelAdmin):
 
 @admin.register(Document)
 class DocumentAdmin(RowActionsMixin, ModelAdmin):
-    list_display = ("slug", "object_name", "download_file_name", "order", "row_actions")
+    list_display = (
+        "slug", "object_name", "download_file_name", "size_mb", "order", "row_actions"
+    )
     list_editable = ("order",)
     search_fields = ("slug", "object_name")
+
+    @admin.display(description=_("Hajmi"))
+    def size_mb(self, obj):
+        try:
+            size = default_storage.size(obj.object_name)
+        except Exception:
+            return "—"
+        return f"{size / 1048576:.2f} MB"
 
 
 @admin.register(Partner)
